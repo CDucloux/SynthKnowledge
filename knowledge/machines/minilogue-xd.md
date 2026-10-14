@@ -1,6 +1,6 @@
 # Korg minilogue XD : référence pour les fiches
 
-Source : `manuels/minilogue-xd-user-manual.pdf` (p. 5 façade, p. 15-24 paramètres, p. 32-37 PROGRAM EDIT, p. 53-54 effets).
+Source : `manuals/minilogue-xd-user-manual.pdf` (p. 5 façade, p. 15-24 paramètres, p. 32-37 PROGRAM EDIT, p. 53-54 effets).
 Polyphonique **4 voix**, 2 VCO analogiques + **MULTI ENGINE** numérique par voix, filtre passe-bas analogique, **effets** numériques (MOD, REVERB, DELAY).
 Le schéma de la fiche (`template/minilogue-xd.typ`) reprend cette liste ; les **clés YAML** sont entre parenthèses.
 

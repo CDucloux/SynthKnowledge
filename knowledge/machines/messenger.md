@@ -1,6 +1,6 @@
 # Moog Messenger : référence pour les fiches
 
-Source : `manuels/moog-messenger-user-manual.pdf`. Monophonique, analogique, **aucun effet**, 32 touches (vélocité + aftertouch).
+Source : `manuals/moog-messenger-user-manual.pdf`. Monophonique, analogique, **aucun effet**, 32 touches (vélocité + aftertouch).
 Le schéma de la fiche (`template/messenger.typ`) reprend cette liste ; les **clés YAML** sont entre parenthèses.
 
 ## Notation des boutons

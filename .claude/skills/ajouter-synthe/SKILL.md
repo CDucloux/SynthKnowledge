@@ -1,13 +1,13 @@
 ---
 name: ajouter-synthe
-description: Ajouter le support d'un nouveau synthé (Messenger et minilogue XD déjà faits) au système de fiches, fiche machine dans knowledge/, template Typst du schéma de façade, schéma YAML, fiche de démonstration. Utiliser quand l'utilisateur ajoute un manuel dans manuels/ ou demande « fais le template du minilogue ».
+description: Ajouter le support d'un nouveau synthé (Messenger et minilogue XD déjà faits) au système de fiches, fiche machine dans knowledge/, template Typst du schéma de façade, schéma YAML, fiche de démonstration. Utiliser quand l'utilisateur ajoute un manuel dans manuals/ ou demande « fais le template du minilogue ».
 ---
 
 # Ajouter un synthé
 
-Pré-requis : le **manuel PDF** dans `manuels/<machine>-user-manual.pdf`. Sans manuel, ne pas construire le template (risque de contrôles inventés) : le dire à l'utilisateur.
+Pré-requis : le **manuel PDF** dans `manuals/<machine>-user-manual.pdf`. Sans manuel, ne pas construire le template (risque de contrôles inventés) : le dire à l'utilisateur.
 
-1. **Extraire les contrôles** : `pdftotext -layout manuels/<…>.pdf <scratchpad>/m.txt`, lire les sections panneau ; regarder les pages illustrées (Read avec `pages`) pour l'ordre physique des sections.
+1. **Extraire les contrôles** : `pdftotext -layout manuals/<…>.pdf <scratchpad>/m.txt`, lire les sections panneau ; regarder les pages illustrées (Read avec `pages`) pour l'ordre physique des sections.
 2. **Fiche machine** `knowledge/machines/<machine>.md`, sur le modèle de `messenger.md` : sections, contrôles, plages, clés YAML, menus d'édition utiles au son, inconnues à calibrer.
 3. **Notation** : boutons à course continue sans affichage → heures (7-17) ; paramètres affichés à l'écran (cas du minilogue XD, 0-1023) → **valeur écran**. Ajouter si besoin un composant dans `template/style.typ` (ex. `knob-value(name, v, max: 1023)` qui dessine l'index proportionnellement et affiche la valeur) plutôt que de dupliquer.
 4. **Template** `template/<machine>.typ` sur le modèle de `messenger.typ` (heures d'horloge) ou `minilogue-xd.typ` (valeurs écran, composant `knob-num`) :

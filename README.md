@@ -8,18 +8,18 @@ ajustements à l'oreille, conseils de jeu. Page 2 : traçabilité (référence, 
 
 | Fiche | Machine | Confiance |
 |---|---|---|
-| [Chicago House Bass](fiches/messenger/chicago-house-bass.pdf) | Messenger | ●●● documenté (manuel Moog) |
-| [Lucky Man Lead](fiches/messenger/lucky-man-lead.pdf) | Messenger | ●●○ déduit |
-| [Acid Tracks Bass](fiches/messenger/acid-tracks-bass.pdf) | Messenger | ●●○ déduit |
-| [Jump Brass](fiches/minilogue-xd/jump-brass.pdf) | minilogue XD | ●●○ déduit |
+| [Chicago House Bass](sheets/messenger/chicago-house-bass.pdf) | Messenger | ●●● documenté (manuel Moog) |
+| [Lucky Man Lead](sheets/messenger/lucky-man-lead.pdf) | Messenger | ●●○ déduit |
+| [Acid Tracks Bass](sheets/messenger/acid-tracks-bass.pdf) | Messenger | ●●○ déduit |
+| [Jump Brass](sheets/minilogue-xd/jump-brass.pdf) | minilogue XD | ●●○ déduit |
 
 ## Créer une fiche
 
 Demander à Claude : « fais-moi la fiche du son de *<morceau>* de *<artiste>* » (skill `fiche-son`).
-À la main : écrire `sons/<machine>/<slug>.yaml` (schémas dans `.claude/skills/fiche-son/`) puis :
+À la main : écrire `sounds/<machine>/<slug>.yaml` (schémas dans `.claude/skills/fiche-son/`) puis :
 
 ```bash
-scripts/build.sh sons/<machine>/<slug>.yaml
+scripts/build.sh sounds/<machine>/<slug>.yaml
 ```
 
 Police : Montserrat (SIL Open Font License, `fonts/OFL.txt`).

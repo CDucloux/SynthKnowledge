@@ -7,17 +7,21 @@ Style graphique inspiré du manuel Moog Messenger : noir & blanc, Montserrat, ca
 ## Structure
 
 ```
-manuels/            manuels PDF officiels (source de vérité sur les contrôles)
-knowledge/          base de connaissances synthèse, index : knowledge/README.md (sources/ : Synth Secrets, lus n°1-30)
-sons/<machine>/     un YAML par son  → données de la fiche
+manuals/            manuels PDF officiels (source de vérité sur les contrôles)
+knowledge/          base de connaissances synthèse (synthesis/ : notions condensées), index : knowledge/README.md (sources/ : Synth Secrets, lus n°1-30)
+sounds/<machine>/   un YAML par son  → données de la fiche
 template/           style.typ (composants) · messenger.typ / minilogue-xd.typ (façades) · fiche.typ (point d'entrée)
-theorie/            fiches de théorie imprimables (.typ, d'après Synth Secrets), gabarit template/theorie.typ
-fiches/<machine>/   PDF générés (versionnés) ; fiches/theorie/ pour la théorie
+theory/             fiches de théorie imprimables (.typ, d'après Synth Secrets), gabarit template/theorie.typ
+sheets/<machine>/   PDF générés (versionnés) ; sheets/theory/ pour la théorie
 fonts/              Montserrat (OFL), ne pas modifier
 scripts/build.sh    compile les YAML en PDF (CLI typst, sinon paquet Python `typst`)
-scripts/build-theorie.sh  compile theorie/*.typ (A4, pas de limite de pages)
+scripts/build-theorie.sh  compile theory/*.typ (A4, pas de limite de pages)
 .claude/skills/     fiche-son · ajuster-fiche · ajouter-synthe
 ```
+
+## Noms
+
+- **Dossiers en anglais** (sheets, sounds, manuals, theory, knowledge/synthesis…) ; contenus et textes en français.
 
 ## Git
 
@@ -46,12 +50,12 @@ scripts/build-theorie.sh  compile theorie/*.typ (A4, pas de limite de pages)
 - Les leçons tirées des essais vont dans `knowledge/retours.md` et, si elles sont générales, dans le fichier de connaissance concerné.
 - Committer les YAML **et** les PDF générés.
 
-## Fiches de théorie (theorie/)
+## Fiches de théorie (theory/)
 
 - **Objectif : l'appropriation de la théorie** à partir du contenu réel des articles Synth Secrets (pas des résumés condensés utilisés pour les fiches son).
 - **Pas de limite de pages** : une fiche suit le fil de l'article (ou des articles) qu'elle couvre, avec beaucoup de schémas et de pédagogie. Imprimable en A4.
 - Éléments : idée clé, schémas calculés (formes d'onde, spectres, courbes), tableaux de synthèse, encadrés « Essaie sur ton Messenger » (positions réelles) et « À retenir », sources en pied.
-- La fiche 01 (`theorie/01-forme-onde-spectre.typ`) est un **prototype en une page** fait avant les notes complètes : à réécrire en version longue à partir de `synth-secrets-01.md`.
+- La fiche 01 (`theory/01-forme-onde-spectre.typ`) est un **prototype en une page** fait avant les notes complètes : à réécrire en version longue à partir de `synth-secrets-01.md`.
 - Contenu **rédigé avec nos mots** d'après Synth Secrets (textes protégés : ne jamais recopier) ; schémas **recalculés** avec les primitives de `template/theorie.typ`, jamais d'image copiée.
 - Pas de paquet Typst externe (CeTZ non téléchargeable ici) : dessin natif (`curve`, `place`, `rect`).
 
@@ -60,8 +64,8 @@ scripts/build-theorie.sh  compile theorie/*.typ (A4, pas de limite de pages)
 - Un fichier par article : `knowledge/sources/synth-secrets-01.md`, `-02.md`, etc. (`synth-secrets.md` reste l'index).
 - **Notes complètes** qui suivent le plan de l'article section par section : tous les concepts, raisonnements, chiffres, exemples de patchs, description de chaque schéma (pour pouvoir le redessiner), lien vers l'article original.
 - **Rédigées avec nos mots**, au plus quelques citations courtes : le texte intégral est protégé, ne jamais le recopier.
-- **Jamais de mémoire** : rédiger uniquement à partir de l'article lu (soundonsound.com, ou PDF déposé par l'utilisateur dans `sources-originales/`, exclu de git).
-- Ces notes sont la matière première des fiches de théorie, distinctes des connaissances condensées (`knowledge/synthese/`) utilisées pour les fiches son.
+- **Jamais de mémoire** : rédiger uniquement à partir de l'article lu (soundonsound.com, ou PDF déposé par l'utilisateur dans `original-sources/`, exclu de git).
+- Ces notes sont la matière première des fiches de théorie, distinctes des connaissances condensées (`knowledge/synthesis/`) utilisées pour les fiches son.
 - **Périmètre actuel : n°1 à 3 seulement.** Ne pas aller plus loin sans demande de l'utilisateur.
 
 ## Choix de design validés par l'utilisateur (ne pas changer sans demander)
@@ -76,9 +80,9 @@ scripts/build-theorie.sh  compile theorie/*.typ (A4, pas de limite de pages)
 
 ```bash
 scripts/build.sh                                  # toutes les fiches
-scripts/build.sh sons/messenger/<slug>.yaml       # une fiche
+scripts/build.sh sounds/messenger/<slug>.yaml       # une fiche
 # équivalent CLI :
-typst compile --root . --font-path fonts --input son=/sons/messenger/<slug>.yaml template/fiche.typ fiches/messenger/<slug>.pdf
+typst compile --root . --font-path fonts --input son=/sounds/messenger/<slug>.yaml template/fiche.typ sheets/messenger/<slug>.pdf
 ```
 
 Dépendances : `typst` (CLI ≥ 0.13, ou `pip install typst`), `poppler-utils` pour la vérification visuelle.

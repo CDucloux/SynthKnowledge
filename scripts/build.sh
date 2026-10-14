@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
-# Compile les fiches PDF à partir des YAML de sons/.
+# Compile les fiches PDF à partir des YAML de sounds/.
 #   scripts/build.sh                              → toutes les fiches
-#   scripts/build.sh sons/messenger/mon-son.yaml  → une seule
+#   scripts/build.sh sounds/messenger/mon-son.yaml  → une seule
 # Requiert la CLI typst (https://typst.app), ou à défaut le paquet Python `typst`.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
-if [ $# -gt 0 ]; then files=("$@"); else mapfile -t files < <(find sons -name '*.yaml' | sort); fi
+if [ $# -gt 0 ]; then files=("$@"); else mapfile -t files < <(find sounds -name '*.yaml' | sort); fi
 
 compile() { # $1 = yaml relatif, $2 = pdf de sortie
   if command -v typst >/dev/null 2>&1; then
@@ -20,7 +20,7 @@ typst.compile("template/fiche.typ", output=sys.argv[2], root=".", font_paths=["f
 status=0
 for f in "${files[@]}"; do
   rel="${f#./}"
-  out="fiches/${rel#sons/}"; out="${out%.yaml}.pdf"
+  out="sheets/${rel#sounds/}"; out="${out%.yaml}.pdf"
   mkdir -p "$(dirname "$out")"
   if grep -q -e $'\xe2\x80\x94' -e $'\xe2\x80\x93' "$rel"; then echo "✗ $rel : tiret quadratin interdit" >&2; status=1; continue; fi
   compile "$rel" "$out"

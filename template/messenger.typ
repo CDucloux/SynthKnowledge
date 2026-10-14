@@ -1,5 +1,5 @@
 // SynthKnowledge : schéma de façade du Moog Messenger.
-// Référence : manuels/moog-messenger-user-manual.pdf (pages 6-7 et 13-22).
+// Référence : manuals/moog-messenger-user-manual.pdf (pages 6-7 et 13-22).
 // Toute clé absente du YAML prend la valeur INIT ci-dessous et s'affiche en gris.
 
 #import "style.typ": *

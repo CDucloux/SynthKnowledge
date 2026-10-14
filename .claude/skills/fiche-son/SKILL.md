@@ -15,7 +15,7 @@ Si l'utilisateur ne précise pas **quel son** du morceau et qu'il y en a plusieu
 - `knowledge/retours.md` (leçons des essais précédents), **toujours**.
 - `knowledge/archetypes.md` → recette de départ de la famille.
 - `knowledge/machines/messenger.md` ou `knowledge/machines/minilogue-xd.md` → contrôles et clés YAML.
-- Selon le cas : `knowledge/synthes-historiques.md`, `knowledge/synthese/*.md`.
+- Selon le cas : `knowledge/synthes-historiques.md`, `knowledge/synthesis/*.md`.
 
 ## 2. Rechercher (WebSearch, mode standard ; plusieurs requêtes dans le même tour)
 
@@ -44,7 +44,7 @@ Dire à l'utilisateur pourquoi cette machine, et les compromis.
 
 ## 5. Écrire le YAML
 
-Fichier `sons/<machine>/<slug>.yaml` (slug en kebab-case ASCII, ex. `acid-tracks-bass`). Schéma complet : `schema-messenger.md` ou `schema-minilogue-xd.md` (même dossier).
+Fichier `sounds/<machine>/<slug>.yaml` (slug en kebab-case ASCII, ex. `acid-tracks-bass`). Schéma complet : `schema-messenger.md` ou `schema-minilogue-xd.md` (même dossier).
 Règles :
 - Ne mettre dans `params` **que les contrôles qui diffèrent de la valeur neutre** (ils s'affichent en noir, le reste en gris). Mais si un contrôle est important pour le son même à sa valeur neutre (ex. `res_bass: false` voulu), l'écrire quand même pour qu'il ressorte.
 - Messenger : positions en heures (7-17, décimales 0.25 / 0.5). minilogue XD : valeurs écran du manuel (0-1023, cents, %).
@@ -59,11 +59,11 @@ Règles :
 ## 6. Compiler et vérifier
 
 ```bash
-scripts/build.sh sons/<machine>/<slug>.yaml
+scripts/build.sh sounds/<machine>/<slug>.yaml
 ```
 - Le script exige **2 pages** (fiche + anatomie du son) : s'il en trouve 3, la page 1 déborde → raccourcir les textes.
 - Le template échoue sur une clé inconnue (faute de frappe) → corriger d'après le message.
-- **Vérifier le rendu visuellement** : `pdftoppm -r 100 -png fiches/<machine>/<slug>.pdf <scratchpad>/x` puis lire l'image. Contrôler : pas de chevauchement, valeurs lisibles, index des potards cohérents avec le texte.
+- **Vérifier le rendu visuellement** : `pdftoppm -r 100 -png sheets/<machine>/<slug>.pdf <scratchpad>/x` puis lire l'image. Contrôler : pas de chevauchement, valeurs lisibles, index des potards cohérents avec le texte.
 
 ## 7. Livrer
 

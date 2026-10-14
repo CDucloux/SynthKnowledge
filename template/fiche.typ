@@ -1,12 +1,12 @@
 // Point d'entrée : compile une fiche à partir d'un fichier YAML de son.
 //   typst compile --root . --font-path fonts \
-//     --input son=/sons/messenger/mon-son.yaml template/fiche.typ fiches/messenger/mon-son.pdf
+//     --input son=/sounds/messenger/mon-son.yaml template/fiche.typ sheets/messenger/mon-son.pdf
 // (chemin du YAML relatif à la racine du repo, commençant par « / »)
 
 #import "messenger.typ" as messenger
 #import "minilogue-xd.typ" as minilogue-xd
 
-#let path = sys.inputs.at("son", default: "/sons/messenger/chicago-house-bass.yaml")
+#let path = sys.inputs.at("son", default: "/sounds/messenger/chicago-house-bass.yaml")
 #let data = yaml(path)
 #data.insert("_fichier", path.trim("/", at: start))
 
