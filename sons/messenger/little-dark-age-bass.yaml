@@ -1,0 +1,93 @@
+synthe: messenger
+titre: Little Dark Age Bass
+categorie: basse
+tags: [synthpop, "2010s", legato, polysix]
+confiance: 2
+reference:
+  artiste: MGMT
+  morceau: Little Dark Age
+  annee: 2017
+  passage: basse pincée du couplet
+  synthe_origine: "probablement le preset « Fat Line Bass » du Korg Polysix (selon Reverb Machine)"
+resume: >-
+  Basse ronde et pincée : une scie doublée d'un carré une octave plus bas, filtre
+  4 pôles très fermé que l'enveloppe ouvre puis laisse à mi-hauteur. Jouée legato :
+  les notes liées s'enchaînent sans relancer l'enveloppe.
+
+params:
+  osc:
+    oct1: 16
+    oct2: 16
+    wave1: 12
+    wave2: 12
+    osc2_freq: 12.12
+    sub_wave: 10.75
+  mixer:
+    osc1: 17
+    osc2: 14
+    sub: 14
+  filter:
+    mode: lp4
+    cutoff: 8.5
+    eg_amount: 14.5
+    resonance: 9.5
+    res_bass: true
+  fenv: {a: 7, d: 13, s: 12, r: 9}
+  aenv: {a: 7, d: 12, s: 17, r: 9}
+  env:
+    multi_trig: false
+
+etapes:
+  - Maintenir *PANEL* 1 s (init).
+  - "*OCTAVE 1* et *2* sur 16', scies (*WAVESHAPE* à midi). *OSC 2 FREQ* à peine à droite de midi."
+  - "*SUB WAVE* ≈ 10:45 (carré, une octave sous *OSC 1*). *MIXER* : *OSC 1* à fond, *OSC 2* et *SUB* ≈ 2:00."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 8:30 (très fermé), *RESONANCE* ≈ 9:30, *RES BASS* ON."
+  - "*EG AMOUNT* ≈ 2:30 ; enveloppe filtre : *DECAY* ≈ 1:00, *SUSTAIN* à midi (50 %)."
+  - "Enveloppe ampli : orgue, *RELEASE* court ≈ 9:00. *MULTI-TRIG* OFF (legato)."
+oreille:
+  - "Pas assez pincé : *DECAY* filtre vers 12:00 et *EG AMOUNT* vers 3:00."
+  - "Trop brillant ou nasillard : *CUTOFF* vers 8:00, *SUSTAIN* filtre vers 11:00."
+  - "Pas assez large (l'original est en unisson stéréo) : *OSC 2 FREQ* un peu plus loin de midi."
+  - "Chaque note doit claquer, même liée : *MULTI-TRIG* ON."
+jeu:
+  - "Jouer legato les notes liées : elles glissent dans l'enveloppe en cours, sans nouveau « pinc »."
+  - "Détacher les notes à accentuer : elles relancent l'enveloppe et claquent."
+
+analyse:
+  - titre: "Les oscillateurs : scie et carré à l'octave"
+    texte: >-
+      La recréation de [1] mélange une *scie* et un *carré* une octave plus bas,
+      chacun en unisson désaccordé. Sur le Messenger, le *SUB OSC* carré joue ce rôle
+      d'octave inférieure et *OSC 2* légèrement désaccordé recrée l'épaisseur de
+      l'unisson : la scie donne le mordant, le carré grave le poids.
+  - titre: "Le filtre : façon Moog, très fermé"
+    texte: >-
+      La recréation [1] utilise un passe-bas de type Moog 24 dB, cutoff très bas (≈ 50 Hz),
+      résonance 26 % : le ladder 4 pôles du Messenger est exactement de cette
+      famille. Au repos il ne laisse que le fondamental ; c'est l'enveloppe qui
+      fait passer les harmoniques. *RES BASS* garde le bas malgré la résonance.
+  - titre: "Les enveloppes : le pincé qui reste à mi-hauteur"
+    texte: >-
+      Enveloppe de filtre à *DECAY* assez long (825 ms dans [1]) et *SUSTAIN* à 50 % :
+      la note s'ouvre, redescend, puis reste à moitié ouverte tant qu'on la tient.
+      C'est ce qui sonne « Polysix »^[Korg Polysix : synthé analogique polyphonique ;
+      « Fat Line Bass » est l'un de ses presets d'usine selon [1].] : rond mais
+      pas éteint.
+  - titre: "Le jeu : le legato qui fait le groove"
+    texte: >-
+      Selon [1], la ligne est jouée legato, et que c'est justement ce que le
+      plugin Polysix ne sait pas faire. Le Messenger, lui, ne relance pas les
+      enveloppes sur les notes liées (*MULTI-TRIG* OFF) : les notes jouées liées
+      restent dans la même enveloppe, les notes détachées repincent.
+
+tracabilite:
+  - "Recette d'écoute [1] : recréation du preset Polysix « Fat Line Bass » : scie + carré à l'octave inférieure, unisson 6 voix, passe-bas Moog 24 dB, cutoff ≈ 50 Hz, résonance 26 %, enveloppe filtre decay 825 ms / sustain 50 %, legato."
+  - "Hypothèse [1] : le synthé d'origine serait un Korg Polysix (« probablement », selon l'auteur)."
+  - "Reconstitué : traduction Messenger (OSC 2 désaccordé au lieu de l'unisson, SUB carré pour l'octave), toutes les positions."
+
+sources:
+  - titre: "MGMT's Little Dark Age Synth Sounds"
+    site: Reverb Machine
+    date: mai 2021
+    url: https://reverbmachine.com/blog/mgmt-little-dark-age-synth-sounds
+    note: section « Verse Bass », preset Polysix Fat Line Bass
