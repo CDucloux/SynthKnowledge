@@ -10,10 +10,10 @@ if [ $# -gt 0 ]; then files=("$@"); else mapfile -t files < <(find sounds -name 
 
 compile() { # $1 = yaml relatif, $2 = pdf de sortie
   if command -v typst >/dev/null 2>&1; then
-    typst compile --root . --font-path fonts --input "son=/$1" template/fiche.typ "$2"
+    typst compile --root . --font-path fonts --input "son=/$1" template/sheet.typ "$2"
   else
     python3 -c 'import sys, typst
-typst.compile("template/fiche.typ", output=sys.argv[2], root=".", font_paths=["fonts"], sys_inputs={"son": "/" + sys.argv[1]})' "$1" "$2"
+typst.compile("template/sheet.typ", output=sys.argv[2], root=".", font_paths=["fonts"], sys_inputs={"son": "/" + sys.argv[1]})' "$1" "$2"
   fi
 }
 

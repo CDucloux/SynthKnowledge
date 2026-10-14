@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Compile les fiches de théorie (theory/*.typ) en PDF imprimables (pas de limite de pages).
-#   scripts/build-theorie.sh                              → toutes
-#   scripts/build-theorie.sh theory/01-forme-onde-spectre.typ → une seule
+#   scripts/build-theory.sh                              → toutes
+#   scripts/build-theory.sh theory/01-forme-onde-spectre.typ → une seule
 set -euo pipefail
 cd "$(dirname "$0")/.."
 

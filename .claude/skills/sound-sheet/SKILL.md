@@ -1,6 +1,6 @@
 ---
-name: fiche-son
-description: Créer une fiche son SynthKnowledge (PDF Typst A4 : page 1 réglages, page 2 sources) pour reproduire un son de synthé sur le Moog Messenger ou le Korg minilogue XD, à partir d'un titre + artiste, d'une description ou d'une référence. Utiliser dès que l'utilisateur demande « fais-moi la fiche de… », « comment faire le son de… », « reproduire le lead/la basse de… ».
+name: sound-sheet
+description: Créer une fiche son SynthKnowledge (PDF Typst A4 : page 1 réglages, page 2 anatomie du son) pour reproduire un son de synthé sur le Moog Messenger ou le Korg minilogue XD, à partir d'un titre + artiste, d'une description ou d'une référence. Utiliser dès que l'utilisateur demande « fais-moi la fiche de… », « comment faire le son de… », « reproduire le lead/la basse de… ».
 ---
 
 # Créer une fiche son
@@ -68,4 +68,4 @@ scripts/build.sh sounds/<machine>/<slug>.yaml
 ## 7. Livrer
 
 - Commit sur `main` puis `git push origin main` (pas de branche, pas de PR). Commit du YAML **et** du PDF (les PDF sont versionnés pour être consultables depuis le téléphone).
-- Répondre à l'utilisateur : machine choisie, niveau de confiance et pourquoi, sources, compromis éventuels (effets absents, polyphonie), et l'inviter à faire un retour après essai (→ skill `ajuster-fiche`). Pas de tiret quadratin dans les textes.
+- Répondre à l'utilisateur : machine choisie, niveau de confiance et pourquoi, sources, compromis éventuels (effets absents, polyphonie), et l'inviter à faire un retour après essai (→ skill `adjust-sheet`). Pas de tiret quadratin dans les textes.

@@ -8,7 +8,7 @@
 // Mise en page
 // ---------------------------------------------------------------------------
 
-#let theorie-setup(body) = {
+#let theory-setup(body) = {
   set page(paper: "a4", margin: (x: 13mm, top: 11mm, bottom: 11mm))
   set text(font: font, size: 8.4pt, lang: "fr", fill: ink)
   set par(justify: false, leading: 0.62em)
@@ -16,7 +16,7 @@
 }
 
 /// En-tête : bandeau noir avec numéro de fiche, titre, références Synth Secrets.
-#let theorie-header(num, titre, sous-titre, refs) = {
+#let theory-header(num, titre, sous-titre, refs) = {
   block(width: 100%, fill: ink, inset: (x: 5mm, y: 3mm), radius: 1.5pt, grid(
     columns: (auto, 1fr, auto), column-gutter: 5mm, align: (left + horizon, left + horizon, right + bottom),
     text(white, size: 30pt, weight: "extrabold", num),

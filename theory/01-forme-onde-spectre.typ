@@ -1,7 +1,7 @@
-#import "../template/theorie.typ": *
-#show: theorie-setup
+#import "../template/theory.typ": *
+#show: theory-setup
 
-#theorie-header("01", "Forme d'onde et spectre", "Deux façons de regarder le même son", (1,))
+#theory-header("01", "Forme d'onde et spectre", "Deux façons de regarder le même son", (1,))
 
 #idee[Tout son qui a une hauteur est une *somme de sinus* : la fondamentale (f) et ses harmoniques (2f, 3f, 4f…). La *forme d'onde* (le temps) et le *spectre* (les fréquences) décrivent exactement la même chose.]
 

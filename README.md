@@ -15,8 +15,8 @@ ajustements à l'oreille, conseils de jeu. Page 2 : traçabilité (référence, 
 
 ## Créer une fiche
 
-Demander à Claude : « fais-moi la fiche du son de *<morceau>* de *<artiste>* » (skill `fiche-son`).
-À la main : écrire `sounds/<machine>/<slug>.yaml` (schémas dans `.claude/skills/fiche-son/`) puis :
+Demander à Claude : « fais-moi la fiche du son de *<morceau>* de *<artiste>* » (skill `sound-sheet`).
+À la main : écrire `sounds/<machine>/<slug>.yaml` (schémas dans `.claude/skills/sound-sheet/`) puis :
 
 ```bash
 scripts/build.sh sounds/<machine>/<slug>.yaml

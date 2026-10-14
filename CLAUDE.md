@@ -10,13 +10,13 @@ Style graphique inspiré du manuel Moog Messenger : noir & blanc, Montserrat, ca
 manuals/            manuels PDF officiels (source de vérité sur les contrôles)
 knowledge/          base de connaissances synthèse (synthesis/ : notions condensées), index : knowledge/README.md (sources/ : Synth Secrets, lus n°1-30)
 sounds/<machine>/   un YAML par son  → données de la fiche
-template/           style.typ (composants) · messenger.typ / minilogue-xd.typ (façades) · fiche.typ (point d'entrée)
-theory/             fiches de théorie imprimables (.typ, d'après Synth Secrets), gabarit template/theorie.typ
+template/           style.typ (composants) · messenger.typ / minilogue-xd.typ (façades) · sheet.typ (point d'entrée)
+theory/             fiches de théorie imprimables (.typ, d'après Synth Secrets), gabarit template/theory.typ
 sheets/<machine>/   PDF générés (versionnés) ; sheets/theory/ pour la théorie
 fonts/              Montserrat (OFL), ne pas modifier
 scripts/build.sh    compile les YAML en PDF (CLI typst, sinon paquet Python `typst`)
-scripts/build-theorie.sh  compile theory/*.typ (A4, pas de limite de pages)
-.claude/skills/     fiche-son · ajuster-fiche · ajouter-synthe
+scripts/build-theory.sh  compile theory/*.typ (A4, pas de limite de pages)
+.claude/skills/     sound-sheet · adjust-sheet · add-synth
 ```
 
 ## Noms
@@ -30,9 +30,9 @@ scripts/build-theorie.sh  compile theory/*.typ (A4, pas de limite de pages)
 
 ## Workflows → skills
 
-- Nouveau son (« fais la fiche de… », titre + artiste) → skill **fiche-son**.
-- Retour d'essai / correction d'une fiche → skill **ajuster-fiche**.
-- Nouveau synthé ou manuel ajouté → skill **ajouter-synthe**.
+- Nouveau son (« fais la fiche de… », titre + artiste) → skill **sound-sheet**.
+- Retour d'essai / correction d'une fiche → skill **adjust-sheet**.
+- Nouveau synthé ou manuel ajouté → skill **add-synth**.
 
 ## Règles du projet
 
@@ -56,7 +56,7 @@ scripts/build-theorie.sh  compile theory/*.typ (A4, pas de limite de pages)
 - **Pas de limite de pages** : une fiche suit le fil de l'article (ou des articles) qu'elle couvre, avec beaucoup de schémas et de pédagogie. Imprimable en A4.
 - Éléments : idée clé, schémas calculés (formes d'onde, spectres, courbes), tableaux de synthèse, encadrés « Essaie sur ton Messenger » (positions réelles) et « À retenir », sources en pied.
 - La fiche 01 (`theory/01-forme-onde-spectre.typ`) est un **prototype en une page** fait avant les notes complètes : à réécrire en version longue à partir de `synth-secrets-01.md`.
-- Contenu **rédigé avec nos mots** d'après Synth Secrets (textes protégés : ne jamais recopier) ; schémas **recalculés** avec les primitives de `template/theorie.typ`, jamais d'image copiée.
+- Contenu **rédigé avec nos mots** d'après Synth Secrets (textes protégés : ne jamais recopier) ; schémas **recalculés** avec les primitives de `template/theory.typ`, jamais d'image copiée.
 - Pas de paquet Typst externe (CeTZ non téléchargeable ici) : dessin natif (`curve`, `place`, `rect`).
 
 ## Notes d'étude Synth Secrets (knowledge/sources/)
@@ -82,7 +82,7 @@ scripts/build-theorie.sh  compile theory/*.typ (A4, pas de limite de pages)
 scripts/build.sh                                  # toutes les fiches
 scripts/build.sh sounds/messenger/<slug>.yaml       # une fiche
 # équivalent CLI :
-typst compile --root . --font-path fonts --input son=/sounds/messenger/<slug>.yaml template/fiche.typ sheets/messenger/<slug>.pdf
+typst compile --root . --font-path fonts --input son=/sounds/messenger/<slug>.yaml template/sheet.typ sheets/messenger/<slug>.pdf
 ```
 
 Dépendances : `typst` (CLI ≥ 0.13, ou `pip install typst`), `poppler-utils` pour la vérification visuelle.

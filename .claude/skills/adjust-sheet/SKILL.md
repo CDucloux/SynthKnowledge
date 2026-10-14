@@ -1,5 +1,5 @@
 ---
-name: ajuster-fiche
+name: adjust-sheet
 description: Corriger une fiche son existante à partir du retour d'essai de l'utilisateur (« trop brillant », « l'attaque est molle », « ça ne glisse pas assez »…) et consigner la leçon dans knowledge/retours.md. Utiliser dès que l'utilisateur dit avoir essayé une fiche ou demande de modifier un son déjà fiché.
 ---
 

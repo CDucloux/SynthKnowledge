@@ -1,6 +1,6 @@
 // Point d'entrée : compile une fiche à partir d'un fichier YAML de son.
 //   typst compile --root . --font-path fonts \
-//     --input son=/sounds/messenger/mon-son.yaml template/fiche.typ sheets/messenger/mon-son.pdf
+//     --input son=/sounds/messenger/mon-son.yaml template/sheet.typ sheets/messenger/mon-son.pdf
 // (chemin du YAML relatif à la racine du repo, commençant par « / »)
 
 #import "messenger.typ" as messenger

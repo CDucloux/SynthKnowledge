@@ -1,5 +1,5 @@
 ---
-name: ajouter-synthe
+name: add-synth
 description: Ajouter le support d'un nouveau synthé (Messenger et minilogue XD déjà faits) au système de fiches, fiche machine dans knowledge/, template Typst du schéma de façade, schéma YAML, fiche de démonstration. Utiliser quand l'utilisateur ajoute un manuel dans manuals/ ou demande « fais le template du minilogue ».
 ---
 
@@ -15,7 +15,7 @@ Pré-requis : le **manuel PDF** dans `manuals/<machine>-user-manual.pdf`. Sans m
    - `panel(params)` dans l'ordre physique de la façade, une `section` par bloc du panneau,
    - sections spécifiques (pour le XD : EFFECTS, VOICE MODE, MULTI ENGINE, menu PROGRAM EDIT),
    - `fiche(data)` réutilisant `header`, `textbox`, `footer-line`.
-   - Enregistrer la machine dans `template/fiche.typ` (dictionnaire `machines`).
-5. **Schéma YAML** `.claude/skills/fiche-son/schema-<machine>.md`, et mettre à jour `fiche-son/SKILL.md` §3 (choix de machine).
+   - Enregistrer la machine dans `template/sheet.typ` (dictionnaire `machines`).
+5. **Schéma YAML** `.claude/skills/sound-sheet/schema-<machine>.md`, et mettre à jour `sound-sheet/SKILL.md` §3 (choix de machine).
 6. **Fiche de démo** (son bien documenté) + `scripts/build.sh` + vérification visuelle (une page, rien de coupé).
 7. Mettre à jour `CLAUDE.md` (machines supportées) et `knowledge/README.md`. Commit.
