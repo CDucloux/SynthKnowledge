@@ -13,3 +13,11 @@ Quand un son de référence dépend d'un effet, la fiche doit le dire, avec une 
 | Unison / supersaw | énorme, épais, stéréo | VOICE MODE UNISON | 2 osc scie désaccordés (mono, plus étroit) |
 
 Règle : **ne jamais prétendre qu'un réglage remplace exactement un effet**. Écrire « approximation sans effet, ajouter un chorus externe pour l'original ».
+
+## Approfondir (Synth Secrets, index `knowledge/sources/synth-secrets.md`)
+
+- **Réverbération** [SS22] : premières réflexions distinctes, puis une queue dense (des échos à moins de ~30 ms ne s'entendent plus séparément). Une spring à un ressort donne un « boing » métallique.
+- **Le corps d'un instrument est une réverbération très courte** (1-4 ms) qui colore le son selon la note : c'est pourquoi un violon ne sonne pas comme une scie [SS22]. Les effets du minilogue XD sont en fin de chaîne : ils placent le son dans une salle mais ne remplacent pas une caisse de résonance.
+- Pour un instrument acoustique imité : grande réverbération de salle en sortie (XD *REVERB* Hall) [SS22].
+- **Vocodeur** [SS15] : banques de filtres passe-bande ; une dizaine de bandes plus du bruit pour les consonnes suffit (*Mr Blue Sky*). Aucune des deux machines n'en a : le dire dans la fiche.
+- **Entrée externe** : Messenger *FB / EXT IN* permet de filtrer un son extérieur ; le VCA reste fermé tant qu'on ne joue pas [SS15].

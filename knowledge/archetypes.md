@@ -24,6 +24,7 @@ Les valeurs sont des **départs raisonnables**, pas des vérités : toujours aju
 | **Sync lead 80s** | OSC 2 synchronisé, une octave+ au-dessus | 2P ou 4P ouvert | MOD DEST : F ENV → OSC 2 FREQ, amount + | - |
 | **G-funk sine lead** | triangle / sinus 4' | ouvert | A : A 7.5, S 17 | glide 11-12, legato glide, vibrato |
 | **Lead nasal / hautbois** | pulse étroit (WAVESHAPE 15-16) | BP ou 2P, réso 11 | A courte | vibrato fade-in (LFO 1 FADE) |
+| **Cuivre solo** (trompette, patch Minimoog de G. Reid [SS26]) | 1 scie 4' seule (trombone 8', tuba 16' + sub) | 4P, cutoff 7-8, EG ≈ 15, réso ≈ 9, KB track ON | F : A ≈ 11, D ≈ 11.5, S 12 · A : A ≈ 9, S 17, R 7.5-8 | growl LFO 1 ≈ 80 Hz → cutoff à l'attaque, vibrato faible à la molette ; détail dans `synthese/07-imitation-instruments.md` |
 
 ## Polyphoniques (→ minilogue XD)
 

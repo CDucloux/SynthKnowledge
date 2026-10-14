@@ -35,3 +35,29 @@ Basses : 16'/32'. Leads : 8'/4'. Le réglage dépend aussi de *KB OCTAVE* : note
 - Une basse « grosse » vient souvent du **sub + filtre**, pas d'un oscillateur plus grave.
 - Les sons de piano/cordes réels sont **riches en harmoniques puis filtrés** : partir de la scie.
 - Le carré à 50 % exact sonne « jeu vidéo » ; un pulse à 40-45 % plus vivant.
+
+## Approfondir (Synth Secrets, index `knowledge/sources/synth-secrets.md`)
+
+### Pulse : quelle largeur pour quel timbre [SS10]
+
+- Règle exacte : une pulse de rapport **1:n** a le spectre d'une scie **sans chaque n-ième harmonique**. 50 % → pas de pairs (carré) ; 33 % → pas de 3, 6, 9… ; 25 % → pas de 4, 8, 12…
+- Entre deux rapports entiers (ex. 28 %), les harmoniques concernés sont atténués sans disparaître.
+- 5-10 % = fin, nasal (hautbois) ; vers 50 % le son s'épaissit ; 50 % exact = creux, boisé (clarinette).
+- Une largeur > 50 % sonne comme son symétrique (60 % = 40 %).
+- **PWM** par LFO lent = chorus « à la source » (cordes ensemble, leads riches). Ce n'est pas un chorus d'effet : la PWM fait varier les harmoniques eux-mêmes.
+
+### Modulations audio : AM, ring, FM
+
+- **AM** (oscillateur audio sur le volume) : on entend la porteuse + la **somme** + la **différence** des fréquences, le modulateur disparaît [SS11].
+  Modulateur fixe = timbre inharmonique qui change selon la note (agressif). Modulateur qui suit le clavier = timbre stable (rapport 2:1 → composantes à 50/100/150 %, musical).
+- **Ring mod** = AM sans la porteuse : seulement somme et différence → cloches, métal, robot [SS11]. Minilogue XD : *RING* sur le VCO 2.
+- **Oscillateur audio sur le cutoff** = chaque harmonique est modulé en amplitude : c'est le « growl » à fréquence audio [SS11]. Messenger : *OSC 2 → CUTOFF*.
+- **FM** : bandes latérales à porteuse ± n × modulateur [SS12]. La **quantité** de modulation fixe la brillance (peu = proche de l'AM ; beaucoup = spectre large, la fondamentale s'affaiblit) ; la **fréquence** du modulateur fixe la position des partiels.
+- **Rapports porteuse:modulateur** [SS13] : 1:1 ≈ scie filtrée ; 1:2 ≈ carré filtré ; 1:3 ≈ pulse 33 % ; non entier = inharmonique, métallique (la porteuse n'est plus la composante la plus grave).
+- En pratique sur deux VCO : même hauteur, puis doser la FM (Messenger *MOD AMOUNT* en `fm`, XD *CROSS MOD*) ; une **enveloppe sur la quantité de FM** donne des changements de timbre radicaux, « sci-fi » [SS13].
+- Rapports non entiers + enveloppe d'ampli percussive = très bonnes percussions [SS13].
+- En jouant sur tout le clavier, la FM analogique change de couleur (l'indice baisse quand le modulateur monte) : la régler pour le registre joué [SS12].
+
+### Additif simple [SS14]
+
+Deux oscillateurs accordés en quinte ou en octave, c'est déjà de l'additif. Un Hammond est un additif à 9 tirettes : il sonne « orgue » parce que son timbre ne change pas dans le temps.

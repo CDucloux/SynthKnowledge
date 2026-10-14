@@ -24,6 +24,10 @@ Table de traduction utilisée pour (1) interpréter les descriptions de l'utilis
 | qui sature, grogne, « growl » | feedback / drive, OSC 2 → cutoff, wavefold |
 | soufflé, aérien | bruit dans le mixer, passe-haut, attaque lente |
 | « 8-bit », chiptune | carré ou pulse sans filtre, enveloppes sèches, arpège rapide |
+| cuivré, brassy | scie, filtre qui s'ouvre plus lentement que l'ampli, keytrack, un peu de résonance [SS26] |
+| qui « rape », rugueux à l'attaque | modulation rapide du cutoff pendant l'attaque (growl) [SS25] |
+| figé, « orgue », sans vie | rien ne bouge dans le temps : env. de filtre, vibrato, growl [SS14] |
+| qui sonne « synthé » au lieu de l'instrument | attaque trop nette, vibrato trop régulier ou trop profond, plusieurs osc qui dérivent [SS25, SS26] |
 
 ## Questions de diagnostic (dans cet ordre)
 

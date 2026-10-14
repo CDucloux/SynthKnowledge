@@ -44,3 +44,37 @@
 | SEM 12 dB multimode | Oberheim | ouvert, « brassy » | 2P LP |
 | Korg MS-20 (Sallen-Key) | MS-20 | agressif, crie | M : 2P LP + résonance + FB/EXT IN ; XD : DRIVE 100 % + résonance |
 | CEM / SSM | Prophet-5 | punchy, défini | 4P LP |
+
+## Approfondir (Synth Secrets, index `knowledge/sources/synth-secrets.md`)
+
+- **Le cutoff n'est pas l'endroit où le filtre « commence »** : le signal y est déjà atténué de 3 dB, ce qui s'entend [SS5].
+- **6 dB/oct** = simple correcteur de tonalité (plus terne, timbre inchangé) : insuffisant pour la synthèse [SS5].
+- Un **4 pôles** tend vers 24 dB/oct mais traverse des zones à 6, 12 et 18 dB/oct : deux « 24 dB » (Minimoog, ARP) ne sonnent pas pareil, deux « 12 dB » (MS-20, SEM) non plus [SS5].
+- Un filtre **déphase** chaque harmonique : la forme d'onde est déformée en plus d'être atténuée [SS4].
+- Le **filtre fait le caractère du synthé** : un oscillateur Moog dans un filtre Korg sonne Korg [SS6].
+- Passe-bande = passe-bas + passe-haut en série ; réjecteur (notch) = les deux en parallèle [SS6].
+
+### Usages de la résonance [SS6]
+
+| Résonance | Usage |
+|---|---|
+| filtre **statique**, résonance moyenne | faire ressortir une zone, faire « passer » un son dans le mix |
+| moyenne + **keytrack 100 %** | qualité « accentuée » identique sur tout le clavier |
+| au bord de l'auto-oscillation | le filtre « chante » avec certains harmoniques : distorsion typique, sons bizarres |
+| max + keytrack | sinus jouable comme un oscillateur ; vibrato en modulant le cutoff |
+
+### Formants (voix, caisses d'instrument) [SS23]
+
+- Un formant est un **pic fixe** : il ne suit pas la note. En montant d'une octave, ce ne sont plus les mêmes harmoniques qui sont accentués, d'où le changement de caractère selon le registre (contrairement à un filtre qui suit le clavier).
+- Trois formants suffisent pour reconnaître une voyelle ; le **2e formant** est celui qui bouge le plus quand on parle. Source riche (scie).
+
+| Voyelle (voix d'homme) | F1 | F2 | F3 |
+|---|---|---|---|
+| « i » (*leap*) | 270 | 2300 | 3000 |
+| « ou » (*loop*) | 300 | 870 | 2250 |
+| « i » ouvert (*lip*) | 400 | 2000 | 2550 |
+| « è » (*let*) | 530 | 1850 | 2500 |
+| ≈ « eu » (*lug*) | 640 | 1200 | 2400 |
+| « a » (*lap*) | 660 | 1700 | 2400 |
+
+Avec un seul filtre (Messenger, XD), on n'obtient qu'**un** formant : *BP* résonant (Messenger) placé vers F1 ou F2 donne une couleur « voyelle » approximative ; balayer le cutoff entre deux valeurs = « wah » parlant. Le reste se fait à l'EQ externe.

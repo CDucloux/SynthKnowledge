@@ -8,7 +8,7 @@ Style graphique inspiré du manuel Moog Messenger : noir & blanc, Montserrat, ca
 
 ```
 manuels/            manuels PDF officiels (source de vérité sur les contrôles)
-knowledge/          base de connaissances synthèse, index : knowledge/README.md
+knowledge/          base de connaissances synthèse, index : knowledge/README.md (sources/ : Synth Secrets, lus n°1-30)
 sons/<machine>/     un YAML par son  → données de la fiche
 template/           style.typ (composants) · messenger.typ / minilogue-xd.typ (façades) · fiche.typ (point d'entrée)
 fiches/<machine>/   PDF générés (versionnés)

@@ -10,6 +10,8 @@
 | `synthese/04-modulation.md` | LFO, vibrato, glide, sources expressives | mouvement, phrasé |
 | `synthese/05-effets.md` | effets et alternatives sans effet | son de référence avec FX |
 | `synthese/06-vocabulaire-ecoute.md` | adjectif → paramètre, questions de diagnostic | interpréter une description, écrire « Ajuster à l'oreille » |
+| `synthese/07-imitation-instruments.md` | imiter cuivres, bois, cordes pincées, guitares ; méthode, physique, traductions Messenger / XD | son « réaliste » ou preset qui imite un instrument |
+| `sources/synth-secrets.md` | index des 63 Synth Secrets (SOS, 1999-2004), état de lecture, comment citer | chercher une référence de principe ou de patch |
 | `archetypes.md` | recettes de départ par famille de sons | toujours, comme point de départ |
 | `synthes-historiques.md` | signatures des synthés classiques, choix Messenger / XD | quand la source cite un synthé |
 | `machines/messenger.md` | tous les contrôles, clés YAML, SETTINGS/CONFIG | toute fiche Messenger |
