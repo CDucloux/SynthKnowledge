@@ -11,9 +11,11 @@ manuels/            manuels PDF officiels (source de vérité sur les contrôles
 knowledge/          base de connaissances synthèse, index : knowledge/README.md (sources/ : Synth Secrets, lus n°1-30)
 sons/<machine>/     un YAML par son  → données de la fiche
 template/           style.typ (composants) · messenger.typ / minilogue-xd.typ (façades) · fiche.typ (point d'entrée)
-fiches/<machine>/   PDF générés (versionnés)
+theorie/            fiches de théorie imprimables (.typ, d'après Synth Secrets), gabarit template/theorie.typ
+fiches/<machine>/   PDF générés (versionnés) ; fiches/theorie/ pour la théorie
 fonts/              Montserrat (OFL), ne pas modifier
 scripts/build.sh    compile les YAML en PDF (CLI typst, sinon paquet Python `typst`)
+scripts/build-theorie.sh  compile theorie/*.typ (une page A4 chacune)
 .claude/skills/     fiche-son · ajuster-fiche · ajouter-synthe
 ```
 
@@ -43,6 +45,12 @@ scripts/build.sh    compile les YAML en PDF (CLI typst, sinon paquet Python `typ
 - Après toute modification du template ou d'un YAML : recompiler et **vérifier visuellement** le PNG du rendu (`pdftoppm -r 100 -png`).
 - Les leçons tirées des essais vont dans `knowledge/retours.md` et, si elles sont générales, dans le fichier de connaissance concerné.
 - Committer les YAML **et** les PDF générés.
+
+## Fiches de théorie (theorie/)
+
+- Une page A4 recto par fiche, imprimable : idée clé, schémas calculés (formes d'onde, spectres, courbes), tableau de synthèse, encadrés « Essaie sur ton Messenger » (positions réelles) et « À retenir », sources en pied.
+- Contenu **rédigé avec nos mots** d'après Synth Secrets (textes protégés : ne jamais recopier) ; schémas **recalculés** avec les primitives de `template/theorie.typ`, jamais d'image copiée.
+- Pas de paquet Typst externe (CeTZ non téléchargeable ici) : dessin natif (`curve`, `place`, `rect`).
 
 ## Choix de design validés par l'utilisateur (ne pas changer sans demander)
 
