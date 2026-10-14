@@ -1,0 +1,68 @@
+synthe: messenger
+titre: Chameleon Bass
+categorie: basse
+tags: [funk, jazz-funk, 70s, arp]
+confiance: 2
+reference:
+  artiste: Herbie Hancock
+  morceau: Chameleon
+  annee: 1973
+  passage: riff de basse de 12 notes, tout le morceau (album Head Hunters)
+  synthe_origine: ARP Odyssey (1972, façade blanche, filtre 2 pôles)
+resume: >-
+  Basse funk « baveuse » : scies graves, filtre 2 pôles assez fermé et résonant,
+  enveloppe de filtre qui retombe vite (le « pouet » de chaque note), un peu de
+  grain. Chaque note est redéclenchée, comme sur l'Odyssey.
+
+params:
+  osc:
+    oct1: 16
+    oct2: 16
+    wave1: 12
+    wave2: 12
+    osc2_freq: 12.1
+  mixer:
+    osc1: 17
+    osc2: 15
+  filter:
+    fb_ext: 10.5
+    mode: lp2
+    cutoff: 9.5
+    eg_amount: 14.5
+    resonance: 13.5
+    res_bass: false
+  fenv: {a: 7.25, d: 10.5, s: 7, r: 8.5}
+  aenv: {a: 7, d: 12, s: 17, r: 8.5}
+  env:
+    multi_trig: true
+    f_vel: true
+
+etapes:
+  - Maintenir *PANEL* 1 s (init).
+  - "*OCTAVE 1* et *OCTAVE 2* sur 16', *WAVESHAPE 1* et *2* à midi (scies). *OSC 2 FREQ* à peine à droite de midi (léger battement)."
+  - "*MIXER* : *OSC 1* à fond, *OSC 2* ≈ 3:00. *FB / EXT IN* ≈ 10:30 pour le grain."
+  - "*FILTER* : 2P LOW PASS, *CUTOFF* ≈ 9:30, *RESONANCE* ≈ 1:30, *RES BASS* OFF."
+  - "*EG AMOUNT* ≈ 2:30 ; enveloppe filtre : *ATTACK* presque à zéro, *DECAY* ≈ 10:30, *SUSTAIN* à zéro."
+  - "Enveloppe ampli : orgue (*SUSTAIN* à fond), *RELEASE* court ≈ 8:30."
+  - "*MULTI-TRIG* ON (chaque note relance les enveloppes, comme l'Odyssey) et *F ENV VEL* ON."
+oreille:
+  - "Pas assez « pouet » : *RESONANCE* vers 2:00 et *DECAY* filtre plus court."
+  - "Trop sourd et boomy : *CUTOFF* un peu plus haut ou *OSC 2* plus bas ; l'original est plus sec que la plupart des reprises."
+  - "Attaque qui claque trop : *ATTACK* filtre vers 7:30-8:00 (moins de clic, note plus « soufflée »)."
+  - "Trop propre : *FB / EXT IN* vers 12:00 ; trop sale : le ramener à 9:00."
+jeu:
+  - Jouer détaché, sans legato ni glide ; le groove vient des silences entre les notes.
+  - "Frapper plus fort les notes d'appui : avec *F ENV VEL* elles s'ouvrent davantage."
+  - Rester dans le grave (clavier à l'octave basse) ; le riff tient dans une octave.
+tracabilite:
+  - "Documenté [1][2] : riff joué par Herbie Hancock sur ARP Odyssey (Head Hunters, 1973)."
+  - "Documenté [3][4] : base en scie, filtre résonant, enveloppe de filtre descendante rapide, sustain nul ; deux scies légèrement désaccordées [4]."
+  - "Hypothèse [5][6] : Odyssey des débuts à filtre 2 pôles 12 dB ; grain venant d'une distorsion, d'où *FB / EXT IN*."
+  - "Reconstitué : toutes les positions Messenger (traduction des valeurs Syntorial et MusicRadar)."
+sources:
+  - "Wikipédia (en), article « Chameleon (composition) »"
+  - "Reverb, « The Gear of Classic Herbie Hancock Albums » : reverb.com/news/the-gear-of-classic-herbie-hancock-albums"
+  - "Syntorial, preset recipe « Herbie Hancock, Chameleon » : syntorial.com/preset-recipe/herbie-hancock-chameleon-bass"
+  - "MusicRadar, « How to recreate the Chameleon bass sound on the Korg ARP Odyssey » : musicradar.com/tuition/tech"
+  - "Moog Music forum, « Bass Sound from the Head Hunters' Chameleon » : forum.moogmusic.com/t/6266"
+  - "Synthtopia, « Recreating Herbie Hancock's Chameleon Bassline » (vidéo d'Anthony Marinelli sur Odyssey 1972), avril 2024"
