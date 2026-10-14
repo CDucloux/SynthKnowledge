@@ -34,5 +34,6 @@ settings:                         # optionnel : réglages PROGRAM EDIT (bouton :
 etapes: [ ... ]                   # 5-7 étapes
 oreille: [ ... ]                  # 3-4 ajustements symptôme → geste
 jeu: [ ... ]                      # 2-3 conseils
+tracabilite: [ "Documenté [1] : ...", "Reconstitué : ..." ]   # page 2, renvois aux sources
 sources: [ ... ]
 ```

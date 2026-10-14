@@ -1,6 +1,6 @@
 # SynthKnowledge
 
-Fiches synthétiques et visuelles (PDF Typst, A4, **une page**) pour reproduire des sons de synthé sur les deux machines de l'utilisateur :
+Fiches synthétiques et visuelles (PDF Typst A4 : **page 1 = réglages**, **page 2 = sources et traçabilité**) pour reproduire des sons de synthé sur les deux machines de l'utilisateur :
 **Moog Messenger** et **Korg minilogue XD** (templates prêts).
 Style graphique inspiré du manuel Moog Messenger : noir & blanc, Montserrat, capitales grasses, vignettes encadrées.
 
@@ -36,10 +36,10 @@ scripts/build.sh    compile les YAML en PDF (CLI typst, sinon paquet Python `typ
 - **Notation minilogue XD** : valeurs écran du manuel (0-1023 pour la plupart des potards, cents pour PITCH, % pour EG INT et DEPTH des effets).
 - **Choix de la machine** : polyphonie ou effets → minilogue XD ; mono, basse, lead, acid, glide → Messenger.
 - **Le schéma est l'élément central** de la fiche : tous les contrôles du panneau sont dessinés ; noir = réglé par la fiche, gris = valeur neutre.
-- **Honnêteté** : chaque fiche porte un indice de confiance (3 documenté · 2 déduit · 1 approximation) et ses sources.
+- **Honnêteté** : chaque fiche porte un indice de confiance (3 documenté · 2 déduit · 1 approximation), ses sources et une liste `tracabilite` qui sépare ce qui vient des sources de ce qui est reconstitué.
   Ne jamais inventer une source, un réglage « d'origine » ou une citation. Dire clairement quand un son dépend d'un effet ou de la polyphonie que la machine n'a pas.
 - **Entrée par défaut = titre + artiste** + recherche web. Le WAV est un bonus (analyse audio : mise de côté pour l'instant).
-- **Une page** : `scripts/build.sh` échoue au-delà ; raccourcir les textes plutôt que réduire le schéma.
+- **Deux pages exactement** : page 1 = schéma, étapes, ajustements, jeu ; page 2 = référence, confiance, `tracabilite` (ce qui est documenté / reconstitué, avec renvois [n]) et sources numérotées. `scripts/build.sh` échoue si la page 1 déborde ; raccourcir les textes plutôt que réduire le schéma.
 - Après toute modification du template ou d'un YAML : recompiler et **vérifier visuellement** le PNG du rendu (`pdftoppm -r 100 -png`).
 - Les leçons tirées des essais vont dans `knowledge/retours.md` et, si elles sont générales, dans le fichier de connaissance concerné.
 - Committer les YAML **et** les PDF générés.

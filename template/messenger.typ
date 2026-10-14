@@ -137,19 +137,23 @@
 
   // Rangée 4 : ENVELOPES (boutons sous chaque enveloppe)
   grid(
-    columns: (1fr,), rows: 35mm,
+    columns: (1fr,), rows: 41mm,
     section("Envelopes", {
-      let group(title, sec, b1, b2) = box(stroke: (paint: muted, thickness: 0.5pt, dash: "dotted"), radius: 1pt, inset: (x: 0.6mm, top: 1mm, bottom: 0.8mm), stack(spacing: 0.4mm,
-        align(center, text(size: 5.6pt, weight: "extrabold", tracking: 0.14em, title)),
-        row(K("Attack", sec, "a"), K("Decay", sec, "d"), K("Sustain", sec, "s"), K("Release", sec, "r")),
-        row(b1, b2),
+      let group(title, sec, b1, b2) = box(inset: (x: 1mm), stack(spacing: 2.2mm,
+        align(center, text(size: 5.8pt, weight: "extrabold", tracking: 0.14em, title)),
+        row(gap: 1.2mm, K("Attack", sec, "a"), K("Decay", sec, "d"), K("Sustain", sec, "s"), K("Release", sec, "r")),
+        row(gap: 4mm, b1, b2),
       ))
-      row(gap: 2mm,
+      let vsep = box(width: 5mm, height: 31mm, align(center, line(angle: 90deg, length: 31mm, stroke: 0.5pt + muted)))
+      v(0.6mm)
+      row(gap: 0mm,
         group("FILTER ENVELOPE", "fenv", B("F Env Vel", "env", "f_vel"), B("F Env Loop", "env", "f_loop")),
+        vsep,
         group("AMPLITUDE ENVELOPE", "aenv", B("A Env Vel", "env", "a_vel"), B("A Env Loop", "env", "a_loop")),
-        box(height: 30mm, align(horizon, B("Multi-Trig", "env", "multi_trig"))),
+        vsep,
+        box(height: 31mm, align(horizon, B("Multi-Trig", "env", "multi_trig"))),
       )
-    }, inset: 1.6mm),
+    }, inset: 2.4mm),
   )
 }
 
@@ -251,4 +255,5 @@
   )
   v(1fr)
   footer-line(data)
+  sources-page("Moog Messenger", data)
 }

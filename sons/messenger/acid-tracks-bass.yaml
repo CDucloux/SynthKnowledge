@@ -56,6 +56,10 @@ jeu:
   - "Lier deux notes (legato) pour déclencher un glissé ; détacher pour une attaque franche."
   - Alterner notes fortes (accent) et douces pour faire respirer le filtre.
   - "En séquence : *TEMPO* puis gestes lents et continus sur *CUTOFF*."
+tracabilite:
+  - "Documenté [1] : Roland TB-303 sur Acid Tracks."
+  - "Hypothèse [2] : filtrage externe en plus de la 303 sur l'enregistrement."
+  - "Reconstitué : toutes les positions ; traduction du slide et de l'accent de la 303 en Legato Glide et F ENV VEL."
 sources:
   - "Native Instruments Blog, Acid house (historique, TB-303) : blog.native-instruments.com/acid-house"
   - "Muzines, « The Bass Race » (filtrage externe probable sur Acid Tracks) : muzines.co.uk/articles/the-bass-race/2177"

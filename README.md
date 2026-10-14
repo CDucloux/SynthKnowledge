@@ -1,8 +1,8 @@
 # SynthKnowledge
 
 Fiches son visuelles pour reproduire des sons de synthé sur **Moog Messenger** et **Korg minilogue XD**.
-Chaque fiche tient sur une page A4 : schéma complet de la façade avec la position de chaque contrôle, étapes depuis le patch init,
-ajustements à l'oreille, conseils de jeu, sources et indice de confiance.
+Chaque fiche fait deux pages A4. Page 1 : schéma complet de la façade avec la position de chaque contrôle, étapes depuis le patch init,
+ajustements à l'oreille, conseils de jeu. Page 2 : traçabilité (référence, indice de confiance, ce qui est documenté ou reconstitué, sources).
 
 ## Fiches disponibles
 

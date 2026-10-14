@@ -8,6 +8,7 @@
 
 #let path = sys.inputs.at("son", default: "/sons/messenger/chicago-house-bass.yaml")
 #let data = yaml(path)
+#data.insert("_fichier", path.trim("/", at: start))
 
 #let machines = (
   messenger: messenger.fiche,

@@ -45,5 +45,8 @@ oreille:
 jeu:
   - Notes courtes, staccato, sur les deux octaves graves.
   - "Bonus du manuel : *DIRECTION* sur PAT + *PLAY*, tenir un accord pour l'arpéger."
+tracabilite:
+  - "Documenté [1] : tous les réglages viennent du tutoriel pas-à-pas du manuel Moog (p. 10-12)."
+  - "Reconstitué : rien. Les contrôles que le manuel ne cite pas restent à leur valeur neutre."
 sources:
   - "Moog Messenger User's Manual, p. 10-12 (manuels/moog-messenger-user-manual.pdf)"

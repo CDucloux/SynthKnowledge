@@ -25,6 +25,6 @@ for f in "${files[@]}"; do
   if grep -q -e $'\xe2\x80\x94' -e $'\xe2\x80\x93' "$rel"; then echo "✗ $rel : tiret quadratin interdit" >&2; status=1; continue; fi
   compile "$rel" "$out"
   pages=$(python3 -c 'import re,sys; print(len(re.findall(rb"/Type\s*/Page[^s]", open(sys.argv[1],"rb").read())))' "$out")
-  if [ "$pages" != "1" ]; then echo "✗ $out : $pages pages, la fiche doit tenir sur une page (raccourcir les textes)" >&2; status=1; else echo "✓ $out"; fi
+  if [ "$pages" != "2" ]; then echo "✗ $out : $pages pages au lieu de 2 (page 1 fiche, page 2 sources) : raccourcir les textes de la page 1" >&2; status=1; else echo "✓ $out"; fi
 done
 exit $status

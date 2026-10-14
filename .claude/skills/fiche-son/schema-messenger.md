@@ -38,6 +38,7 @@ settings:                         # optionnel, SETTINGS / CONFIG utiles au son
 etapes: [ "...", ... ]            # 5-7 étapes
 oreille: [ "...", ... ]           # 3-4 ajustements symptôme → geste
 jeu: [ "...", ... ]               # 2-3 conseils de jeu
+tracabilite: [ "Documenté [1] : ...", "Reconstitué : ..." ]   # page 2, renvois aux sources
 sources: [ "...", ... ]           # vide si aucune → la fiche l'indique
 ```
 

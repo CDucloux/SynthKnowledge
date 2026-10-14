@@ -221,4 +221,5 @@
   )
   v(1fr)
   footer-line(data)
+  sources-page("Korg minilogue XD", data)
 }

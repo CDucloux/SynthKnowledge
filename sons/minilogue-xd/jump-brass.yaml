@@ -45,6 +45,10 @@ oreille:
 jeu:
   - "Accords à trois sons en position serrée, main droite, registre médium."
   - "Stabs détachés et rythmés : relâcher franchement entre les accords."
+tracabilite:
+  - "Documenté [1] : Oberheim OB-Xa, preset A1, passé dans un chorus et un delay."
+  - "Repères d'émulation [2] : scies désaccordées, cutoff ≈ 50 %, résonance ≈ 42 %, mesurés sur un autre synthé."
+  - "Reconstitué : toutes les valeurs du minilogue XD, enveloppes et profondeurs d'effets."
 sources:
   - "Reverb News, « The Synth Sounds of Van Halen's Jump » (OB-Xa, patch A1, chorus et delay) : reverb.com/news/the-synth-sounds-of-van-halens-jump"
   - "MusicRadar, « The 40 greatest synth sounds of all time, No 4 » (scies désaccordées, cutoff 50 %, résonance 42 %) : musicradar.com/news/van-halen-jump-best-synth-sound"

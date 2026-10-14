@@ -1,6 +1,6 @@
 ---
 name: fiche-son
-description: Créer une fiche son SynthKnowledge (PDF Typst A4 une page) pour reproduire un son de synthé sur le Moog Messenger ou le Korg minilogue XD, à partir d'un titre + artiste, d'une description ou d'une référence. Utiliser dès que l'utilisateur demande « fais-moi la fiche de… », « comment faire le son de… », « reproduire le lead/la basse de… ».
+description: Créer une fiche son SynthKnowledge (PDF Typst A4 : page 1 réglages, page 2 sources) pour reproduire un son de synthé sur le Moog Messenger ou le Korg minilogue XD, à partir d'un titre + artiste, d'une description ou d'une référence. Utiliser dès que l'utilisateur demande « fais-moi la fiche de… », « comment faire le son de… », « reproduire le lead/la basse de… ».
 ---
 
 # Créer une fiche son
@@ -51,14 +51,15 @@ Règles :
 - Textes en français, noms de contrôles en ANGLAIS et en gras via `*CONTROL*` (markup Typst).
 - Dans les textes : pas de `#`, `$`, `@`, `<`, `_` nus (markup Typst) ; mettre entre guillemets YAML toute chaîne contenant `:`.
 - `etapes` : 5-7 étapes, du patch init au son final, dans l'ordre du panneau. `oreille` : 3-4 ajustements « symptôme → geste ». `jeu` : 2-3 conseils.
-- `sources` : texte court + domaine/chemin (pas d'URL avec `_` ou `#` non échappés).
+- `tracabilite` : 2-4 puces « Documenté [n] : … », « Hypothèse [n] : … », « Reconstitué : … ». Les [n] renvoient à l'ordre de `sources`.
+- `sources` : texte court + domaine/chemin (pas d'URL avec `_` ou `#` non échappés). Elles s'affichent numérotées en page 2.
 
 ## 6. Compiler et vérifier
 
 ```bash
 scripts/build.sh sons/<machine>/<slug>.yaml
 ```
-- Le script échoue si la fiche dépasse **une page** → raccourcir les textes.
+- Le script exige **2 pages** (fiche + traçabilité) : s'il en trouve 3, la page 1 déborde → raccourcir les textes.
 - Le template échoue sur une clé inconnue (faute de frappe) → corriger d'après le message.
 - **Vérifier le rendu visuellement** : `pdftoppm -r 100 -png fiches/<machine>/<slug>.pdf <scratchpad>/x` puis lire l'image. Contrôler : pas de chevauchement, valeurs lisibles, index des potards cohérents avec le texte.
 

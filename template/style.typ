@@ -190,11 +190,11 @@
 #let md(s) = if s == none { [] } else { eval(str(s), mode: "markup") }
 
 /// Encadré de texte en bas de fiche.
-#let textbox(title, body) = block(
+#let textbox(title, body, size: 6.9pt) = block(
   width: 100%, stroke: 0.9pt + ink, radius: 1.5pt, inset: 0pt, breakable: false,
   stack(
     block(width: 100%, inset: (x: 2.4mm, top: 1.8mm, bottom: 1.6mm), text(size: 7.2pt, weight: "extrabold", tracking: 0.06em, upper(title))),
-    block(width: 100%, inset: (x: 2.4mm, bottom: 2mm), { set text(size: 6.9pt); body }),
+    block(width: 100%, inset: (x: 2.4mm, bottom: 2mm), { set text(size: size); body }),
   ),
 )
 
@@ -261,13 +261,73 @@
 }
 
 #let footer-line(data) = {
-  let src = data.at("sources", default: ())
   set text(size: 5.8pt, fill: luma(90))
   line(length: 100%, stroke: 0.5pt + muted)
   v(-1mm)
   grid(
     columns: (1fr, auto), gutter: 3mm,
-    if src.len() > 0 { [*SOURCES* #h(1mm) #src.map(s => md(s)).join([ #h(0.8mm)·#h(0.8mm) ])] } else { [*SOURCES* #h(1mm) aucune, reconstitution d'après connaissances générales] },
+    [*SOURCES ET TRAÇABILITÉ* #h(1mm) page 2],
     [SYNTHKNOWLEDGE · gris = valeur neutre (patch INIT), noir = réglage de la fiche],
   )
+}
+
+/// Page 2 : traçabilité (référence, niveau de confiance, sources numérotées).
+#let sources-page(machine, data) = {
+  pagebreak()
+  let ref = data.at("reference", default: (:))
+  if ref == none { ref = (:) }
+  let n = calc.clamp(data.at("confiance", default: 1), 1, 3)
+  let meaning = (
+    "Rien de spécifique trouvé : reconstitution d'après le style, l'époque et le genre.",
+    "Synthé d'origine et nature du son établis par les sources ; réglages reconstitués.",
+    "Réglages ou patch publiés par une source fiable (manuel, interview, patch sheet).",
+  )
+  block(width: 100%, fill: ink, inset: (x: 5mm, y: 3.4mm), radius: 1.5pt, grid(
+    columns: (1fr, auto), align: (left + bottom, right + bottom),
+    {
+      text(white, size: 7pt, weight: "bold", tracking: 0.32em, upper(machine) + "  ·  SOURCES ET TRAÇABILITÉ")
+      v(1.2mm)
+      text(white, size: 16pt, weight: "extrabold", tracking: 0.02em, upper(data.titre))
+    },
+    confidence(n),
+  ))
+  v(3mm)
+  let field(k, v) = (text(weight: "extrabold", size: 7.6pt, upper(k)), if v == none { text(fill: muted, "non renseigné") } else { md(str(v)) })
+  textbox(size: 8pt, "Référence", table(
+    columns: (32mm, 1fr), stroke: none, inset: (x: 0mm, y: 1mm),
+    ..field("Artiste", ref.at("artiste", default: none)),
+    ..field("Morceau", ref.at("morceau", default: none)),
+    ..field("Année", ref.at("annee", default: none)),
+    ..field("Passage", ref.at("passage", default: none)),
+    ..field("Synthé d'origine", ref.at("synthe_origine", default: none)),
+    ..field("Fichier", data.at("_fichier", default: none)),
+  ))
+  v(2mm)
+  textbox(size: 8pt, "Niveau de confiance", {
+    confidence(n, fill: ink)
+    h(3mm)
+    meaning.at(n - 1)
+  })
+  v(2mm)
+  let notes = data.at("tracabilite", default: ())
+  if notes != none and notes.len() > 0 {
+    textbox(size: 8pt, "Ce qui est documenté, ce qui est reconstitué", bullets(notes))
+    v(2mm)
+  }
+  let src = data.at("sources", default: ())
+  if src == none { src = () }
+  textbox(size: 8pt, "Sources", if src.len() == 0 {
+    text(fill: luma(90), "Aucune source spécifique : reconstitution d'après les connaissances générales de synthèse.")
+  } else {
+    set par(leading: 0.55em)
+    for (i, s) in src.enumerate() {
+      grid(columns: (6mm, 1fr), gutter: 0.6mm, text(weight: "extrabold", "[" + str(i + 1) + "]"), md(s))
+      v(1.2mm)
+    }
+  })
+  v(1fr)
+  set text(size: 5.8pt, fill: luma(90))
+  line(length: 100%, stroke: 0.5pt + muted)
+  v(-1mm)
+  [SYNTHKNOWLEDGE · page 2 : traçabilité. Les réglages sont en page 1.]
 }
