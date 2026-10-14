@@ -266,13 +266,60 @@
   v(-1mm)
   grid(
     columns: (1fr, auto), gutter: 3mm,
-    [*SOURCES ET TRAÇABILITÉ* #h(1mm) page 2],
+    [*ANATOMIE DU SON* #h(1mm) page 2 : analyse, courbes, sources],
     [SYNTHKNOWLEDGE · gris = valeur neutre (patch INIT), noir = réglage de la fiche],
   )
 }
 
-/// Page 2 : traçabilité (référence, niveau de confiance, sources numérotées).
-#let sources-page(machine, data) = {
+/// Courbe d'enveloppe dessinée d'après les réglages.
+/// a, d, r : temps normalisés 0-1 (position du potard) ; s : niveau 0-1.
+/// sustain: false → enveloppe AD (pas de palier ni de release).
+#let env-plot(a, d, s, r, title, sub: none, sustain: true, width: 84mm, height: 24mm) = {
+  let seg = width * 0.27
+  let hold = if sustain { width * 0.15 } else { 0mm }
+  let t(x) = (0.04 + 0.96 * calc.clamp(x, 0, 1)) * seg
+  let ta = t(a)
+  let td = t(d)
+  let tr = if sustain { t(r) } else { 0mm }
+  let s = if sustain { calc.clamp(s, 0, 1) } else { 0 }
+  let y(l) = height * (1 - l)
+  let n = 16
+  let pts = ((0mm, y(0)), (ta, y(1)))
+  for k in range(1, n + 1) {
+    let l = s + (1 - s) * calc.exp(-4.5 * k / n)
+    pts.push((ta + td * k / n, y(if k == n { s } else { l })))
+  }
+  let x1 = ta + td
+  if sustain {
+    pts.push((x1 + hold, y(s)))
+    for k in range(1, n + 1) {
+      pts.push((x1 + hold + tr * k / n, y(if k == n { 0 } else { s * calc.exp(-4.5 * k / n) })))
+    }
+  }
+  let xend = x1 + hold + tr
+  box(width: width, {
+    text(size: 6.4pt, weight: "extrabold", tracking: 0.08em, upper(title))
+    if sub != none { h(1.5mm); text(size: 6pt, fill: luma(80), sub) }
+    v(0.6mm)
+    box(width: width, height: height + 3mm, {
+      place(line(start: (0mm, height), end: (width, height), stroke: 0.5pt + muted))
+      place(curve(fill: soft, stroke: none, curve.move(pts.first()), ..pts.slice(1).map(p => curve.line(p)), curve.line((xend, height)), curve.close()))
+      place(curve(stroke: (paint: ink, thickness: 1.2pt, join: "round"), curve.move(pts.first()), ..pts.slice(1).map(p => curve.line(p))))
+      let lab(x0, x1, l) = place(dx: x0, dy: height + 0.6mm, box(width: calc.max(x1 - x0, 2mm), align(center, text(size: 6pt, weight: "bold", fill: luma(70), l))))
+      lab(0mm, ta, "A")
+      lab(ta, x1, "D")
+      if sustain {
+        lab(x1, x1 + hold, "S")
+        lab(x1 + hold, xend, "R")
+      }
+    })
+  })
+}
+
+/// Page 2 : anatomie du son (courbes d'enveloppes, analyse par bloc), puis
+/// d'où viennent les infos (confiance, documenté / reconstitué, sources).
+/// envs : liste de (titre, a, d, s, r, sub, sustain) calculée par la façade.
+#let sources-page(machine, data, envs: ()) = {
   pagebreak()
   let ref = data.at("reference", default: (:))
   if ref == none { ref = (:) }
@@ -285,49 +332,57 @@
   block(width: 100%, fill: ink, inset: (x: 5mm, y: 3.4mm), radius: 1.5pt, grid(
     columns: (1fr, auto), align: (left + bottom, right + bottom),
     {
-      text(white, size: 7pt, weight: "bold", tracking: 0.32em, upper(machine) + "  ·  SOURCES ET TRAÇABILITÉ")
+      text(white, size: 7pt, weight: "bold", tracking: 0.32em, upper(machine) + "  ·  ANATOMIE DU SON")
       v(1.2mm)
       text(white, size: 16pt, weight: "extrabold", tracking: 0.02em, upper(data.titre))
     },
     confidence(n),
   ))
-  v(3mm)
-  let field(k, v) = (text(weight: "extrabold", size: 7.6pt, upper(k)), if v == none { text(fill: muted, "non renseigné") } else { md(str(v)) })
-  textbox(size: 8pt, "Référence", table(
-    columns: (32mm, 1fr), stroke: none, inset: (x: 0mm, y: 1mm),
-    ..field("Artiste", ref.at("artiste", default: none)),
-    ..field("Morceau", ref.at("morceau", default: none)),
-    ..field("Année", ref.at("annee", default: none)),
-    ..field("Passage", ref.at("passage", default: none)),
-    ..field("Synthé d'origine", ref.at("synthe_origine", default: none)),
-    ..field("Fichier", data.at("_fichier", default: none)),
-  ))
-  v(2mm)
-  textbox(size: 8pt, "Niveau de confiance", {
-    confidence(n, fill: ink)
-    h(3mm)
-    meaning.at(n - 1)
-  })
-  v(2mm)
-  let notes = data.at("tracabilite", default: ())
-  if notes != none and notes.len() > 0 {
-    textbox(size: 8pt, "Ce qui est documenté, ce qui est reconstitué", bullets(notes))
+  v(2.4mm)
+  if envs.len() > 0 {
+    textbox(size: 7.4pt, "Les enveloppes, en image", {
+      grid(
+        columns: envs.len() * (1fr,), column-gutter: 4mm,
+        ..envs.map(e => env-plot(e.a, e.d, e.s, e.r, e.titre, sub: e.at("sub", default: none), sustain: e.at("sustain", default: true))),
+      )
+      v(0.6mm)
+      text(size: 6pt, fill: luma(80), style: "italic", "Allure dessinée d'après les réglages de la page 1 : les proportions sont justes, les durées ne sont pas à l'échelle exacte.")
+    })
     v(2mm)
   }
+  let an = data.at("analyse", default: ())
+  if an == none { an = () }
+  if an.len() > 0 {
+    let boxes = an.map(x => textbox(size: 8pt, x.titre, { set par(leading: 0.6em); md(x.texte) }))
+    grid(columns: (1fr, 1fr), column-gutter: 2mm, row-gutter: 2mm, ..boxes)
+    v(2mm)
+  }
+  let notes = data.at("tracabilite", default: ())
+  if notes == none { notes = () }
   let src = data.at("sources", default: ())
   if src == none { src = () }
-  textbox(size: 8pt, "Sources", if src.len() == 0 {
-    text(fill: luma(90), "Aucune source spécifique : reconstitution d'après les connaissances générales de synthèse.")
-  } else {
-    set par(leading: 0.55em)
-    for (i, s) in src.enumerate() {
-      grid(columns: (6mm, 1fr), gutter: 0.6mm, text(weight: "extrabold", "[" + str(i + 1) + "]"), md(s))
-      v(1.2mm)
+  textbox(size: 7.4pt, "D'où ça vient", {
+    let bits = ()
+    if ref.at("synthe_origine", default: none) != none { bits.push([*Original :* #md(str(ref.synthe_origine))]) }
+    bits.push([*Confiance :* #confidence(n, fill: ink) #h(1mm) #meaning.at(n - 1)])
+    for b in bits { block(above: 0pt, below: 1.4mm, b) }
+    if notes.len() > 0 { bullets(notes) }
+    v(0.6mm)
+    line(length: 100%, stroke: 0.4pt + muted)
+    v(0.4mm)
+    set par(leading: 0.5em)
+    if src.len() == 0 {
+      text(fill: luma(90), "Aucune source spécifique : reconstitution d'après les connaissances générales de synthèse.")
+    } else {
+      for (i, s) in src.enumerate() {
+        grid(columns: (5mm, 1fr), gutter: 0.6mm, text(weight: "extrabold", "[" + str(i + 1) + "]"), md(s))
+        v(0.8mm)
+      }
     }
   })
   v(1fr)
   set text(size: 5.8pt, fill: luma(90))
   line(length: 100%, stroke: 0.5pt + muted)
   v(-1mm)
-  [SYNTHKNOWLEDGE · page 2 : traçabilité. Les réglages sont en page 1.]
+  [SYNTHKNOWLEDGE · page 2 : anatomie du son. Les réglages sont en page 1 (fichier #data.at("_fichier", default: "")).]
 }

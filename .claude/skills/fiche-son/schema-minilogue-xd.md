@@ -34,6 +34,11 @@ settings:                         # optionnel : réglages PROGRAM EDIT (bouton :
 etapes: [ ... ]                   # 5-7 étapes
 oreille: [ ... ]                  # 3-4 ajustements symptôme → geste
 jeu: [ ... ]                      # 2-3 conseils
+analyse:                          # page 2 « Anatomie du son » : 4 encadrés, 3-5 lignes chacun
+  - {titre: "Les oscillateurs : ...", texte: "pourquoi ces formes d'onde, octaves, désaccord"}
+  - {titre: "Le filtre : ...", texte: "..."}
+  - {titre: "Les enveloppes : ...", texte: "lecture des courbes ADSR dessinées au-dessus"}
+  - {titre: "Le mouvement / L'espace / Le jeu : ...", texte: "glide, LFO, arpégiateur, effets"}
 tracabilite: [ "Documenté [1] : ...", "Reconstitué : ..." ]   # page 2, renvois aux sources
 sources: [ ... ]
 ```

@@ -56,6 +56,30 @@ jeu:
   - "Lier deux notes (legato) pour déclencher un glissé ; détacher pour une attaque franche."
   - Alterner notes fortes (accent) et douces pour faire respirer le filtre.
   - "En séquence : *TEMPO* puis gestes lents et continus sur *CUTOFF*."
+analyse:
+  - titre: "Les oscillateurs : une scie, rien d'autre"
+    texte: >-
+      La TB-303 n'a qu'un oscillateur, et c'est voulu : une *scie* seule en 16' donne
+      toutes les harmoniques au filtre sans épaisseur parasite. Pas de sub, pas de
+      désaccord : le son acide vient du filtre, l'oscillateur ne fait que fournir la
+      matière brute.
+  - titre: "Le filtre : la résonance qui chante"
+    texte: >-
+      *CUTOFF* bas (10:00) et *RESONANCE* très haute (2:30) : le filtre accentue une
+      bande étroite autour de sa fréquence de coupure, qui se met à « parler ».
+      *RES BASS* OFF : le grave s'amincit quand la résonance monte, comme sur la 303.
+      Tout l'intérêt est de tourner *CUTOFF* et *RESONANCE* en jouant.
+  - titre: "Les enveloppes : le « squelch »"
+    texte: >-
+      Enveloppe de filtre sans sustain et à *DECAY* court : chaque note s'ouvre d'un coup
+      puis se referme, le « wiou » acide. Avec *F ENV VEL*, les notes frappées fort
+      s'ouvrent davantage : c'est l'équivalent de l'accent de la 303. L'ampli garde un
+      sustain haut pour que les notes liées tiennent.
+  - titre: "Le mouvement : glide et accents"
+    texte: >-
+      Le *GLIDE* ne doit agir qu'entre notes liées (legato), comme le « slide » de la
+      303 : les notes détachées restent sèches. La ligne vit de ce contraste entre notes
+      glissées, notes accentuées et notes simples, sur un motif qui boucle.
 tracabilite:
   - "Documenté [1] : Roland TB-303 sur Acid Tracks."
   - "Hypothèse [2] : filtrage externe en plus de la 303 sur l'enregistrement."

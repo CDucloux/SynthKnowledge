@@ -53,6 +53,33 @@ jeu:
   - "Tenir une seule note grave par accord : l'arpégiateur joue note, octave, note, octave."
   - "Changer de note pile sur le temps ; avec *HOLD* la note reste jusqu'à la suivante."
   - "Sans arpégiateur : jouer les octaves à la main, détaché, poignet souple."
+analyse:
+  - titre: "Les oscillateurs : du grave plein"
+    texte: >-
+      Une seule *scie* en 16' : c'est l'onde la plus riche, elle contient toutes les
+      harmoniques, donc le filtre a de la matière à sculpter. Le *sub carré* joue une
+      octave plus bas et n'apporte que des harmoniques impaires : il épaissit le
+      fondamental sans brouiller le timbre. Pas de deuxième oscillateur ni de désaccord :
+      une basse de séquenceur doit rester nette et parfaitement juste.
+  - titre: "Le filtre : sombre mais vivant"
+    texte: >-
+      Le 4 pôles (24 dB/oct) coupe franchement : avec *CUTOFF* vers 9:30 il ne reste
+      que le corps de la note. C'est l'*EG AMOUNT* qui fait le travail : à chaque note
+      il ouvre le filtre puis le referme, d'où le petit « toc » qui donne la pulsation.
+      Un peu de *RESONANCE* (10:00) creuse ce coup d'ouverture sans siffler.
+  - titre: "Les enveloppes : le toc et le corps"
+    texte: >-
+      Enveloppe de filtre percussive : attaque nulle, *DECAY* court, *SUSTAIN* presque
+      nul. Le timbre est brillant à l'attaque puis se ferme aussitôt : c'est l'ADN des
+      basses de séquenceur (MC-202, TB-303). L'ampli, lui, reste « orgue » (sustain à
+      fond) : le volume tient toute la note, c'est la longueur de gate de l'arpégiateur
+      qui la coupe. *RELEASE* court pour que les notes ne se marchent pas dessus.
+  - titre: "Le mouvement : l'octave qui saute"
+    texte: >-
+      Le cœur du son n'est pas le timbre mais le motif : note grave, octave, note,
+      octave, en continu. L'octave haute fait ressortir les harmoniques, la basse
+      porte le grave : l'oreille entend une seule ligne qui rebondit. Gate à 50 % :
+      chaque note est détachée, ce qui donne le côté mécanique et dansant du hi-NRG.
 tracabilite:
   - "Documenté [1] : le morceau est né d'un motif d'octaves séquencé sur Roland MC-202 ; synthés crédités : DX7, Memorymoog, Pro-One."
   - "Impression d'un critique [2] : basse proche de celle de « Tainted Love », mix très brillant (aigus des synthés poussés)."

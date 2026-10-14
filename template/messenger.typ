@@ -255,5 +255,15 @@
   )
   v(1fr)
   footer-line(data)
-  sources-page("Moog Messenger", data)
+  let val(sec, k) = {
+    let x = params.at(sec, default: (:))
+    if x == none { x = (:) }
+    x.at(k, default: defaults.at(sec).at(k))
+  }
+  let nrm(h) = (h - 7) / 10
+  let env(sec, titre) = (
+    titre: titre, a: nrm(val(sec, "a")), d: nrm(val(sec, "d")), s: nrm(val(sec, "s")), r: nrm(val(sec, "r")),
+    sub: "A " + clock-label(val(sec, "a")) + " · D " + clock-label(val(sec, "d")) + " · S " + clock-label(val(sec, "s")) + " · R " + clock-label(val(sec, "r")),
+  )
+  sources-page("Moog Messenger", data, envs: (env("fenv", "Filter env"), env("aenv", "Amp env")))
 }

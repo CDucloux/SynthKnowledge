@@ -58,6 +58,29 @@ jeu:
   - "Registre aigu : *KB OCTAVE* +1, jouer legato pour enchaîner les glissés."
   - Lâcher de longues notes tenues puis monter la molette pour le vibrato.
   - "Le *PITCH* wheel (±7 demi-tons par défaut) pour les inflexions."
+analyse:
+  - titre: "Les oscillateurs : deux carrés qui chantent"
+    texte: >-
+      Deux *carrés* en 8' légèrement désaccordés. Le carré (harmoniques impaires) a ce
+      timbre creux proche d'une clarinette ; le désaccord crée un battement lent qui
+      rend la note vivante. C'est la recette du lead « chantant » des Moog modulaires.
+  - titre: "Le filtre : à moitié ouvert"
+    texte: >-
+      Filtre 4 pôles vers 12:30 : assez ouvert pour que le lead perce, assez fermé pour
+      rester doux. *KB TRACKING* ON : le filtre suit le clavier, les notes aiguës ne
+      deviennent pas étouffées. Petite *RESONANCE* : juste de la présence.
+  - titre: "Les enveloppes : un son qui tient"
+    texte: >-
+      Ampli presque « orgue » avec une attaque très légèrement adoucie : la note démarre
+      sans clic et tient tant qu'on garde la touche, comme une voix. L'enveloppe de
+      filtre redescend doucement vers un sustain haut : un léger éclat à l'attaque, puis
+      un timbre stable.
+  - titre: "Le mouvement : glide et vibrato"
+    texte: >-
+      Ce lead est fait de mouvement : le *GLIDE* exponentiel fait glisser chaque note
+      vers la suivante, comme un portamento de violon. Le vibrato à la molette
+      (*LFO 2* sur PITCH) n'arrive que sur les notes tenues : c'est ce qui le rend
+      expressif.
 tracabilite:
   - "Documenté [1] [2] : solo improvisé sur le Moog modulaire de Keith Emerson, portamento très présent, carrés désaccordés (recette Syntorial)."
   - "Hypothèse [2] : portamento logarithmique, d'où le glide exponentiel. Affirmation d'un forum, non vérifiée."

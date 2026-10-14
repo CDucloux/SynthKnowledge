@@ -54,6 +54,29 @@ jeu:
   - Jouer détaché, sans legato ni glide ; le groove vient des silences entre les notes.
   - "Frapper plus fort les notes d'appui : avec *F ENV VEL* elles s'ouvrent davantage."
   - Rester dans le grave (clavier à l'octave basse) ; le riff tient dans une octave.
+analyse:
+  - titre: "Les oscillateurs : deux scies qui battent"
+    texte: >-
+      Deux *scies* en 16', le *OSC 2* très légèrement désaccordé : les deux ondes se
+      décalent sans cesse et créent un battement lent qui épaissit la note. Le
+      *FB / EXT IN* réinjecte un peu de signal dans le filtre : un grain de saturation
+      qui rappelle le côté « baveux » de l'Odyssey.
+  - titre: "Le filtre : 2 pôles, plus ouvert"
+    texte: >-
+      Le 2 pôles (12 dB/oct) coupe plus doucement que le 4 pôles : il laisse passer plus
+      d'harmoniques, le son est moins rond, plus nasal, comme l'Odyssey des débuts. La
+      *RESONANCE* (1:30) donne le « pouet » quand l'enveloppe balaie le filtre.
+  - titre: "Les enveloppes : le pouet funk"
+    texte: >-
+      Enveloppe de filtre sans sustain et à *DECAY* court : chaque note s'ouvre puis
+      se ferme vite, d'où le côté percussif. *MULTI-TRIG* relance l'enveloppe à chaque
+      note même en legato, et *F ENV VEL* ouvre plus les notes frappées fort. L'ampli
+      reste plein, avec un *RELEASE* court pour garder le riff net.
+  - titre: "Le jeu : le groove dans les silences"
+    texte: >-
+      Le riff de 12 notes tient par les silences : jouer détaché, sans glide. Les
+      notes d'appui frappées plus fort s'ouvrent davantage grâce à la vélocité, ce qui
+      donne la dynamique du funk.
 tracabilite:
   - "Documenté [1][2] : riff joué par Herbie Hancock sur ARP Odyssey (Head Hunters, 1973)."
   - "Documenté [3][4] : base en scie, filtre résonant, enveloppe de filtre descendante rapide, sustain nul ; deux scies légèrement désaccordées [4]."

@@ -51,6 +51,7 @@ Règles :
 - Textes en français, noms de contrôles en ANGLAIS et en gras via `*CONTROL*` (markup Typst).
 - Dans les textes : pas de `#`, `$`, `@`, `<`, `_` nus (markup Typst) ; mettre entre guillemets YAML toute chaîne contenant `:`.
 - `etapes` : 5-7 étapes, du patch init au son final, dans l'ordre du panneau. `oreille` : 3-4 ajustements « symptôme → geste ». `jeu` : 2-3 conseils.
+- `analyse` (page 2, « Anatomie du son ») : 4 encadrés `{titre, texte}` dans l'ordre oscillateurs, filtre, enveloppes, puis mouvement / espace / jeu. Expliquer **pourquoi** chaque réglage produit le son (harmoniques de l'onde, pente du filtre, forme des enveloppes, rôle des effets), 3-5 lignes chacun, titre accrocheur (« Le filtre : la résonance qui chante »). Les courbes ADSR sont dessinées automatiquement d'après `params`.
 - `tracabilite` : 2-4 puces « Documenté [n] : … », « Hypothèse [n] : … », « Reconstitué : … ». Les [n] renvoient à l'ordre de `sources`.
 - `sources` : texte court + domaine/chemin (pas d'URL avec `_` ou `#` non échappés). Elles s'affichent numérotées en page 2.
 
@@ -59,7 +60,7 @@ Règles :
 ```bash
 scripts/build.sh sons/<machine>/<slug>.yaml
 ```
-- Le script exige **2 pages** (fiche + traçabilité) : s'il en trouve 3, la page 1 déborde → raccourcir les textes.
+- Le script exige **2 pages** (fiche + anatomie du son) : s'il en trouve 3, la page 1 déborde → raccourcir les textes.
 - Le template échoue sur une clé inconnue (faute de frappe) → corriger d'après le message.
 - **Vérifier le rendu visuellement** : `pdftoppm -r 100 -png fiches/<machine>/<slug>.pdf <scratchpad>/x` puis lire l'image. Contrôler : pas de chevauchement, valeurs lisibles, index des potards cohérents avec le texte.
 

@@ -45,6 +45,28 @@ oreille:
 jeu:
   - "Accords à trois sons en position serrée, main droite, registre médium."
   - "Stabs détachés et rythmés : relâcher franchement entre les accords."
+analyse:
+  - titre: "Les oscillateurs : deux scies désaccordées"
+    texte: >-
+      Deux *scies* en 8', le *VCO 2* à +8 cents : chaque voix bat légèrement et sonne
+      large. La scie contient toutes les harmoniques, comme un cuivre réel : c'est la
+      base de tous les « brass » synthétiques.
+  - titre: "Le filtre : ouvert à moitié, avec un coup"
+    texte: >-
+      *CUTOFF* au milieu (620) avec un peu de *RESONANCE* : brillant sans être criard.
+      *DRIVE* à 50 % ajoute du mordant. *KEYTRACK* à 50 % garde l'équilibre entre les
+      accords graves et aigus.
+  - titre: "Les enveloppes : l'attaque cuivrée"
+    texte: >-
+      L'*EG* sur CUTOFF, avec une petite attaque (30), ouvre le filtre juste après le
+      début de la note : c'est le « blat » qui fait cuivre. L'ampli a un sustain haut
+      (stabs pleins) et un *RELEASE* moyen pour que les accords ne se coupent pas net.
+  - titre: "L'espace : chorus et delay"
+    texte: >-
+      Le *CHORUS* stéréo double chaque voix avec un léger décalage de hauteur : le son
+      s'élargit, comme l'OB-Xa passé dans ses effets. Un soupçon de *DELAY* prolonge
+      les stabs sans écho audible. En POLY, quatre voix suffisent pour les accords à
+      trois sons.
 tracabilite:
   - "Documenté [1] : Oberheim OB-Xa, preset A1, passé dans un chorus et un delay."
   - "Repères d'émulation [2] : scies désaccordées, cutoff ≈ 50 %, résonance ≈ 42 %, mesurés sur un autre synthé."

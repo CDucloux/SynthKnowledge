@@ -221,5 +221,18 @@
   )
   v(1fr)
   footer-line(data)
-  sources-page("Korg minilogue XD", data)
+  let val(sec, k) = {
+    let x = params.at(sec, default: (:))
+    if x == none { x = (:) }
+    x.at(k, default: defaults.at(sec).at(k))
+  }
+  let nrm(v) = v / 1023
+  let ia = val("eg", "int")
+  let eg-target = val("eg", "target")
+  sources-page("Korg minilogue XD", data, envs: (
+    (titre: "Amp EG", a: nrm(val("amp_eg", "a")), d: nrm(val("amp_eg", "d")), s: nrm(val("amp_eg", "s")), r: nrm(val("amp_eg", "r")),
+     sub: "A " + str(val("amp_eg", "a")) + " · D " + str(val("amp_eg", "d")) + " · S " + str(val("amp_eg", "s")) + " · R " + str(val("amp_eg", "r"))),
+    (titre: "EG → " + upper(eg-target), a: nrm(val("eg", "a")), d: nrm(val("eg", "d")), s: 0, r: 0, sustain: false,
+     sub: "A " + str(val("eg", "a")) + " · D " + str(val("eg", "d")) + " · INT " + (if ia > 0 { "+" } else { "" }) + str(ia) + " %"),
+  ))
 }

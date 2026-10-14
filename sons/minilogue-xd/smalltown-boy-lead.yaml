@@ -45,6 +45,34 @@ oreille:
 jeu:
   - "Jouer le riff détaché mais sans couper la reverb : laisser les notes se recouvrir."
   - "Toucher léger : le son d'origine est doux et pincé, pas agressif."
+analyse:
+  - titre: "Les oscillateurs : de la FM pour le cristal"
+    texte: >-
+      Le DX7 fait de la synthèse FM : un oscillateur en module un autre et crée des
+      harmoniques brillantes, un peu métalliques, impossibles à obtenir par filtrage.
+      Le moteur *VPM* du XD fait la même chose. Le type *Decay1* fait retomber la
+      modulation après l'attaque : la note claque comme une corde pincée puis devient
+      ronde. Le *triangle* du *VCO 1* (peu d'harmoniques) ajoute un corps doux sous l'éclat.
+  - titre: "Le filtre : presque ouvert"
+    texte: >-
+      En FM la brillance vient de l'oscillateur, pas du filtre : on le laisse assez
+      ouvert (*CUTOFF* 820) juste pour arrondir le haut du spectre. *KEYTRACK* à 50 %
+      garde un timbre homogène quand le riff monte. Le petit coup d'*EG* (+20 %)
+      souligne l'attaque, sans « wah » audible. Aucune résonance : elle sonnerait synthé
+      analogique, pas DX.
+  - titre: "Les enveloppes : un son pincé"
+    texte: >-
+      Ampli sans sustain : attaque instantanée puis décroissance, comme une harpe ou une
+      guitare. Le son meurt tout seul même si on garde la touche. Le *RELEASE* (480)
+      laisse traîner la queue de la note quand on relâche, pour que le riff reste lié.
+      Il y a en fait deux décroissances : celle du volume et, plus rapide, celle de la
+      brillance FM (Mod Decay) : c'est ce double déclin qui fait « pincé ».
+  - titre: "L'espace : la reverb fait la moitié du son"
+    texte: >-
+      Seul, le patch est sec et court. La reverb Hall le place dans une grande pièce
+      et fait se chevaucher les notes : c'est le côté mélancolique et aérien du disque.
+      Le delay stéréo discret élargit l'image sans créer d'écho audible. La polyphonie
+      (POLY) laisse chaque note finir sa décroissance pendant que la suivante démarre.
 tracabilite:
   - "Documenté [1] : Steve Bronski joue un Yamaha DX7 sur le disque (crédits)."
   - "Documenté [2] : le riff est un son pincé doux (tutoriel de recréation)."
