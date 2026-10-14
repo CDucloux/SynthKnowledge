@@ -84,6 +84,34 @@
   )),
 )
 
+/// Bouton rotatif à valeur écran (minilogue XD…) : la position de l'index est
+/// proportionnelle à `v` entre `min` et `max` ; `label` remplace l'affichage numérique.
+#let knob-num(name, v, min: 0, max: 1023, active: true, bipolar: false, label: none, unit: "", hint: none, size: 9mm, width: 16mm) = {
+  let pos = if type(v) in (int, float) { 7 + 10 * (calc.abs(v) - (if bipolar { 0 } else { min })) / (max - (if bipolar { 0 } else { min })) } else { 12 }
+  if bipolar and type(v) in (int, float) { pos = 12 + 5 * v / max }
+  pos = calc.clamp(pos, 7, 17)
+  let shown = if label != none { str(label) } else if type(v) in (int, float) {
+    (if bipolar and v > 0 { "+" } else { "" }) + str(v) + unit
+  } else { str(v) }
+  box(width: width, align(center, stack(
+    spacing: 0.9mm,
+    knob-glyph(pos, active: active, size: size, bipolar: bipolar),
+    ctl-label(name, active),
+    ctl-value(shown, active, hint: hint),
+  )))
+}
+
+/// Petit écran (affichage OLED du MULTI ENGINE, types d'effets…).
+#let screen(name, txt, active: true, width: 20mm) = {
+  let col = if active { ink } else { muted }
+  box(width: width, align(center, stack(
+    spacing: 1mm,
+    box(width: width - 3mm, height: 6mm, radius: 1pt, fill: col,
+      align(center + horizon, text(size: 6pt, weight: "bold", fill: white, str(txt)))),
+    ctl-label(name, active),
+  )))
+}
+
 /// Sélecteur à LED (comme OCTAVE / MODE / DESTINATION sur le Messenger).
 /// `options` : tableau de (clé, libellé) dans l'ordre vertical du panneau.
 #let selector(name, options, value, active: true, width: 22mm) = {
@@ -134,8 +162,8 @@
 }
 
 /// Section de panneau encadrée, avec onglet titre noir.
-#let section(title, body, inset: 2.2mm) = block(
-  width: 100%, height: 100%, stroke: 0.9pt + ink, radius: 1.5pt, inset: 0pt, clip: true,
+#let section(title, body, inset: 2.2mm, height: 100%) = block(
+  width: 100%, height: height, stroke: 0.9pt + ink, radius: 1.5pt, inset: 0pt, clip: true,
   stack(
     box(fill: ink, inset: (x: 2mm, y: 1.1mm), text(white, size: 6.4pt, weight: "extrabold", tracking: 0.08em, upper(title))),
     block(width: 100%, inset: inset, body),

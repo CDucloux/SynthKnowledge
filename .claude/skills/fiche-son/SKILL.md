@@ -1,6 +1,6 @@
 ---
 name: fiche-son
-description: Créer une fiche son SynthKnowledge (PDF Typst A4 une page) pour reproduire un son de synthé sur le Moog Messenger (ou le minilogue XD quand son template existera), à partir d'un titre + artiste, d'une description ou d'une référence. Utiliser dès que l'utilisateur demande « fais-moi la fiche de… », « comment faire le son de… », « reproduire le lead/la basse de… ».
+description: Créer une fiche son SynthKnowledge (PDF Typst A4 une page) pour reproduire un son de synthé sur le Moog Messenger ou le Korg minilogue XD, à partir d'un titre + artiste, d'une description ou d'une référence. Utiliser dès que l'utilisateur demande « fais-moi la fiche de… », « comment faire le son de… », « reproduire le lead/la basse de… ».
 ---
 
 # Créer une fiche son
@@ -14,7 +14,7 @@ Si l'utilisateur ne précise pas **quel son** du morceau et qu'il y en a plusieu
 
 - `knowledge/retours.md` (leçons des essais précédents), **toujours**.
 - `knowledge/archetypes.md` → recette de départ de la famille.
-- `knowledge/machines/messenger.md` → contrôles et clés YAML.
+- `knowledge/machines/messenger.md` ou `knowledge/machines/minilogue-xd.md` → contrôles et clés YAML.
 - Selon le cas : `knowledge/synthes-historiques.md`, `knowledge/synthese/*.md`.
 
 ## 2. Rechercher (WebSearch, mode standard ; plusieurs requêtes dans le même tour)
@@ -29,8 +29,10 @@ Ne jamais citer une source qu'on n'a pas réellement trouvée ; ne jamais prése
 
 ## 3. Choisir la machine
 
-Règles dans `knowledge/synthes-historiques.md` (« Choisir la machine »). Aujourd'hui seul le template **Messenger** existe :
-si le son exige de la polyphonie ou des effets, le dire, et proposer soit une version mono Messenger (approximation, confiance ≤ 2), soit d'attendre le template XD.
+Règles dans `knowledge/synthes-historiques.md` (« Choisir la machine ») :
+- accords, nappes, son qui dépend d'un chorus, d'un delay ou d'une reverb, FM type DX → **minilogue XD** (`synthe: minilogue-xd`) ;
+- basse, lead mono, acid, glide, gros son Moog → **Messenger** (`synthe: messenger`).
+Dire à l'utilisateur pourquoi cette machine, et les compromis.
 
 ## 4. Fixer l'indice de confiance
 
@@ -42,10 +44,10 @@ si le son exige de la polyphonie ou des effets, le dire, et proposer soit une ve
 
 ## 5. Écrire le YAML
 
-Fichier `sons/<machine>/<slug>.yaml` (slug en kebab-case ASCII, ex. `acid-tracks-bass`). Schéma complet : `schema-messenger.md` (même dossier).
+Fichier `sons/<machine>/<slug>.yaml` (slug en kebab-case ASCII, ex. `acid-tracks-bass`). Schéma complet : `schema-messenger.md` ou `schema-minilogue-xd.md` (même dossier).
 Règles :
 - Ne mettre dans `params` **que les contrôles qui diffèrent de la valeur neutre** (ils s'affichent en noir, le reste en gris). Mais si un contrôle est important pour le son même à sa valeur neutre (ex. `res_bass: false` voulu), l'écrire quand même pour qu'il ressorte.
-- Positions en heures (7-17, décimales 0.25 / 0.5).
+- Messenger : positions en heures (7-17, décimales 0.25 / 0.5). minilogue XD : valeurs écran du manuel (0-1023, cents, %).
 - Textes en français, noms de contrôles en ANGLAIS et en gras via `*CONTROL*` (markup Typst).
 - Dans les textes : pas de `#`, `$`, `@`, `<`, `_` nus (markup Typst) ; mettre entre guillemets YAML toute chaîne contenant `:`.
 - `etapes` : 5-7 étapes, du patch init au son final, dans l'ordre du panneau. `oreille` : 3-4 ajustements « symptôme → geste ». `jeu` : 2-3 conseils.
@@ -54,11 +56,11 @@ Règles :
 ## 6. Compiler et vérifier
 
 ```bash
-scripts/build.sh sons/messenger/<slug>.yaml
+scripts/build.sh sons/<machine>/<slug>.yaml
 ```
 - Le script échoue si la fiche dépasse **une page** → raccourcir les textes.
 - Le template échoue sur une clé inconnue (faute de frappe) → corriger d'après le message.
-- **Vérifier le rendu visuellement** : `pdftoppm -r 100 -png fiches/messenger/<slug>.pdf <scratchpad>/x` puis lire l'image. Contrôler : pas de chevauchement, valeurs lisibles, index des potards cohérents avec le texte.
+- **Vérifier le rendu visuellement** : `pdftoppm -r 100 -png fiches/<machine>/<slug>.pdf <scratchpad>/x` puis lire l'image. Contrôler : pas de chevauchement, valeurs lisibles, index des potards cohérents avec le texte.
 
 ## 7. Livrer
 

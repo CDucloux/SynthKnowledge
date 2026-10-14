@@ -13,7 +13,7 @@ Quand une source dit « fait sur un X », cette table donne le caractère à vis
 | **Roland Juno-60 / 106** | 1 DCO + sub, PWM, chorus Juno indispensable | **XD** | pulse + LFO → SHAPE, MOD FX chorus ; poly |
 | **Roland Jupiter-8** | 2 VCO, sync, cross-mod, lisse, épais | **XD** (poly) / **M** (lead) | detune, sync, unison XD |
 | **Sequential Prophet-5** | poly-mod, filtre punchy, brass 80s | **XD** | 2 osc désaccordés, env. filtre, cross mod |
-| **Oberheim OB-X / OB-Xa / SEM** | filtre 12 dB ouvert, brass « Jump » énorme | **XD** | filtre 2 pôles natif du XD, scies désaccordées, unison |
+| **Oberheim OB-X / OB-Xa / SEM** | filtre 12 dB ouvert, brass « Jump » énorme | **XD** | scies désaccordées, filtre assez ouvert, chorus ; unison pour l'épaisseur |
 | **Yamaha CS-80** | Blade Runner, cuivres expressifs, aftertouch | **XD** | attaque moyenne, filtre + aftertouch, reverb longue |
 | **ARP Odyssey / 2600** | duophonique, filtre agressif, sync | **M** | sync 1→2, résonance |
 | **Korg MS-20** | filtre HP + LP qui crie, sale | **XD** / **M** | XD : drive filtre ; M : 2P LP, résonance, FB |

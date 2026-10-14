@@ -42,5 +42,5 @@
 | Diode / 303 (~18 dB) | TB-303 | fin, « squelchy », résonance criarde | 4P LP, RES BASS OFF, résonance haute |
 | Roland IR3109 24 dB | Juno, Jupiter, SH-101 | lisse, précis | 4P LP, résonance modérée |
 | SEM 12 dB multimode | Oberheim | ouvert, « brassy » | 2P LP |
-| Korg MS-20 (Sallen-Key) | MS-20, minilogue XD (2 pôles) | agressif, crie | 2P LP + résonance + FB/EXT IN |
+| Korg MS-20 (Sallen-Key) | MS-20 | agressif, crie | M : 2P LP + résonance + FB/EXT IN ; XD : DRIVE 100 % + résonance |
 | CEM / SSM | Prophet-5 | punchy, défini | 4P LP |

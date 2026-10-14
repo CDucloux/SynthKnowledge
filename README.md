@@ -1,6 +1,6 @@
 # SynthKnowledge
 
-Fiches son visuelles pour reproduire des sons de synthé sur **Moog Messenger** (et bientôt **Korg minilogue XD**).
+Fiches son visuelles pour reproduire des sons de synthé sur **Moog Messenger** et **Korg minilogue XD**.
 Chaque fiche tient sur une page A4 : schéma complet de la façade avec la position de chaque contrôle, étapes depuis le patch init,
 ajustements à l'oreille, conseils de jeu, sources et indice de confiance.
 
@@ -11,14 +11,15 @@ ajustements à l'oreille, conseils de jeu, sources et indice de confiance.
 | [Chicago House Bass](fiches/messenger/chicago-house-bass.pdf) | Messenger | ●●● documenté (manuel Moog) |
 | [Lucky Man Lead](fiches/messenger/lucky-man-lead.pdf) | Messenger | ●●○ déduit |
 | [Acid Tracks Bass](fiches/messenger/acid-tracks-bass.pdf) | Messenger | ●●○ déduit |
+| [Jump Brass](fiches/minilogue-xd/jump-brass.pdf) | minilogue XD | ●●○ déduit |
 
 ## Créer une fiche
 
 Demander à Claude : « fais-moi la fiche du son de *<morceau>* de *<artiste>* » (skill `fiche-son`).
-À la main : écrire `sons/messenger/<slug>.yaml` (voir `.claude/skills/fiche-son/schema-messenger.md`) puis :
+À la main : écrire `sons/<machine>/<slug>.yaml` (schémas dans `.claude/skills/fiche-son/`) puis :
 
 ```bash
-scripts/build.sh sons/messenger/<slug>.yaml
+scripts/build.sh sons/<machine>/<slug>.yaml
 ```
 
 Police : Montserrat (SIL Open Font License, `fonts/OFL.txt`).

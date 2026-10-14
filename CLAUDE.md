@@ -1,7 +1,7 @@
 # SynthKnowledge
 
 Fiches synthétiques et visuelles (PDF Typst, A4, **une page**) pour reproduire des sons de synthé sur les deux machines de l'utilisateur :
-**Moog Messenger** (template prêt) et **Korg minilogue XD** (manuel présent, template à faire).
+**Moog Messenger** et **Korg minilogue XD** (templates prêts).
 Style graphique inspiré du manuel Moog Messenger : noir & blanc, Montserrat, capitales grasses, vignettes encadrées.
 
 ## Structure
@@ -10,7 +10,7 @@ Style graphique inspiré du manuel Moog Messenger : noir & blanc, Montserrat, ca
 manuels/            manuels PDF officiels (source de vérité sur les contrôles)
 knowledge/          base de connaissances synthèse, index : knowledge/README.md
 sons/<machine>/     un YAML par son  → données de la fiche
-template/           style.typ (composants) · messenger.typ (façade) · fiche.typ (point d'entrée)
+template/           style.typ (composants) · messenger.typ / minilogue-xd.typ (façades) · fiche.typ (point d'entrée)
 fiches/<machine>/   PDF générés (versionnés)
 fonts/              Montserrat (OFL), ne pas modifier
 scripts/build.sh    compile les YAML en PDF (CLI typst, sinon paquet Python `typst`)
@@ -33,6 +33,8 @@ scripts/build.sh    compile les YAML en PDF (CLI typst, sinon paquet Python `typ
 - **Tirets quadratins (U+2014) INTERDITS**, partout : fiches, YAML, Markdown, code, commits, réponses. Utiliser « : », « , », des parenthèses ou une nouvelle phrase. Pas de demi-cadratin (U+2013) non plus. `scripts/build.sh` refuse un YAML qui en contient.
 - **Langue** : textes en français ; noms de contrôles en ANGLAIS, tels qu'écrits sur le panneau, en gras (`*CUTOFF*`).
 - **Notation Messenger** : positions en heures d'horloge, 7 = MIN, 12 = midi, 17 = MAX (décimales : 10.5 = 10:30).
+- **Notation minilogue XD** : valeurs écran du manuel (0-1023 pour la plupart des potards, cents pour PITCH, % pour EG INT et DEPTH des effets).
+- **Choix de la machine** : polyphonie ou effets → minilogue XD ; mono, basse, lead, acid, glide → Messenger.
 - **Le schéma est l'élément central** de la fiche : tous les contrôles du panneau sont dessinés ; noir = réglé par la fiche, gris = valeur neutre.
 - **Honnêteté** : chaque fiche porte un indice de confiance (3 documenté · 2 déduit · 1 approximation) et ses sources.
   Ne jamais inventer une source, un réglage « d'origine » ou une citation. Dire clairement quand un son dépend d'un effet ou de la polyphonie que la machine n'a pas.
@@ -56,6 +58,6 @@ Dépendances : `typst` (CLI ≥ 0.13, ou `pip install typst`), `poppler-utils` p
 ## État / à faire
 
 - [x] Template Messenger + 3 fiches de démo.
-- [ ] Template minilogue XD (skill ajouter-synthe) : le manuel est dans `manuels/minilogue-xd-user-manual.pdf`. `knowledge/machines/minilogue-xd.md` est provisoire et non vérifié.
+- [x] Template minilogue XD + 1 fiche de démo (Jump Brass).
 - [ ] Calibration position → valeur (`knowledge/calibration/`).
 - [ ] Analyse audio de WAV (reportée à la demande de l'utilisateur).

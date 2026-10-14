@@ -4,12 +4,14 @@
 // (chemin du YAML relatif à la racine du repo, commençant par « / »)
 
 #import "messenger.typ" as messenger
+#import "minilogue-xd.typ" as minilogue-xd
 
 #let path = sys.inputs.at("son", default: "/sons/messenger/chicago-house-bass.yaml")
 #let data = yaml(path)
 
 #let machines = (
   messenger: messenger.fiche,
+  minilogue-xd: minilogue-xd.fiche,
 )
 
 #assert(
