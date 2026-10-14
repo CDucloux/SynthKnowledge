@@ -1,0 +1,91 @@
+synthe: minilogue-xd
+titre: Precious Lead
+categorie: lead
+tags: [synthpop, "2000s", riff, delay]
+confiance: 1
+reference:
+  artiste: Depeche Mode
+  morceau: Precious
+  annee: 2005
+  passage: motif principal qui tourne sur tout le morceau
+  synthe_origine: "non documenté (motif déjà présent sur la démo de Martin Gore)"
+resume: >-
+  Le motif cristallin qui porte le morceau : un son pincé entre le piano et la
+  cloche, une attaque claire qui s'éteint en douceur, et un delay calé sur le tempo
+  qui fait rebondir les notes. Aucune source ne nomme l'instrument : approximation.
+
+params:
+  voice: {mode: poly, tempo: 105}
+  vco1: {wave: tri, octave: 8}
+  vco2: {wave: saw, octave: 8, pitch: 5}
+  multi: {engine: vpm, type: Sin3, shape: 380}
+  mixer: {vco1: 650, vco2: 300, multi: 900}
+  filter: {cutoff: 760, resonance: 60, keytrack: 50}
+  amp_eg: {a: 0, d: 720, s: 120, r: 420}
+  eg: {a: 0, d: 260, int: 25, target: cutoff}
+  reverb: {on: true, type: Hall, time: 550, depth: 28}
+  delay: {on: true, type: Stereo BPM, time: 640, depth: 30}
+
+settings:
+  - {nom: "MULTI ENGINE (bouton 10)", valeur: "Mod Decay ≈ -20 % : l'éclat de l'attaque retombe vite"}
+  - {nom: "Amp Velocity (bouton 8)", valeur: "≈ 70 : nuances au toucher, comme un piano"}
+
+etapes:
+  - "Programme init (201 à 500), *VOICE MODE* POLY, *TEMPO* 105 BPM."
+  - "*MULTI ENGINE* : VPM, *TYPE* Sin3, *SHAPE* 380 : l'éclat cristallin."
+  - "*VCO 1* : TRI 8'. *VCO 2* : SAW 8', *PITCH* +5 cents. *MIXER* : *MULTI* 900, *VCO 1* 650, *VCO 2* 300."
+  - "*FILTER* : *CUTOFF* 760, *RESONANCE* 60, *KEYTRACK* 50 %. *EG* sur CUTOFF : *DECAY* 260, *EG INT* +25 %."
+  - "*AMP EG* : *ATTACK* 0, *DECAY* 720, *SUSTAIN* 120, *RELEASE* 420."
+  - "*DELAY* Stereo BPM (*DEPTH* 30 %), *TIME* réglé à l'oreille sur la croche pointée. *REVERB* Hall 28 %."
+  - "PROGRAM EDIT : Mod Decay et Amp Velocity (cadre PROGRAM EDIT)."
+oreille:
+  - "Trop « cloche », pas assez piano : *SHAPE* du MULTI vers 250 et *VCO 1* vers 800."
+  - "Trop terne : *SHAPE* vers 500 ou *CUTOFF* vers 880."
+  - "Les échos brouillent le motif : *DEPTH* du delay vers 20 % ou *TIME* sur la croche."
+  - "Notes trop courtes : *SUSTAIN* de l'*AMP EG* vers 250."
+jeu:
+  - "Motif à une note à la fois, régulier, main droite : le delay remplit les silences."
+  - "Toucher souple : la vélocité donne la respiration d'un vrai clavier."
+
+analyse:
+  - titre: "Les oscillateurs : entre piano et cloche"
+    texte: >-
+      Le motif est décrit comme un motif de piano dans une retranscription
+      d'interview [1], mais rien ne dit sur quel instrument il est joué. On vise ce
+      caractère : le *VPM* en Sin3^[Selon le manuel du XD (p. 19) : porteuse sinus et
+      modulateur à la 3e harmonique. On obtient un son clair, légèrement
+      métallique, de la famille des pianos électriques FM.] pour l'éclat, le *triangle* pour un corps doux et une pointe
+      de *scie* désaccordée pour un peu de chaleur.
+  - titre: "Le filtre : ouvert, juste un coup"
+    texte: >-
+      *CUTOFF* assez haut : le son doit rester limpide. Le petit coup d'*EG* (+25 %)
+      souligne chaque attaque, comme le marteau d'un piano, puis le timbre s'adoucit.
+      *KEYTRACK* à 50 % garde le motif homogène sur toute son étendue.
+  - titre: "Les enveloppes : une note qui s'éteint"
+    texte: >-
+      Attaque nulle, *DECAY* long et *SUSTAIN* presque nul : la note se comporte comme
+      une corde frappée, elle décroît même si on garde la touche. Le *RELEASE* laisse
+      la queue de note se mêler à la suivante. Le Mod Decay du VPM fait retomber
+      l'éclat plus vite que le volume : c'est ce qui sonne « frappé ».
+  - titre: "L'espace : le delay sur le tempo"
+    texte: >-
+      Le morceau tourne à 105 BPM [2] : le *DELAY* en mode BPM renvoie des échos calés
+      sur le tempo, qui font rebondir le motif et lui donnent son côté hypnotique. La
+      reverb Hall l'éloigne un peu, dans l'esprit du son ample de l'album, que
+      Keyboard rapprochait de Violator [1].
+
+tracabilite:
+  - "Documenté [1] : Martin Gore explique que le motif principal était déjà sur la démo et est resté intact sur le disque (le mot « piano » est un ajout entre crochets de la retranscription)."
+  - "Documenté [1] : matériel du studio cité dans l'article (Nord Lead 2, MS-20, trois ARP 2600, VCS3, Juno-106…), sans lien avec ce motif."
+  - "Documenté [2] : tempo 105 BPM, ré bémol majeur ; selon Ben Hillier la démo était déjà « assez proche » de la version finale."
+  - "Reconstitué : instrument et patch entièrement reconstruits d'après le caractère du son. Confiance 1."
+
+sources:
+  - titre: "2005-11-xx Keyboard, Depeche Mode"
+    site: DM Live Wiki
+    url: https://dmlive.wiki/wiki/2005-11-xx_Keyboard_-_Depeche_Mode
+    note: retranscription de l'article de Steve Fortner, Keyboard, novembre 2005
+  - titre: "Precious"
+    site: DM Live Wiki
+    url: https://dmlive.wiki/wiki/Precious
+    note: tempo, tonalité, crédits, citation de Ben Hillier sur la démo
