@@ -1,0 +1,62 @@
+synthe: messenger
+titre: Acid Tracks Bass
+categorie: basse
+tags: [acid, house, 303, glide]
+confiance: 2
+reference:
+  artiste: Phuture
+  morceau: Acid Tracks
+  annee: 1987
+  passage: ligne de basse acide, tout le morceau
+  synthe_origine: Roland TB-303 (+ filtrage externe probable)
+resume: >-
+  Le son « acid » : une seule scie, filtre fermé et très résonant, enveloppe de
+  filtre courte et dynamique, glissés seulement entre notes liées. Tout se joue
+  en tournant *CUTOFF* et *RESONANCE* pendant que la séquence tourne.
+
+params:
+  osc:
+    oct1: 16
+    wave1: 12
+  mixer:
+    osc1: 17
+  filter:
+    mode: lp4
+    cutoff: 10
+    eg_amount: 14
+    resonance: 14.5
+    res_bass: false
+  fenv: {a: 7, d: 10.5, s: 7, r: 9}
+  aenv: {a: 7, d: 13, s: 15, r: 8.5}
+  env:
+    f_vel: true
+  perf:
+    glide: 9.5
+
+settings:
+  - nom: Glide Config (CONFIG 1.3)
+    valeur: "PGM 1 *Legato Glide* ON + PGM 16 *Linear Constant Time* — glisse seulement entre notes liées, comme le « slide » de la 303"
+  - nom: Gate Length (SETTINGS 3)
+    valeur: "≈ 50 % (PGM 8) ; allonger sur les notes à lier"
+
+etapes:
+  - Maintenir *PANEL* 1 s (init).
+  - "*OCTAVE 1* sur 16', *WAVESHAPE 1* à midi (scie). Seul *OSC 1* dans le *MIXER*, à fond."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:00, *RESONANCE* ≈ 2:30, *RES BASS* OFF (perte de grave voulue, comme la 303)."
+  - "*EG AMOUNT* ≈ 2:00 et enveloppe filtre courte : *DECAY* ≈ 10:30, *SUSTAIN* à zéro."
+  - "*F ENV VEL* ON : les notes jouées fort font l'« accent »."
+  - "*GLIDE* ≈ 9:30, puis *CONFIG* 1.3 : Legato Glide ON + Linear Constant Time."
+  - "Programmer une séquence 16 pas (*DIRECTION* SEQ, *RECORD*) autour de 120-125 BPM."
+oreille:
+  - "Le cœur du son : balayer *CUTOFF* entre 9:00 et 1:00 pendant que ça tourne."
+  - "Plus « squelchy » : *RESONANCE* vers 3:00 (attention, auto-oscillation proche)."
+  - "Trop mince : *RES BASS* ON, ou *DECAY* filtre un peu plus long."
+  - "Variante plus creuse : *WAVESHAPE 1* sur carré (≈ 1:15)."
+jeu:
+  - "Lier deux notes (legato) pour déclencher un glissé ; détacher pour une attaque franche."
+  - Alterner notes fortes (accent) et douces pour faire respirer le filtre.
+  - "En séquence : *TEMPO* puis gestes lents et continus sur *CUTOFF*."
+sources:
+  - "Native Instruments Blog — Acid house (historique, TB-303) : blog.native-instruments.com/acid-house"
+  - "Muzines — « The Bass Race » (filtrage externe probable sur Acid Tracks) : muzines.co.uk/articles/the-bass-race/2177"
+  - "KVR forum — « Recreate TB-303 on any synth? »"

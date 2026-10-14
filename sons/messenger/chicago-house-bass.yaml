@@ -1,0 +1,49 @@
+synthe: messenger
+titre: Chicago House Bass
+categorie: basse
+tags: [house, 80s, carrée]
+confiance: 3
+reference:
+  artiste: Moog Music
+  morceau: Messenger User's Manual — « Building a sound »
+  passage: patch pas-à-pas des pages 10-12
+resume: >-
+  Basse ronde et profonde façon house de Chicago fin 80 : carré grave doublé par le
+  *SUB OSC*, filtre 4 pôles très fermé ouvert par l'enveloppe, résonance avec
+  *RES BASS* pour garder le bas.
+
+params:
+  osc:
+    oct1: 32
+    tune: 12
+    wave1: 13.5
+    sub_wave: 10.5
+  mixer:
+    osc1: 15
+    osc2: 7
+    sub: 12
+  filter:
+    mode: lp4
+    cutoff: 9
+    eg_amount: 15
+    resonance: 12
+    res_bass: true
+  fenv: {a: 7, d: 12, s: 9, r: 12}
+  aenv: {a: 7, d: 9, s: 17, r: 12}
+
+etapes:
+  - Maintenir *PANEL* 1 s pour charger le patch init.
+  - "*OSCILLATORS* : *OCTAVE 1* sur 32', *WAVESHAPE 1* sur le symbole carré (≈ 1:30), *SUB WAVE* sur carré (≈ 10:30)."
+  - "*MIXER* : *OSC 1* à 3:00, *SUB OSC* à midi, *OSC 2* à zéro."
+  - "*FILTER* : *MODE* 4P LOW PASS, *CUTOFF* à 9:00 (presque muet), puis monter *EG AMOUNT* à 3:00."
+  - Régler les deux enveloppes comme dessiné (attaques à zéro, *SUSTAIN* filtre bas).
+  - "*RESONANCE* à midi puis engager *RES BASS* pour récupérer le bas."
+oreille:
+  - "Plus de « pop » à l'attaque : *EG AMOUNT* vers 4:00."
+  - "Note plus courte et sèche : *DECAY* filtre vers 10:00."
+  - "Plus liquide, plus acide : *RESONANCE* vers 2:00."
+jeu:
+  - Notes courtes, staccato, sur les deux octaves graves.
+  - "Bonus du manuel : *DIRECTION* sur PAT + *PLAY*, tenir un accord pour l'arpéger."
+sources:
+  - "Moog Messenger User's Manual, p. 10-12 (manuels/moog-messenger-user-manual.pdf)"
