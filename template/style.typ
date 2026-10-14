@@ -213,8 +213,8 @@
 #let bullets(items) = {
   set par(leading: 0.5em)
   for it in items {
-    grid(columns: (3mm, 1fr), gutter: 0.4mm, text(weight: "bold", "›"), md(it))
-    v(0.4mm)
+    // Puce dans la ligne : alignée sur la ligne de base ; retrait suspendu pour les lignes suivantes.
+    block(above: 0pt, below: 1.3mm, par(hanging-indent: 3.4mm, box(width: 3.4mm, text(size: 1.25em, weight: "extrabold", "»")) + md(it)))
   }
 }
 
