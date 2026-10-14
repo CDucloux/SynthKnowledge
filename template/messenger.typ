@@ -263,5 +263,7 @@
     titre: titre, a: nrm(val(sec, "a")), d: nrm(val(sec, "d")), s: nrm(val(sec, "s")), r: nrm(val(sec, "r")),
     sub: "A " + clock-label(val(sec, "a")) + " · D " + clock-label(val(sec, "d")) + " · S " + clock-label(val(sec, "s")) + " · R " + clock-label(val(sec, "r")),
   )
-  sources-page("Moog Messenger", data, envs: (env("fenv", "Filter env"), env("aenv", "Amp env")))
+  let fe = env("fenv", "Filter env")
+  if val("filter", "eg_amount") == 12 { fe.sub = "sans effet ici : EG AMOUNT à midi" }
+  sources-page("Moog Messenger", data, envs: (fe, env("aenv", "Amp env")))
 }
