@@ -1,0 +1,113 @@
+synthe: messenger
+titre: Thriller Bass
+categorie: basse
+tags: [funk, disco, "80s", pwm, arp-2600]
+confiance: 2
+reference:
+  artiste: Michael Jackson
+  morceau: Thriller
+  annee: 1982
+  passage: ligne de basse de Rod Temperton, tout le morceau
+  synthe_origine: "ARP 2600 (Tonus, filtre ladder) programmé par Anthony Marinelli ; Minimoog selon d'autres récits"
+resume: >-
+  La basse funk-disco la plus célèbre des années 80 : une scie et un carré en 16',
+  légèrement désaccordés, sous un filtre 4 pôles assez fermé qui s'ouvre à chaque
+  note. Un PWM lent fait bouger le carré : la basse vit sans changer de hauteur.
+
+params:
+  lfo1:
+    rate: 9.5
+    depth: 12.75
+    wave: tri
+    dest: osc1_wave
+  osc:
+    oct1: 16
+    oct2: 16
+    wave1: 13.5
+    wave2: 12
+    osc2_freq: 12.1
+  mixer:
+    osc1: 17
+    osc2: 15
+  filter:
+    mode: lp4
+    cutoff: 9
+    eg_amount: 14
+    resonance: 10
+    res_bass: true
+  fenv: {a: 7, d: 10.5, s: 9, r: 9}
+  aenv: {a: 7, d: 12, s: 17, r: 8.5}
+  env:
+    f_vel: true
+
+etapes:
+  - Maintenir *PANEL* 1 s (init).
+  - "*OCTAVE 1* et *OCTAVE 2* sur 16'. *WAVESHAPE 1* ≈ 1:30 (carré), *WAVESHAPE 2* à midi (scie)."
+  - "*OSC 2 FREQ* à peine à droite de midi (battement lent). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 3:00."
+  - "*LFO 1* : TRI vers OSC 1 WAVE, *RATE* ≈ 9:30 (lent), *DEPTH* ≈ 12:45 (PWM léger)."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:00, *RESONANCE* ≈ 10:00, *RES BASS* ON."
+  - "*EG AMOUNT* ≈ 2:00 ; enveloppe filtre : *DECAY* ≈ 10:30, *SUSTAIN* ≈ 9:00. *F ENV VEL* ON."
+  - "Enveloppe ampli : orgue (*SUSTAIN* à fond), *RELEASE* court ≈ 8:30."
+oreille:
+  - "Pas assez de « pop » sur les notes : *EG AMOUNT* vers 2:30, *DECAY* filtre plus court."
+  - "Trop sourd : *CUTOFF* vers 9:45 ; trop brillant, ça ne sonne plus « ronde » : vers 8:30."
+  - "Le carré bouge trop, effet « chorus » gênant : *DEPTH* du *LFO 1* vers 12:20."
+  - "Manque de grave sous le mix : ajouter *SUB OSC* ≈ 11:00 (carré)."
+jeu:
+  - "Tempo 118 BPM : notes courtes et détachées, le groove est dans les silences."
+  - "Frapper un peu plus fort les notes d'appui : *F ENV VEL* les ouvre davantage."
+  - "Pas de glide : chaque note attaque franchement, comme une basse au doigt."
+
+analyse:
+  - titre: "Les oscillateurs : scie + carré, le duo funk"
+    texte: >-
+      La *scie* apporte toutes les harmoniques (le mordant), le *carré* seulement les
+      impaires (le creux, le rond). Ensemble en 16', légèrement désaccordés, ils
+      donnent une note épaisse qui bat doucement [3]. Le *LFO 1* lent sur la forme du
+      carré fait un PWM^[PWM (Pulse Width Modulation) : la largeur du carré varie,
+      son timbre aussi ; à faible dose cela donne un léger mouvement, presque un
+      chorus.] discret : « de l'expression et du mouvement », selon [2].
+  - titre: "Le filtre : un ladder bien fermé"
+    texte: >-
+      L'ARP 2600 de Marinelli avait un filtre de type Moog [2] : le 4 pôles du
+      Messenger est donc dans la bonne famille. *CUTOFF* bas (vers 150 Hz dans la
+      recette de [3]) : sans enveloppe, il ne resterait qu'un grave sourd. *RES BASS*
+      ON garde le bas pendant que la petite *RESONANCE* donne un peu de nez.
+  - titre: "Les enveloppes : ouvrir puis refermer"
+    texte: >-
+      Tout le caractère vient de l'enveloppe de filtre [3] : à chaque note elle ouvre
+      grand puis redescend vite vers un sustain bas. On entend un « pop » brillant
+      puis une queue ronde. L'ampli reste plein (orgue) : ce sont la longueur des
+      notes jouées et le *RELEASE* court qui découpent le groove.
+  - titre: "Le jeu : la précision avant tout"
+    texte: >-
+      La ligne, imaginée par Rod Temperton en improvisant sur des boucles de basse et
+      de batterie [1], tourne à 118 BPM en do dièse dorien [1]. Elle a été jouée à
+      la main, comme presque tout sur l'album [3]. Sur le Messenger, la vélocité
+      sur le filtre reproduit ces petites différences d'attaque d'une note à l'autre.
+
+tracabilite:
+  - "Documenté [1] : selon le programmeur Anthony Marinelli, la basse a été jouée sur un ARP 2600 ; tempo 118 BPM, do dièse dorien."
+  - "Documenté [2] : ARP 2600 « Tonus » de Marinelli à filtre ladder façon Moog, basse avec un peu de PWM."
+  - "Récit divergent [4] : Temperton et Greg Phillinganes auraient créé la basse sur deux Minimoog à l'unisson."
+  - "Recette [3] (extrait seulement, article complet non lu) : scie et carré désaccordés, cutoff ≈ 150 Hz, enveloppe qui ouvre et ferme le filtre. Reconstitué : toutes les positions Messenger."
+
+sources:
+  - titre: "Thriller (song)"
+    site: Wikipédia (en)
+    url: https://en.wikipedia.org/wiki/Thriller_(song)
+    note: témoignage d'Anthony Marinelli (ARP 2600), tempo et tonalité
+  - titre: "Darkness Falls : How To Sound Like Michael Jackson, Thriller"
+    site: Gearnews (Stefan Wyeth)
+    date: octobre 2023
+    url: https://www.gearnews.com/darkness-falls-how-to-sound-like-michael-jackson-thriller
+    note: ARP 2600 Tonus à filtre ladder, PWM
+  - titre: "The synth sounds of Michael Jackson's Thriller (and how to recreate them in your DAW)"
+    site: MusicRadar
+    url: https://www.musicradar.com/news/thriller-synth-sounds
+    note: scie + carré désaccordés, cutoff ≈ 150 Hz (extrait consulté)
+  - titre: "The Off the Wall life and career of Rod Temperton"
+    site: Reaction (Iain Martin)
+    date: octobre 2016
+    url: https://www.reaction.life/p/off-wall-life-career-rod-temperton
+    note: version « deux Minimoog à l'unisson »
