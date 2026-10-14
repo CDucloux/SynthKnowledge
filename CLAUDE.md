@@ -44,6 +44,14 @@ scripts/build.sh    compile les YAML en PDF (CLI typst, sinon paquet Python `typ
 - Les leçons tirées des essais vont dans `knowledge/retours.md` et, si elles sont générales, dans le fichier de connaissance concerné.
 - Committer les YAML **et** les PDF générés.
 
+## Choix de design validés par l'utilisateur (ne pas changer sans demander)
+
+- Esthétique du manuel Moog Messenger : noir & blanc, Montserrat, onglets titres noirs, vignettes encadrées.
+- Schéma de façade complet = élément central ; potards avec index + arc de valeur, sélecteurs à LED, boutons ON/OFF.
+- Section ENVELOPES aérée : pas de cadres pointillés, séparateurs verticaux fins.
+- Puces des encadrés : double chevron « » » en gras, dans la ligne (aligné sur le texte), retrait suspendu.
+- Sources sur la page 2 (traçabilité), jamais en page 1.
+
 ## Commandes
 
 ```bash
