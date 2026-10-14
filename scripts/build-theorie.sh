@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Compile les fiches de théorie (theorie/*.typ) en PDF imprimables, une page chacune.
+# Compile les fiches de théorie (theorie/*.typ) en PDF imprimables (pas de limite de pages).
 #   scripts/build-theorie.sh                              → toutes
 #   scripts/build-theorie.sh theorie/01-forme-onde-spectre.typ → une seule
 set -euo pipefail
@@ -19,7 +19,6 @@ for f in "${files[@]}"; do
     python3 -c 'import sys, typst
 typst.compile(sys.argv[1], output=sys.argv[2], root=".", font_paths=["fonts"])' "$rel" "$out"
   fi
-  pages=$(python3 -c 'import re,sys; print(len(re.findall(rb"/Type\s*/Page[^s]", open(sys.argv[1],"rb").read())))' "$out")
-  if [ "$pages" != "1" ]; then echo "✗ $out : $pages pages, une fiche de théorie tient sur une page" >&2; status=1; else echo "✓ $out"; fi
+  echo "✓ $out"
 done
 exit $status

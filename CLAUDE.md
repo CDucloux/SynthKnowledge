@@ -15,7 +15,7 @@ theorie/            fiches de théorie imprimables (.typ, d'après Synth Secrets
 fiches/<machine>/   PDF générés (versionnés) ; fiches/theorie/ pour la théorie
 fonts/              Montserrat (OFL), ne pas modifier
 scripts/build.sh    compile les YAML en PDF (CLI typst, sinon paquet Python `typst`)
-scripts/build-theorie.sh  compile theorie/*.typ (une page A4 chacune)
+scripts/build-theorie.sh  compile theorie/*.typ (A4, pas de limite de pages)
 .claude/skills/     fiche-son · ajuster-fiche · ajouter-synthe
 ```
 
@@ -48,9 +48,21 @@ scripts/build-theorie.sh  compile theorie/*.typ (une page A4 chacune)
 
 ## Fiches de théorie (theorie/)
 
-- Une page A4 recto par fiche, imprimable : idée clé, schémas calculés (formes d'onde, spectres, courbes), tableau de synthèse, encadrés « Essaie sur ton Messenger » (positions réelles) et « À retenir », sources en pied.
+- **Objectif : l'appropriation de la théorie** à partir du contenu réel des articles Synth Secrets (pas des résumés condensés utilisés pour les fiches son).
+- **Pas de limite de pages** : une fiche suit le fil de l'article (ou des articles) qu'elle couvre, avec beaucoup de schémas et de pédagogie. Imprimable en A4.
+- Éléments : idée clé, schémas calculés (formes d'onde, spectres, courbes), tableaux de synthèse, encadrés « Essaie sur ton Messenger » (positions réelles) et « À retenir », sources en pied.
+- La fiche 01 (`theorie/01-forme-onde-spectre.typ`) est un **prototype en une page** fait avant les notes complètes : à réécrire en version longue à partir de `synth-secrets-01.md`.
 - Contenu **rédigé avec nos mots** d'après Synth Secrets (textes protégés : ne jamais recopier) ; schémas **recalculés** avec les primitives de `template/theorie.typ`, jamais d'image copiée.
 - Pas de paquet Typst externe (CeTZ non téléchargeable ici) : dessin natif (`curve`, `place`, `rect`).
+
+## Notes d'étude Synth Secrets (knowledge/sources/)
+
+- Un fichier par article : `knowledge/sources/synth-secrets-01.md`, `-02.md`, etc. (`synth-secrets.md` reste l'index).
+- **Notes complètes** qui suivent le plan de l'article section par section : tous les concepts, raisonnements, chiffres, exemples de patchs, description de chaque schéma (pour pouvoir le redessiner), lien vers l'article original.
+- **Rédigées avec nos mots**, au plus quelques citations courtes : le texte intégral est protégé, ne jamais le recopier.
+- **Jamais de mémoire** : rédiger uniquement à partir de l'article lu (soundonsound.com, ou PDF déposé par l'utilisateur dans `sources-originales/`, exclu de git).
+- Ces notes sont la matière première des fiches de théorie, distinctes des connaissances condensées (`knowledge/synthese/`) utilisées pour les fiches son.
+- **Périmètre actuel : n°1 à 3 seulement.** Ne pas aller plus loin sans demande de l'utilisateur.
 
 ## Choix de design validés par l'utilisateur (ne pas changer sans demander)
 
@@ -75,5 +87,7 @@ Dépendances : `typst` (CLI ≥ 0.13, ou `pip install typst`), `poppler-utils` p
 
 - [x] Template Messenger + 3 fiches de démo.
 - [x] Template minilogue XD + 1 fiche de démo (Jump Brass).
+- [ ] Notes d'étude Synth Secrets n°1 à 3 (`knowledge/sources/synth-secrets-01.md` à `-03.md`). Bloqué le 2026-10-14 : `www.soundonsound.com` refusé par le proxy ; l'utilisateur a mis à jour l'environnement, à vérifier dans une nouvelle session.
+- [ ] Puis réécrire la fiche de théorie 01 en version longue à partir de `synth-secrets-01.md`.
 - [ ] Calibration position → valeur (`knowledge/calibration/`).
 - [ ] Analyse audio de WAV (reportée à la demande de l'utilisateur).
