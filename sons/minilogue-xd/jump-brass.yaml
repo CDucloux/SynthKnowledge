@@ -72,6 +72,14 @@ tracabilite:
   - "Repères d'émulation [2] : scies désaccordées, cutoff ≈ 50 %, résonance ≈ 42 %, mesurés sur un autre synthé."
   - "Reconstitué : toutes les valeurs du minilogue XD, enveloppes et profondeurs d'effets."
 sources:
-  - "Reverb News, « The Synth Sounds of Van Halen's Jump » (OB-Xa, patch A1, chorus et delay) : reverb.com/news/the-synth-sounds-of-van-halens-jump"
-  - "MusicRadar, « The 40 greatest synth sounds of all time, No 4 » (scies désaccordées, cutoff 50 %, résonance 42 %) : musicradar.com/news/van-halen-jump-best-synth-sound"
-  - "MusicTech, « Weekend Workshop : Prince and Van Halen synth sounds with OB-Xd »"
+  - titre: "The Synth Sounds of Van Halen's Jump"
+    site: Reverb News
+    url: https://reverb.com/news/the-synth-sounds-of-van-halens-jump
+    note: OB-Xa, patch A1, chorus et delay
+  - titre: "The 40 greatest synth sounds of all time, No 4"
+    site: MusicRadar
+    url: https://www.musicradar.com/news/van-halen-jump-best-synth-sound
+    note: scies désaccordées, cutoff 50 %, résonance 42 %
+  - titre: "Weekend Workshop : Prince and Van Halen synth sounds with OB-Xd"
+    site: MusicTech
+    url: https://musictech.com/tutorials/weekend-workshop-prince-van-halen-synth-ob-xd

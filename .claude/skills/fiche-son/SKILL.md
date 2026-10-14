@@ -53,7 +53,8 @@ Règles :
 - `etapes` : 5-7 étapes, du patch init au son final, dans l'ordre du panneau. `oreille` : 3-4 ajustements « symptôme → geste ». `jeu` : 2-3 conseils.
 - `analyse` (page 2, « Anatomie du son ») : 4 encadrés `{titre, texte}` dans l'ordre oscillateurs, filtre, enveloppes, puis mouvement / espace / jeu. Expliquer **pourquoi** chaque réglage produit le son (harmoniques de l'onde, pente du filtre, forme des enveloppes, rôle des effets), 3-5 lignes chacun, titre accrocheur (« Le filtre : la résonance qui chante »). Les courbes ADSR sont dessinées automatiquement d'après `params`.
 - `tracabilite` : 2-4 puces « Documenté [n] : … », « Hypothèse [n] : … », « Reconstitué : … ». Les [n] renvoient à l'ordre de `sources`.
-- `sources` : texte court + domaine/chemin (pas d'URL avec `_` ou `#` non échappés). Elles s'affichent numérotées en page 2.
+- `sources` : entrées structurées `{titre, site, date, url, note}` (voir schéma). `url` = URL complète et vérifiée (cliquable, affichée abrégée) ; si on ne la retrouve pas, l'omettre et le dire dans `note`. Numérotées [1], [2]… en page 2.
+- Renvois et notes dans les textes : `[n]` → exposant cliquable vers la source n ; `^[...]` → note de bas de page (définir un terme technique, préciser une nuance) ; `[texte](https://…)` → lien intégré. Utiliser les renvois dans `analyse` dès qu'une affirmation vient d'une source.
 
 ## 6. Compiler et vérifier
 

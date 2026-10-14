@@ -72,4 +72,6 @@ tracabilite:
   - "Documenté [1] : tous les réglages viennent du tutoriel pas-à-pas du manuel Moog (p. 10-12)."
   - "Reconstitué : rien. Les contrôles que le manuel ne cite pas restent à leur valeur neutre."
 sources:
-  - "Moog Messenger User's Manual, p. 10-12 (manuels/moog-messenger-user-manual.pdf)"
+  - titre: "Moog Messenger User's Manual, p. 10-12"
+    site: Moog Music
+    note: patch pas-à-pas « Building a sound » (manuels/moog-messenger-user-manual.pdf)

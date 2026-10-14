@@ -40,5 +40,15 @@ analyse:                          # page 2 « Anatomie du son » : 4 encadrés, 
   - {titre: "Les enveloppes : ...", texte: "lecture des courbes ADSR dessinées au-dessus"}
   - {titre: "Le mouvement / L'espace / Le jeu : ...", texte: "glide, LFO, arpégiateur, effets"}
 tracabilite: [ "Documenté [1] : ...", "Reconstitué : ..." ]   # page 2, renvois aux sources
-sources: [ ... ]
+sources:                          # page 2, numérotées [1], [2]… dans l'ordre
+  - titre: "Titre exact de l'article ou de la vidéo"
+    site: Reverb News               # média, forum, manuel…
+    date: avril 2024                # optionnel
+    url: https://reverb.com/news/...   # URL complète (cliquable dans le PDF) ; omettre si inconnue, ne jamais l'inventer
+    note: ce qu'on y a pris (OB-Xa, patch A1)   # optionnel, en italique
+
+# Syntaxe dans tous les textes (resume, analyse, tracabilite, etapes…) :
+#   [2] ou [1][3]           → renvoi cliquable en exposant vers la source
+#   ^[texte]                → note de bas de page (a, b, c…), peut contenir [n]
+#   [texte](https://…)      → lien intégré au texte
 ```

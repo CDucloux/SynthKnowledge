@@ -187,7 +187,44 @@
 
 /// Texte libre venant du YAML : interprété comme du markup Typst
 /// (`*CUTOFF*` → gras, comme les noms de contrôles dans les manuels Moog).
-#let md(s) = if s == none { [] } else { eval(str(s), mode: "markup") }
+///
+/// Syntaxe enrichie, convertie avant l'évaluation :
+///   [3] ou [1][2]          → renvoi cliquable vers la source n (exposant)
+///   [texte](https://…)    → lien intégré au texte
+///   ^[texte de la note]    → note de bas de page (numérotée a, b, c…)
+#let srcref(..ns) = {
+  let ns = ns.pos()
+  let parts = ns.map(n => context {
+    let lbl = label("src-" + str(n))
+    let t = text(weight: "extrabold", str(n))
+    if query(lbl).len() > 0 { link(lbl, t) } else { t }
+  })
+  box(text(size: 0.72em, baseline: -0.42em, fill: ink, [\[] + parts.join(",") + [\]]))
+}
+
+#let _enrich(s) = {
+  // liens [texte](url)
+  s = s.replace(regex("\[([^\]\[]+)\]\((https?://[^)\s]+)\)"), m => {
+    "#link(\"" + m.captures.at(1).replace("\"", "%22") + "\")[" + m.captures.at(0) + "]"
+  })
+  // renvois [1] / [1][2]
+  s = s.replace(regex("( ?)((?:\[\d+\])+)"), m => {
+    let nums = m.captures.at(1).matches(regex("\d+")).map(x => x.text)
+    "#srcref(" + nums.join(", ") + ")"
+  })
+  // notes ^[...] (après les renvois : une note peut contenir [n] ou un lien)
+  s = s.replace(regex("\^\[((?:[^\[\]]|\[[^\[\]]*\])*)\]"), m => "#footnote[" + m.captures.at(0).trim() + "]")
+  s
+}
+
+#let md(s) = if s == none { [] } else { eval(_enrich(str(s)), mode: "markup", scope: (srcref: srcref)) }
+
+/// Lien affiché proprement : sans https://, sans www., abrégé au milieu si trop long.
+#let pretty-url(u, max: 92) = {
+  let t = u.replace(regex("^https?://(www\.)?"), "").trim("/", at: end)
+  if t.len() > max { t = t.slice(0, max - 22) + "…" + t.slice(t.len() - 20) }
+  t
+}
 
 /// Encadré de texte en bas de fiche.
 #let textbox(title, body, size: 6.9pt) = block(
@@ -218,11 +255,33 @@
   }
 }
 
-/// Mise en page générique d'une fiche (en-tête, schéma, encadrés, pied).
-#let page-setup(body) = {
-  set page(paper: "a4", margin: (x: 12mm, top: 10mm, bottom: 10mm))
+/// Mise en page générique d'une fiche (pied de page, styles des liens et notes).
+#let page-setup(body, fichier: none) = {
+  set page(paper: "a4", margin: (x: 12mm, top: 10mm, bottom: 15mm), footer-descent: 4.5mm, footer: context {
+    set text(size: 5.8pt, fill: luma(90))
+    line(length: 100%, stroke: 0.5pt + muted)
+    v(-1.2mm)
+    if counter(page).get().first() == 1 {
+      grid(
+        columns: (1fr, auto), gutter: 3mm,
+        [*ANATOMIE DU SON* #h(1mm) page 2 : analyse, courbes, sources],
+        [SYNTHKNOWLEDGE · gris = valeur neutre (patch INIT), noir = réglage de la fiche],
+      )
+    } else {
+      [SYNTHKNOWLEDGE · page 2 : anatomie du son. Les réglages sont en page 1#if fichier != none [ (fichier #fichier)].]
+    }
+  })
   set text(font: font, size: 7.4pt, lang: "fr", fill: ink)
   set par(justify: false, leading: 0.55em)
+  show link: it => if type(it.dest) == str { underline(stroke: 0.45pt + luma(130), offset: 1.6pt, it) } else { it }
+  set footnote(numbering: "a")
+  set footnote.entry(separator: line(length: 22%, stroke: 0.5pt + ink), clearance: 2.5mm, gap: 1.2mm, indent: 0mm)
+  show footnote.entry: it => {
+    let num = numbering("a", ..counter(footnote).at(it.note.location()))
+    set text(size: 6.6pt, fill: luma(40))
+    grid(columns: (3.4mm, 1fr), text(weight: "extrabold", fill: ink, num), it.note.body)
+  }
+  show footnote: set text(weight: "bold")
   body
 }
 
@@ -258,17 +317,6 @@
     block(width: 100%, text(size: 7.6pt, md(data.resume)))
   }
   v(1.6mm)
-}
-
-#let footer-line(data) = {
-  set text(size: 5.8pt, fill: luma(90))
-  line(length: 100%, stroke: 0.5pt + muted)
-  v(-1mm)
-  grid(
-    columns: (1fr, auto), gutter: 3mm,
-    [*ANATOMIE DU SON* #h(1mm) page 2 : analyse, courbes, sources],
-    [SYNTHKNOWLEDGE · gris = valeur neutre (patch INIT), noir = réglage de la fiche],
-  )
 }
 
 /// Courbe d'enveloppe dessinée d'après les réglages.
@@ -370,19 +418,27 @@
     v(0.6mm)
     line(length: 100%, stroke: 0.4pt + muted)
     v(0.4mm)
+    text(size: 6.4pt, weight: "extrabold", tracking: 0.1em, "SOURCES")
+    v(0.4mm)
     set par(leading: 0.5em)
     if src.len() == 0 {
       text(fill: luma(90), "Aucune source spécifique : reconstitution d'après les connaissances générales de synthèse.")
     } else {
       for (i, s) in src.enumerate() {
-        grid(columns: (5mm, 1fr), gutter: 0.6mm, text(weight: "extrabold", "[" + str(i + 1) + "]"), md(s))
-        v(0.8mm)
+        let body = if type(s) == dictionary {
+          let meta = (s.at("site", default: none), s.at("date", default: none)).filter(x => x != none).map(str)
+          text(weight: "bold", md(s.at("titre", default: "")))
+          if meta.len() > 0 { h(1.2mm); text(fill: luma(90), meta.join(", ")) }
+          let u = s.at("url", default: none)
+          let note = s.at("note", default: none)
+          if u != none or note != none { linebreak() }
+          if u != none { link(u, text(size: 0.92em, pretty-url(u))); h(0.6mm); text(size: 0.85em, fill: luma(60), "↗") }
+          if u != none and note != none { h(1.2mm); text(fill: muted, "·"); h(1.2mm) }
+          if note != none { text(style: "italic", fill: luma(70), md(note)) }
+        } else { md(s) }
+        [#grid(columns: (5mm, 1fr), gutter: 0.6mm, text(weight: "extrabold", "[" + str(i + 1) + "]"), body)#label("src-" + str(i + 1))]
+        v(1mm)
       }
     }
   })
-  v(1fr)
-  set text(size: 5.8pt, fill: luma(90))
-  line(length: 100%, stroke: 0.5pt + muted)
-  v(-1mm)
-  [SYNTHKNOWLEDGE · page 2 : anatomie du son. Les réglages sont en page 1 (fichier #data.at("_fichier", default: "")).]
 }

@@ -71,22 +71,35 @@ analyse:
     texte: >-
       Enveloppe de filtre percussive : attaque nulle, *DECAY* court, *SUSTAIN* presque
       nul. Le timbre est brillant à l'attaque puis se ferme aussitôt : c'est l'ADN des
-      basses de séquenceur (MC-202, TB-303). L'ampli, lui, reste « orgue » (sustain à
+      basses de séquenceur (MC-202, TB-303). Le critique de [2] y entend un écho de « Tainted Love ». L'ampli, lui, reste « orgue » (sustain à
       fond) : le volume tient toute la note, c'est la longueur de gate de l'arpégiateur
       qui la coupe. *RELEASE* court pour que les notes ne se marchent pas dessus.
   - titre: "Le mouvement : l'octave qui saute"
     texte: >-
-      Le cœur du son n'est pas le timbre mais le motif : note grave, octave, note,
+      Le cœur du son n'est pas le timbre mais le motif, né d'une séquence d'octaves sur MC-202 [1] : note grave, octave, note,
       octave, en continu. L'octave haute fait ressortir les harmoniques, la basse
       porte le grave : l'oreille entend une seule ligne qui rebondit. Gate à 50 % :
-      chaque note est détachée, ce qui donne le côté mécanique et dansant du hi-NRG.
+      chaque note est détachée, ce qui donne le côté mécanique et dansant du hi-NRG^[Hi-NRG : disco électronique rapide du début des années 80, le son des clubs gays de l'époque, auquel le morceau emprunte son tempo [1].].
 tracabilite:
   - "Documenté [1] : le morceau est né d'un motif d'octaves séquencé sur Roland MC-202 ; synthés crédités : DX7, Memorymoog, Pro-One."
   - "Impression d'un critique [2] : basse proche de celle de « Tainted Love », mix très brillant (aigus des synthés poussés)."
   - "Non vérifié [3] : un amateur cite le preset DX7 « Bass1 » en renfort."
   - "Reconstitué : timbre, positions du filtre et des enveloppes, division rythmique de l'arpégiateur (croches)."
 sources:
-  - "Wikipédia (en), article « Smalltown Boy » (motif MC-202, crédits d'après Electronic Soundmaker et Sound on Sound)"
-  - "Moving the River, « Bronski Beat : Smalltown Boy at 40 », octobre 2024 : movingtheriver.com"
-  - "Matrixsynth, reprise sur Novation Circuit Tracks (avis d'amateur sur le matériel), janvier 2026 : matrixsynth.com"
-  - "Manuel Moog Messenger, p. 22-28 (SEQ/ARP, ARP OCTAVE *2 Note*)"
+  - titre: "Smalltown Boy"
+    site: Wikipédia (en)
+    url: https://en.wikipedia.org/wiki/Smalltown_Boy
+    note: motif MC-202, crédits d'après Electronic Soundmaker et Sound on Sound
+  - titre: "Bronski Beat : Smalltown Boy at 40"
+    site: Moving the River
+    date: octobre 2024
+    url: https://movingtheriver.com/2024/10/07/bronski-beat-smalltown-boy-40/
+    note: critique, production de Mike Thorne
+  - titre: "Small Town Boy, Bronski Beat (Circuit Tracks)"
+    site: Matrixsynth
+    date: janvier 2026
+    url: https://www.matrixsynth.com/2026/01/small-town-boybronski-beat-circuit.html
+    note: avis d'amateur sur le matériel
+  - titre: "Moog Messenger User's Manual, p. 22-28"
+    site: Moog Music
+    note: SEQ/ARP, ARP OCTAVE *2 Note*

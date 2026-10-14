@@ -83,9 +83,23 @@ tracabilite:
   - "Hypothèse [5][6] : Odyssey des débuts à filtre 2 pôles 12 dB ; grain venant d'une distorsion, d'où *FB / EXT IN*."
   - "Reconstitué : toutes les positions Messenger (traduction des valeurs Syntorial et MusicRadar)."
 sources:
-  - "Wikipédia (en), article « Chameleon (composition) »"
-  - "Reverb, « The Gear of Classic Herbie Hancock Albums » : reverb.com/news/the-gear-of-classic-herbie-hancock-albums"
-  - "Syntorial, preset recipe « Herbie Hancock, Chameleon » : syntorial.com/preset-recipe/herbie-hancock-chameleon-bass"
-  - "MusicRadar, « How to recreate the Chameleon bass sound on the Korg ARP Odyssey » : musicradar.com/tuition/tech"
-  - "Moog Music forum, « Bass Sound from the Head Hunters' Chameleon » : forum.moogmusic.com/t/6266"
-  - "Synthtopia, « Recreating Herbie Hancock's Chameleon Bassline » (vidéo d'Anthony Marinelli sur Odyssey 1972), avril 2024"
+  - titre: "Chameleon (composition)"
+    site: Wikipédia (en)
+    url: https://en.wikipedia.org/wiki/Chameleon_(composition)
+  - titre: "The Gear of Classic Herbie Hancock Albums"
+    site: Reverb News
+    url: https://reverb.com/news/the-gear-of-classic-herbie-hancock-albums
+  - titre: "Herbie Hancock, Chameleon bass"
+    site: Syntorial, preset recipe
+    url: https://www.syntorial.com/preset-recipe/herbie-hancock-chameleon-bass/
+  - titre: "How to recreate the Chameleon bass sound on the Korg ARP Odyssey"
+    site: MusicRadar
+    note: lien exact non retrouvé
+  - titre: "Bass Sound from the Head Hunters' Chameleon"
+    site: Moog Music, forum
+    url: https://forum.moogmusic.com/t/6266
+  - titre: "Recreating Herbie Hancock's Chameleon Bassline"
+    site: Synthtopia
+    date: avril 2024
+    url: https://www.synthtopia.com/content/2024/04/05/recreating-herbie-hancocks-chameleon-bassline/
+    note: vidéo d'Anthony Marinelli sur Odyssey 1972

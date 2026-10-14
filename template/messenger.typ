@@ -240,7 +240,7 @@
 #let fiche(data) = {
   let params = data.at("params", default: (:))
   if params == none { params = (:) }
-  show: page-setup
+  show: page-setup.with(fichier: data.at("_fichier", default: none))
   header("Moog Messenger", data)
   panel(params)
   performance(params, data)
@@ -253,8 +253,6 @@
       textbox("Jeu", bullets(data.at("jeu", default: ()))),
     ),
   )
-  v(1fr)
-  footer-line(data)
   let val(sec, k) = {
     let x = params.at(sec, default: (:))
     if x == none { x = (:) }

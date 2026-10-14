@@ -85,6 +85,15 @@ tracabilite:
   - "Hypothèse [2] : filtrage externe en plus de la 303 sur l'enregistrement."
   - "Reconstitué : toutes les positions ; traduction du slide et de l'accent de la 303 en Legato Glide et F ENV VEL."
 sources:
-  - "Native Instruments Blog, Acid house (historique, TB-303) : blog.native-instruments.com/acid-house"
-  - "Muzines, « The Bass Race » (filtrage externe probable sur Acid Tracks) : muzines.co.uk/articles/the-bass-race/2177"
-  - "KVR forum, « Recreate TB-303 on any synth? »"
+  - titre: "Acid house : a beginner's guide"
+    site: Native Instruments Blog
+    url: https://blog.native-instruments.com/acid-house/
+    note: historique, rôle de la TB-303
+  - titre: "The Bass Race"
+    site: Muzines (archives presse)
+    url: https://www.muzines.co.uk/articles/the-bass-race/2177
+    note: filtrage externe probable sur Acid Tracks
+  - titre: "Recreate TB-303 on any synth?"
+    site: KVR Audio, forum
+    url: https://www.kvraudio.com/forum/viewtopic.php?p=8821354
+    note: la 303 = enveloppe de filtre + résonance

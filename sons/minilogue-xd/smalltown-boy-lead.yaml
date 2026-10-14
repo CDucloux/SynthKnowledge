@@ -48,9 +48,9 @@ jeu:
 analyse:
   - titre: "Les oscillateurs : de la FM pour le cristal"
     texte: >-
-      Le DX7 fait de la synthèse FM : un oscillateur en module un autre et crée des
+      Le DX7 [1] fait de la synthèse FM^[FM : modulation de fréquence. Un « modulateur » fait varier très vite la hauteur d'une « porteuse » ; plus il module fort, plus le son s'enrichit en harmoniques.] : un oscillateur en module un autre et crée des
       harmoniques brillantes, un peu métalliques, impossibles à obtenir par filtrage.
-      Le moteur *VPM* du XD fait la même chose. Le type *Decay1* fait retomber la
+      Le moteur *VPM*^[Variable Phase Modulation : la variante Korg de la FM, une porteuse et un modulateur par voix [4].] du XD fait la même chose. Le type *Decay1* fait retomber la
       modulation après l'attaque : la note claque comme une corde pincée puis devient
       ronde. Le *triangle* du *VCO 1* (peu d'harmoniques) ajoute un corps doux sous l'éclat.
   - titre: "Le filtre : presque ouvert"
@@ -79,7 +79,19 @@ tracabilite:
   - "Non vérifié [3] : un amateur attribue le riff au preset DX7 « Harp1 »."
   - "Reconstitué : traduction FM vers le VPM du XD (Decay1 + triangle), toutes les valeurs, enveloppes et effets."
 sources:
-  - "Wikipédia (en), article « Smalltown Boy » (crédits d'après Electronic Soundmaker et Sound on Sound)"
-  - "Imaginando, « How to make sounds from Bronski Beat Smalltown Boy » : imaginando.pt/media"
-  - "Matrixsynth, reprise sur Novation Circuit Tracks (avis d'amateur sur le matériel), janvier 2026 : matrixsynth.com"
-  - "Manuel Korg minilogue XD, p. 19 (VPM, type Decay1) et p. 36 (PROGRAM EDIT bouton 10)"
+  - titre: "Smalltown Boy"
+    site: Wikipédia (en)
+    url: https://en.wikipedia.org/wiki/Smalltown_Boy
+    note: crédits d'après Electronic Soundmaker et Sound on Sound
+  - titre: "How to make sounds from Bronski Beat Smalltown Boy"
+    site: Imaginando
+    url: https://imaginando.pt/media/how-to-make-sounds-from-bronski-beat-smalltown-boy
+    note: recréation dans Ableton, « son pincé doux »
+  - titre: "Small Town Boy, Bronski Beat (Circuit Tracks)"
+    site: Matrixsynth
+    date: janvier 2026
+    url: https://www.matrixsynth.com/2026/01/small-town-boybronski-beat-circuit.html
+    note: avis d'amateur sur le matériel
+  - titre: "Korg minilogue XD Owner's Manual, p. 19 et 36"
+    site: Korg
+    note: VPM type Decay1, PROGRAM EDIT bouton 10

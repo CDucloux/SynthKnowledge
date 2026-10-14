@@ -86,5 +86,11 @@ tracabilite:
   - "Hypothèse [2] : portamento logarithmique, d'où le glide exponentiel. Affirmation d'un forum, non vérifiée."
   - "Reconstitué : positions du filtre, enveloppes, vitesse et profondeur du vibrato."
 sources:
-  - "Syntorial, preset recipe « Lucky Man lead » (carrés désaccordés + glide) : syntorial.com/preset-recipe/emerson-lake-and-palmer-lucky-man-lead"
-  - "Forum Moog, « Help me please! Emerson Lake and Palmer » (modulaire, portamento logarithmique) : forum.moogmusic.com/t/help-me-please-emerson-lake-and-palmer/652"
+  - titre: "Lucky Man lead"
+    site: Syntorial, preset recipe
+    url: https://www.syntorial.com/preset-recipe/emerson-lake-and-palmer-lucky-man-lead/
+    note: carrés désaccordés + glide
+  - titre: "Help me please! Emerson Lake and Palmer"
+    site: Moog Music, forum
+    url: https://forum.moogmusic.com/t/help-me-please-emerson-lake-and-palmer/652
+    note: modulaire, portamento logarithmique
