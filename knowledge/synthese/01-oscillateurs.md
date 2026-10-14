@@ -1,16 +1,16 @@
-# Oscillateurs — la matière première
+# Oscillateurs : la matière première
 
 ## Formes d'onde et contenu harmonique
 
 | Forme | Harmoniques | Pente | À l'oreille | Usages typiques |
 |---|---|---|---|---|
-| **Sinus** | fondamentale seule | — | pur, flûté, « sub » | sub-basse, sifflets, FM |
+| **Sinus** | fondamentale seule | - | pur, flûté, « sub » | sub-basse, sifflets, FM |
 | **Triangle** | impairs seulement | −12 dB/oct (1/n²) | doux, creux, flûte/ocarina | leads doux, basses rondes, base pour FM / wavefold |
 | **Dent de scie (saw)** | tous (pairs + impairs) | −6 dB/oct (1/n) | brillant, cuivré, « buzzy » | cordes, cuivres, basses, supersaw, acid |
 | **Carré (50 %)** | impairs seulement | −6 dB/oct | creux, boisé, clarinette | basses house, leads 8-bit, clarinette, Lucky Man |
 | **Pulse (< 50 %)** | tous sauf multiples de 1/largeur | −6 dB/oct | nasal, fin, « hautbois » à 10-25 % | leads nasaux, clavecin, Juno |
-| **Bruit blanc** | spectre plat | — | souffle | percussions, vent, attaque, FX |
-| **Wavefold** | ajoute des harmoniques hautes non monotones | — | métallique, « West Coast », vocal | leads agressifs, basses modernes |
+| **Bruit blanc** | spectre plat | - | souffle | percussions, vent, attaque, FX |
+| **Wavefold** | ajoute des harmoniques hautes non monotones | - | métallique, « West Coast », vocal | leads agressifs, basses modernes |
 
 **Règle d'or** : impairs seuls = creux (carré, triangle) ; tous les harmoniques = plein (scie).
 Le *nasal* vient d'un pulse étroit ou d'un passe-bande.

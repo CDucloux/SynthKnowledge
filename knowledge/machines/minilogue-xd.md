@@ -1,6 +1,6 @@
-# Korg minilogue XD — en attente du manuel
+# Korg minilogue XD : fiche provisoire
 
-> **Statut : template NON créé.** Le manuel n'est pas encore dans `manuels/`.
+> **Statut : template NON créé.** Le manuel est dans `manuels/minilogue-xd-user-manual.pdf`.
 > Ce qui suit vient des connaissances générales de Claude et **doit être vérifié** contre le manuel avant de construire `template/minilogue-xd.typ` (voir skill `ajouter-synthe`).
 
 ## Vue d'ensemble (à vérifier)

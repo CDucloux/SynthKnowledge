@@ -1,4 +1,4 @@
-# Effets — et comment s'en passer
+# Effets : et comment s'en passer
 
 Le **Messenger n'a aucun effet intégré**. Le **minilogue XD** a MOD FX, DELAY et REVERB.
 Quand un son de référence dépend d'un effet, la fiche doit le dire, avec une alternative.

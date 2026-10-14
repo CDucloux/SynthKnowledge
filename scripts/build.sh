@@ -2,7 +2,7 @@
 # Compile les fiches PDF à partir des YAML de sons/.
 #   scripts/build.sh                              → toutes les fiches
 #   scripts/build.sh sons/messenger/mon-son.yaml  → une seule
-# Requiert la CLI typst (https://typst.app) — ou, à défaut, le paquet Python `typst`.
+# Requiert la CLI typst (https://typst.app), ou à défaut le paquet Python `typst`.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 
@@ -22,8 +22,9 @@ for f in "${files[@]}"; do
   rel="${f#./}"
   out="fiches/${rel#sons/}"; out="${out%.yaml}.pdf"
   mkdir -p "$(dirname "$out")"
+  if grep -q -e $'\xe2\x80\x94' -e $'\xe2\x80\x93' "$rel"; then echo "✗ $rel : tiret quadratin interdit" >&2; status=1; continue; fi
   compile "$rel" "$out"
   pages=$(python3 -c 'import re,sys; print(len(re.findall(rb"/Type\s*/Page[^s]", open(sys.argv[1],"rb").read())))' "$out")
-  if [ "$pages" != "1" ]; then echo "✗ $out : $pages pages — la fiche doit tenir sur une page (raccourcir les textes)" >&2; status=1; else echo "✓ $out"; fi
+  if [ "$pages" != "1" ]; then echo "✗ $out : $pages pages, la fiche doit tenir sur une page (raccourcir les textes)" >&2; status=1; else echo "✓ $out"; fi
 done
 exit $status

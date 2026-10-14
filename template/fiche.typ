@@ -14,6 +14,6 @@
 
 #assert(
   data.synthe in machines,
-  message: "synthe « " + str(data.synthe) + " » non pris en charge — disponibles : " + machines.keys().join(", "),
+  message: "synthe « " + str(data.synthe) + " » non pris en charge, disponibles : " + machines.keys().join(", "),
 )
 #(machines.at(data.synthe))(data)

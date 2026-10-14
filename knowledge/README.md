@@ -13,6 +13,6 @@
 | `archetypes.md` | recettes de départ par famille de sons | toujours, comme point de départ |
 | `synthes-historiques.md` | signatures des synthés classiques, choix Messenger / XD | quand la source cite un synthé |
 | `machines/messenger.md` | tous les contrôles, clés YAML, SETTINGS/CONFIG | toute fiche Messenger |
-| `machines/minilogue-xd.md` | état provisoire (manuel manquant) | — |
+| `machines/minilogue-xd.md` | état provisoire, à vérifier contre le manuel | - |
 | `calibration/` | protocole et mesures position → valeur | quand des mesures existent |
 | `retours.md` | leçons tirées des essais de l'utilisateur | avant chaque nouvelle fiche |

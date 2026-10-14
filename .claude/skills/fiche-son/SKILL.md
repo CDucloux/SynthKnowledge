@@ -12,7 +12,7 @@ Si l'utilisateur ne précise pas **quel son** du morceau et qu'il y en a plusieu
 
 ## 1. Lire la base de connaissances
 
-- `knowledge/retours.md` (leçons des essais précédents) — **toujours**.
+- `knowledge/retours.md` (leçons des essais précédents), **toujours**.
 - `knowledge/archetypes.md` → recette de départ de la famille.
 - `knowledge/machines/messenger.md` → contrôles et clés YAML.
 - Selon le cas : `knowledge/synthes-historiques.md`, `knowledge/synthese/*.md`.
@@ -36,9 +36,9 @@ si le son exige de la polyphonie ou des effets, le dire, et proposer soit une ve
 
 | `confiance` | Sens | Critère |
 |---|---|---|
-| 3 — DOCUMENTÉ | réglages ou patch publiés par une source fiable (manuel, interview, patch sheet) | sources explicites sur le patch |
-| 2 — DÉDUIT | synthé et nature du son connus, réglages reconstitués | sources sur le matériel / le caractère |
-| 1 — APPROXIMATION | style, époque, genre seulement | rien de spécifique trouvé |
+| 3 : DOCUMENTÉ | réglages ou patch publiés par une source fiable (manuel, interview, patch sheet) | sources explicites sur le patch |
+| 2 : DÉDUIT | synthé et nature du son connus, réglages reconstitués | sources sur le matériel / le caractère |
+| 1 : APPROXIMATION | style, époque, genre seulement | rien de spécifique trouvé |
 
 ## 5. Écrire le YAML
 
@@ -62,5 +62,5 @@ scripts/build.sh sons/messenger/<slug>.yaml
 
 ## 7. Livrer
 
-- Commit du YAML **et** du PDF (les PDF sont versionnés pour être consultables depuis le téléphone).
-- Répondre à l'utilisateur : machine choisie, niveau de confiance et pourquoi, sources, compromis éventuels (effets absents, polyphonie), et l'inviter à faire un retour après essai (→ skill `ajuster-fiche`).
+- Commit sur `main` puis `git push origin main` (pas de branche, pas de PR). Commit du YAML **et** du PDF (les PDF sont versionnés pour être consultables depuis le téléphone).
+- Répondre à l'utilisateur : machine choisie, niveau de confiance et pourquoi, sources, compromis éventuels (effets absents, polyphonie), et l'inviter à faire un retour après essai (→ skill `ajuster-fiche`). Pas de tiret quadratin dans les textes.

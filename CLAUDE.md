@@ -1,21 +1,26 @@
 # SynthKnowledge
 
 Fiches synthétiques et visuelles (PDF Typst, A4, **une page**) pour reproduire des sons de synthé sur les deux machines de l'utilisateur :
-**Moog Messenger** (template prêt) et **Korg minilogue XD** (template à faire quand son manuel sera ajouté).
+**Moog Messenger** (template prêt) et **Korg minilogue XD** (manuel présent, template à faire).
 Style graphique inspiré du manuel Moog Messenger : noir & blanc, Montserrat, capitales grasses, vignettes encadrées.
 
 ## Structure
 
 ```
 manuels/            manuels PDF officiels (source de vérité sur les contrôles)
-knowledge/          base de connaissances synthèse — index : knowledge/README.md
+knowledge/          base de connaissances synthèse, index : knowledge/README.md
 sons/<machine>/     un YAML par son  → données de la fiche
 template/           style.typ (composants) · messenger.typ (façade) · fiche.typ (point d'entrée)
 fiches/<machine>/   PDF générés (versionnés)
-fonts/              Montserrat (OFL) — ne pas modifier
+fonts/              Montserrat (OFL), ne pas modifier
 scripts/build.sh    compile les YAML en PDF (CLI typst, sinon paquet Python `typst`)
 .claude/skills/     fiche-son · ajuster-fiche · ajouter-synthe
 ```
+
+## Git
+
+- **Toujours travailler directement sur `main`** : pas de branche de feature, pas de pull request. Commit puis `git push origin main`.
+- Avant de commencer : `git pull origin main` (l'utilisateur ajoute aussi des fichiers, par exemple des manuels).
 
 ## Workflows → skills
 
@@ -25,6 +30,7 @@ scripts/build.sh    compile les YAML en PDF (CLI typst, sinon paquet Python `typ
 
 ## Règles du projet
 
+- **Tirets quadratins (U+2014) INTERDITS**, partout : fiches, YAML, Markdown, code, commits, réponses. Utiliser « : », « , », des parenthèses ou une nouvelle phrase. Pas de demi-cadratin (U+2013) non plus. `scripts/build.sh` refuse un YAML qui en contient.
 - **Langue** : textes en français ; noms de contrôles en ANGLAIS, tels qu'écrits sur le panneau, en gras (`*CUTOFF*`).
 - **Notation Messenger** : positions en heures d'horloge, 7 = MIN, 12 = midi, 17 = MAX (décimales : 10.5 = 10:30).
 - **Le schéma est l'élément central** de la fiche : tous les contrôles du panneau sont dessinés ; noir = réglé par la fiche, gris = valeur neutre.
@@ -50,6 +56,6 @@ Dépendances : `typst` (CLI ≥ 0.13, ou `pip install typst`), `poppler-utils` p
 ## État / à faire
 
 - [x] Template Messenger + 3 fiches de démo.
-- [ ] Manuel minilogue XD → template XD (skill ajouter-synthe). `knowledge/machines/minilogue-xd.md` est provisoire et non vérifié.
+- [ ] Template minilogue XD (skill ajouter-synthe) : le manuel est dans `manuels/minilogue-xd-user-manual.pdf`. `knowledge/machines/minilogue-xd.md` est provisoire et non vérifié.
 - [ ] Calibration position → valeur (`knowledge/calibration/`).
 - [ ] Analyse audio de WAV (reportée à la demande de l'utilisateur).

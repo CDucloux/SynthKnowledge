@@ -12,4 +12,4 @@ description: Corriger une fiche son existante à partir du retour d'essai de l'u
 3. Modifier le YAML : `params`, et si utile `etapes` / `oreille`. Si l'utilisateur confirme que le résultat est proche de l'original, la confiance peut monter d'un cran (jamais à 3 sans source documentée).
 4. Recompiler : `scripts/build.sh sons/<machine>/<slug>.yaml`, puis vérifier le rendu (image).
 5. Ajouter une entrée dans `knowledge/retours.md` (format du fichier). Si la leçon est générale (ex. « sur le Messenger, le carré est plutôt à 1:30 qu'à 1:00 »), **mettre aussi à jour** le fichier de connaissance concerné (`archetypes.md`, `machines/messenger.md`…).
-6. Commit YAML + PDF + connaissances ; résumer à l'utilisateur ce qui a changé et pourquoi.
+6. Commit sur `main` (YAML + PDF + connaissances) puis `git push origin main` ; résumer à l'utilisateur ce qui a changé et pourquoi.

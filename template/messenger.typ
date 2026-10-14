@@ -1,4 +1,4 @@
-// SynthKnowledge — schéma de façade du Moog Messenger.
+// SynthKnowledge : schéma de façade du Moog Messenger.
 // Référence : manuels/moog-messenger-user-manual.pdf (pages 6-7 et 13-22).
 // Toute clé absente du YAML prend la valeur INIT ci-dessous et s'affiche en gris.
 
@@ -49,9 +49,9 @@
 
 #let _check(params) = {
   for (sec, vals) in params {
-    assert(sec in defaults, message: "Section inconnue « " + sec + " » — attendu : " + defaults.keys().join(", "))
+    assert(sec in defaults, message: "Section inconnue « " + sec + " », attendu : " + defaults.keys().join(", "))
     for (k, _) in vals {
-      assert(k in defaults.at(sec), message: "Paramètre inconnu « " + sec + "." + k + " » — attendu : " + defaults.at(sec).keys().join(", "))
+      assert(k in defaults.at(sec), message: "Paramètre inconnu « " + sec + "." + k + " », attendu : " + defaults.at(sec).keys().join(", "))
     }
   }
 }
@@ -78,7 +78,7 @@
 
   set block(spacing: 1.6mm)
 
-  // Rangée 1 — OSCILLATORS (ordre du panneau)
+  // Rangée 1 : OSCILLATORS (ordre du panneau)
   grid(
     columns: (1fr,), rows: 29mm,
     section("Oscillators", row(
@@ -96,7 +96,7 @@
     )),
   )
 
-  // Rangée 2 — LFO 1 | MIXER
+  // Rangée 2 : LFO 1 | MIXER
   grid(
     columns: (1fr, 72mm), column-gutter: 1.6mm, rows: 27mm,
     section("LFO 1", row(
@@ -112,7 +112,7 @@
     )),
   )
 
-  // Rangée 3 — FILTER
+  // Rangée 3 : FILTER
   grid(
     columns: (1fr,), rows: 30mm,
     section("Filter", row(
@@ -135,7 +135,7 @@
     )),
   )
 
-  // Rangée 4 — ENVELOPES (boutons sous chaque enveloppe)
+  // Rangée 4 : ENVELOPES (boutons sous chaque enveloppe)
   grid(
     columns: (1fr,), rows: 35mm,
     section("Envelopes", {

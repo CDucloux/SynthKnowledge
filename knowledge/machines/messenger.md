@@ -1,4 +1,4 @@
-# Moog Messenger — référence pour les fiches
+# Moog Messenger : référence pour les fiches
 
 Source : `manuels/moog-messenger-user-manual.pdf`. Monophonique, analogique, **aucun effet**, 32 touches (vélocité + aftertouch).
 Le schéma de la fiche (`template/messenger.typ`) reprend cette liste ; les **clés YAML** sont entre parenthèses.
@@ -28,7 +28,7 @@ Bipolaires (0 à midi) : TUNE, OSC 2 FREQ, MOD AMOUNT, EG AMOUNT, LFO 1 DEPTH.
 - SYNC 1→2 (`sync`).
 
 ### Mixer (`mixer`)
-`osc1`, `osc2`, `sub`, `noise` — gain unitaire propre à fond (ce mixer **ne sature pas**, contrairement au Minimoog).
+`osc1`, `osc2`, `sub`, `noise`, gain unitaire propre à fond (ce mixer **ne sature pas**, contrairement au Minimoog).
 
 ### Filter (`filter`)
 - FB / EXT IN (`fb_ext`) : sans câble, réinjecte la sortie du mixer → saturation / grain.

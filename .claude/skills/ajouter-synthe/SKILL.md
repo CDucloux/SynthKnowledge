@@ -1,6 +1,6 @@
 ---
 name: ajouter-synthe
-description: Ajouter le support d'un nouveau synthé (prochain prévu : Korg minilogue XD) au système de fiches — fiche machine dans knowledge/, template Typst du schéma de façade, schéma YAML, fiche de démonstration. Utiliser quand l'utilisateur ajoute un manuel dans manuels/ ou demande « fais le template du minilogue ».
+description: Ajouter le support d'un nouveau synthé (prochain prévu : Korg minilogue XD) au système de fiches, fiche machine dans knowledge/, template Typst du schéma de façade, schéma YAML, fiche de démonstration. Utiliser quand l'utilisateur ajoute un manuel dans manuels/ ou demande « fais le template du minilogue ».
 ---
 
 # Ajouter un synthé

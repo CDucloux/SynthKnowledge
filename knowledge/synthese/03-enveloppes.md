@@ -1,4 +1,4 @@
-# Enveloppes — l'articulation dans le temps
+# Enveloppes : l'articulation dans le temps
 
 ## ADSR
 
@@ -13,11 +13,11 @@
 |---|---|---|
 | Basse pluck | 0 / moyen / max / court | 0 / court / bas / court, amount + |
 | Basse acid | 0 / moyen / haut / court | 0 / très court / 0, amount ++ |
-| Lead | 0-court / – / max / court-moyen | 0 / moyen / moyen, amount modéré |
+| Lead | 0-court / - / max / court-moyen | 0 / moyen / moyen, amount modéré |
 | Cuivre | court (50-150 ms) / moyen / haut / court | attack un peu plus lente que l'ampli, amount + |
-| Cordes / nappe | lent / – / max / long | lent / long / moyen |
+| Cordes / nappe | lent / - / max / long | lent / long / moyen |
 | Pluck / harpe / marimba | 0 / court-moyen / 0 / moyen (= decay) | 0 / court / 0, amount ++ |
-| Cloche | 0 / long / 0 / long | — (timbre via FM) |
+| Cloche | 0 / long / 0 / long | (timbre via FM) |
 | Kick / tom | 0 / court / 0 / court | + enveloppe de hauteur rapide |
 
 ## Règles utiles

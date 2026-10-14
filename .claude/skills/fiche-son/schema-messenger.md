@@ -1,4 +1,4 @@
-# Schéma YAML — fiche Moog Messenger
+# Schéma YAML : fiche Moog Messenger
 
 Valeurs neutres et validation : `template/messenger.typ` (`defaults`). Toute clé inconnue fait échouer la compilation.
 
@@ -30,9 +30,9 @@ params:                           # uniquement ce qui diffère du neutre (ou ce 
   perf:   {glide: 7, lfo2_rate: 12, lfo2_dest: [pitch, cutoff, amp], mod_wheel: 0, kb_octave: 0}
   # (les valeurs ci-dessus sont les neutres ; mod_wheel en %, kb_octave de -2 à 2)
 
-modulations:                      # optionnel — assignations Quick Assign
+modulations:                      # optionnel, assignations Quick Assign
   - {source: aftertouch, dest: cutoff, depth: "+40 %"}
-settings:                         # optionnel — SETTINGS / CONFIG utiles au son
+settings:                         # optionnel, SETTINGS / CONFIG utiles au son
   - {nom: "Glide Config (CONFIG 1.3)", valeur: "PGM 14 *Exponential*"}
 
 etapes: [ "...", ... ]            # 5-7 étapes

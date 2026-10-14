@@ -1,4 +1,4 @@
-# Modulation — le mouvement
+# Modulation : le mouvement
 
 ## LFO : vitesses de référence
 

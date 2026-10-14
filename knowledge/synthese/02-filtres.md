@@ -1,4 +1,4 @@
-# Filtres — sculpter le timbre
+# Filtres : sculpter le timbre
 
 ## Types
 

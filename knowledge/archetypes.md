@@ -1,4 +1,4 @@
-# Archétypes — recettes de départ
+# Archétypes : recettes de départ
 
 Point de départ avant d'affiner avec les sources. Notation Messenger en heures (7 = MIN, 12 = midi, 17 = MAX).
 Les valeurs sont des **départs raisonnables**, pas des vérités : toujours ajuster à l'oreille.
@@ -7,13 +7,13 @@ Les valeurs sont des **départs raisonnables**, pas des vérités : toujours aju
 
 | Archétype | Oscillateurs | Filtre | Env. filtre | Env. ampli | Divers |
 |---|---|---|---|---|---|
-| **Moog funk / pluck** | scie 16', sub carré | 4P, cutoff 9-10, EG 14-15, réso 9-10 | A 7, D 10-11, S 8, R 10 | A 7, D 12, S 17, R 9 | — |
-| **House carrée** (manuel p.10-12) | carré 32', sub carré | 4P, cutoff 9, EG 15, réso 12, RES BASS | A 7, D 12, S 9, R 12 | A 7, D 9, S 17, R 12 | — |
+| **Moog funk / pluck** | scie 16', sub carré | 4P, cutoff 9-10, EG 14-15, réso 9-10 | A 7, D 10-11, S 8, R 10 | A 7, D 12, S 17, R 9 | - |
+| **House carrée** (manuel p.10-12) | carré 32', sub carré | 4P, cutoff 9, EG 15, réso 12, RES BASS | A 7, D 12, S 9, R 12 | A 7, D 9, S 17, R 12 | - |
 | **Acid 303** | scie (ou carré) 16' seule | 4P, cutoff 10, EG 14, réso 14-15, RES BASS off | A 7, D 10-11, S 7 | A 7, D 13, S 15, R 8.5 | F ENV VEL, legato glide temps constant |
-| **Sub-basse** | triangle 32' + sub triangle | 4P, cutoff 10-11, peu d'EG | — | A 7.5, S 17, R 9.5 | KB TRACKING off |
+| **Sub-basse** | triangle 32' + sub triangle | 4P, cutoff 10-11, peu d'EG | - | A 7.5, S 17, R 9.5 | KB TRACKING off |
 | **Reese** (DnB) | 2 scies 16' désaccordées (OSC 2 FREQ ~12.2) | 4P, cutoff 11, réso faible | lente ou nulle | S 17 | LFO lent sur OSC 2 FREQ |
-| **Wobble** | scie + sub, FM légère | 4P / BP, réso 12-13 | — | S 17 | LFO 1 → CUTOFF, SYNC tempo, depth fort |
-| **Basse Taurus** | 2 scies 16'/32' | 4P cutoff 10, EG 13 | D 14 | D 15, S 14, R 12 | — |
+| **Wobble** | scie + sub, FM légère | 4P / BP, réso 12-13 | - | S 17 | LFO 1 → CUTOFF, SYNC tempo, depth fort |
+| **Basse Taurus** | 2 scies 16'/32' | 4P cutoff 10, EG 13 | D 14 | D 15, S 14, R 12 | - |
 
 ## Leads
 
@@ -21,7 +21,7 @@ Les valeurs sont des **départs raisonnables**, pas des vérités : toujours aju
 |---|---|---|---|---|
 | **Minimoog lead** | 2 scies (ou scie + carré), OSC 2 à +7 (quinte) ou désaccordé | 4P, cutoff 12-13, EG 13, KB track | F : D 13, S 14 · A : S 17 | glide 10-12, vibrato molette |
 | **Lucky Man / carré chantant** | 2 carrés 8' désaccordés | 4P cutoff 12.5 | A : S 17 | glide 13 expo, vibrato |
-| **Sync lead 80s** | OSC 2 synchronisé, une octave+ au-dessus | 2P ou 4P ouvert | MOD DEST : F ENV → OSC 2 FREQ, amount + | — |
+| **Sync lead 80s** | OSC 2 synchronisé, une octave+ au-dessus | 2P ou 4P ouvert | MOD DEST : F ENV → OSC 2 FREQ, amount + | - |
 | **G-funk sine lead** | triangle / sinus 4' | ouvert | A : A 7.5, S 17 | glide 11-12, legato glide, vibrato |
 | **Lead nasal / hautbois** | pulse étroit (WAVESHAPE 15-16) | BP ou 2P, réso 11 | A courte | vibrato fade-in (LFO 1 FADE) |
 

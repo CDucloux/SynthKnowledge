@@ -1,4 +1,4 @@
-# Calibration — position de bouton → valeur réelle
+# Calibration : position de bouton → valeur réelle
 
 But : passer de « cutoff assez fermé » à « CUTOFF ≈ 10:00 » avec des chiffres mesurés sur **ces** machines.
 Statut : **aucune mesure pour l'instant** (l'analyse audio est mise de côté).

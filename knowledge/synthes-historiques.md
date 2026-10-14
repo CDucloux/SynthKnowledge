@@ -1,4 +1,4 @@
-# Synthés historiques — signatures et traduction
+# Synthés historiques : signatures et traduction
 
 Quand une source dit « fait sur un X », cette table donne le caractère à viser et la machine cible.
 **M** = Moog Messenger (mono, analogique, sans effets) · **XD** = Korg minilogue XD (4 voix, effets).

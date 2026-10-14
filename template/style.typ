@@ -1,4 +1,4 @@
-// SynthKnowledge — composants graphiques communs.
+// SynthKnowledge : composants graphiques communs.
 // Esthétique inspirée des manuels Moog : noir & blanc, sans-serif géométrique,
 // titres capitales grasses, vignettes encadrées.
 
@@ -239,7 +239,7 @@
   v(-1mm)
   grid(
     columns: (1fr, auto), gutter: 3mm,
-    if src.len() > 0 { [*SOURCES* #h(1mm) #src.map(s => md(s)).join([ #h(0.8mm)·#h(0.8mm) ])] } else { [*SOURCES* #h(1mm) aucune — reconstitution d'après connaissances générales] },
+    if src.len() > 0 { [*SOURCES* #h(1mm) #src.map(s => md(s)).join([ #h(0.8mm)·#h(0.8mm) ])] } else { [*SOURCES* #h(1mm) aucune, reconstitution d'après connaissances générales] },
     [SYNTHKNOWLEDGE · gris = valeur neutre (patch INIT), noir = réglage de la fiche],
   )
 }

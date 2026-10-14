@@ -6,7 +6,7 @@ c'est la mémoire d'apprentissage du projet. Relire ce fichier avant de créer u
 Format :
 
 ```
-## AAAA-MM-JJ — <fiche>
+## AAAA-MM-JJ : <fiche>
 - Retour : « … » (mots de l'utilisateur)
 - Correction : PARAM ancien → nouveau
 - Leçon : règle générale à réutiliser (ou « spécifique à ce son »)
