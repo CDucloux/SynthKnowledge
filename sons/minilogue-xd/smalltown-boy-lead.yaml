@@ -1,0 +1,57 @@
+synthe: minilogue-xd
+titre: Smalltown Boy Lead
+categorie: pluck
+tags: [synthpop, "80s", fm, dx7, riff]
+confiance: 2
+reference:
+  artiste: Bronski Beat
+  morceau: Smalltown Boy
+  annee: 1984
+  passage: riff mélodique pincé de l'intro, repris tout le morceau
+  synthe_origine: "Yamaha DX7 (FM), preset « Harp1 » selon un amateur"
+resume: >-
+  Le riff qu'on reconnaît dès l'intro : un son pincé, doux et cristallin, typique
+  du DX7. Une attaque FM brillante qui s'éteint vite, un corps rond, puis une
+  reverb qui laisse les notes se chevaucher. Le moteur VPM du XD fait la FM.
+
+params:
+  voice: {mode: poly, octave: 1}
+  vco1: {wave: tri, octave: 8}
+  multi: {engine: vpm, type: Decay1, shape: 450}
+  mixer: {vco1: 450, vco2: 0, multi: 1023}
+  filter: {cutoff: 820, resonance: 0, keytrack: 50}
+  amp_eg: {a: 0, d: 620, s: 0, r: 480}
+  eg: {a: 0, d: 300, int: 20, target: cutoff}
+  reverb: {on: true, type: Hall, time: 600, depth: 35}
+  delay: {on: true, type: Stereo, time: 350, depth: 12}
+
+settings:
+  - {nom: "MULTI ENGINE (bouton 10)", valeur: "Mod Decay ≈ -30 % : l'éclat FM retombe vite"}
+  - {nom: "MODULATION (bouton 8)", valeur: "Amp Velocity ≈ 80 : nuances au toucher"}
+
+etapes:
+  - "Programme init (201 à 500), *VOICE MODE* POLY, *OCTAVE* clavier +1."
+  - "*MULTI ENGINE* sur VPM, *TYPE* Decay1, *SHAPE* 450 (profondeur FM)."
+  - "*VCO 1* : *WAVE* TRI, 8'. *MIXER* : *MULTI* à fond, *VCO 1* 450, *VCO 2* à 0."
+  - "*FILTER* : *CUTOFF* 820, *RESONANCE* 0, *KEYTRACK* 50 %. *EG* sur CUTOFF, *DECAY* 300, *EG INT* +20 %."
+  - "*AMP EG* : pincé, *ATTACK* 0, *DECAY* 620, *SUSTAIN* 0, *RELEASE* 480."
+  - "*REVERB* Hall (*TIME* 600, *DEPTH* 35 %), *DELAY* Stereo discret (12 %)."
+  - "PROGRAM EDIT : régler Mod Decay et Amp Velocity (cadre PROGRAM EDIT)."
+oreille:
+  - "Trop métallique, façon cloche : *SHAPE* du MULTI vers 300."
+  - "Trop terne, pas assez « DX » : *SHAPE* vers 600 ou *CUTOFF* vers 950."
+  - "Notes trop courtes ou trop longues : *DECAY* de l'*AMP EG* par pas de 80."
+  - "Trop lointain : *DEPTH* de la reverb vers 25 %."
+jeu:
+  - "Jouer le riff détaché mais sans couper la reverb : laisser les notes se recouvrir."
+  - "Toucher léger : le son d'origine est doux et pincé, pas agressif."
+tracabilite:
+  - "Documenté [1] : Steve Bronski joue un Yamaha DX7 sur le disque (crédits)."
+  - "Documenté [2] : le riff est un son pincé doux (tutoriel de recréation)."
+  - "Non vérifié [3] : un amateur attribue le riff au preset DX7 « Harp1 »."
+  - "Reconstitué : traduction FM vers le VPM du XD (Decay1 + triangle), toutes les valeurs, enveloppes et effets."
+sources:
+  - "Wikipédia (en), article « Smalltown Boy » (crédits d'après Electronic Soundmaker et Sound on Sound)"
+  - "Imaginando, « How to make sounds from Bronski Beat Smalltown Boy » : imaginando.pt/media"
+  - "Matrixsynth, reprise sur Novation Circuit Tracks (avis d'amateur sur le matériel), janvier 2026 : matrixsynth.com"
+  - "Manuel Korg minilogue XD, p. 19 (VPM, type Decay1) et p. 36 (PROGRAM EDIT bouton 10)"
