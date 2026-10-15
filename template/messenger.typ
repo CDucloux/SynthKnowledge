@@ -31,70 +31,61 @@
 #let panel-overview(params) = {
   check-params(params, defaults)
   let g = param-reader(params, defaults)
-  let kw = 14.6mm
+  // Taille de référence : le potard standard. Largeur de case et « zone potard »
+  // (hauteur sur laquelle tout ce qui est dans une rangée se centre) en découlent.
+  let ks = 9mm
+  let zone = ks + 2 * 2.6mm
+  let kw = zone + 0.4mm
   let K(name, sec, k, bipolar: false, hint: none) = {
     let (v, a) = g(sec, k)
-    knob(name, v, active: a, bipolar: bipolar, hint: if hint != none { hint(v) }, width: kw)
+    knob(name, v, active: a, bipolar: bipolar, hint: if hint != none { hint(v) }, size: ks, width: kw)
   }
-  // Hauteur de la zone « potard » (dessin du bouton rotatif) : tout ce qui est
-  // dans une rangée s'aligne par le haut et se centre sur cet axe.
-  let zone = 9mm + 2 * 2.6mm
-  let S(name, sec, k, opts, width: 20mm, centered: true) = {
+  let S(name, sec, k, opts, centered: true) = {
     let (v, a) = g(sec, k)
-    selector-updown(name, opts, v, active: a, width: width, zone: if centered { zone } else { none })
+    selector-updown(name, opts, v, active: a, zone: if centered { zone } else { none })
   }
   let B(name, sec, k, note: none) = {
     let (v, a) = g(sec, k)
     switch(name, v, active: a, width: kw, note: note)
   }
-  let num(n) = box(height: zone, align(center + horizon, text(size: 13pt, weight: "extrabold", n)))
-  let rows = (7mm, 22mm, 24mm, 17mm)
-  let sec(title, cols, ..cells) = grid(
-    columns: cols, rows: rows, align: center + top, column-gutter: 0.4mm,
-    grid.cell(colspan: cols.len(), ov-title(title)),
-    ..cells.pos(),
-  )
+  let num(n) = box(height: zone, inset: (x: 0.6mm), align(center + horizon, text(size: 13pt, weight: "extrabold", n)))
   let elabel(t) = box(height: zone, align(left + horizon, text(size: 5.4pt, weight: "extrabold", tracking: 0.04em, t)))
-
-  let lfo = sec("LFO 1", (kw, 17mm),
-    K("LFO 1 Rate", "lfo1", "rate"), S("Waveshape", "lfo1", "wave", options.lfo1-wave, width: 17mm),
-    K("LFO 1 Depth", "lfo1", "depth", bipolar: true), S("Destination", "lfo1", "dest", options.lfo1-dest, width: 22mm),
-    B("Sync", "lfo1", "sync"), B("KB Reset", "lfo1", "kb_reset", note: "[LFO 1 ASSIGN]"),
-  )
-  let osc = sec("Oscillators", (15mm, 3.4mm, kw, kw, kw),
-    S("Octave", "osc", "oct1", options.octave, width: 15mm), num("1"),
-    K("Tune", "osc", "tune", bipolar: true), K("Sub Wave", "osc", "sub_wave", hint: sub-hint), K("Waveshape", "osc", "wave1", hint: wave-hint),
-    S("Octave", "osc", "oct2", options.octave, width: 15mm), num("2"),
-    K("Osc 2 Freq", "osc", "osc2_freq", bipolar: true), K("Mod Amount", "osc", "mod_amount", bipolar: true), K("Waveshape", "osc", "wave2", hint: wave-hint),
-    [], [], B("Sync 1→2", "osc", "sync"), grid.cell(colspan: 2, S("Mod Destination", "osc", "mod_dest", options.mod-dest, width: 27mm, centered: false)),
-  )
-  let mix = sec("Mixer", (kw, kw),
-    K("Osc 1", "mixer", "osc1"), K("Sub Osc", "mixer", "sub"),
-    K("Osc 2", "mixer", "osc2"), K("Noise", "mixer", "noise"),
-    [], [],
-  )
   let cut = {
     let (v, a) = g("filter", "cutoff")
-    box(width: 23mm, align(center, stack(spacing: 0.9mm,
+    align(center, stack(spacing: 0.9mm,
       knob-glyph(v, active: a, size: 15mm),
       ctl-label("Cutoff", a),
       ctl-value(clock-label(v), a),
-    )))
+    ))
   }
-  let flt = sec("Filter", (kw, 23mm, kw),
-    K("FB / Ext In", "filter", "fb_ext"), grid.cell(rowspan: 2, align: center + horizon, cut), K("EG Amount", "filter", "eg_amount", bipolar: true),
-    K("Osc 2 → Cutoff", "filter", "osc2_cutoff"), K("Resonance", "filter", "resonance"),
-    B("KB Tracking", "filter", "kb_tracking", note: "[KB ASSIGN]"), S("Mode", "filter", "mode", options.filter-mode, width: 22mm, centered: false), B("Res Bass", "filter", "res_bass"),
-  )
-  let env = sec("Envelopes", (13mm, kw, kw, kw, kw),
-    elabel("FILTER\nENVELOPE"), K("Attack", "fenv", "a"), K("Decay", "fenv", "d"), K("Sustain", "fenv", "s"), K("Release", "fenv", "r"),
-    elabel("AMPLIFIER\nENVELOPE"), K("Attack", "aenv", "a"), K("Decay", "aenv", "d"), K("Sustain", "aenv", "s"), K("Release", "aenv", "r"),
-    B("Multi-Trig", "env", "multi_trig"), B("F Env Vel", "env", "f_vel"), B("F Env Loop", "env", "f_loop", note: "[F ENV ASSIGN]"), B("A Env Vel", "env", "a_vel"), B("A Env Loop", "env", "a_loop", note: "[A ENV ASSIGN]"),
-  )
-  block(width: 100%, stroke: 0.8pt + ink, inset: (x: 1.5mm, top: 2.6mm, bottom: 1.4mm), align(center, grid(
-    columns: 5, column-gutter: 0mm, inset: (x: 1.6mm),
-    stroke: (x, y) => if x > 0 { (left: 0.6pt + ink) },
-    lfo, osc, mix, flt, env,
+
+  panel-frame(panel-band((
+    (title: "LFO 1", cols: 2, cells: (
+      K("LFO 1 Rate", "lfo1", "rate"), S("Waveshape", "lfo1", "wave", options.lfo1-wave),
+      K("LFO 1 Depth", "lfo1", "depth", bipolar: true), S("Destination", "lfo1", "dest", options.lfo1-dest),
+      B("Sync", "lfo1", "sync"), B("KB Reset", "lfo1", "kb_reset", note: "[LFO 1 ASSIGN]"),
+    )),
+    (title: "Oscillators", cols: 5, cells: (
+      S("Octave", "osc", "oct1", options.octave), num("1"),
+      K("Tune", "osc", "tune", bipolar: true), K("Sub Wave", "osc", "sub_wave", hint: sub-hint), K("Waveshape", "osc", "wave1", hint: wave-hint),
+      S("Octave", "osc", "oct2", options.octave), num("2"),
+      K("Osc 2 Freq", "osc", "osc2_freq", bipolar: true), K("Mod Amount", "osc", "mod_amount", bipolar: true), K("Waveshape", "osc", "wave2", hint: wave-hint),
+      [], [], B("Sync 1→2", "osc", "sync"), grid.cell(colspan: 2, S("Mod Destination", "osc", "mod_dest", options.mod-dest, centered: false)),
+    )),
+    (title: "Mixer", cols: 2, cells: (
+      K("Osc 1", "mixer", "osc1"), K("Sub Osc", "mixer", "sub"),
+      K("Osc 2", "mixer", "osc2"), K("Noise", "mixer", "noise"),
+    )),
+    (title: "Filter", cols: 3, cells: (
+      K("FB / Ext In", "filter", "fb_ext"), grid.cell(rowspan: 2, align: center + horizon, cut), K("EG Amount", "filter", "eg_amount", bipolar: true),
+      K("Osc 2 → Cutoff", "filter", "osc2_cutoff"), K("Resonance", "filter", "resonance"),
+      B("KB Tracking", "filter", "kb_tracking", note: "[KB ASSIGN]"), S("Mode", "filter", "mode", options.filter-mode, centered: false), B("Res Bass", "filter", "res_bass"),
+    )),
+    (title: "Envelopes", cols: 5, cells: (
+      elabel("FILTER\nENVELOPE"), K("Attack", "fenv", "a"), K("Decay", "fenv", "d"), K("Sustain", "fenv", "s"), K("Release", "fenv", "r"),
+      elabel("AMPLIFIER\nENVELOPE"), K("Attack", "aenv", "a"), K("Decay", "aenv", "d"), K("Sustain", "aenv", "s"), K("Release", "aenv", "r"),
+      B("Multi-Trig", "env", "multi_trig"), B("F Env Vel", "env", "f_vel"), B("F Env Loop", "env", "f_loop", note: "[F ENV ASSIGN]"), B("A Env Vel", "env", "a_vel"), B("A Env Loop", "env", "a_loop", note: "[A ENV ASSIGN]"),
+    )),
   )))
 }
 

@@ -120,7 +120,7 @@
 
 /// Sélecteur à flèches du Messenger (OCTAVE, WAVESHAPE, DESTINATION, MODE…) :
 /// bouton arrondi avec ▲ / ▼, colonne de LED à droite (texte en petit), libellé dessous.
-#let selector-updown(name, options, value, active: true, width: 14mm, zone: none) = {
+#let selector-updown(name, options, value, active: true, width: auto, zone: none) = {
   let col = if active { ink } else { muted }
   let tri(up) = polygon(
     stroke: (paint: col, thickness: 0.55pt, join: "round"),
@@ -152,7 +152,7 @@
 /// Inverseur à levier du minilogue XD (WAVE, DRIVE, TARGET…) : fente arrondie et
 /// levier à la position choisie (haut / milieu / bas), libellés à droite.
 /// Au-delà de 3 options (OCTAVE, VOICE MODE), levier au centre et colonne de LED.
-#let toggle-xd(name, options, value, active: true, width: 14mm, zone: none) = {
+#let toggle-xd(name, options, value, active: true, width: auto, zone: none) = {
   let col = if active { ink } else { muted }
   let n = options.len()
   let idx = options.position(((k, _)) => k == value)
@@ -472,6 +472,74 @@
 /// Titre de section de façade : centré, sans onglet, comme sur le panneau.
 #let ov-title(t) = align(center + top, text(size: 7.2pt, weight: "extrabold", tracking: 0.16em, upper(t)))
 
+/// Repères de mise en page partagés (une seule définition, tout le reste en découle).
+#let ui = (
+  gap: 1.6mm,            // espace entre blocs de la page
+  section-gap: 2.6mm,    // espace minimal entre deux sections de façade (le reste se répartit)
+  title-gap: 2.6mm,      // espace sous un titre de section de façade
+  row-gap: 2.4mm,        // espace entre deux rangées de contrôles
+  col-gap: 1mm,          // espace entre deux colonnes de contrôles
+  aside: 90mm,           // largeur du cadre annexe sous la façade (contrôleur, PROGRAM EDIT)
+)
+
+// Place les cellules d'une section ligne par ligne (comme une grille Typst),
+// en tenant compte des fusions (colspan / rowspan), à partir de la colonne x0.
+#let _place-section(sec, x0, rows) = {
+  let out = (grid.cell(x: x0, y: 0, colspan: sec.cols, inset: (bottom: ui.title-gap), ov-title(sec.title)),)
+  let occ = range(rows).map(_ => range(sec.cols).map(_ => false))
+  let (r, c) = (0, 0)
+  for item in sec.cells {
+    while r < rows and occ.at(r).at(c) {
+      c += 1
+      if c >= sec.cols { c = 0; r += 1 }
+    }
+    assert(r < rows, message: "Section « " + sec.title + " » : trop de cellules pour " + str(rows) + " rangées de " + str(sec.cols) + " colonnes")
+    let f = if type(item) == content and item.func() == grid.cell { item.fields() } else { (body: item) }
+    let (cs, rs) = (f.at("colspan", default: 1), f.at("rowspan", default: 1))
+    for dr in range(rs) { for dc in range(cs) { occ.at(r + dr).at(c + dc) = true } }
+    out.push(grid.cell(x: x0 + c, y: r + 1, colspan: cs, rowspan: rs, align: f.at("align", default: center + top), f.body))
+    c += cs
+    if c >= sec.cols { c = 0; r += 1 }
+  }
+  out
+}
+
+/// Façade en une seule grille : sections côte à côte, séparées par un filet.
+/// `sections` : liste de (title: …, cols: n, cells: (…)) ; les cellules se lisent
+/// ligne par ligne, `rows` rangées par section. Colonnes à la largeur de leur contenu,
+/// rangées à la hauteur du plus grand contenu (l'alignement entre sections est donc
+/// automatique) ; l'espace restant se répartit entre les sections. Si la façade ne
+/// tient pas en largeur, la compilation échoue en donnant la largeur de chaque section.
+#let panel-band(sections, rows: 3) = layout(size => {
+  let avail = size.width
+  // Largeur naturelle de chaque section, pour le contrôle de débordement.
+  let widths = sections.map(sec => measure(grid(columns: (auto,) * sec.cols, column-gutter: ui.col-gap, .._place-section(sec, 0, rows))).width)
+  let need = widths.sum() + sections.len() * ui.section-gap
+  if need > avail {
+    let detail = sections.zip(widths).map(((sec, w)) => upper(sec.title) + " " + str(calc.round(w.mm(), digits: 1)) + " mm").join(", ")
+    panic("Façade trop large de " + str(calc.round((need - avail).mm(), digits: 1)) + " mm (place : " + str(calc.round(avail.mm(), digits: 1)) + " mm) : " + detail + ". Réduire une section ou la taille des potards.")
+  }
+  let cols = (1fr,)
+  let cells = ()
+  let seps = ()
+  let x = 1
+  for (i, sec) in sections.enumerate() {
+    if i > 0 { cols += (1fr, 1fr); seps.push(x + 1); x += 2 }
+    cells += _place-section(sec, x, rows)
+    cols += (auto,) * sec.cols
+    x += sec.cols
+  }
+  cols.push(1fr)
+  grid(
+    columns: cols, rows: (auto,) * (rows + 1), column-gutter: ui.col-gap, row-gutter: (0mm,) + (ui.row-gap,) * (rows - 1), align: center + top,
+    ..seps.map(sx => grid.vline(x: sx, stroke: 0.6pt + ink)),
+    ..cells,
+  )
+})
+
+/// Cadre de la façade (filet noir, coins droits).
+#let panel-frame(body) = block(width: 100%, stroke: 0.8pt + ink, inset: (x: 0mm, top: 2.6mm, bottom: 1.6mm), body)
+
 /// Entrée de courbe d'enveloppe pour la page 2 (temps et niveau normalisés 0-1).
 #let env-entry(titre, a, d, s, r, sub: none, sustain: true, inactive: false) = (
   titre: titre, a: a, d: d, s: s, r: r, sub: sub, sustain: sustain, inactive: inactive,
@@ -627,7 +695,7 @@
   panel
   v(0.6mm)
   grid(
-    columns: (90mm, 1fr, 1.12fr), column-gutter: 1.6mm,
+    columns: (ui.aside, 1fr, 1.12fr), column-gutter: ui.gap,
     aside,
     textbox("Pour l'obtenir", icon: icon-knob, numbered(data.at("etapes", default: ()))),
     stack(spacing: 1.6mm,
