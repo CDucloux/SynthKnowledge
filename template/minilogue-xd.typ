@@ -185,7 +185,7 @@
     ..fx("MOD FX", "mod_fx", true), ..fx("REVERB", "reverb", false), ..fx("DELAY", "delay", false),
   )
 
-  block(width: 100%, stroke: 0.8pt + ink, radius: 2pt, inset: (x: 1mm, top: 2.6mm, bottom: 1.4mm), align(center, grid(
+  block(width: 100%, stroke: 0.8pt + ink, inset: (x: 1mm, top: 2.6mm, bottom: 1.4mm), align(center, grid(
     columns: 6, column-gutter: 0mm, inset: (x: 1.1mm),
     stroke: (x, y) => if x > 0 { (left: 0.6pt + ink) },
     master, vco, mix, flt, env, efx,
@@ -195,7 +195,7 @@
 #let program-edit(data) = {
   let settings = data.at("settings", default: ())
   if settings == none { settings = () }
-  block(width: 100%, stroke: 0.8pt + ink, radius: 2pt, inset: (x: 2mm, top: 1.2mm, bottom: 1.6mm), stack(spacing: 1mm,
+  block(width: 100%, stroke: 0.8pt + ink, inset: (x: 2mm, top: 1.2mm, bottom: 1.6mm), stack(spacing: 1mm,
     ov-title("Program Edit"),
     {
       set text(size: 6.4pt)

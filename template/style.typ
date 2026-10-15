@@ -274,7 +274,7 @@
 
 /// Encadré de texte en bas de fiche.
 #let textbox(title, body, size: 6.9pt) = block(
-  width: 100%, stroke: 0.9pt + ink, radius: 1.5pt, inset: 0pt, breakable: false,
+  width: 100%, stroke: 0.9pt + ink, inset: 0pt, breakable: false,
   stack(
     block(width: 100%, inset: (x: 2.4mm, top: 1.8mm, bottom: 1.6mm), text(size: 7.2pt, weight: "extrabold", tracking: 0.06em, upper(title))),
     block(width: 100%, inset: (x: 2.4mm, bottom: 2mm), { set text(size: size); body }),
@@ -333,7 +333,7 @@
 
 #let header(machine, data) = {
   let ref = data.at("reference", default: (:))
-  block(width: 100%, fill: ink, inset: (x: 5mm, y: 3.4mm), radius: 1.5pt, {
+  block(width: 100%, fill: ink, inset: (x: 5mm, y: 3.4mm), {
     grid(
       columns: (1fr, auto),
       align: (left + bottom, right + bottom),
@@ -433,7 +433,7 @@
     "Synthé d'origine et nature du son établis par les sources ; réglages reconstitués.",
     "Réglages ou patch publiés par une source fiable (manuel, interview, patch sheet).",
   )
-  block(width: 100%, fill: ink, inset: (x: 5mm, y: 3.4mm), radius: 1.5pt, grid(
+  block(width: 100%, fill: ink, inset: (x: 5mm, y: 3.4mm), grid(
     columns: (1fr, auto), align: (left + bottom, right + bottom),
     {
       text(white, size: 7pt, weight: "bold", tracking: 0.32em, upper(machine) + "  ·  ANATOMIE DU SON")

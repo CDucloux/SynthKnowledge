@@ -17,7 +17,7 @@
 
 /// En-tête : bandeau noir avec numéro de fiche, titre, références Synth Secrets.
 #let theory-header(num, titre, sous-titre, refs) = {
-  block(width: 100%, fill: ink, inset: (x: 5mm, y: 3mm), radius: 1.5pt, grid(
+  block(width: 100%, fill: ink, inset: (x: 5mm, y: 3mm), grid(
     columns: (auto, 1fr, auto), column-gutter: 5mm, align: (left + horizon, left + horizon, right + bottom),
     text(white, size: 30pt, weight: "extrabold", num),
     {

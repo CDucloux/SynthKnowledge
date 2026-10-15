@@ -130,7 +130,7 @@
     elabel("AMPLIFIER\nENVELOPE"), K("Attack", "aenv", "a"), K("Decay", "aenv", "d"), K("Sustain", "aenv", "s"), K("Release", "aenv", "r"),
     B("Multi-Trig", "env", "multi_trig"), B("F Env Vel", "env", "f_vel"), B("F Env Loop", "env", "f_loop", note: "[F ENV ASSIGN]"), B("A Env Vel", "env", "a_vel"), B("A Env Loop", "env", "a_loop", note: "[A ENV ASSIGN]"),
   )
-  block(width: 100%, stroke: 0.8pt + ink, radius: 2pt, inset: (x: 1.5mm, top: 2.6mm, bottom: 1.4mm), align(center, grid(
+  block(width: 100%, stroke: 0.8pt + ink, inset: (x: 1.5mm, top: 2.6mm, bottom: 1.4mm), align(center, grid(
     columns: 5, column-gutter: 0mm, inset: (x: 1.6mm),
     stroke: (x, y) => if x > 0 { (left: 0.6pt + ink) },
     lfo, osc, mix, flt, env,
@@ -178,7 +178,7 @@
   if assigns == none { assigns = () }
   if settings == none { settings = () }
 
-  let section(title, body) = block(width: 100%, stroke: 0.8pt + ink, radius: 2pt, inset: (x: 2mm, top: 1.2mm, bottom: 1.6mm),
+  let section(title, body) = block(width: 100%, stroke: 0.8pt + ink, inset: (x: 2mm, top: 1.2mm, bottom: 1.6mm),
     stack(spacing: 1mm, ov-title(title), body))
   let lay(a, b) = stack(spacing: 1.6mm, a, b)
   lay(
