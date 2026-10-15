@@ -9,6 +9,7 @@ description: Corriger une fiche son existante à partir du retour d'essai de l'u
 2. Traduire chaque remarque en paramètre avec `knowledge/synthesis/06-vocabulaire-ecoute.md`.
    - Un seul changement net par remarque, en **pas d'½ heure à 1 heure** (pas de grands sauts).
    - Si la remarque est ambiguë (« ça sonne pas pareil »), poser **une** question ciblée : brillance ? attaque ? mouvement ? grave ?
+   - Retour sur une **séquence** (« ce n'est pas la bonne », « on dirait la basse ») : reprendre la transcription selon la skill sound-sheet (étape 2, « Séquence ») plutôt que retoucher des notes à l'oreille.
 3. Modifier le YAML : `params`, et si utile `etapes` / `oreille`. Si l'utilisateur confirme que le résultat est proche de l'original, la confiance peut monter d'un cran (jamais à 3 sans source documentée).
 4. Recompiler : `scripts/build.sh sounds/<machine>/<slug>.yaml`, puis vérifier le rendu (image).
 5. Ajouter une entrée dans `knowledge/retours.md` (format du fichier). Si la leçon est générale (ex. « sur le Messenger, le carré est plutôt à 1:30 qu'à 1:00 »), **mettre aussi à jour** le fichier de connaissance concerné (`archetypes.md`, `machines/messenger.md`…).

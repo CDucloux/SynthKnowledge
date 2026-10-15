@@ -45,6 +45,7 @@ sequence:                         # optionnel : séquenceur du Messenger (manuel
   transpose:                      # optionnel : touche tenue pendant PLAY (référence C5 = non transposé)
     - {touche: G4, texte: "Sol, quand l'accord change"}
 # Les notes s'écrivent en notation anglaise dans le YAML (C D E F G A B) et s'affichent en solfège (Do Ré Mi…) sur la fiche.
+# Notes relevées sur la piste qui joue la partie (pas la basse) ; accords réduits à la note du dessus (voir SKILL.md, étape 2).
 # Saisir les notes autour du C5 pour que la transposition au clavier tombe juste. Pas de « # » nu dans les textes (écrire « Fa dièse »).
 # Avec une séquence, garder `jeu` à 1-2 puces courtes (saisie) et `oreille` à 3 puces : la page 1 doit tenir.
 
