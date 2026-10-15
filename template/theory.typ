@@ -41,7 +41,7 @@
 
 /// Bloc encadré avec onglet titre (hauteur libre), pour schémas et explications.
 #let panneau(title, body, inset: 3mm) = block(
-  width: 100%, stroke: 0.9pt + ink, radius: 1.5pt, clip: true, breakable: false,
+  width: 100%, stroke: 0.9pt + ink, clip: true, breakable: false,
   stack(
     box(fill: ink, inset: (x: 2mm, y: 1.1mm), text(white, size: 6.6pt, weight: "extrabold", tracking: 0.08em, upper(title))),
     block(width: 100%, inset: inset, body),
