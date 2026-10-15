@@ -405,15 +405,22 @@
     if sub != none { h(1.5mm); text(size: 6pt, fill: luma(80), sub) }
     v(0.6mm)
     box(width: width, height: height + 3mm, {
+      // Repères pointillés gris aux changements de phase (début de D, de S, de R).
+      let marks = if sustain { (ta, x1, x1 + hold) } else { (ta,) }
       place(line(start: (0mm, height), end: (width, height), stroke: 0.5pt + muted))
       place(curve(fill: soft, stroke: none, curve.move(pts.first()), ..pts.slice(1).map(p => curve.line(p)), curve.line((xend, height)), curve.close()))
+      for x in marks {
+        place(line(start: (x, 0mm), end: (x, height), stroke: (paint: luma(150), thickness: 0.5pt, dash: (1.2pt, 1.4pt))))
+      }
       place(curve(stroke: (paint: if muted-curve { muted } else { ink }, thickness: 1.2pt, join: "round"), curve.move(pts.first()), ..pts.slice(1).map(p => curve.line(p))))
-      let lab(x0, x1, l) = place(dx: x0, dy: height + 0.6mm, box(width: calc.max(x1 - x0, 2mm), align(center, text(size: 6pt, weight: "bold", fill: luma(70), l))))
-      lab(0mm, ta, "A")
-      lab(ta, x1, "D")
-      if sustain {
-        lab(x1, x1 + hold, "S")
-        lab(x1 + hold, xend, "R")
+      // Lettres centrées dans leur phase ; décalées si deux phases sont trop étroites.
+      let segs = if sustain { ((0mm, ta, "A"), (ta, x1, "D"), (x1, x1 + hold, "S"), (x1 + hold, xend, "R")) } else { ((0mm, ta, "A"), (ta, x1, "D")) }
+      let gap = 3mm
+      let prev = -10mm
+      for (x0, xe, l) in segs {
+        let c = calc.max((x0 + xe) / 2, prev + gap, 0.9mm)
+        prev = c
+        place(dx: c - 1.5mm, dy: height + 0.6mm, box(width: 3mm, align(center, text(size: 6pt, weight: "bold", fill: luma(70), l))))
       }
     })
   })
