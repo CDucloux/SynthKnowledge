@@ -12,10 +12,9 @@ Pré-requis : le **manuel PDF** dans `manuals/<machine>-user-manual.pdf`. Sans m
 3. **Notation** : boutons à course continue sans affichage → heures (7-17) ; paramètres affichés à l'écran (cas du minilogue XD, 0-1023) → **valeur écran**. Ajouter si besoin un composant dans `template/style.typ` (ex. `knob-value(name, v, max: 1023)` qui dessine l'index proportionnellement et affiche la valeur) plutôt que de dupliquer.
 4. **Template** `template/<machine>.typ` sur le modèle de `messenger.typ` (heures d'horloge) ou `minilogue-xd.typ` (valeurs écran, composant `knob-num`) :
    - `defaults` (valeurs neutres) + `_check` (clés inconnues = erreur),
-   - `panel(params)` dans l'ordre physique de la façade, une `section` par bloc du panneau,
-   - sections spécifiques (pour le XD : EFFECTS, VOICE MODE, MULTI ENGINE, menu PROGRAM EDIT),
-   - `fiche(data)` réutilisant `header`, `textbox`, `footer-line`.
+   - `panel(params)` : **façade en une seule bande paysage**, fidèle au schéma du panneau du manuel (sections côte à côte dans l'ordre physique, titres centrés sans onglet, séparateurs verticaux fins, rangées alignées sur une « zone potard » commune). Dessiner les commandes comme sur la machine (potards, sélecteurs à flèches + LED, inverseurs à levier, boutons rectangulaires, écrans) avec les composants de `style.typ`, en en ajoutant si besoin.
+   - `fiche(data)` réutilisant `header`, `textbox` (avec `icon:`), et `sources-page(..., envs: ...)` pour la page 2 ; tout est en A4 paysage (pas de version portrait).
    - Enregistrer la machine dans `template/sheet.typ` (dictionnaire `machines`).
 5. **Schéma YAML** `.claude/skills/sound-sheet/schema-<machine>.md`, et mettre à jour `sound-sheet/SKILL.md` §3 (choix de machine).
-6. **Fiche de démo** (son bien documenté) + `scripts/build.sh` + vérification visuelle (une page, rien de coupé).
+6. **Fiche de démo** (son bien documenté) + `scripts/build.sh` + vérification visuelle (deux pages paysage, rien de coupé ni chevauché).
 7. Mettre à jour `CLAUDE.md` (machines supportées) et `knowledge/README.md`. Commit.

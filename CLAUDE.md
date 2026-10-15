@@ -70,7 +70,7 @@ scripts/build-theory.sh  compile theory/*.typ (A4, pas de limite de pages)
 
 ## Choix de design validés par l'utilisateur (ne pas changer sans demander)
 
-- Esthétique du manuel Moog Messenger : noir & blanc, Montserrat, onglets titres noirs, vignettes encadrées.
+- Esthétique du manuel Moog Messenger : noir & blanc, Montserrat, bandeau titre noir, encadrés à filet noir.
 - **Icônes vectorielles** (dessinées en Typst, noir et blanc, JAMAIS d'emoji) devant les titres des encadrés d'explication : Pour l'obtenir (potard), Ajuster à l'oreille (ondes), Jeu (clavier), Les enveloppes (ADSR), analyse (choisie d'après le titre : oscillateurs = scie, filtre = passe-bas, enveloppes = ADSR, espace = ondes, mouvement = sinus, jeu = clavier, sinon i cerclé), D'où ça vient (loupe). Pas d'icône sur les sections de façade. Bandeau noir identique en hauteur sur les pages 1 et 2 (`title-bar`).
 - **Containers à coins droits** (encadrés, bandeaux titre, cadre de façade, PROGRAM EDIT…) : pas d'arrondi. Seules les commandes dessinées (boutons, écrans, leviers, sélecteurs) gardent leur forme arrondie, fidèle au panneau.
 - Schéma de façade complet = élément central ; potards avec index + arc de valeur, sélecteurs à LED, boutons ON/OFF.
