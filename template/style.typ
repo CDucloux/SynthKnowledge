@@ -508,7 +508,7 @@
 /// `sections` : liste de (title: …, cols: n, cells: (…)) ; les cellules se lisent
 /// ligne par ligne, `rows` rangées par section. Colonnes à la largeur de leur contenu,
 /// rangées à la hauteur du plus grand contenu (l'alignement entre sections est donc
-/// automatique) ; l'espace restant se répartit entre les sections. Si la façade ne
+/// automatique) ; l’espace restant se répartit entre les sections au prorata de leur largeur. Si la façade ne
 /// tient pas en largeur, la compilation échoue en donnant la largeur de chaque section.
 #let panel-band(sections, rows: 3) = layout(size => {
   let avail = size.width
@@ -519,17 +519,20 @@
     let detail = sections.zip(widths).map(((sec, w)) => upper(sec.title) + " " + str(calc.round(w.mm(), digits: 1)) + " mm").join(", ")
     panic("Façade trop large de " + str(calc.round((need - avail).mm(), digits: 1)) + " mm (place : " + str(calc.round(avail.mm(), digits: 1)) + " mm) : " + detail + ". Réduire une section ou la taille des potards.")
   }
-  let cols = (1fr,)
+  // Espace restant réparti au prorata de la largeur de chaque section :
+  // une section étroite (MIXER) reçoit peu d'air, une large en reçoit plus.
+  let air(w) = 1fr * (w / widths.sum())
+  let cols = (air(widths.first()),)
   let cells = ()
   let seps = ()
   let x = 1
   for (i, sec) in sections.enumerate() {
-    if i > 0 { cols += (1fr, 1fr); seps.push(x + 1); x += 2 }
+    if i > 0 { cols += (air(widths.at(i - 1)), air(widths.at(i))); seps.push(x + 1); x += 2 }
     cells += _place-section(sec, x, rows)
     cols += (auto,) * sec.cols
     x += sec.cols
   }
-  cols.push(1fr)
+  cols.push(air(widths.last()))
   grid(
     columns: cols, rows: (auto,) * (rows + 1), column-gutter: ui.col-gap, row-gutter: (0mm,) + (ui.row-gap,) * (rows - 1), align: center + top,
     ..seps.map(sx => grid.vline(x: sx, stroke: 0.6pt + ink)),
