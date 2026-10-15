@@ -13,6 +13,7 @@ Si l'utilisateur ne précise pas **quel son** du morceau et qu'il y en a plusieu
 ## 1. Lire la base de connaissances
 
 - `knowledge/retours.md` (leçons des essais précédents), **toujours**.
+- `knowledge/recherche-sources.md` (hiérarchie des sources, requêtes obligatoires, techniques de lecture), **toujours**.
 - `knowledge/archetypes.md` → recette de départ de la famille.
 - `knowledge/machines/messenger.md` ou `knowledge/machines/minilogue-xd.md` → contrôles et clés YAML.
 - Selon le cas : `knowledge/synthes-historiques.md`, `knowledge/synthesis/*.md`.
@@ -22,8 +23,8 @@ Si l'utilisateur ne précise pas **quel son** du morceau et qu'il y en a plusieu
 Requêtes types :
 - `"<morceau>" <artiste> synth sound gear` · `"<morceau>" synth patch settings`
 - `<artiste> interview synthesizer <album>` · `"<morceau>" how to make the sound tutorial`
-- **À consulter en priorité (choix de l'utilisateur)** : les tutoriels de reproduction d'**Imaginando** (imaginando.pt/media, chaîne YouTube) et d'**Anthony Marinelli** (programmeur de synthés de *Thriller*, chaîne YouTube de reconstitutions de sons) : requêtes `imaginando "<morceau>"` et `"Anthony Marinelli" "<morceau>"`. Les vidéos YouTube ne sont pas visionnables ici (connexion exigée) : lire la description et les fichiers joints. Imaginando fournit souvent un projet Ableton (.zip → .als = XML compressé gzip) : on y lit les notes MIDI (`MidiNoteEvent` par `KeyTrack`/`MidiKey`), le tempo et la chaîne d'effets, ce qui recoupe une tablature (Son of Flynn : même motif que Songsterr, un demi-ton plus haut).
-- Autres sites utiles : gearspace, reddit r/synthesizers & r/synthrecipes, equipboard, syntorial (preset recipes), soundonsound, musicradar, muzines (archives), forum.moogmusic.com.
+- **Sources de qualité d'abord (choix de l'utilisateur)** : faire les requêtes obligatoires de `knowledge/recherche-sources.md` (**Anthony Marinelli**, **Imaginando**, interviews, recherche YouTube) avant de regarder les forums. Lecture de YouTube, des projets Ableton, des pages refusées : même fichier.
+- Autres sites : gearspace, reddit r/synthesizers & r/synthrecipes, equipboard, syntorial (preset recipes), soundonsound, musicradar, muzines (archives), forum.moogmusic.com.
 
 Retenir : **synthé d'origine**, forme d'onde, filtre, enveloppe, effets, glide, techniques de jeu. Noter chaque URL utile.
 **Séquence ou ostinato** (bloc `sequence`, Messenger ou minilogue XD) : relever les notes sur une transcription réelle, jamais de mémoire.
@@ -75,4 +76,4 @@ scripts/build.sh sounds/<machine>/<slug>.yaml           # compiler + mettre à j
 ## 7. Livrer
 
 - Commit sur `main` puis `git push origin main` (pas de branche, pas de PR). Commit du YAML, du PDF **et du README.md** (son tableau est régénéré par `scripts/build.py`) (les PDF sont versionnés pour être consultables depuis le téléphone).
-- Répondre à l'utilisateur : machine choisie, niveau de confiance et pourquoi, sources, compromis éventuels (effets absents, polyphonie), et l'inviter à faire un retour après essai (→ skill `adjust-sheet`). Pas de tiret quadratin dans les textes.
+- Répondre à l'utilisateur : machine choisie, niveau de confiance et pourquoi, sources (dont ce qu'ont donné Marinelli, Imaginando et les interviews, même si rien), compromis éventuels (effets absents, polyphonie), et l'inviter à faire un retour après essai (→ skill `adjust-sheet`). Pas de tiret quadratin dans les textes.
