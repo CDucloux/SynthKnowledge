@@ -368,9 +368,18 @@
 /// Courbe d'enveloppe dessinée d'après les réglages.
 /// a, d, r : temps normalisés 0-1 (position du potard) ; s : niveau 0-1.
 /// sustain: false → enveloppe AD (pas de palier ni de release).
-#let env-plot(a, d, s, r, title, sub: none, sustain: true, width: 84mm, height: 24mm) = {
-  let seg = width * 0.27
-  let hold = if sustain { width * 0.15 } else { 0mm }
+/// Durée d'une enveloppe en « unités » (A + D [+ palier + R]) : sert à mettre
+/// plusieurs courbes à la même échelle, la plus longue remplissant la largeur.
+#let env-units(a, d, r, sustain: true) = {
+  let u(x) = 0.04 + 0.96 * calc.clamp(x, 0, 1)
+  u(a) + u(d) + (if sustain { 0.55 + u(r) } else { 0 })
+}
+
+#let env-plot(a, d, s, r, title, sub: none, sustain: true, width: 84mm, height: 24mm, span: none, muted-curve: false) = {
+  // span : nombre d'unités représenté par toute la largeur (défaut : cette courbe seule).
+  let span = if span == none { env-units(a, d, r, sustain: sustain) } else { span }
+  let seg = width * 0.97 / span
+  let hold = if sustain { seg * 0.55 } else { 0mm }
   let t(x) = (0.04 + 0.96 * calc.clamp(x, 0, 1)) * seg
   let ta = t(a)
   let td = t(d)
@@ -398,7 +407,7 @@
     box(width: width, height: height + 3mm, {
       place(line(start: (0mm, height), end: (width, height), stroke: 0.5pt + muted))
       place(curve(fill: soft, stroke: none, curve.move(pts.first()), ..pts.slice(1).map(p => curve.line(p)), curve.line((xend, height)), curve.close()))
-      place(curve(stroke: (paint: ink, thickness: 1.2pt, join: "round"), curve.move(pts.first()), ..pts.slice(1).map(p => curve.line(p))))
+      place(curve(stroke: (paint: if muted-curve { muted } else { ink }, thickness: 1.2pt, join: "round"), curve.move(pts.first()), ..pts.slice(1).map(p => curve.line(p))))
       let lab(x0, x1, l) = place(dx: x0, dy: height + 0.6mm, box(width: calc.max(x1 - x0, 2mm), align(center, text(size: 6pt, weight: "bold", fill: luma(70), l))))
       lab(0mm, ta, "A")
       lab(ta, x1, "D")
@@ -434,8 +443,16 @@
     confidence(n),
   ))
   v(2.4mm)
-  let note-env = text(size: 6pt, fill: luma(80), style: "italic", "Allure dessinée d'après les réglages de la page 1 : les proportions sont justes, les durées ne sont pas à l'échelle exacte.")
-  let plot(e, w, h) = env-plot(e.a, e.d, e.s, e.r, e.titre, sub: e.at("sub", default: none), sustain: e.at("sustain", default: true), width: w, height: h)
+  let note-env = text(size: 6pt, fill: luma(80), style: "italic", "Allure dessinée d'après les réglages de la page 1, même échelle de temps pour les deux courbes (la plus longue occupe toute la largeur) ; durées non calibrées en secondes.")
+  // Échelle commune : la plus longue des enveloppes remplit la largeur.
+  // (une enveloppe sans effet, ex. EG AMOUNT à midi, ne dicte pas l'échelle)
+  let live = envs.filter(e => not e.at("inactive", default: false))
+  if live.len() == 0 { live = envs }
+  let span = calc.max(..live.map(e => env-units(e.a, e.d, e.r, sustain: e.at("sustain", default: true))), 0.1)
+  let plot(e, w, h) = {
+    let off = e.at("inactive", default: false)
+    env-plot(e.a, e.d, e.s, e.r, e.titre, sub: e.at("sub", default: none), sustain: e.at("sustain", default: true), width: w, height: h, span: if off { none } else { span }, muted-curve: off)
+  }
   let an = data.at("analyse", default: ())
   if an == none { an = () }
   let boxes = an.map(x => textbox(size: 8pt, x.titre, { set par(leading: 0.6em); md(x.texte) }))
