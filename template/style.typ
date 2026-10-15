@@ -342,7 +342,7 @@
 #let textbox(title, body, size: 6.9pt, icon: none) = block(
   width: 100%, stroke: 0.9pt + ink, inset: 0pt, breakable: false,
   stack(
-    block(width: 100%, inset: (x: 2.4mm, top: 1.8mm, bottom: 1.6mm), {
+    block(width: 100%, inset: (x: 2.4mm, top: 2mm, bottom: 2.6mm), {
       if icon != none { icon; h(1.4mm) }
       text(size: 7.2pt, weight: "extrabold", tracking: 0.06em, upper(title))
     }),
@@ -401,7 +401,7 @@
 }
 
 /// Bandeau noir commun aux pages 1 et 2 (même hauteur sur les deux pages).
-#let title-bar(machine, kind, data) = block(width: 100%, fill: ink, inset: (x: 5mm, y: 3.4mm), grid(
+#let title-bar(machine, kind, data) = block(width: 100%, fill: ink, inset: (x: 5mm, y: 3mm), grid(
   columns: (1fr, auto),
   align: (left + bottom, right + bottom),
   {

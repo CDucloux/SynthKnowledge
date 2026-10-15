@@ -227,7 +227,7 @@
   panel-overview(params)
   v(0.6mm)
   grid(
-    columns: (92mm, 1fr, 1fr), column-gutter: 1.6mm,
+    columns: (90mm, 1fr, 1.12fr), column-gutter: 1.6mm,
     performance(params, data),
     textbox("Pour l'obtenir", icon: icon-knob, numbered(data.at("etapes", default: ()))),
     stack(spacing: 1.6mm,
