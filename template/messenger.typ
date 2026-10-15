@@ -77,7 +77,7 @@
   }
   let S(name, sec, k, opts, width: 20mm) = {
     let (v, a) = g(sec, k)
-    selector(name, opts, v, active: a, width: width)
+    selector-updown(name, opts, v, active: a, width: width)
   }
   let B(name, sec, k, note: none) = {
     let (v, a) = g(sec, k)
@@ -97,10 +97,10 @@
     K("LFO 1 Depth", "lfo1", "depth", bipolar: true), S("Destination", "lfo1", "dest", options.lfo1-dest, width: 22mm),
     B("Sync", "lfo1", "sync"), B("KB Reset", "lfo1", "kb_reset", note: "[LFO 1 ASSIGN]"),
   )
-  let osc = sec("Oscillators", (13mm, 4mm, kw, kw, kw),
-    S("Octave", "osc", "oct1", options.octave, width: 13mm), num("1"),
+  let osc = sec("Oscillators", (15mm, 3.4mm, kw, kw, kw),
+    S("Octave", "osc", "oct1", options.octave, width: 15mm), num("1"),
     K("Tune", "osc", "tune", bipolar: true), K("Sub Wave", "osc", "sub_wave", hint: sub-hint), K("Waveshape", "osc", "wave1", hint: wave-hint),
-    S("Octave", "osc", "oct2", options.octave, width: 13mm), num("2"),
+    S("Octave", "osc", "oct2", options.octave, width: 15mm), num("2"),
     K("Osc 2 Freq", "osc", "osc2_freq", bipolar: true), K("Mod Amount", "osc", "mod_amount", bipolar: true), K("Waveshape", "osc", "wave2", hint: wave-hint),
     [], [], B("Sync 1→2", "osc", "sync"), grid.cell(colspan: 2, S("Mod Destination", "osc", "mod_dest", options.mod-dest, width: 27mm)),
   )

@@ -137,6 +137,32 @@
   )))
 }
 
+/// Sélecteur à flèches du Messenger (OCTAVE, WAVESHAPE, DESTINATION, MODE…) :
+/// bouton arrondi avec ▲ / ▼, colonne de LED à droite (texte en petit), libellé dessous.
+#let selector-updown(name, options, value, active: true, width: 14mm) = {
+  let col = if active { ink } else { muted }
+  let tri(up) = polygon(
+    stroke: (paint: col, thickness: 0.55pt, join: "round"),
+    ..(if up { ((0mm, 1.5mm), (0.95mm, 0mm), (1.9mm, 1.5mm)) } else { ((0mm, 0mm), (0.95mm, 1.5mm), (1.9mm, 0mm)) }),
+  )
+  let btn = box(width: 4.6mm, height: 9mm, radius: 1.1mm, stroke: 0.8pt + col, inset: 0.55mm,
+    box(width: 100%, height: 100%, radius: 0.7mm, stroke: 0.5pt + col,
+      align(center + horizon, stack(spacing: 1.5mm, tri(true), tri(false)))))
+  let leds = stack(spacing: 0.75mm, ..options.map(((k, lbl)) => {
+    let on = k == value
+    box(height: 1.8mm, {
+      box(baseline: 0.05mm, circle(radius: 0.62mm, fill: if on { col } else { white }, stroke: 0.5pt + col))
+      h(0.7mm)
+      text(size: 4.4pt, weight: if on { "extrabold" } else { "medium" }, fill: col, lbl)
+    })
+  }))
+  box(width: width, align(center, stack(
+    spacing: 1.2mm,
+    stack(dir: ltr, spacing: 1mm, align(horizon, btn), align(horizon, leds)),
+    ctl-label(name, active),
+  )))
+}
+
 /// Bouton poussoir de façade : rectangle aux coins légèrement arrondis (comme sur
 /// le Messenger), plein = engagé, contour = désengagé ; `note` = mention entre
 /// crochets imprimée au-dessus sur le panneau ([F ENV ASSIGN]…).
