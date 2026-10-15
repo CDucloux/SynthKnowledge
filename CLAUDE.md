@@ -74,7 +74,7 @@ scripts/build-theory.sh  compile theory/*.typ (A4, pas de limite de pages)
 - Schéma de façade complet = élément central ; potards avec index + arc de valeur, sélecteurs à LED, boutons ON/OFF.
 - Section ENVELOPES aérée : pas de cadres pointillés, séparateurs verticaux fins.
 - Puces des encadrés : double chevron « » » en gras, dans la ligne (aligné sur le texte), retrait suspendu.
-- **Option paysage (Messenger)** : page 1 en A4 paysage, façade en une seule bande fidèle à l'overview du manuel (p. 6) : LFO 1 | OSCILLATORS | MIXER | FILTER | ENVELOPES, titres centrés sans onglet, séparateurs verticaux, deux rangées de potards puis la rangée de boutons ; page 2 reste en portrait. Activée par `orientation: paysage` dans le YAML ou `build.sh --paysage`.
+- **Messenger = A4 paysage, toujours (choix de l'utilisateur, plus de version portrait)** : page 1 = façade en une seule bande fidèle à l'overview du manuel (p. 6) : LFO 1 | OSCILLATORS | MIXER | FILTER | ENVELOPES, titres centrés sans onglet, séparateurs verticaux, deux rangées de potards puis la rangée de boutons (rectangles à coins légèrement arrondis, mentions [F ENV ASSIGN]… au-dessus comme sur le panneau) ; page 2 aussi en paysage (enveloppes à gauche, analyse 2 × 2 à droite, « D'où ça vient » en deux colonnes). Le minilogue XD reste en portrait pour l'instant.
 - Page 2 intitulée « Anatomie du son » : analyse pédagogique du son d'abord, sources ensuite ; jamais de sources en page 1.
 
 ## Commandes
@@ -82,7 +82,6 @@ scripts/build-theory.sh  compile theory/*.typ (A4, pas de limite de pages)
 ```bash
 scripts/build.sh                                  # toutes les fiches
 scripts/build.sh sounds/messenger/<slug>.yaml       # une fiche
-scripts/build.sh --paysage [yaml…]                # + version paysage (Messenger) : « … (Rôle, paysage).pdf »
 # équivalent CLI :
 typst compile --root . --font-path fonts --input son=/sounds/messenger/<slug>.yaml template/sheet.typ "sheets/messenger/[Artiste] Morceau (Rôle).pdf"
 ```

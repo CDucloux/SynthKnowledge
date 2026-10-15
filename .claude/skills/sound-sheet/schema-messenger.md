@@ -4,7 +4,6 @@ Valeurs neutres et validation : `template/messenger.typ` (`defaults`). Toute cl�
 
 ```yaml
 synthe: messenger                 # obligatoire
-orientation: paysage              # optionnel : page 1 en paysage façon overview du manuel (défaut : portrait)
 titre: Nom Du Son                 # affiché en capitales
 categorie: basse                  # basse | lead | pad | pluck | keys | cuivre | percussion | fx …
 tags: [house, 80s]                # chaînes courtes (mettre "303" entre guillemets si numérique)

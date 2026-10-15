@@ -137,15 +137,18 @@
   )))
 }
 
-/// Bouton poussoir lumineux : plein = engagé, contour = désengagé.
-#let switch(name, on, active: true, width: 16mm) = {
+/// Bouton poussoir de façade : rectangle aux coins légèrement arrondis (comme sur
+/// le Messenger), plein = engagé, contour = désengagé ; `note` = mention entre
+/// crochets imprimée au-dessus sur le panneau ([F ENV ASSIGN]…).
+#let switch(name, on, active: true, width: 16mm, note: none) = {
   let col = if active { ink } else { muted }
   box(width: width, align(center, stack(
     spacing: 1mm,
+    box(height: 2mm, align(bottom, if note != none { text(size: 4.2pt, weight: "semibold", fill: col, note) })),
     box(
-      width: 10mm, height: 3.6mm, radius: 1.8mm,
+      width: 9.6mm, height: 4.8mm, radius: 1.1mm,
       stroke: 0.9pt + col, fill: if on { col } else { white },
-      align(center + horizon, text(size: 4.6pt, weight: "bold", fill: if on { white } else { col }, if on { "ON" } else { "OFF" })),
+      align(center + horizon, text(size: 4.4pt, weight: "bold", fill: if on { white } else { col }, if on { "ON" } else { "OFF" })),
     ),
     ctl-label(name, active),
   )))
@@ -155,7 +158,7 @@
 #let pill(label, on, active: true) = {
   let col = if active { ink } else { muted }
   box(
-    width: 12mm, height: 3.6mm, radius: 1.8mm,
+    width: 12mm, height: 3.8mm, radius: 1.1mm,
     stroke: 0.9pt + col, fill: if on { col } else { white },
     align(center + horizon, text(size: 4.8pt, weight: "bold", fill: if on { white } else { col }, label)),
   )
@@ -367,8 +370,8 @@
 /// Page 2 : anatomie du son (courbes d'enveloppes, analyse par bloc), puis
 /// d'où viennent les infos (confiance, documenté / reconstitué, sources).
 /// envs : liste de (titre, a, d, s, r, sub, sustain) calculée par la façade.
-#let sources-page(machine, data, envs: ()) = {
-  set page(flipped: false)
+#let sources-page(machine, data, envs: (), landscape: false) = {
+  set page(flipped: landscape)
   pagebreak(weak: true)
   let ref = data.at("reference", default: (:))
   if ref == none { ref = (:) }
@@ -388,38 +391,51 @@
     confidence(n),
   ))
   v(2.4mm)
-  if envs.len() > 0 {
-    textbox(size: 7.4pt, "Les enveloppes, en image", {
-      grid(
-        columns: envs.len() * (1fr,), column-gutter: 4mm,
-        ..envs.map(e => env-plot(e.a, e.d, e.s, e.r, e.titre, sub: e.at("sub", default: none), sustain: e.at("sustain", default: true))),
-      )
-      v(0.6mm)
-      text(size: 6pt, fill: luma(80), style: "italic", "Allure dessinée d'après les réglages de la page 1 : les proportions sont justes, les durées ne sont pas à l'échelle exacte.")
-    })
-    v(2mm)
-  }
+  let note-env = text(size: 6pt, fill: luma(80), style: "italic", "Allure dessinée d'après les réglages de la page 1 : les proportions sont justes, les durées ne sont pas à l'échelle exacte.")
+  let plot(e, w, h) = env-plot(e.a, e.d, e.s, e.r, e.titre, sub: e.at("sub", default: none), sustain: e.at("sustain", default: true), width: w, height: h)
   let an = data.at("analyse", default: ())
   if an == none { an = () }
-  if an.len() > 0 {
-    let boxes = an.map(x => textbox(size: 8pt, x.titre, { set par(leading: 0.6em); md(x.texte) }))
-    grid(columns: (1fr, 1fr), column-gutter: 2mm, row-gutter: 2mm, ..boxes)
+  let boxes = an.map(x => textbox(size: 8pt, x.titre, { set par(leading: 0.6em); md(x.texte) }))
+  if landscape {
+    // Paysage : enveloppes empilées à gauche, analyse 2 × 2 à droite.
+    grid(
+      columns: (96mm, 1fr), column-gutter: 2mm,
+      if envs.len() > 0 {
+        textbox(size: 7.4pt, "Les enveloppes, en image", {
+          stack(spacing: 2.4mm, ..envs.map(e => plot(e, 88mm, 19mm)))
+          v(0.4mm)
+          note-env
+        })
+      },
+      grid(columns: (1fr, 1fr), column-gutter: 2mm, row-gutter: 2mm, ..boxes),
+    )
     v(2mm)
+  } else {
+    if envs.len() > 0 {
+      textbox(size: 7.4pt, "Les enveloppes, en image", {
+        grid(columns: envs.len() * (1fr,), column-gutter: 4mm, ..envs.map(e => plot(e, 84mm, 24mm)))
+        v(0.6mm)
+        note-env
+      })
+      v(2mm)
+    }
+    if boxes.len() > 0 {
+      grid(columns: (1fr, 1fr), column-gutter: 2mm, row-gutter: 2mm, ..boxes)
+      v(2mm)
+    }
   }
   let notes = data.at("tracabilite", default: ())
   if notes == none { notes = () }
   let src = data.at("sources", default: ())
   if src == none { src = () }
-  textbox(size: 7.4pt, "D'où ça vient", {
+  let origin-part = {
     let bits = ()
     if ref.at("synthe_origine", default: none) != none { bits.push([*Original :* #md(str(ref.synthe_origine))]) }
     bits.push([*Confiance :* #confidence(n, fill: ink) #h(1mm) #meaning.at(n - 1)])
     for b in bits { block(above: 0pt, below: 1.4mm, b) }
     if notes.len() > 0 { bullets(notes) }
-    v(0.6mm)
-    line(length: 100%, stroke: 0.4pt + muted)
-    v(0.4mm)
-    text(size: 6.4pt, weight: "extrabold", tracking: 0.1em, "SOURCES")
+  }
+  let sources-part = {    text(size: 6.4pt, weight: "extrabold", tracking: 0.1em, "SOURCES")
     v(0.4mm)
     set par(leading: 0.5em)
     if src.len() == 0 {
@@ -441,5 +457,14 @@
         v(1mm)
       }
     }
+  }
+  textbox(size: 7.4pt, "D'où ça vient", if landscape {
+    grid(columns: (1fr, 1fr), column-gutter: 5mm, origin-part, grid.cell(stroke: (left: 0.4pt + muted), inset: (left: 4mm), sources-part))
+  } else {
+    origin-part
+    v(0.6mm)
+    line(length: 100%, stroke: 0.4pt + muted)
+    v(0.4mm)
+    sources-part
   })
 }
