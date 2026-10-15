@@ -12,7 +12,7 @@ knowledge/          base de connaissances synthèse (synthesis/ : notions conden
 sounds/<machine>/   un YAML par son  → données de la fiche
 template/           style.typ (composants) · messenger.typ / minilogue-xd.typ (façades) · sheet.typ (point d'entrée)
 theory/             fiches de théorie imprimables (.typ, d'après Synth Secrets), gabarit template/theory.typ
-sheets/<machine>/   PDF générés (versionnés) ; sheets/theory/ pour la théorie
+sheets/<machine>/   PDF générés (versionnés), nommés « [Artiste] Morceau (Rôle).pdf » ; sheets/theory/ pour la théorie
 fonts/              Montserrat (OFL), ne pas modifier
 scripts/build.sh    compile les YAML en PDF (CLI typst, sinon paquet Python `typst`)
 scripts/build-theory.sh  compile theory/*.typ (A4, pas de limite de pages)
@@ -82,7 +82,7 @@ scripts/build-theory.sh  compile theory/*.typ (A4, pas de limite de pages)
 scripts/build.sh                                  # toutes les fiches
 scripts/build.sh sounds/messenger/<slug>.yaml       # une fiche
 # équivalent CLI :
-typst compile --root . --font-path fonts --input son=/sounds/messenger/<slug>.yaml template/sheet.typ sheets/messenger/<slug>.pdf
+typst compile --root . --font-path fonts --input son=/sounds/messenger/<slug>.yaml template/sheet.typ "sheets/messenger/[Artiste] Morceau (Rôle).pdf"
 ```
 
 Dépendances : `typst` (CLI ≥ 0.13, ou `pip install typst`), `poppler-utils` pour la vérification visuelle.

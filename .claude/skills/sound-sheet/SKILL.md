@@ -44,7 +44,7 @@ Dire à l'utilisateur pourquoi cette machine, et les compromis.
 
 ## 5. Écrire le YAML
 
-Fichier `sounds/<machine>/<slug>.yaml` (slug en kebab-case ASCII, ex. `acid-tracks-bass`). Schéma complet : `schema-messenger.md` ou `schema-minilogue-xd.md` (même dossier).
+Fichier `sounds/<machine>/<slug>.yaml` (slug en kebab-case ASCII, ex. `closer-bass`) ; le PDF est nommé automatiquement `[Artiste] Morceau (Rôle).pdf`. Schéma complet : `schema-messenger.md` ou `schema-minilogue-xd.md` (même dossier).
 Règles :
 - Ne mettre dans `params` **que les contrôles qui diffèrent de la valeur neutre** (ils s'affichent en noir, le reste en gris). Mais si un contrôle est important pour le son même à sa valeur neutre (ex. `res_bass: false` voulu), l'écrire quand même pour qu'il ressorte.
 - Messenger : positions en heures (7-17, décimales 0.25 / 0.5). minilogue XD : valeurs écran du manuel (0-1023, cents, %).

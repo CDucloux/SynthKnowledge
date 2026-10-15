@@ -6,7 +6,7 @@
 #import "messenger.typ" as messenger
 #import "minilogue-xd.typ" as minilogue-xd
 
-#let path = sys.inputs.at("son", default: "/sounds/messenger/chicago-house-bass.yaml")
+#let path = sys.inputs.at("son", default: "/sounds/messenger/closer-bass.yaml")
 #let data = yaml(path)
 #data.insert("_fichier", path.trim("/", at: start))
 
