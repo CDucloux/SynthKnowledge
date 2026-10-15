@@ -25,10 +25,10 @@ Requêtes types :
 - Sites utiles : gearspace, reddit r/synthesizers & r/synthrecipes, equipboard, syntorial (preset recipes), soundonsound, musicradar, muzines (archives), forum.moogmusic.com.
 
 Retenir : **synthé d'origine**, forme d'onde, filtre, enveloppe, effets, glide, techniques de jeu. Noter chaque URL utile.
-**Séquence ou ostinato** (bloc `sequence`, Messenger) : relever les notes sur une transcription réelle, jamais de mémoire.
+**Séquence ou ostinato** (bloc `sequence`, Messenger ou minilogue XD) : relever les notes sur une transcription réelle, jamais de mémoire.
 - Prendre la piste qui joue la partie de synthé, pas la basse (leçon Supernature : la tablature basse donnait un autre motif). Sur Songsterr, lister les pistes avec `https://www.songsterr.com/api/songs?pattern=<morceau>` et lire celle qui transcrit le synthé (souvent « Rhythm Guitar » ou « Keys ») ; comparer avec la basse.
 - Repérer la mesure où la partie entre, le tempo, la durée de chaque accord (→ `transpose`).
-- Messenger monophonique : accord → une note (celle du dessus) ; à écrire dans `tracabilite`. Tablature « AI Generated » : le signaler, confiance 2 au plus.
+- Messenger monophonique : accord → une note (celle du dessus) ; à écrire dans `tracabilite`. minilogue XD : accord gardé tel quel (`G3+Bb3+D4`, 4 notes au plus), mais 16 pas seulement et pas de transposition au clavier : une mesure type dans la grille, la suite d'accords dans `jeu` (ARP/LATCH ou un programme par accord). Tablature « AI Generated » : le signaler, confiance 2 au plus.
 
 Ne jamais citer une source qu'on n'a pas réellement trouvée ; ne jamais présenter une hypothèse comme un fait documenté.
 

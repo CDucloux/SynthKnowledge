@@ -377,12 +377,12 @@
 
 /// Encadré « Séquence » : grille des pas (16 par PAGE, comme les boutons PGM 1-16),
 /// réglages de lecture, transpositions au clavier, puis les conseils de jeu.
-/// steps : texte de jetons séparés par des espaces : note (« Bb4 », « C5 », « F#3 »),
-/// « . » = silence, « _ » = liaison avec le pas précédent, « | » = séparateur ignoré.
+/// steps : texte de jetons séparés par des espaces : note (« Bb4 », « C5 », « F#3 ») ou accord
+/// (« G3+Bb3+D4 »), « . » = silence, « _ » = liaison avec le pas précédent, « | » = séparateur ignoré.
 #let seq-tokens(steps) = str(steps).split(regex("\\s+")).filter(t => t != "" and t != "|")
 
-/// Nom de note affiché en solfège français (Do Ré Mi…). L'octave garde la numérotation
-/// du manuel Messenger (C5 = MIDI 72 = 2e Do du clavier) : « Bb4 » → « Si♭ 4 ».
+/// Nom de note affiché en solfège français (Do Ré Mi…), octave en petit : « Bb4 » → « Si♭ 4 ».
+/// La numérotation des octaves est celle du YAML (voir knowledge/machines/<machine>.md).
 #let note-fr(t, size: 6pt) = {
   let m = str(t).match(regex("^([A-G])([b#]?)(-?\\d)$"))
   if m == none { return text(weight: "extrabold", str(t)) }
@@ -393,13 +393,19 @@
     + text(size: size * 0.72, weight: "semibold", fill: luma(110), o))
 }
 
-#let sequence-box(seq, jeu: ()) = {
+/// Grille de pas (16 par rangée) à la place de l'encadré « Jeu ». spec = extra.sequence du
+/// schéma de la machine : réglages de lecture (libellé, unité, valeur neutre), aide à la transposition.
+#let sequence-box(seq, spec, jeu: ()) = {
   let toks = seq-tokens(seq.steps)
   let n = toks.len()
+  // Accord : notes empilées, la plus aiguë en haut ; la case grandit avec le plus gros accord.
+  let chord(t) = t.split("+").rev()
+  let rows = calc.max(1, ..toks.map(t => chord(t).len()))
+  let fs = if rows == 1 { 5.4pt } else { 4.8pt }
   let note-cell(t) = {
     if t == "." { return [] }
     if t == "_" { return align(horizon, line(length: 100%, stroke: 1.4pt + ink)) }
-    place(center + horizon, note-fr(t, size: 5.4pt))
+    place(center + horizon, stack(spacing: 0.45mm, ..chord(t).map(x => note-fr(x, size: fs))))
   }
   // Une rangée = une PAGE de 16 pas ; un petit écart sépare les temps (4 pas).
   let page-row(p) = {
@@ -408,7 +414,7 @@
       let k = p * 16 + i
       let t = if k < n { toks.at(k) } else { none }
       let out = t == none
-      cells.push(box(width: 100%, height: 4.6mm,
+      cells.push(box(width: 100%, height: if rows == 1 { 4.6mm } else { rows * 2.3mm + 1mm },
         fill: if not out and t == "." { soft } else { white },
         stroke: if out { 0.4pt + muted } else if t == "." { 0.4pt + luma(150) } else { 0.7pt + ink },
         inset: (x: if t == "_" { 0mm } else { 0.2mm }),
@@ -420,12 +426,13 @@
       ..cells)
   }
   let kv(k, v) = text(weight: "extrabold", upper(k)) + " " + v
-  let info = (
-    kv("Tempo", str(seq.at("tempo", default: 120)) + " BPM"),
-    kv("Length", str(n)),
-    kv("Gate", str(seq.at("gate", default: 50)) + " %"),
-  )
-  if seq.at("swing", default: 50) != 50 { info.push(kv("Swing", str(seq.swing) + " %")) }
+  let info = ()
+  for (k, f) in spec.fields {
+    let v = seq.at(k, default: f.default)
+    if f.at("hide", default: false) and v == f.default { continue }
+    info.push(kv(f.label, str(v) + f.unit))
+    if k == "tempo" { info.push(kv("Length", str(n))) }
+  }
   textbox("Séquence", icon: icon-steps, {
     set par(leading: 0.45em)
     text(size: 6.2pt, info.join(h(1.2mm) + "·" + h(1.2mm)))
@@ -435,7 +442,7 @@
     let tr = seq.at("transpose", default: ())
     if tr != none and tr.len() > 0 {
       block(below: 1.2mm, par(hanging-indent: 3.4mm, box(width: 3.4mm, text(size: 1.25em, weight: "extrabold", "»"))
-        + text(weight: "extrabold", "TRANSPOSER") + " (touche tenue ; Do5 = 2e Do du clavier) : "
+        + text(weight: "extrabold", "TRANSPOSER") + " (" + spec.at("transpose_hint", default: "touche tenue") + ") : "
         + tr.map(x => note-fr(x.touche, size: 1em) + " " + md(x.texte)).join(" · ")))
     }
     bullets(jeu)
@@ -761,7 +768,7 @@
 
 /// Fiche complète (2 pages paysage) : bandeau, façade, cadre annexe à gauche
 /// (contrôleur, PROGRAM EDIT…), étapes / oreille / jeu, puis page 2.
-#let sheet(machine, data, panel: none, aside: none, envs: ()) = {
+#let sheet(machine, data, panel: none, aside: none, envs: (), seq-spec: none) = {
   show: page-setup.with(fichier: data.at("_fichier", default: none))
   header(machine, data)
   panel
@@ -773,7 +780,7 @@
     stack(spacing: 1.6mm,
       textbox("Ajuster à l'oreille", icon: icon-ear, bullets(data.at("oreille", default: ()))),
       if data.at("sequence", default: none) != none {
-        sequence-box(data.sequence, jeu: data.at("jeu", default: ()))
+        sequence-box(data.sequence, seq-spec, jeu: data.at("jeu", default: ()))
       } else {
         textbox("Jeu", icon: icon-keys, bullets(data.at("jeu", default: ())))
       },

@@ -31,6 +31,15 @@ params:                           # uniquement ce qui diffère du neutre (ou ce 
 settings:                         # optionnel : réglages PROGRAM EDIT (bouton : valeur)
   - {nom: "Amp Velocity (bouton 8)", valeur: "0"}
 
+sequence:                         # optionnel : séquenceur pas à pas (manuel p. 25-27, SEQ EDIT p. 37), remplace l'encadré « Jeu » en page 1
+  tempo: 105                      # BPM (10-300), mettre la même valeur dans params.voice.tempo
+  resolution: 1/16                # Step Resolution : 1/16, 1/8, 1/4, 1/2, 1/1
+  gate: 50                        # Default Gate Time en % ; swing: 0 optionnel (-75 à +75 %)
+  steps: >-                       # 16 pas max ; note (Bb4), accord (G3+Bb3+D4, 4 notes max), « . » silence (REST), « _ » liaison
+    G3 Bb3 D4 G4 Bb4 D5 G3 Bb3 D4 G4 Bb4 D5 G3 Bb3 D4 D4
+# Pas de `transpose` : le XD ne transpose pas la séquence au clavier. Notation standard des octaves (C4 = Do central).
+# Avec une séquence, garder `jeu` à 1-2 puces courtes et `oreille` à 3 puces : la page 1 doit tenir.
+
 etapes: [ ... ]                   # 5-7 étapes
 oreille: [ ... ]                  # 3-4 ajustements symptôme → geste
 jeu: [ ... ]                      # 2-3 conseils

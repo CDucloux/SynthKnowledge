@@ -186,5 +186,6 @@
     panel: panel-overview(params),
     aside: performance(params, data),
     envs: (fe, env("aenv", "Amp env")),
+    seq-spec: schema.extra.sequence,
   )
 }

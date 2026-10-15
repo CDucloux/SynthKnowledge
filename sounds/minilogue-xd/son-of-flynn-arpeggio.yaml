@@ -1,0 +1,100 @@
+synthe: minilogue-xd
+titre: The Son of Flynn Arpeggio
+categorie: arp
+tags: [soundtrack, "2010s", sequence, arpeggio]
+confiance: 1
+reference:
+  artiste: Daft Punk
+  morceau: The Son of Flynn
+  annee: 2010
+  passage: arpège en doubles croches qui ouvre le morceau (TRON Legacy, piste 3)
+  synthe_origine: "non documenté (score électronique et orchestre de 85 musiciens)"
+  synthe_court: non documenté
+resume: >-
+  Le moteur du morceau : un accord de Sol mineur égrené en doubles croches sur deux
+  octaves, son pincé et brillant, qui pose la tension avant l'entrée des cordes.
+  Notes d'après une transcription ; le synthé d'origine n'est pas documenté, le son
+  est reconstitué à l'oreille.
+
+params:
+  voice: {mode: poly, tempo: 105}
+  vco1: {wave: saw, octave: 8}
+  vco2: {wave: saw, octave: 4, pitch: 6}
+  mixer: {vco1: 1023, vco2: 650}
+  filter: {cutoff: 430, resonance: 220, keytrack: 50}
+  amp_eg: {a: 0, d: 430, s: 0, r: 320}
+  eg: {a: 0, d: 330, int: 45, target: cutoff}
+  delay: {on: true, type: Stereo BPM, time: 640, depth: 18}
+  reverb: {on: true, type: Hall, time: 620, depth: 30}
+
+sequence:
+  tempo: 105
+  resolution: 1/16
+  gate: 50
+  steps: >-
+    G3 Bb3 D4 G4 Bb4 D5 G3 Bb3 D4 G4 Bb4 D5 G3 Bb3 D4 D4
+
+settings:
+  - {nom: "EG Velocity (bouton 8)", valeur: "0 : toutes les notes du séquenceur s'ouvrent pareil"}
+
+etapes:
+  - "Programme init (201 à 500), *VOICE MODE* POLY, *TEMPO* 105."
+  - "*VCO 1* : SAW 8'. *VCO 2* : SAW 4', *PITCH* +6 cents. *MIXER* : 1023 et 650."
+  - "*FILTER* : *CUTOFF* 430, *RESONANCE* 220, *KEYTRACK* 50 %."
+  - "*EG* sur CUTOFF : *ATTACK* 0, *DECAY* 330, *EG INT* +45 %."
+  - "*AMP EG* : *ATTACK* 0, *DECAY* 430, *SUSTAIN* 0, *RELEASE* 320."
+  - "*DELAY* Stereo BPM (18 %), *REVERB* Hall (30 %)."
+oreille:
+  - "Trop mou : *DECAY* de l'*EG* vers 250 et *EG INT* vers +55 %."
+  - "Trop agressif : *CUTOFF* vers 350, *VCO 2* vers 450."
+  - "Trop sec face aux cordes : *REVERB* *DEPTH* vers 40 %."
+jeu:
+  - "Saisie : *REC* à l'arrêt, une note par pas (16), *PLAY*. Grille = mesure 1 (Sol mineur)."
+  - "Pour suivre les accords (Ré mineur sur Fa, Do mineur…), mode ARP/LATCH : tenir l'accord ; motif à vérifier à l'oreille."
+
+analyse:
+  - titre: "Les oscillateurs : deux scies à l'octave"
+    texte: >-
+      La *scie* contient toutes les harmoniques : chaque note est riche avant même
+      le filtre. Doubler par une seconde scie une octave plus haut, à peine
+      désaccordée, ajoute de l'éclat et un léger mouvement, sans épaissir le grave
+      que les cordes et la basse occupent déjà.
+  - titre: "Le filtre : un pincement à chaque pas"
+    texte: >-
+      *CUTOFF* assez bas, *EG INT* positif : le filtre s'ouvre à l'attaque puis se
+      referme en quelques dixièmes de seconde. C'est ce « pinc » qui détache les
+      doubles croches. Le *KEYTRACK* à 50 % garde les notes aiguës de l'arpège
+      (jusqu'au Ré 5) aussi brillantes que les graves.
+  - titre: "Les enveloppes : rien ne tient"
+    texte: >-
+      Pas de sustain : chaque note s'éteint d'elle-même, le séquenceur en relance
+      une toutes les doubles croches. Le *RELEASE* court laisse les notes se
+      chevaucher un peu (4 voix), ce qui lie l'arpège comme une seule ligne.
+  - titre: "L'espace et le jeu : une machine qui tourne"
+    texte: >-
+      La transcription [2] donne un motif de six notes (Sol, Si bémol, Ré sur deux
+      octaves) qui boucle sur la mesure de 16 pas, puis change d'accord toutes les
+      deux mesures. La critique cite des arpèges et des cordes « si imbriqués qu'ils
+      finissent les phrases les uns des autres » [1] : delay et reverb placent le
+      synthé dans le même espace que l'orchestre.
+
+tracabilite:
+  - "Documenté [1] : score de Daft Punk mêlant électronique et orchestre de 85 musiciens (AIR Lyndhurst), arrangé par Joseph Trapanese ; aucun synthé précis cité pour ce morceau."
+  - "Transcrit [2] : notes de la mesure 1 (piste « Synth », distincte des pistes cordes et basse), 105 BPM ; tablature de contributeur (2011), non générée par IA."
+  - "Hypothèse [3] : sur un forum, son proche d'un Oberheim SEM ou de deux scies désaccordées filtrées ; avis non vérifiés."
+  - "Reconstitué : formes d'onde, filtre, enveloppes, effets et toutes les valeurs XD, à l'oreille."
+
+sources:
+  - titre: "Tron: Legacy (soundtrack)"
+    site: Wikipedia
+    url: https://en.wikipedia.org/wiki/Tron:_Legacy_(soundtrack)
+    note: crédits, orchestre, citation de la critique AllMusic sur ce morceau
+  - titre: "Daft Punk, The Son Of Flynn, piste Synth"
+    site: Songsterr, tablature de contributeur
+    date: février 2011
+    url: https://www.songsterr.com/a/wsa/daft-punk-the-son-of-flynn-tab-s69803
+    note: mesures 1 à 36, arpège en doubles croches, 105 BPM
+  - titre: "Daft Punk sound"
+    site: GearSpace, forum
+    url: https://gearspace.com/threads/daft-punk-sound.980928/
+    note: page non lisible ici (accès refusé) ; avis relevés dans le résumé du moteur de recherche

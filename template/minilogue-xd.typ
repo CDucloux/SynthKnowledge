@@ -177,5 +177,6 @@
       env-entry("EG → " + upper(val("eg", "target")), nrm(val("eg", "a")), nrm(val("eg", "d")), 0, 0, sustain: false,
         sub: "A " + str(val("eg", "a")) + " · D " + str(val("eg", "d")) + " · INT " + (if ia > 0 { "+" } else { "" }) + str(ia) + " %"),
     ),
+    seq-spec: schema.extra.sequence,
   )
 }

@@ -78,6 +78,15 @@ Sur le panneau : sélecteur DEL/REV/MOD, puis OFF/ON/SELECT (SELECT fait défile
 
 SHIFT + DEPTH (DEL et REV) : balance wet/dry.
 
+## Séquenceur (YAML `sequence`)
+
+Manuel p. 25-27 et SEQ EDIT p. 37 : **16 pas** (Step Length 1-16), **polyphonique** (4 voix, donc 4 notes au plus par pas), une séquence par programme.
+Saisie pas à pas : *REC* à l'arrêt, une note (ou un accord) par pas, *REST* = silence, *REST* avec une touche tenue = liaison ; puis *PLAY*.
+SEQ EDIT (bouton 6) : Step Resolution (1/16 à 1/1), Swing (-75 à +75 %), Default Gate Time (0-100 %) ; BPM au bouton 5 (10-300).
+**Pas de transposition au clavier** pendant la lecture (contrairement au Messenger) : la grille porte une mesure type ; pour suivre une suite d'accords, mode ARP/LATCH (tenir l'accord) ou un programme par accord.
+Motion sequence (4 pistes de potards enregistrées) : pas encore dessinée sur la fiche.
+YAML en notation anglaise, octaves en notation standard (C4 = Do central = MIDI 60), affichage en solfège.
+
 ## PROGRAM EDIT utiles au son (YAML `settings`)
 
 | Bouton | Réglages |

@@ -84,3 +84,15 @@ params:
 
 extra:
   settings: {type: list, item: {nom: str, valeur: str}}
+  # Séquenceur pas à pas (manuel p. 25-27, SEQ EDIT p. 37) : 16 pas, polyphonique (accords « G3+Bb3+D4 »,
+  # 4 notes au plus : 4 voix). Pas de transposition au clavier pendant la lecture : pour suivre des
+  # accords, ARP/LATCH ou plusieurs programmes. Jetons : voir schema/messenger.yaml.
+  sequence:
+    type: sequence
+    max_steps: 16
+    max_notes: 4
+    fields:
+      tempo: {type: number, min: 10, max: 300, default: 120, label: BPM, unit: ""}
+      resolution: {type: str, choices: [1/16, 1/8, 1/4, 1/2, 1/1], default: 1/16, label: Step Resolution, unit: ""}
+      gate: {type: number, min: 0, max: 100, default: 50, label: Gate, unit: " %"}
+      swing: {type: number, min: -75, max: 75, default: 0, label: Swing, unit: " %", hide: true}

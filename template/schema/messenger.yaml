@@ -73,10 +73,17 @@ params:
 extra:
   modulations: {type: list, item: {source: str, dest: str, depth: str}}
   settings: {type: list, item: {nom: str, valeur: str}}
-  # Séquenceur (manuel p. 22-24, SETTINGS 3/7/8) : jusqu'à 64 pas, une séquence par patch.
+  # Séquenceur (manuel p. 22-24, SETTINGS 3/7/8) : jusqu'à 64 pas, une séquence par patch, monophonique.
   # steps : jetons séparés par des espaces : note (Bb4, C5, F#3), « . » silence, « _ » liaison (HOLD), « | » ignoré.
+  # fields : réglages de lecture (default = valeur affichée si absente ; un champ `hide` n'est montré que s'il en diffère).
   sequence:
     type: sequence
     max_steps: 64
-    fields: {tempo: {type: int, min: 30, max: 300}, gate: {type: number, min: 6.25, max: 100}, swing: {type: number, min: 0, max: 100}}
+    max_notes: 1
+    fields:
+      tempo: {type: int, min: 30, max: 300, default: 120, label: Tempo, unit: " BPM"}
+      gate: {type: number, min: 6.25, max: 100, default: 50, label: Gate, unit: " %"}
+      swing: {type: number, min: 0, max: 100, default: 50, label: Swing, unit: " %", hide: true}
+    # Transposition par touche tenue pendant la lecture (manuel p. 24).
     transpose: {touche: str, texte: str}
+    transpose_hint: "touche tenue ; Do5 = 2e Do du clavier"

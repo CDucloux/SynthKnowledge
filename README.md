@@ -8,7 +8,7 @@
 
 <p align="center">
 <!-- compteurs:start -->
-**17 fiches** · 12 groupes · 10 pour le Moog Messenger · 7 pour le Korg minilogue XD
+**18 fiches** · 13 groupes · 10 pour le Moog Messenger · 8 pour le Korg minilogue XD
 <!-- compteurs:end -->
 </p>
 
@@ -36,6 +36,7 @@ Cliquer sur **PDF** pour ouvrir la fiche (lisible sur téléphone, à imprimer e
 | **Cerrone** | Supernature | 1977 | Basse (séquence) | Moog Messenger | ARP Odyssey | ●●○ déduit | [PDF](sheets/messenger/%5BCerrone%5D%20Supernature%20%28S%C3%A9quence%29.pdf) |
 | **Cerrone** | Supernature | 1977 | Lead | Moog Messenger | ARP Odyssey | ●●○ déduit | [PDF](sheets/messenger/%5BCerrone%5D%20Supernature%20%28Lead%29.pdf) |
 | **Cerrone** | Supernature | 1977 | Pad (nappe) | Korg minilogue XD | Polymoog ? | ●○○ approximation | [PDF](sheets/minilogue-xd/%5BCerrone%5D%20Supernature%20%28Nappe%29.pdf) |
+| **Daft Punk** | The Son of Flynn | 2010 | Arpège (arpeggio) | Korg minilogue XD | Non documenté | ●○○ approximation | [PDF](sheets/minilogue-xd/%5BDaft%20Punk%5D%20The%20Son%20of%20Flynn%20%28Arpeggio%29.pdf) |
 | **Depeche Mode** | Precious | 2005 | Lead | Korg minilogue XD | Non documenté | ●○○ approximation | [PDF](sheets/minilogue-xd/%5BDepeche%20Mode%5D%20Precious%20%28Lead%29.pdf) |
 | **Gorillaz** | Stylo | 2010 | Basse | Moog Messenger | Non documenté | ●○○ approximation | [PDF](sheets/messenger/%5BGorillaz%5D%20Stylo%20%28Bass%29.pdf) |
 | **Herbie Hancock** | Chameleon | 1973 | Basse | Moog Messenger | ARP Odyssey | ●●○ déduit | [PDF](sheets/messenger/%5BHerbie%20Hancock%5D%20Chameleon%20%28Bass%29.pdf) |

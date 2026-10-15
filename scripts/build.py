@@ -113,25 +113,33 @@ def check_list_of(where, v, item, errors, required=()):
                 errors.append(f"{where}[{i}] : « {k} » manquant")
 
 
-SEQ_TOKEN = re.compile(r"^(?:[A-G][b#]?-?\d|\.|_)$")
+SEQ_NOTE = re.compile(r"^[A-G][b#]?-?\d$")
 
 
 def check_sequence(where, v, spec, options, errors):
-    """Séquence de pas : jetons note / « . » / « _ », réglages de lecture, transpositions."""
+    """Séquence de pas : jetons note / accord (« G3+Bb3 ») / « . » / « _ », réglages de lecture, transpositions."""
+    allowed = ("steps", *spec["fields"], *(("transpose",) if "transpose" in spec else ()))
     if not isinstance(v, dict):
-        errors.append(f"{where} : doit être un objet {{steps, {', '.join(spec['fields'])}, transpose}}")
+        errors.append(f"{where} : doit être un objet {{{', '.join(allowed)}}}")
         return
     for k in v:
-        if k not in ("steps", "transpose", *spec["fields"]):
-            errors.append(f"{where} : clé inconnue « {k} » (attendu : steps, {', '.join(spec['fields'])}, transpose)")
+        if k not in allowed:
+            errors.append(f"{where} : clé inconnue « {k} » (attendu : {', '.join(allowed)})")
     toks = [t for t in str(v.get("steps", "")).split() if t != "|"]
     if not toks:
         errors.append(f"{where}.steps : manquant ou vide")
     if len(toks) > spec["max_steps"]:
         errors.append(f"{where}.steps : {len(toks)} pas, maximum {spec['max_steps']}")
+    max_notes = spec.get("max_notes", 1)
     for i, t in enumerate(toks, 1):
-        if not SEQ_TOKEN.match(t):
-            errors.append(f"{where}.steps : pas {i} « {t} » invalide (note comme Bb4 / C5 / F#3, « . » silence, « _ » liaison)")
+        notes = t.split("+")
+        if t in (".", "_"):
+            continue
+        if not all(SEQ_NOTE.match(n) for n in notes):
+            errors.append(f"{where}.steps : pas {i} « {t} » invalide (note comme Bb4 / C5 / F#3"
+                          f"{', accord G3+Bb3+D4' if max_notes > 1 else ''}, « . » silence, « _ » liaison)")
+        elif len(notes) > max_notes:
+            errors.append(f"{where}.steps : pas {i} « {t} » : {len(notes)} notes, maximum {max_notes} sur cette machine")
     if toks and toks[0] == "_":
         errors.append(f"{where}.steps : le pas 1 ne peut pas être une liaison")
     for k, fs in spec["fields"].items():
