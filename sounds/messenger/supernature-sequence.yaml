@@ -61,7 +61,7 @@ oreille:
   - "Trop « acid », ça siffle : *RESONANCE* vers 10:30."
   - "Manque de poids : *OSC 2* à fond ; trop grave ou trop aigu : *OCTAVE 1* et *2* d'un cran."
 jeu:
-  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, notes autour du C5 (*ADV* = silence), *RECORD*, *PLAY*. *GATE* : *SETTINGS* 3."
+  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, notes autour du Do5 (*ADV* = silence), *RECORD*, *PLAY*. *GATE* : *SETTINGS* 3."
 
 analyse:
   - titre: "Les oscillateurs : une scie et son ombre"

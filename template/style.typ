@@ -381,16 +381,25 @@
 /// « . » = silence, « _ » = liaison avec le pas précédent, « | » = séparateur ignoré.
 #let seq-tokens(steps) = str(steps).split(regex("\\s+")).filter(t => t != "" and t != "|")
 
+/// Nom de note affiché en solfège français (Do Ré Mi…). L'octave garde la numérotation
+/// du manuel Messenger (C5 = MIDI 72 = 2e Do du clavier) : « Bb4 » → « Si♭ 4 ».
+#let note-fr(t, size: 6pt) = {
+  let m = str(t).match(regex("^([A-G])([b#]?)(-?\\d)$"))
+  if m == none { return text(weight: "extrabold", str(t)) }
+  let (l, acc, o) = m.captures
+  let nom = ("C": "Do", "D": "Ré", "E": "Mi", "F": "Fa", "G": "Sol", "A": "La", "B": "Si").at(l)
+  box(text(size: size, weight: "extrabold", nom)
+    + (if acc != "" { text(size: size * 0.8, weight: "extrabold", if acc == "#" { "#" } else { "b" }) } else { [] })
+    + text(size: size * 0.72, weight: "semibold", fill: luma(110), o))
+}
+
 #let sequence-box(seq, jeu: ()) = {
   let toks = seq-tokens(seq.steps)
   let n = toks.len()
   let note-cell(t) = {
     if t == "." { return [] }
     if t == "_" { return align(horizon, line(length: 100%, stroke: 1.4pt + ink)) }
-    let m = t.match(regex("^([A-G])([b#]?)(-?\\d)$"))
-    let (l, acc, o) = m.captures
-    place(center + horizon, box(text(size: 6.6pt, weight: "extrabold", l + (if acc == "#" { "#" } else if acc == "b" { text(size: 5.2pt, "b") } else { "" }))
-      + text(size: 4.6pt, weight: "semibold", fill: luma(110), o)))
+    place(center + horizon, note-fr(t, size: 5.4pt))
   }
   // Une rangée = une PAGE de 16 pas ; un petit écart sépare les temps (4 pas).
   let page-row(p) = {
@@ -426,8 +435,8 @@
     let tr = seq.at("transpose", default: ())
     if tr != none and tr.len() > 0 {
       block(below: 1.2mm, par(hanging-indent: 3.4mm, box(width: 3.4mm, text(size: 1.25em, weight: "extrabold", "»"))
-        + text(weight: "extrabold", "TRANSPOSER") + " (touche tenue, réf. C5) : "
-        + tr.map(x => text(weight: "extrabold", x.touche) + " " + md(x.texte)).join(" · ")))
+        + text(weight: "extrabold", "TRANSPOSER") + " (touche tenue ; Do5 = 2e Do du clavier) : "
+        + tr.map(x => note-fr(x.touche, size: 1em) + " " + md(x.texte)).join(" · ")))
     }
     bullets(jeu)
   })
