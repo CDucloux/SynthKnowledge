@@ -139,7 +139,7 @@
 
 /// Sélecteur à flèches du Messenger (OCTAVE, WAVESHAPE, DESTINATION, MODE…) :
 /// bouton arrondi avec ▲ / ▼, colonne de LED à droite (texte en petit), libellé dessous.
-#let selector-updown(name, options, value, active: true, width: 14mm) = {
+#let selector-updown(name, options, value, active: true, width: 14mm, zone: none) = {
   let col = if active { ink } else { muted }
   let tri(up) = polygon(
     stroke: (paint: col, thickness: 0.55pt, join: "round"),
@@ -160,7 +160,10 @@
   )
   box(width: width, align(center, stack(
     spacing: 1.2mm,
-    stack(dir: ltr, spacing: 1mm, align(horizon, btn), align(horizon, leds)),
+    {
+      let g = stack(dir: ltr, spacing: 1mm, align(horizon, btn), align(horizon, leds))
+      if zone != none { box(height: zone, align(horizon, g)) } else { g }
+    },
     ctl-label(name, active),
   )))
 }
