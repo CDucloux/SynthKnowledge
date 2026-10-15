@@ -168,6 +168,45 @@
   )))
 }
 
+/// Inverseur à levier du minilogue XD (WAVE, DRIVE, TARGET…) : fente arrondie et
+/// levier à la position choisie (haut / milieu / bas), libellés à droite.
+/// Au-delà de 3 options (OCTAVE, VOICE MODE), levier au centre et colonne de LED.
+#let toggle-xd(name, options, value, active: true, width: 14mm, zone: none) = {
+  let col = if active { ink } else { muted }
+  let n = options.len()
+  let idx = options.position(((k, _)) => k == value)
+  if idx == none { idx = 0 }
+  let leds = n > 3
+  let h = 9mm
+  let lever-pos = if leds { 1 } else { idx }
+  let slot = box(width: 3.4mm, height: h, radius: 1.7mm, stroke: 0.8pt + col, {
+    place(dx: 0.45mm, dy: 0.45mm + lever-pos * (h - 0.9mm - 3.1mm) / 2, box(width: 2.5mm, height: 3.1mm, radius: 1.1mm, fill: col))
+  })
+  let labels = if leds {
+    grid(
+      columns: (1.6mm, auto), column-gutter: 0.6mm, row-gutter: 0.6mm, align: left + horizon,
+      ..options.map(((k, lbl)) => {
+        let on = k == value
+        (circle(radius: 0.62mm, fill: if on { col } else { white }, stroke: 0.5pt + col),
+         box(height: 1.7mm, align(horizon, text(size: 4.3pt, weight: if on { "extrabold" } else { "medium" }, fill: col, lbl))))
+      }).flatten(),
+    )
+  } else {
+    box(height: h, grid(
+      rows: (1fr,) * 3, align: left + horizon,
+      ..options.map(((k, lbl)) => text(size: 4.4pt, weight: if k == value { "extrabold" } else { "medium" }, fill: col, lbl)),
+    ))
+  }
+  box(width: width, align(center, stack(
+    spacing: 1.2mm,
+    {
+      let g = stack(dir: ltr, spacing: 0.9mm, align(horizon, slot), align(horizon, labels))
+      if zone != none { box(height: zone, align(horizon, g)) } else { g }
+    },
+    ctl-label(name, active),
+  )))
+}
+
 /// Bouton poussoir de façade : rectangle aux coins légèrement arrondis (comme sur
 /// le Messenger), plein = engagé, contour = désengagé ; `note` = mention entre
 /// crochets imprimée au-dessus sur le panneau ([F ENV ASSIGN]…).

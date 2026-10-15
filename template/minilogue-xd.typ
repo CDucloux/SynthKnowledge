@@ -48,6 +48,13 @@
   else { str(v) }
 }
 
+// ---------------------------------------------------------------------------
+// Façade en bande unique, fidèle au schéma du panneau (manuel p. 5) :
+// MASTER / VOICE MODE | VCO 1 · VCO 2 · MULTI ENGINE | MIXER | FILTER |
+// AMP EG · EG · LFO | EFFECTS. Trois rangées alignées, inverseurs à levier.
+// ---------------------------------------------------------------------------
+#let ov-title(t) = align(center + top, text(size: 7.2pt, weight: "extrabold", tracking: 0.16em, upper(t)))
+
 #let panel(params) = {
   _check(params)
   let g(sec, k) = {
@@ -55,164 +62,152 @@
     if s == none { s = (:) }
     if k in s { (s.at(k), true) } else { (defaults.at(sec).at(k), false) }
   }
-  let N(name, sec, k, min: 0, max: 1023, bipolar: false, unit: "", label: none, width: 15mm) = {
+  let ks = 7.6mm
+  let kw = 12.8mm
+  let zone = ks + 2 * 2.6mm
+  let N(name, sec, k, min: 0, max: 1023, bipolar: false, unit: "", label: none, hint: none) = {
     let (v, a) = g(sec, k)
-    knob-num(name, v, min: min, max: max, active: a, bipolar: bipolar, unit: unit, label: label, width: width)
+    knob-num(name, v, min: min, max: max, active: a, bipolar: bipolar, unit: unit, label: label, hint: hint, size: ks, width: kw)
   }
-  let S(name, sec, k, opts, width: 16mm) = {
+  let T(name, sec, k, opts, width: 12.8mm) = {
     let (v, a) = g(sec, k)
-    selector(name, opts, v, active: a, width: width)
+    toggle-xd(name, opts, v, active: a, width: width, zone: zone)
   }
   let B(name, sec, k) = {
     let (v, a) = g(sec, k)
-    switch(name, v, active: a, width: 13mm)
+    switch(name, v, active: a, width: kw)
   }
-  let vsep(hh) = box(width: 1.5mm, height: hh, align(center, line(angle: 90deg, length: hh, stroke: 0.5pt + muted)))
+  let rows = (7mm, 21mm, 21mm, 21mm)
+  let sec(title, cols, ..cells) = grid(
+    columns: cols, rows: rows, align: center + top, column-gutter: 0.3mm,
+    grid.cell(colspan: cols.len(), ov-title(title)),
+    ..cells.pos(),
+  )
+  let rlabel(t) = box(height: zone, align(left + horizon, text(size: 5.2pt, weight: "extrabold", tracking: 0.04em, t)))
 
-  set block(spacing: 1.6mm)
-
-  // Rangée 1 : MASTER / VOICE MODE | MIXER | FILTER
-  grid(
-    columns: (1fr, 50mm, 64mm), column-gutter: 1.6mm, rows: 30mm,
-    section("Master · Voice Mode", {
-      let (mode, ma) = g("voice", "mode")
-      let (d, da) = g("voice", "depth")
-      let (lbl, la) = g("voice", "depth_label")
-      let (oct, oa) = g("voice", "octave")
-      row(
-        S("Voice Mode", "voice", "mode", options.voice-mode, width: 19mm),
-        knob-num("V.M. Depth", d, active: da or la, label: depth-display(mode, d, lbl), width: 15mm),
-        N("Portamento", "voice", "portamento", max: 127),
-        {
-          let col = if oa { ink } else { muted }
-          box(width: 14mm, align(center, stack(spacing: 1mm,
-            box(height: 3.6mm, align(horizon, for i in range(-2, 3) {
-              box(circle(radius: 0.9mm, fill: if i == oct { col } else { white }, stroke: 0.6pt + col))
-              h(0.5mm)
-            })),
-            ctl-label("Octave", oa),
-            ctl-value(if oct > 0 { "+" + str(oct) } else { str(oct) }, oa),
-          )))
-        },
-      )
-    }),
-    section("Mixer", row(N("VCO 1", "mixer", "vco1"), N("VCO 2", "mixer", "vco2"), N("Multi", "mixer", "multi"))),
-    section("Filter", row(
-      {
-        let (v, a) = g("filter", "cutoff")
-        knob-num("Cutoff", v, active: a, size: 11mm, width: 17mm)
-      },
-      N("Resonance", "filter", "resonance"),
-      S("Drive", "filter", "drive", options.three, width: 14mm),
-      S("Keytrack", "filter", "keytrack", options.three, width: 14mm),
-    )),
+  // MASTER / VOICE MODE (sans titre sur le panneau)
+  let (mode, ma) = g("voice", "mode")
+  let (d, da) = g("voice", "depth")
+  let (lbl, la) = g("voice", "depth_label")
+  let (oct, oa) = g("voice", "octave")
+  let (tempo, tma) = g("voice", "tempo")
+  let oct-glyph = {
+    let col = if oa { ink } else { muted }
+    box(width: kw, align(center, stack(spacing: 1mm,
+      box(height: zone, align(horizon, box(for i in range(-2, 3) {
+        box(circle(radius: 0.85mm, fill: if i == oct { col } else { white }, stroke: 0.6pt + col))
+        h(0.35mm)
+      }))),
+      ctl-label("Octave", oa),
+      ctl-value(if oct > 0 { "+" + str(oct) } else { str(oct) }, oa),
+    )))
+  }
+  let master = sec("Voice", (kw, 15.5mm),
+    knob-num("Tempo", tempo, min: 56, max: 240, active: tma, label: str(tempo) + " BPM", size: ks, width: kw),
+    N("Portamento", "voice", "portamento", max: 127),
+    oct-glyph,
+    knob-num("V.M. Depth", d, active: da or la, label: depth-display(mode, d, lbl), size: ks, width: 15.5mm),
+    [],
+    T("Voice Mode", "voice", "mode", options.voice-mode, width: 15.5mm),
   )
 
-  // Rangée 2 : VCO 1 | VCO 2
-  grid(
-    columns: (66mm, 1fr), column-gutter: 1.6mm, rows: 30mm,
-    section("VCO 1", row(
-      S("Wave", "vco1", "wave", options.wave, width: 13mm),
-      S("Octave", "vco1", "octave", options.octave, width: 13mm),
-      N("Pitch", "vco1", "pitch", max: 1200, bipolar: true, unit: " C"),
-      N("Shape", "vco1", "shape"),
-    )),
-    section("VCO 2", row(
-      S("Wave", "vco2", "wave", options.wave, width: 13mm),
-      S("Octave", "vco2", "octave", options.octave, width: 13mm),
-      N("Pitch", "vco2", "pitch", max: 1200, bipolar: true, unit: " C"),
-      N("Shape", "vco2", "shape"),
-      stack(spacing: 2.4mm, B("Sync", "vco2", "sync"), B("Ring", "vco2", "ring")),
-      N("Cross Mod", "vco2", "cross_mod", width: 17mm),
-    )),
+  // VCO 1 · VCO 2 · MULTI ENGINE
+  let (t, ta) = g("multi", "type")
+  let vco = sec("VCO 1 · VCO 2 · Multi Engine", (7.5mm, 11mm, 13mm, kw, kw, 13mm),
+    rlabel("VCO 1"), T("Wave", "vco1", "wave", options.wave, width: 11mm), T("Octave", "vco1", "octave", options.octave, width: 13mm),
+    N("Pitch", "vco1", "pitch", max: 1200, bipolar: true, unit: " C"), N("Shape", "vco1", "shape"),
+    box(width: 13mm, height: zone, align(horizon, stack(spacing: 1.6mm, B("Sync", "vco2", "sync"), B("Ring", "vco2", "ring")))),
+    rlabel("VCO 2"), T("Wave", "vco2", "wave", options.wave, width: 11mm), T("Octave", "vco2", "octave", options.octave, width: 13mm),
+    N("Pitch", "vco2", "pitch", max: 1200, bipolar: true, unit: " C"), N("Shape", "vco2", "shape"),
+    N("Cross Mod", "vco2", "cross_mod"),
+    rlabel("MULTI\nENGINE"), T("Engine", "multi", "engine", options.engine, width: 11mm),
+    grid.cell(colspan: 2, box(height: zone, align(horizon, screen("Type", t, active: ta, width: 22mm)))),
+    N("Shape", "multi", "shape"), [],
   )
 
-  // Rangée 3 : MULTI ENGINE | AMP EG | EG
-  grid(
-    columns: (54mm, 1fr, 64mm), column-gutter: 1.6mm, rows: 30mm,
-    section("Multi Engine", {
-      let (t, ta) = g("multi", "type")
-      row(
-        S("Engine", "multi", "engine", options.engine, width: 15mm),
-        screen("Type", t, active: ta, width: 19mm),
-        N("Shape", "multi", "shape"),
-      )
-    }),
-    section("Amp EG", row(
-      N("Attack", "amp_eg", "a"), N("Decay", "amp_eg", "d"), N("Sustain", "amp_eg", "s"), N("Release", "amp_eg", "r"),
-    )),
-    section("EG", row(
-      N("Attack", "eg", "a"), N("Decay", "eg", "d"),
-      N("EG Int", "eg", "int", max: 100, bipolar: true, unit: " %"),
-      S("Target", "eg", "target", options.eg-target, width: 17mm),
-    )),
+  let mix = sec("Mixer", (kw,),
+    N("VCO 1", "mixer", "vco1"), N("VCO 2", "mixer", "vco2"), N("Multi", "mixer", "multi"),
   )
 
-  // Rangée 4 : LFO | EFFECTS
-  grid(
-    columns: (82mm, 1fr), column-gutter: 1.6mm, rows: 41mm,
-    section("LFO", {
-      let (rl, rla) = g("lfo", "rate_label")
-      let (int, ia) = g("lfo", "int")
-      row(
-        S("Wave", "lfo", "wave", options.wave, width: 13mm),
-        S("Mode", "lfo", "mode", options.lfo-mode, width: 15mm),
-        N("Rate", "lfo", "rate", label: if rl != "" { rl } else { none }),
-        knob-num("Int", int, max: 511, active: ia, hint: if int < 0 { "INVERSÉ (SHIFT)" }, width: 15mm),
-        S("Target", "lfo", "target", options.lfo-target, width: 16mm),
-      )
-    }),
-    section("Effects", {
-      let fx(title, sec, show-sub) = {
-        let (on, oa) = g(sec, "on")
-        let (t, ta) = g(sec, "type")
-        let txt = if show-sub {
-          let (st, sa) = g(sec, "subtype")
-          upper(t) + " " + st
-        } else { t }
-        box(width: 32mm, align(center, stack(spacing: 1mm,
-          stack(dir: ltr, spacing: 1.2mm,
-            box(height: 3.6mm, align(horizon, text(size: 5.8pt, weight: "extrabold", tracking: 0.08em, fill: if oa or ta { ink } else { muted }, title))),
-            pill(if on { "ON" } else { "OFF" }, on, active: oa),
-          ),
-          screen("", txt, active: ta, width: 31mm),
-          row(gap: 0mm, N("Time", sec, "time"), N("Depth", sec, "depth", max: 100, unit: " %")),
-        )))
-      }
-      row(gap: 1mm, fx("MOD FX", "mod_fx", true), fx("REVERB", "reverb", false), fx("DELAY", "delay", false))
-    }, inset: 1.4mm),
+  let flt = sec("Filter", (12mm, 12mm),
+    grid.cell(colspan: 2, N("Cutoff", "filter", "cutoff")),
+    grid.cell(colspan: 2, N("Resonance", "filter", "resonance")),
+    T("Drive", "filter", "drive", options.three, width: 12mm), T("Key Track", "filter", "keytrack", options.three, width: 12mm),
   )
+
+  let (rl, rla) = g("lfo", "rate_label")
+  let (int, ia) = g("lfo", "int")
+  let env = sec("Amp EG · EG · LFO", (7mm, kw, kw, kw, kw, kw),
+    rlabel("AMP\nEG"), N("Attack", "amp_eg", "a"), N("Decay", "amp_eg", "d"), N("Sustain", "amp_eg", "s"), N("Release", "amp_eg", "r"), [],
+    rlabel("EG"), N("Attack", "eg", "a"), N("Decay", "eg", "d"), N("EG Int", "eg", "int", max: 100, bipolar: true, unit: " %"),
+    T("Target", "eg", "target", options.eg-target), [],
+    rlabel("LFO"), T("Wave", "lfo", "wave", options.wave), T("Mode", "lfo", "mode", options.lfo-mode),
+    N("Rate", "lfo", "rate", label: if rl != "" { rl } else { none }),
+    knob-num("Int", int, max: 511, active: ia, hint: if int < 0 { "INVERSÉ" }, size: ks, width: kw),
+    T("Target", "lfo", "target", options.lfo-target),
+  )
+
+  let fx(title, sec, show-sub) = {
+    let (on, oa) = g(sec, "on")
+    let (t, ta) = g(sec, "type")
+    let txt = if show-sub { let (st, sa) = g(sec, "subtype"); upper(t) + " " + st } else { t }
+    (
+      box(width: 19mm, height: zone, align(center + horizon, stack(spacing: 1.2mm,
+        stack(dir: ltr, spacing: 1mm,
+          box(height: 3.8mm, align(horizon, text(size: 5.2pt, weight: "extrabold", tracking: 0.06em, fill: if oa or ta { ink } else { muted }, title))),
+          pill(if on { "ON" } else { "OFF" }, on, active: oa)),
+        box(width: 19mm, height: 5mm, radius: 1pt, fill: if ta { ink } else { muted },
+          align(center + horizon, text(size: 5.4pt, weight: "bold", fill: white, txt))),
+      ))),
+      N("Time", sec, "time"),
+      N("Depth", sec, "depth", max: 100, unit: " %"),
+    )
+  }
+  let efx = sec("Effects", (19.5mm, kw, kw),
+    ..fx("MOD FX", "mod_fx", true), ..fx("REVERB", "reverb", false), ..fx("DELAY", "delay", false),
+  )
+
+  block(width: 100%, stroke: 0.8pt + ink, radius: 2pt, inset: (x: 1mm, top: 2.6mm, bottom: 1.4mm), align(center, grid(
+    columns: 6, column-gutter: 0mm, inset: (x: 1.1mm),
+    stroke: (x, y) => if x > 0 { (left: 0.6pt + ink) },
+    master, vco, mix, flt, env, efx,
+  )))
 }
 
 #let program-edit(data) = {
   let settings = data.at("settings", default: ())
   if settings == none { settings = () }
-  if settings.len() == 0 { return }
-  section("Program Edit", {
-    set text(size: 6.4pt)
-    let rows = ()
-    for s in settings {
-      rows.push(text(weight: "extrabold", upper(s.nom)))
-      rows.push(md(s.valeur))
-    }
-    table(
-      columns: (auto, 1fr, auto, 1fr), stroke: none, inset: (x: 1mm, y: 0.8mm),
-      ..rows,
-      ..(if calc.odd(settings.len()) { ([], []) } else { () }),
-    )
-  }, inset: 1.6mm, height: auto)
+  block(width: 100%, stroke: 0.8pt + ink, radius: 2pt, inset: (x: 2mm, top: 1.2mm, bottom: 1.6mm), stack(spacing: 1mm,
+    ov-title("Program Edit"),
+    {
+      set text(size: 6.4pt)
+      if settings.len() == 0 {
+        align(center, box(height: 12mm, align(horizon, text(fill: muted, weight: "semibold", "AUCUN RÉGLAGE PROGRAM EDIT"))))
+      } else {
+        let rows = ()
+        for s in settings {
+          rows.push(text(weight: "extrabold", upper(s.nom)))
+          rows.push(md(s.valeur))
+        }
+        table(
+          columns: (auto, 1fr), stroke: none, inset: (x: 1mm, y: 0.9mm),
+          table.hline(stroke: 0.5pt), ..rows, table.hline(stroke: 0.5pt),
+        )
+      }
+    },
+  ))
 }
 
 #let fiche(data) = {
   let params = data.at("params", default: (:))
   if params == none { params = (:) }
-  show: page-setup.with(fichier: data.at("_fichier", default: none))
+  show: page-setup.with(fichier: data.at("_fichier", default: none), flipped: true)
   header("Korg minilogue XD", data)
   panel(params)
-  block(width: 100%, program-edit(data))
-  v(0.4mm)
+  v(0.6mm)
   grid(
-    columns: (1.25fr, 1fr), column-gutter: 1.6mm,
+    columns: (92mm, 1fr, 1fr), column-gutter: 1.6mm,
+    program-edit(data),
     textbox("Pour l'obtenir", numbered(data.at("etapes", default: ()))),
     stack(spacing: 1.6mm,
       textbox("Ajuster à l'oreille", bullets(data.at("oreille", default: ()))),
@@ -232,5 +227,5 @@
      sub: "A " + str(val("amp_eg", "a")) + " · D " + str(val("amp_eg", "d")) + " · S " + str(val("amp_eg", "s")) + " · R " + str(val("amp_eg", "r"))),
     (titre: "EG → " + upper(eg-target), a: nrm(val("eg", "a")), d: nrm(val("eg", "d")), s: 0, r: 0, sustain: false,
      sub: "A " + str(val("eg", "a")) + " · D " + str(val("eg", "d")) + " · INT " + (if ia > 0 { "+" } else { "" }) + str(ia) + " %"),
-  ))
+  ), landscape: true)
 }
