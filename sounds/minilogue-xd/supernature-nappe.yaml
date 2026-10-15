@@ -1,0 +1,82 @@
+synthe: minilogue-xd
+titre: Supernature Nappe
+categorie: pad
+tags: [disco, "70s", poly, nappe]
+confiance: 1
+reference:
+  artiste: Cerrone
+  morceau: Supernature
+  annee: 1977
+  passage: accords tenus sous le chant
+  synthe_origine: "Polymoog (non confirmé, une source secondaire)"
+  synthe_court: Polymoog ?
+resume: >-
+  La nappe d'accords qui enveloppe le chant. Une source de forum cite un Polymoog
+  sur l'album, sans dire sur quelle partie : la fiche vise un son de cordes
+  synthétiques des années 70, attaque douce, ensemble et un peu de reverb.
+
+params:
+  vco1: {wave: saw, octave: 8}
+  vco2: {wave: sqr, octave: 8, pitch: 7, shape: 300}
+  mixer: {vco1: 900, vco2: 600}
+  filter: {cutoff: 560, resonance: 120, keytrack: 50}
+  amp_eg: {a: 280, d: 600, s: 900, r: 520}
+  eg: {a: 250, d: 700, int: 15, target: cutoff}
+  lfo: {wave: tri, mode: normal, rate: 420, int: 40, target: shape}
+  mod_fx: {on: true, type: Ensemble, subtype: Stereo, time: 450, depth: 55}
+  reverb: {on: true, type: Hall, time: 550, depth: 30}
+
+settings:
+  - {nom: "LFO Target OSC (bouton 7)", valeur: "VCO2 : seule l'impulsion du *VCO 2* bouge"}
+
+etapes:
+  - "Charger un programme init (201 à 500), *VOICE MODE* sur POLY."
+  - "*VCO 1* : SAW 8'. *VCO 2* : SQR 8', *PITCH* +7 cents, *SHAPE* 300 (impulsion)."
+  - "*MIXER* : *VCO 1* 900, *VCO 2* 600."
+  - "*FILTER* : *CUTOFF* 560, *RESONANCE* 120, *KEYTRACK* 50 %. *EG* sur CUTOFF : *ATTACK* 250, *DECAY* 700, *EG INT* +15 %."
+  - "*AMP EG* : *ATTACK* 280, *SUSTAIN* 900, *RELEASE* 520."
+  - "*LFO* TRI, NORMAL, *RATE* 420, *INT* 40 sur SHAPE (bouton 7 : VCO2)."
+  - "*EFFECTS* : MOD sur ENSEMBLE Stereo (ON, 55 %), REV sur Hall (ON, 30 %)."
+oreille:
+  - "Trop brillant, ça couvre la voix : *CUTOFF* vers 450."
+  - "Trop statique : *DEPTH* de l'ensemble vers 70 %."
+  - "Attaque trop lente pour le tempo : *ATTACK* ampli vers 150."
+jeu:
+  - "Accords tenus à trois ou quatre sons, médium, qui changent avec la grille de la séquence."
+  - "Rester discret : la nappe soutient le chant, elle ne le double pas."
+
+analyse:
+  - titre: "Les oscillateurs : scie et impulsion qui bouge"
+    texte: >-
+      Une *scie* pour la brillance des cordes, une *impulsion* légèrement désaccordée
+      dont la largeur varie avec le *LFO* : l'épaisseur change en continu, comme un
+      pupitre de cordes. Le Polymoog cité pour l'album [1] produisait déjà ce genre
+      de son de cordes synthétique.
+  - titre: "Le filtre : sous la voix"
+    texte: >-
+      *CUTOFF* bas et peu de *RESONANCE* : on retire l'aigu pour laisser la place au
+      chant. Le petit *EG INT* positif ajoute un gonflement de brillance au début de
+      l'accord. *KEYTRACK* à 50 % évite que les aigus deviennent criards.
+  - titre: "Les enveloppes : gonfler, tenir, s'effacer"
+    texte: >-
+      L'*AMP EG* monte en un quart de seconde environ : pas d'attaque percussive,
+      l'accord arrive comme un archet. *SUSTAIN* haut pour tenir, *RELEASE* moyen pour
+      lier les changements d'accords.
+  - titre: "L'espace : ensemble et reverb"
+    texte: >-
+      L'*ENSEMBLE* multiplie chaque voix avec de petits décalages de hauteur : c'est
+      lui qui fait « cordes » plus que les oscillateurs. La *REVERB* Hall place la
+      nappe derrière le chant. Ces effets justifient le minilogue XD (polyphonie et
+      effets que le Messenger n'a pas).
+
+tracabilite:
+  - "Rapporté, non vérifié [1] : un message de forum de 2011 cite un ancien fil selon lequel l'album utilise un ARP Odyssey et un Polymoog."
+  - "Non documenté : quelle partie joue le Polymoog, ni si la nappe sous le chant est un synthé ou des cordes réelles."
+  - "Reconstitué : tout le patch, d'après l'archétype « Strings 70s »."
+
+sources:
+  - titre: "Cerrone Supernature, synths used ?"
+    site: Vintage Synth Explorer, forum
+    date: juillet 2011
+    url: https://forum.vintagesynth.com/viewtopic.php?t=63239
+    note: Odyssey et Polymoog, cités de seconde main

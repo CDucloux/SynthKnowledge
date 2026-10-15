@@ -1,0 +1,107 @@
+synthe: messenger
+titre: Supernature Lead
+categorie: lead
+tags: [disco, "70s", lead, arp]
+confiance: 2
+reference:
+  artiste: Cerrone
+  morceau: Supernature
+  annee: 1977
+  passage: la mélodie de synthé hypnotique, entre les couplets
+  synthe_origine: ARP Odyssey
+resume: >-
+  La mélodie étrange et lancinante qui a fait du morceau un classique : un lead
+  d'ARP Odyssey, scie et carré un peu désaccordés, filtre à mi-course avec une
+  pointe de résonance, petit glide et vibrato discret.
+
+params:
+  osc:
+    oct1: 8
+    oct2: 8
+    wave1: 12
+    wave2: 13.25
+    osc2_freq: 12.1
+  mixer:
+    osc1: 17
+    osc2: 14
+  filter:
+    mode: lp4
+    cutoff: 11.5
+    eg_amount: 13.5
+    resonance: 10.5
+    kb_tracking: true
+  fenv: {a: 7.5, d: 12, s: 12, r: 10}
+  aenv: {a: 7.25, d: 12, s: 17, r: 10.5}
+  env: {multi_trig: true}
+  perf:
+    glide: 9
+    lfo2_rate: 13
+    lfo2_dest: [pitch]
+    mod_wheel: 15
+
+settings:
+  - {nom: "Note Priority (CONFIG 2.1)", valeur: "*Low* : priorité grave, comme l'Odyssey"}
+
+etapes:
+  - "Maintenir *PANEL* 1 s (init)."
+  - "*OCTAVE 1* et *2* sur 8'. *WAVESHAPE 1* à midi (scie), *WAVESHAPE 2* ≈ 1:15 (carré)."
+  - "*OSC 2 FREQ* à peine à droite de midi (quelques cents) ; *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 2:00."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 11:30, *RESONANCE* ≈ 10:30, *KB TRACKING* ON, *EG AMOUNT* ≈ 1:30."
+  - "Enveloppe filtre : *ATTACK* ≈ 7:30, *DECAY* midi, *SUSTAIN* midi. Ampli : *SUSTAIN* à fond, *RELEASE* ≈ 10:30."
+  - "*GLIDE* ≈ 9:00, *MULTI-TRIG* ON."
+  - "*LFO 2 RATE* ≈ 1:00 sur PITCH, molette à 15 % pour un vibrato léger."
+oreille:
+  - "Trop sombre, la mélodie ne perce pas : *CUTOFF* vers 12:30."
+  - "Pas assez étrange, trop sage : *RESONANCE* vers midi, *OSC 2 FREQ* un peu plus loin."
+  - "Le glide se voit trop : *GLIDE* vers 8:00 ; on n'en veut qu'une trace."
+  - "Vibrato trop marqué : molette à 0, le remettre seulement sur les notes longues."
+jeu:
+  - "Phrases simples et répétées, en legato dans le médium : c'est la répétition qui hypnotise."
+  - "Monter un peu la molette sur les notes tenues de fin de phrase."
+
+analyse:
+  - titre: "Les oscillateurs : deux formes qui battent"
+    texte: >-
+      Le lead est attribué à l'ARP Odyssey [1][2], synthé à deux oscillateurs qui
+      permet de mélanger scie et carré. Ici la *scie* donne la brillance, le *carré*
+      ajoute un creux boisé, et le léger écart d'*OSC 2 FREQ* fait onduler l'ensemble :
+      d'où le caractère un peu inquiétant décrit par la critique [3].
+  - titre: "Le filtre : à mi-course"
+    texte: >-
+      *CUTOFF* au milieu : assez d'harmoniques pour que la mélodie chante, pas assez
+      pour qu'elle crie. Une *RESONANCE* modérée met un accent nasal autour de la
+      coupure. *KB TRACKING* ON garde le même timbre de bas en haut de la phrase.
+  - titre: "Les enveloppes : une note qui parle"
+    texte: >-
+      L'enveloppe de filtre monte vite puis redescend vers un sustain moyen : chaque
+      note s'ouvre en « oua » puis se stabilise. L'ampli reste plein tant que la
+      touche est tenue, avec un *RELEASE* court qui évite les coupures sèches entre
+      les phrases.
+  - titre: "Le mouvement : glide et vibrato"
+    texte: >-
+      Un *GLIDE* court relie les notes sans devenir un effet. Le vibrato du *LFO 2*
+      à la molette donne de la vie aux tenues. Le morceau mise sur la répétition et
+      la mécanique [2] : peu de geste, mais régulier. Pas d'effet indispensable ;
+      un écho externe léger peut aider en mix.
+
+tracabilite:
+  - "Documenté [1] : ARP Odyssey reçu de la marque pendant l'enregistrement de l'album."
+  - "Documenté [2] : le lead iconique est attribué à l'ARP Odyssey."
+  - "Description critique [3] : lead « eerie », mécanique, sur une batterie décalée."
+  - "Reconstitué : mélange d'ondes, filtre, enveloppes, glide et vibrato, à l'oreille."
+
+sources:
+  - titre: "Marc Cerrone, Supernature"
+    site: Electronic Sound, Landmarks
+    url: https://www.electronicsound.co.uk/features/landmarks/marc-cerrone/
+    note: récit de Cerrone (ARP Odyssey)
+  - titre: "Cerrone On Making The Disco Synth Classic, Supernature"
+    site: Synthtopia
+    date: février 2020
+    url: https://www.synthtopia.com/content/2020/02/08/cerrone-on-making-the-disco-synth-classic-supernature/
+    note: lead créé sur ARP Odyssey
+  - titre: "Supernature : Disco's Sci-Fi Masterpiece"
+    site: Keith Christiansen, Substack
+    date: novembre 2024
+    url: https://keithchristiansen.substack.com/p/supernature-discos-sci-fi-masterpiece
+    note: description du lead et de l'ambiance

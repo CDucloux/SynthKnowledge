@@ -1,0 +1,106 @@
+synthe: messenger
+titre: Supernature Séquence
+categorie: basse
+tags: [disco, "70s", sequence, staccato]
+confiance: 2
+reference:
+  artiste: Cerrone
+  morceau: Supernature
+  annee: 1977
+  passage: ostinato pulsé de l'intro, qui porte tout le morceau
+  synthe_origine: "ARP Odyssey (motif joué note à note, selon Cerrone)"
+  synthe_court: ARP Odyssey
+resume: >-
+  Le moteur du morceau : une note qui pulse en continu, puis un petit motif qui
+  change avec l'accord. Un son court et nerveux d'ARP Odyssey, filtre fermé qui
+  claque à chaque note grâce à une enveloppe brève et un peu de résonance.
+
+params:
+  osc:
+    oct1: 8
+    oct2: 16
+    wave1: 12
+    wave2: 13.25
+  mixer:
+    osc1: 17
+    osc2: 13
+  filter:
+    mode: lp4
+    cutoff: 9.5
+    eg_amount: 14.5
+    resonance: 12
+    res_bass: false
+    kb_tracking: true
+  fenv: {a: 7, d: 10, s: 7, r: 9}
+  aenv: {a: 7, d: 11, s: 7, r: 9.5}
+  env: {multi_trig: true, f_vel: true}
+
+settings:
+  - {nom: "Note Priority (CONFIG 2.1)", valeur: "*Low* : priorité grave, comme l'Odyssey"}
+
+etapes:
+  - "Maintenir *PANEL* 1 s (init)."
+  - "*OCTAVE 1* sur 8', *WAVESHAPE 1* à midi (scie). *OCTAVE 2* sur 16', *WAVESHAPE 2* ≈ 1:15 (carré)."
+  - "*MIXER* : *OSC 1* à fond, *OSC 2* ≈ 1:00 pour asseoir le grave."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:30, *RESONANCE* midi, *RES BASS* OFF, *KB TRACKING* ON."
+  - "*EG AMOUNT* ≈ 2:30. Enveloppe filtre : *DECAY* ≈ 10:00, *SUSTAIN* à 0, *RELEASE* court."
+  - "Enveloppe ampli : *DECAY* ≈ 11:00, *SUSTAIN* à 0 : chaque note s'éteint seule."
+  - "*MULTI-TRIG* ON (chaque note relance les enveloppes) et *F ENV VEL* ON."
+oreille:
+  - "Trop mou, pas assez de claquement : *DECAY* du filtre vers 9:30, *EG AMOUNT* vers 3:00."
+  - "Trop « acid », ça siffle : *RESONANCE* vers 10:30."
+  - "Notes qui bavent l'une sur l'autre : *DECAY* ampli vers 10:00."
+  - "Manque de poids : *OSC 2* à fond, ou *KB OCTAVE* -1."
+jeu:
+  - "Commencer sur une seule note répétée en croches régulières, puis passer au motif quand l'accord change."
+  - "Jouer détaché : *MULTI-TRIG* relance l'attaque même si les notes se touchent."
+  - "Variante machine : l'arpégiateur du Messenger (*ARP*, *SETTINGS* 1 à 3) avec un *GATE* court."
+
+analyse:
+  - titre: "Les oscillateurs : une scie et son ombre"
+    texte: >-
+      Cerrone a trouvé ce motif sur l'ARP Odyssey qu'ARP venait de lui offrir [1].
+      La *scie* en 8' donne toutes les harmoniques, de quoi faire mordre le filtre ;
+      le *carré* une octave plus bas n'ajoute que des harmoniques impaires et
+      remplit le grave sans brouiller l'attaque.
+  - titre: "Le filtre : fermé, il s'ouvre à chaque note"
+    texte: >-
+      *CUTOFF* bas : au repos, le son est sourd. L'*EG AMOUNT* fort ouvre le filtre
+      d'un coup puis il se referme en 100 à 200 ms : c'est le « dut » de Cerrone [1].
+      Une *RESONANCE* moyenne accentue la fréquence de coupure au passage^[La
+      résonance renforce les harmoniques proches de la coupure : quand celle-ci
+      descend, on entend une petite « voyelle » qui glisse.] sans aller jusqu'au
+      sifflement acid.
+  - titre: "Les enveloppes : tout en decay"
+    texte: >-
+      Les deux courbes n'ont ni attaque ni sustain : seul le *DECAY* compte. Le
+      filtre se referme plus vite que le volume, si bien que la note commence
+      brillante et finit sourde. *MULTI-TRIG* reproduit l'Odyssey, qui relance ses
+      enveloppes à chaque note : indispensable pour un motif rapide.
+  - titre: "Le jeu : une machine jouée à la main"
+    texte: >-
+      D'après le récit de Cerrone, la batterie n'était pas calée sur une horloge :
+      il aurait enregistré le motif note à note, à demi vitesse, pour le synchroniser
+      ensuite [2]. Le motif est parti d'une seule note répétée, puis a évolué avec
+      les accords [1][2]. Pas d'effet nécessaire : la piste est sèche et mécanique.
+
+tracabilite:
+  - "Documenté [1] : ARP Odyssey offert par ARP pendant les sessions à Trident (Londres) ; le motif est le premier son trouvé, il change avec l'accord, puis basse et batterie ajoutées."
+  - "Récit rapporté [2] : motif d'abord sur une note, enregistré note à note à demi vitesse (source secondaire, d'après une interview vidéo)."
+  - "Contexte [3] : l'Odyssey est présenté comme le synthé du morceau."
+  - "Reconstitué : forme d'onde, filtre, enveloppes et toutes les positions Messenger, à l'oreille."
+
+sources:
+  - titre: "Marc Cerrone, Supernature"
+    site: Electronic Sound, Landmarks
+    url: https://www.electronicsound.co.uk/features/landmarks/marc-cerrone/
+    note: récit de Cerrone (ARP Odyssey, séquence, Trident)
+  - titre: "How Cerrone recorded his hit track Supernature"
+    site: Radio Ronix
+    url: https://radioronix.ru/en/cerrone-supernature/
+    note: motif joué à demi vitesse, parti d'une seule note
+  - titre: "Cerrone on how disco classic Supernature was made"
+    site: FACT
+    date: février 2020
+    url: https://www.factmag.com/2020/02/07/cerrone-supernature/
+    note: interview vidéo dans le studio de Cerrone
