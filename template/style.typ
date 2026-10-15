@@ -148,14 +148,16 @@
   let btn = box(width: 4.6mm, height: 9mm, radius: 1.1mm, stroke: 0.8pt + col, inset: 0.55mm,
     box(width: 100%, height: 100%, radius: 0.7mm, stroke: 0.5pt + col,
       align(center + horizon, stack(spacing: 1.5mm, tri(true), tri(false)))))
-  let leds = stack(spacing: 0.75mm, ..options.map(((k, lbl)) => {
-    let on = k == value
-    box(height: 1.8mm, {
-      box(baseline: 0.05mm, circle(radius: 0.62mm, fill: if on { col } else { white }, stroke: 0.5pt + col))
-      h(0.7mm)
-      text(size: 4.4pt, weight: if on { "extrabold" } else { "medium" }, fill: col, lbl)
-    })
-  }))
+  let leds = grid(
+    columns: (1.6mm, auto), column-gutter: 0.6mm, row-gutter: 0.75mm, align: left + horizon,
+    ..options.map(((k, lbl)) => {
+      let on = k == value
+      (
+        circle(radius: 0.62mm, fill: if on { col } else { white }, stroke: 0.5pt + col),
+        box(height: 1.8mm, align(horizon, text(size: 4.4pt, weight: if on { "extrabold" } else { "medium" }, fill: col, lbl))),
+      )
+    }).flatten(),
+  )
   box(width: width, align(center, stack(
     spacing: 1.2mm,
     stack(dir: ltr, spacing: 1mm, align(horizon, btn), align(horizon, leds)),
