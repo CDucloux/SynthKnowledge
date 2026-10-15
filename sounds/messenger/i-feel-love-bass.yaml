@@ -8,7 +8,7 @@ reference:
   morceau: I Feel Love
   annee: 1977
   passage: ostinato de basse séquencé, tout le morceau
-  synthe_origine: "Moog modulaire d'Eberhard Schoener, programmé par Robby Wedel"
+  synthe_origine: "Moog modulaire d'Eberhard Schoener : ligne de Giorgio Moroder, Moog installé et synchronisé par Robby Wedel"
   synthe_court: Moog modulaire
 resume: >-
   La basse qui a inventé la dance électronique : un motif Do, Do, Sol, Si bémol
@@ -96,7 +96,7 @@ analyse:
       régler l'écho à une double croche (≈ 117 ms à 128 BPM).
 
 tracabilite:
-  - "Documenté [1][2] : Moog modulaire de Schoener (Wedel), synchronisé sur la bande, branché en direct ; chaque note doublée par un écho, direct à gauche, écho à droite."
+  - "Documenté [1][2] : basse imaginée et enregistrée par Moroder sur le Moog de Schoener, que Wedel installe et synchronise sur la bande, branché en direct ; chaque note doublée par un écho, direct à gauche, écho à droite."
   - "Transcrit [3][6] : Do, Do, Sol, Si bémol en croches (130 BPM), en doubles croches avec l'écho (128 BPM) ; boucle Do, Mi bémol, Fa, Sol, une mesure chacun (mesures 41 à 44) ; l'intro reste sur Do."
   - "Recette [4][5] : deux scies dont une en 32', passe-bas, enveloppes sans sustain. Reconstitué : positions Messenger, écho écrit en notes."
 
