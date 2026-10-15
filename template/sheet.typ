@@ -9,6 +9,8 @@
 #let path = sys.inputs.at("son", default: "/sounds/messenger/closer-bass.yaml")
 #let data = yaml(path)
 #data.insert("_fichier", path.trim("/", at: start))
+// Orientation de la page 1 : YAML `orientation: paysage`, ou --input orientation=paysage (prioritaire).
+#data.insert("_orientation", sys.inputs.at("orientation", default: data.at("orientation", default: "portrait")))
 
 #let machines = (
   messenger: messenger.fiche,

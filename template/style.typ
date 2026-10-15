@@ -256,8 +256,8 @@
 }
 
 /// Mise en page générique d'une fiche (pied de page, styles des liens et notes).
-#let page-setup(body, fichier: none) = {
-  set page(paper: "a4", margin: (x: 12mm, top: 10mm, bottom: 15mm), footer-descent: 4.5mm, footer: context {
+#let page-setup(body, fichier: none, flipped: false) = {
+  set page(paper: "a4", flipped: flipped, margin: (x: 12mm, top: 10mm, bottom: 15mm), footer-descent: 4.5mm, footer: context {
     set text(size: 5.8pt, fill: luma(90))
     line(length: 100%, stroke: 0.5pt + muted)
     v(-1.2mm)
@@ -368,7 +368,8 @@
 /// d'où viennent les infos (confiance, documenté / reconstitué, sources).
 /// envs : liste de (titre, a, d, s, r, sub, sustain) calculée par la façade.
 #let sources-page(machine, data, envs: ()) = {
-  pagebreak()
+  set page(flipped: false)
+  pagebreak(weak: true)
   let ref = data.at("reference", default: (:))
   if ref == none { ref = (:) }
   let n = calc.clamp(data.at("confiance", default: 1), 1, 3)

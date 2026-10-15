@@ -157,8 +157,87 @@
   )
 }
 
+
+// ---------------------------------------------------------------------------
+// Vue paysage : bande de façade fidèle à l'overview du manuel (p. 6) :
+// LFO 1 | OSCILLATORS | MIXER | FILTER | ENVELOPES, deux rangées de potards
+// puis la rangée de boutons, titres centrés, séparateurs verticaux fins.
+// ---------------------------------------------------------------------------
+#let ov-title(t) = align(center + bottom, text(size: 7.2pt, weight: "extrabold", tracking: 0.16em, upper(t)))
+
+#let panel-overview(params) = {
+  _check(params)
+  let g(sec, k) = {
+    let s = params.at(sec, default: (:))
+    if s == none { s = (:) }
+    if k in s { (s.at(k), true) } else { (defaults.at(sec).at(k), false) }
+  }
+  let kw = 14.6mm
+  let K(name, sec, k, bipolar: false, hint: none) = {
+    let (v, a) = g(sec, k)
+    knob(name, v, active: a, bipolar: bipolar, hint: if hint != none { hint(v) }, width: kw)
+  }
+  let S(name, sec, k, opts, width: 20mm) = {
+    let (v, a) = g(sec, k)
+    selector(name, opts, v, active: a, width: width)
+  }
+  let B(name, sec, k) = {
+    let (v, a) = g(sec, k)
+    switch(name, v, active: a, width: kw)
+  }
+  let num(n) = text(size: 13pt, weight: "extrabold", n)
+  let rows = (5.5mm, 21.5mm, 21.5mm, 15mm)
+  let sec(title, cols, ..cells) = grid(
+    columns: cols, rows: rows, align: center + horizon, column-gutter: 0.4mm,
+    grid.cell(colspan: cols.len(), ov-title(title)),
+    ..cells.pos(),
+  )
+  let elabel(t) = align(left + horizon, text(size: 5.4pt, weight: "extrabold", tracking: 0.04em, t))
+
+  let lfo = sec("LFO 1", (kw, 17mm),
+    K("LFO 1 Rate", "lfo1", "rate"), S("Waveshape", "lfo1", "wave", options.lfo1-wave, width: 17mm),
+    K("LFO 1 Depth", "lfo1", "depth", bipolar: true), S("Destination", "lfo1", "dest", options.lfo1-dest, width: 22mm),
+    B("Sync", "lfo1", "sync"), B("KB Reset", "lfo1", "kb_reset"),
+  )
+  let osc = sec("Oscillators", (13mm, 4mm, kw, kw, kw),
+    S("Octave", "osc", "oct1", options.octave, width: 13mm), num("1"),
+    K("Tune", "osc", "tune", bipolar: true), K("Sub Wave", "osc", "sub_wave", hint: sub-hint), K("Waveshape", "osc", "wave1", hint: wave-hint),
+    S("Octave", "osc", "oct2", options.octave, width: 13mm), num("2"),
+    K("Osc 2 Freq", "osc", "osc2_freq", bipolar: true), K("Mod Amount", "osc", "mod_amount", bipolar: true), K("Waveshape", "osc", "wave2", hint: wave-hint),
+    [], [], B("Sync 1→2", "osc", "sync"), grid.cell(colspan: 2, S("Mod Destination", "osc", "mod_dest", options.mod-dest, width: 27mm)),
+  )
+  let mix = sec("Mixer", (kw, kw),
+    K("Osc 1", "mixer", "osc1"), K("Sub Osc", "mixer", "sub"),
+    K("Osc 2", "mixer", "osc2"), K("Noise", "mixer", "noise"),
+    [], [],
+  )
+  let cut = {
+    let (v, a) = g("filter", "cutoff")
+    box(width: 23mm, align(center, stack(spacing: 0.9mm,
+      knob-glyph(v, active: a, size: 15mm),
+      ctl-label("Cutoff", a),
+      ctl-value(clock-label(v), a),
+    )))
+  }
+  let flt = sec("Filter", (kw, 23mm, kw),
+    K("FB / Ext In", "filter", "fb_ext"), grid.cell(rowspan: 2, cut), K("EG Amount", "filter", "eg_amount", bipolar: true),
+    K("Osc 2 → Cutoff", "filter", "osc2_cutoff"), K("Resonance", "filter", "resonance"),
+    B("KB Tracking", "filter", "kb_tracking"), S("Mode", "filter", "mode", options.filter-mode, width: 22mm), B("Res Bass", "filter", "res_bass"),
+  )
+  let env = sec("Envelopes", (13mm, kw, kw, kw, kw),
+    elabel("FILTER\nENVELOPE"), K("Attack", "fenv", "a"), K("Decay", "fenv", "d"), K("Sustain", "fenv", "s"), K("Release", "fenv", "r"),
+    elabel("AMPLIFIER\nENVELOPE"), K("Attack", "aenv", "a"), K("Decay", "aenv", "d"), K("Sustain", "aenv", "s"), K("Release", "aenv", "r"),
+    B("Multi-Trig", "env", "multi_trig"), B("F Env Vel", "env", "f_vel"), B("F Env Loop", "env", "f_loop"), B("A Env Vel", "env", "a_vel"), B("A Env Loop", "env", "a_loop"),
+  )
+  block(width: 100%, stroke: 0.8pt + ink, radius: 2pt, inset: (x: 1.5mm, top: 1.2mm, bottom: 2mm), align(center, grid(
+    columns: 5, column-gutter: 0mm, inset: (x: 1.6mm),
+    stroke: (x, y) => if x > 0 { (left: 0.6pt + ink) },
+    lfo, osc, mix, flt, env,
+  )))
+}
+
 // Contrôleur main gauche + modulations assignées / réglages SETTINGS.
-#let performance(params, data) = {
+#let performance(params, data, overview: false) = {
   let p = params.at("perf", default: (:))
   if p == none { p = (:) }
   let g(k) = if k in p { (p.at(k), true) } else { (defaults.perf.at(k), false) }
@@ -198,8 +277,16 @@
   if assigns == none { assigns = () }
   if settings == none { settings = () }
 
-  grid(
-    columns: (92mm, 1fr), column-gutter: 1.6mm, rows: 29mm,
+  let section = if overview {
+    (title, body) => block(width: 100%, stroke: 0.8pt + ink, radius: 2pt, inset: (x: 2mm, top: 1.2mm, bottom: 1.6mm),
+      stack(spacing: 1mm, ov-title(title), body))
+  } else { section }
+  let lay = if overview {
+    (a, b) => stack(spacing: 1.6mm, a, b)
+  } else {
+    (a, b) => grid(columns: (92mm, 1fr), column-gutter: 1.6mm, rows: 29mm, a, b)
+  }
+  lay(
     section("Left-Hand Controller", {
       v(0.6mm)
       row(
@@ -240,19 +327,34 @@
 #let fiche(data) = {
   let params = data.at("params", default: (:))
   if params == none { params = (:) }
-  show: page-setup.with(fichier: data.at("_fichier", default: none))
+  let paysage = data.at("_orientation", default: "portrait") == "paysage"
+  show: page-setup.with(fichier: data.at("_fichier", default: none), flipped: paysage)
   header("Moog Messenger", data)
-  panel(params)
-  performance(params, data)
-  v(0.4mm)
-  grid(
-    columns: (1.25fr, 1fr), column-gutter: 1.6mm,
-    textbox("Pour l'obtenir", numbered(data.at("etapes", default: ()))),
-    stack(spacing: 1.6mm,
-      textbox("Ajuster à l'oreille", bullets(data.at("oreille", default: ()))),
-      textbox("Jeu", bullets(data.at("jeu", default: ()))),
-    ),
-  )
+  if paysage {
+    panel-overview(params)
+    v(0.6mm)
+    grid(
+      columns: (92mm, 1fr, 1fr), column-gutter: 1.6mm,
+      performance(params, data, overview: true),
+      textbox("Pour l'obtenir", numbered(data.at("etapes", default: ()))),
+      stack(spacing: 1.6mm,
+        textbox("Ajuster à l'oreille", bullets(data.at("oreille", default: ()))),
+        textbox("Jeu", bullets(data.at("jeu", default: ()))),
+      ),
+    )
+  } else {
+    panel(params)
+    performance(params, data)
+    v(0.4mm)
+    grid(
+      columns: (1.25fr, 1fr), column-gutter: 1.6mm,
+      textbox("Pour l'obtenir", numbered(data.at("etapes", default: ()))),
+      stack(spacing: 1.6mm,
+        textbox("Ajuster à l'oreille", bullets(data.at("oreille", default: ()))),
+        textbox("Jeu", bullets(data.at("jeu", default: ()))),
+      ),
+    )
+  }
   let val(sec, k) = {
     let x = params.at(sec, default: (:))
     if x == none { x = (:) }
