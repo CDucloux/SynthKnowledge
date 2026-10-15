@@ -116,7 +116,20 @@
   let vco = sec("VCO 1 · VCO 2 · Multi Engine", (7.5mm, 11mm, 13mm, kw, kw, 13mm),
     rlabel("VCO 1"), T("Wave", "vco1", "wave", options.wave, width: 11mm), T("Octave", "vco1", "octave", options.octave, width: 13mm),
     N("Pitch", "vco1", "pitch", max: 1200, bipolar: true, unit: " C"), N("Shape", "vco1", "shape"),
-    box(width: 13mm, height: zone, align(horizon, stack(spacing: 1.6mm, B("Sync", "vco2", "sync"), B("Ring", "vco2", "ring")))),
+    {
+      // SYNC et RING : deux leviers ON / OFF côte à côte, comme sur le panneau.
+      let lever(name, k) = {
+        let (v, a) = g("vco2", k)
+        let col = if a { ink } else { muted }
+        box(width: 6.4mm, align(center, stack(spacing: 1.2mm,
+          box(height: zone, align(horizon, box(width: 3.4mm, height: 9mm, radius: 1.7mm, stroke: 0.8pt + col,
+            place(dx: 0.45mm, dy: if v { 0.45mm } else { 9mm - 0.45mm - 3.1mm }, box(width: 2.5mm, height: 3.1mm, radius: 1.1mm, fill: col))))),
+          ctl-label(name, a),
+          ctl-value(if v { "ON" } else { "OFF" }, a),
+        )))
+      }
+      stack(dir: ltr, spacing: 0.2mm, lever("Sync", "sync"), lever("Ring", "ring"))
+    },
     rlabel("VCO 2"), T("Wave", "vco2", "wave", options.wave, width: 11mm), T("Octave", "vco2", "octave", options.octave, width: 13mm),
     N("Pitch", "vco2", "pitch", max: 1200, bipolar: true, unit: " C"), N("Shape", "vco2", "shape"),
     N("Cross Mod", "vco2", "cross_mod"),
@@ -150,14 +163,19 @@
   let fx(title, sec, show-sub) = {
     let (on, oa) = g(sec, "on")
     let (t, ta) = g(sec, "type")
-    let txt = if show-sub { let (st, sa) = g(sec, "subtype"); upper(t) + " " + st } else { t }
+    let st = if show-sub { g(sec, "subtype").at(0) } else { none }
+    let act = oa or ta
+    let col = if act { ink } else { muted }
     (
-      box(width: 19mm, height: zone, align(center + horizon, stack(spacing: 1.2mm,
-        stack(dir: ltr, spacing: 1mm,
-          box(height: 3.8mm, align(horizon, text(size: 5.2pt, weight: "extrabold", tracking: 0.06em, fill: if oa or ta { ink } else { muted }, title))),
-          pill(if on { "ON" } else { "OFF" }, on, active: oa)),
-        box(width: 19mm, height: 5mm, radius: 1pt, fill: if ta { ink } else { muted },
-          align(center + horizon, text(size: 5.4pt, weight: "bold", fill: white, txt))),
+      box(width: 19mm, height: zone, align(center + horizon, stack(spacing: 1.3mm,
+        box(width: 19mm, {
+          box(baseline: 0.15mm, circle(radius: 0.8mm, fill: if on { col } else { white }, stroke: 0.6pt + col))
+          h(1mm)
+          text(size: 5.4pt, weight: "extrabold", tracking: 0.06em, fill: col, title)
+          h(1fr)
+          text(size: 4.8pt, weight: "bold", fill: col, if on { "ON" } else { "OFF" })
+        }),
+        screen("", t, active: act, width: 19mm, height: if show-sub { 7.4mm } else { 6.4mm }, sub: if show-sub { st }),
       ))),
       N("Time", sec, "time"),
       N("Depth", sec, "depth", max: 100, unit: " %"),
@@ -201,7 +219,7 @@
 #let fiche(data) = {
   let params = data.at("params", default: (:))
   if params == none { params = (:) }
-  show: page-setup.with(fichier: data.at("_fichier", default: none), flipped: true)
+  show: page-setup.with(fichier: data.at("_fichier", default: none))
   header("Korg minilogue XD", data)
   panel(params)
   v(0.6mm)
@@ -227,5 +245,5 @@
      sub: "A " + str(val("amp_eg", "a")) + " · D " + str(val("amp_eg", "d")) + " · S " + str(val("amp_eg", "s")) + " · R " + str(val("amp_eg", "r"))),
     (titre: "EG → " + upper(eg-target), a: nrm(val("eg", "a")), d: nrm(val("eg", "d")), s: 0, r: 0, sustain: false,
      sub: "A " + str(val("eg", "a")) + " · D " + str(val("eg", "d")) + " · INT " + (if ia > 0 { "+" } else { "" }) + str(ia) + " %"),
-  ), landscape: true)
+  ))
 }

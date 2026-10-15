@@ -222,7 +222,7 @@
 #let fiche(data) = {
   let params = data.at("params", default: (:))
   if params == none { params = (:) }
-  show: page-setup.with(fichier: data.at("_fichier", default: none), flipped: true)
+  show: page-setup.with(fichier: data.at("_fichier", default: none))
   header("Moog Messenger", data)
   panel-overview(params)
   v(0.6mm)
@@ -247,5 +247,5 @@
   )
   let fe = env("fenv", "Filter env")
   if val("filter", "eg_amount") == 12 { fe.sub = "sans effet ici : EG AMOUNT à midi" }
-  sources-page("Moog Messenger", data, envs: (fe, env("aenv", "Amp env")), landscape: true)
+  sources-page("Moog Messenger", data, envs: (fe, env("aenv", "Amp env")))
 }
