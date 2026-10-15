@@ -67,5 +67,5 @@ scripts/build.sh sounds/<machine>/<slug>.yaml
 
 ## 7. Livrer
 
-- Commit sur `main` puis `git push origin main` (pas de branche, pas de PR). Commit du YAML **et** du PDF (les PDF sont versionnés pour être consultables depuis le téléphone).
+- Commit sur `main` puis `git push origin main` (pas de branche, pas de PR). Commit du YAML, du PDF **et du README.md** (son tableau est régénéré par `build.sh`) (les PDF sont versionnés pour être consultables depuis le téléphone).
 - Répondre à l'utilisateur : machine choisie, niveau de confiance et pourquoi, sources, compromis éventuels (effets absents, polyphonie), et l'inviter à faire un retour après essai (→ skill `adjust-sheet`). Pas de tiret quadratin dans les textes.

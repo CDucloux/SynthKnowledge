@@ -9,7 +9,7 @@ titre: Nom Du Son
 categorie: cuivre
 tags: [poly, "80s"]
 confiance: 2
-reference: {artiste: ..., morceau: ..., annee: 1984, passage: ..., synthe_origine: ...}
+reference: {artiste: ..., morceau: ..., annee: 1984, passage: ..., synthe_origine: ..., synthe_court: ...}   # synthe_court optionnel (tableau du README)
 resume: >-
   2-3 phrases.
 

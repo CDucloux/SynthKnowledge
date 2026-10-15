@@ -14,6 +14,7 @@ reference:
   annee: 1987
   passage: ligne de basse, tout le morceau
   synthe_origine: Roland TB-303
+  synthe_court: Roland TB-303         # optionnel : version courte pour le tableau du README
 resume: >-
   2-3 phrases : caractère du son et ce qui le fait.
 

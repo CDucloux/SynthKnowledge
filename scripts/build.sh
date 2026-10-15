@@ -39,4 +39,6 @@ for f in "${files[@]}"; do
   pages=$(python3 -c 'import re,sys; print(len(re.findall(rb"/Type\s*/Page[^s]", open(sys.argv[1],"rb").read())))' "$out")
   if [ "$pages" != "2" ]; then echo "✗ $out : $pages pages au lieu de 2 (page 1 fiche, page 2 anatomie du son) : raccourcir les textes de la page 1" >&2; status=1; else echo "✓ $out"; fi
 done
+# Tableau des fiches du README, régénéré depuis les YAML.
+python3 scripts/readme.py || status=1
 exit $status

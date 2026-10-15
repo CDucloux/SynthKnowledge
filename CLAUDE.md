@@ -49,6 +49,7 @@ scripts/build-theory.sh  compile theory/*.typ (A4, pas de limite de pages)
 - Après toute modification du template ou d'un YAML : recompiler et **vérifier visuellement** le PNG du rendu (`pdftoppm -r 100 -png`).
 - Les leçons tirées des essais vont dans `knowledge/retours.md` et, si elles sont générales, dans le fichier de connaissance concerné.
 - Committer les YAML **et** les PDF générés.
+- **README** : vitrine du projet. Le tableau des fiches (Groupe, Morceau, Année, Type de son, Synthé, Son d'origine, Confiance, lien PDF) et les compteurs sont **générés** par `scripts/readme.py` (appelé par `build.sh`) entre les marqueurs `<!-- fiches -->` / `<!-- compteurs -->` : ne pas les éditer à la main. Option `reference.synthe_court` dans un YAML pour raccourcir la colonne « Son d'origine ». Aperçus PNG dans `docs/` : `python3 scripts/readme.py --previews`. Committer README.md avec chaque nouvelle fiche.
 
 ## Fiches de théorie (theory/)
 
