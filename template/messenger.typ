@@ -61,7 +61,7 @@
 // LFO 1 | OSCILLATORS | MIXER | FILTER | ENVELOPES, deux rangées de potards
 // puis la rangée de boutons, titres centrés, séparateurs verticaux fins.
 // ---------------------------------------------------------------------------
-#let ov-title(t) = align(center + bottom, text(size: 7.2pt, weight: "extrabold", tracking: 0.16em, upper(t)))
+#let ov-title(t) = align(center + top, text(size: 7.2pt, weight: "extrabold", tracking: 0.16em, upper(t)))
 
 #let panel-overview(params) = {
   _check(params)
@@ -87,7 +87,7 @@
     switch(name, v, active: a, width: kw, note: note)
   }
   let num(n) = box(height: zone, align(center + horizon, text(size: 13pt, weight: "extrabold", n)))
-  let rows = (5.5mm, 22mm, 24mm, 19.5mm)
+  let rows = (7mm, 22mm, 24mm, 17mm)
   let sec(title, cols, ..cells) = grid(
     columns: cols, rows: rows, align: center + top, column-gutter: 0.4mm,
     grid.cell(colspan: cols.len(), ov-title(title)),
@@ -130,7 +130,7 @@
     elabel("AMPLIFIER\nENVELOPE"), K("Attack", "aenv", "a"), K("Decay", "aenv", "d"), K("Sustain", "aenv", "s"), K("Release", "aenv", "r"),
     B("Multi-Trig", "env", "multi_trig"), B("F Env Vel", "env", "f_vel"), B("F Env Loop", "env", "f_loop", note: "[F ENV ASSIGN]"), B("A Env Vel", "env", "a_vel"), B("A Env Loop", "env", "a_loop", note: "[A ENV ASSIGN]"),
   )
-  block(width: 100%, stroke: 0.8pt + ink, radius: 2pt, inset: (x: 1.5mm, top: 1.2mm, bottom: 2mm), align(center, grid(
+  block(width: 100%, stroke: 0.8pt + ink, radius: 2pt, inset: (x: 1.5mm, top: 2.6mm, bottom: 1.4mm), align(center, grid(
     columns: 5, column-gutter: 0mm, inset: (x: 1.6mm),
     stroke: (x, y) => if x > 0 { (left: 0.6pt + ink) },
     lfo, osc, mix, flt, env,
