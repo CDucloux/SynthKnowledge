@@ -108,10 +108,12 @@
   box(width: width, align(center, stack(
     spacing: 1mm,
     box(width: width, height: height, radius: 1.3mm, stroke: 0.8pt + col, inset: 0.6mm,
-      box(width: 100%, height: 100%, radius: 0.8mm, fill: col, align(center + horizon, stack(spacing: 0.5mm,
-        text(size: 5.6pt, weight: "bold", fill: white, str(txt)),
-        if sub != none { text(size: 4.6pt, weight: "medium", fill: white, str(sub)) },
-      )))),
+      box(width: 100%, height: 100%, radius: 0.8mm, fill: col, align(center + horizon, {
+        // Hauteur du texte = hauteur des capitales (pas de jambage) : centrage optique exact.
+        set text(fill: white, top-edge: "cap-height", bottom-edge: "baseline")
+        let main = text(size: 5.6pt, weight: "bold", str(txt))
+        if sub == none { main } else { stack(spacing: 0.9mm, main, text(size: 4.6pt, weight: "medium", str(sub))) }
+      }))),
     if name != "" { ctl-label(name, active) },
   )))
 }
