@@ -48,6 +48,13 @@ Bipolaires (0 à midi) : TUNE, OSC 2 FREQ, MOD AMOUNT, EG AMOUNT, LFO 1 DEPTH.
 - LFO 2 DESTINATION (`lfo2_dest`) : liste parmi `pitch`, `cutoff`, `amp`.
 - Molette (`mod_wheel`, en %), KB OCTAVE (`kb_octave`, −2 à +2), PITCH bend ±7 par défaut.
 
+## Séquenceur (YAML `sequence`)
+
+Manuel p. 22-24 : une séquence de **64 pas** max par patch. *DIRECTION* sur SEQ, *RECORD*, jouer les notes (*HOLD* = liaison, *ADV* = silence), *RECORD* pour valider (la longueur = nombre de pas saisis), *PLAY*.
+Une touche tenue pendant la lecture **transpose** la séquence par rapport au **C5** (2e Do du clavier, sans KB OCTAVE) : saisir le motif autour du C5.
+SETTINGS : 3 *GATE LENGTH* (PGM 1 = 6,25 % … 8 = 50 % … 16 = 100 %), 7 *LENGTH*, 8 *SWING*, 9 *CLOCK DIV* ; *NOTE PROB* / *GATE PROB* (4, 6) pour l'aléatoire ; *PARAM RECORD* (SEQ clignotant) mémorise un réglage de potard par pas.
+Utiliser `sequence` dès qu'un son est une séquence ou un ostinato relevé (tablature, partition) : la grille remplace l'encadré « Jeu » en page 1.
+
 ## Modulations assignables (YAML `modulations`)
 
 Une routing par source et par patch, vers n'importe quel contrôle :

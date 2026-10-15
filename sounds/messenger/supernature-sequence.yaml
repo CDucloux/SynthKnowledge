@@ -17,8 +17,8 @@ resume: >-
 
 params:
   osc:
-    oct1: 8
-    oct2: 16
+    oct1: 16
+    oct2: 32
     wave1: 12
     wave2: 13.25
   mixer:
@@ -35,12 +35,22 @@ params:
   aenv: {a: 7, d: 11, s: 7, r: 9.5}
   env: {multi_trig: true, f_vel: true}
 
+sequence:
+  tempo: 122
+  gate: 50
+  steps: >-
+    Bb4 B4 C5 . . Bb4 . . C5 . . . . . . . |
+    Bb4 B4 C5 . . C5 . C5 Bb4 . C5 . . . . .
+  transpose:
+    - {touche: C5, texte: "Do mineur"}
+    - {touche: G4, texte: "Sol, quand l'accord change"}
+
 settings:
   - {nom: "Note Priority (CONFIG 2.1)", valeur: "*Low* : priorité grave, comme l'Odyssey"}
 
 etapes:
   - "Maintenir *PANEL* 1 s (init)."
-  - "*OCTAVE 1* sur 8', *WAVESHAPE 1* à midi (scie). *OCTAVE 2* sur 16', *WAVESHAPE 2* ≈ 1:15 (carré)."
+  - "*OCTAVE 1* sur 16', *WAVESHAPE 1* à midi (scie). *OCTAVE 2* sur 32', *WAVESHAPE 2* ≈ 1:15 (carré)."
   - "*MIXER* : *OSC 1* à fond, *OSC 2* ≈ 1:00 pour asseoir le grave."
   - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:30, *RESONANCE* midi, *RES BASS* OFF, *KB TRACKING* ON."
   - "*EG AMOUNT* ≈ 2:30. Enveloppe filtre : *DECAY* ≈ 10:00, *SUSTAIN* à 0, *RELEASE* court."
@@ -49,18 +59,15 @@ etapes:
 oreille:
   - "Trop mou, pas assez de claquement : *DECAY* du filtre vers 9:30, *EG AMOUNT* vers 3:00."
   - "Trop « acid », ça siffle : *RESONANCE* vers 10:30."
-  - "Notes qui bavent l'une sur l'autre : *DECAY* ampli vers 10:00."
-  - "Manque de poids : *OSC 2* à fond, ou *KB OCTAVE* -1."
+  - "Manque de poids : *OSC 2* à fond ; trop grave ou trop aigu : *OCTAVE 1* et *2* d'un cran."
 jeu:
-  - "Commencer sur une seule note répétée en croches régulières, puis passer au motif quand l'accord change."
-  - "Jouer détaché : *MULTI-TRIG* relance l'attaque même si les notes se touchent."
-  - "Variante machine : l'arpégiateur du Messenger (*ARP*, *SETTINGS* 1 à 3) avec un *GATE* court."
+  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, notes autour du C5 (*ADV* = silence), *RECORD*, *PLAY*. *GATE* : *SETTINGS* 3."
 
 analyse:
   - titre: "Les oscillateurs : une scie et son ombre"
     texte: >-
       Cerrone a trouvé ce motif sur l'ARP Odyssey qu'ARP venait de lui offrir [1].
-      La *scie* en 8' donne toutes les harmoniques, de quoi faire mordre le filtre ;
+      La *scie* en 16' donne toutes les harmoniques, de quoi faire mordre le filtre ;
       le *carré* une octave plus bas n'ajoute que des harmoniques impaires et
       remplit le grave sans brouiller l'attaque.
   - titre: "Le filtre : fermé, il s'ouvre à chaque note"
@@ -80,14 +87,16 @@ analyse:
   - titre: "Le jeu : une machine jouée à la main"
     texte: >-
       D'après le récit de Cerrone, la batterie n'était pas calée sur une horloge :
-      il aurait enregistré le motif note à note, à demi vitesse, pour le synchroniser
-      ensuite [2]. Le motif est parti d'une seule note répétée, puis a évolué avec
-      les accords [1][2]. Pas d'effet nécessaire : la piste est sèche et mécanique.
+      il aurait enregistré le motif note à note, à demi vitesse [2]. Le séquenceur du
+      Messenger refait ce geste : les notes relevées par deux tablatures [4][5]
+      (approche chromatique Si bémol, Si, Do) se transposent en Sol avec une touche, comme
+      Cerrone qui « change l'accord » [1]. Piste sèche et mécanique : pas d'effet.
 
 tracabilite:
-  - "Documenté [1] : ARP Odyssey offert par ARP pendant les sessions à Trident (Londres) ; le motif est le premier son trouvé, il change avec l'accord, puis basse et batterie ajoutées."
+  - "Documenté [1] : ARP Odyssey offert par ARP pendant les sessions à Trident (Londres) ; le motif est le premier son trouvé, il change avec l'accord, puis basse et batterie ajoutées ; même synthé cité par [3]."
   - "Récit rapporté [2] : motif d'abord sur une note, enregistré note à note à demi vitesse (source secondaire, d'après une interview vidéo)."
-  - "Contexte [3] : l'Odyssey est présenté comme le synthé du morceau."
+  - "Transcrit [4] : notes et rythme de la séquence, d'après une tablature basse de l'intro (122 BPM, Do mineur puis Sol) ; une tablature générée par IA [5] donne les mêmes notes."
+  - "Hypothèse : la basse double le motif de l'Odyssey ; non vérifié."
   - "Reconstitué : forme d'onde, filtre, enveloppes et toutes les positions Messenger, à l'oreille."
 
 sources:
@@ -104,3 +113,13 @@ sources:
     date: février 2020
     url: https://www.factmag.com/2020/02/07/cerrone-supernature/
     note: interview vidéo dans le studio de Cerrone
+  - titre: "Supernature (intro), Guitar Pro"
+    site: Ultimate Guitar, tablature de contributeur
+    date: mai 2022
+    url: https://tabs.ultimate-guitar.com/tab/cerrone/supernature-guitar-pro-4205149
+    note: basse de l'intro, 122 BPM ; mesures 1 et 2 en séquence, la 3e (en Sol) par transposition
+  - titre: "Supernature Bass Tab"
+    site: Songsterr, tablature générée par IA
+    date: août 2025
+    url: https://www.songsterr.com/a/wsa/cerrone-supernature-bass-tab-s1981613
+    note: recoupement des notes (Si bémol, Si, Do ; Fa, Fa dièse, Sol)

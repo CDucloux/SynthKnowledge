@@ -36,6 +36,17 @@ modulations:                      # optionnel, assignations Quick Assign
 settings:                         # optionnel, SETTINGS / CONFIG utiles au son
   - {nom: "Glide Config (CONFIG 1.3)", valeur: "PGM 14 *Exponential*"}
 
+sequence:                         # optionnel : séquenceur du Messenger (manuel p. 22-24), remplace l'encadré « Jeu » en page 1
+  tempo: 122                      # BPM (30-300)
+  gate: 50                        # GATE LENGTH en % (SETTINGS 3) ; swing: 50 optionnel (SETTINGS 8)
+  steps: >-                       # 64 pas max ; note (Bb4, C5, F#3), « . » silence (ADV), « _ » liaison (HOLD), « | » séparateur ignoré
+    Bb4 B4 C5 . . Bb4 . . C5 . . . . . . . |
+    Bb4 B4 C5 . . C5 . C5 Bb4 . C5 . . . . .
+  transpose:                      # optionnel : touche tenue pendant PLAY (référence C5 = non transposé)
+    - {touche: G4, texte: "Sol, quand l'accord change"}
+# Saisir les notes autour du C5 pour que la transposition au clavier tombe juste. Pas de « # » nu dans les textes (écrire « Fa dièse »).
+# Avec une séquence, garder `jeu` à 1-2 puces courtes (saisie) et `oreille` à 3 puces : la page 1 doit tenir.
+
 etapes: [ "...", ... ]            # 5-7 étapes
 oreille: [ "...", ... ]           # 3-4 ajustements symptôme → geste
 jeu: [ "...", ... ]               # 2-3 conseils de jeu

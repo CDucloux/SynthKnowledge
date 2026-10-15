@@ -308,6 +308,11 @@
   for x in (1.05mm, 2.1mm, 3.15mm) { place(line(start: (x, 0mm), end: (x, 3mm), stroke: 0.5pt + ink)) }
   for x in (0.75mm, 1.8mm, 3.15mm - 0.3mm) { place(dx: x, rect(width: 0.6mm, height: 1.7mm, fill: ink)) }
 })
+#let icon-steps = _icon({  // séquence : rangée de pas, certains allumés
+  for i in range(4) {
+    place(dx: i * 1.1mm, dy: 0.6mm, rect(width: 0.85mm, height: 1.8mm, stroke: 0.6pt + ink, fill: if i in (0, 2) { ink } else { white }))
+  }
+})
 #let icon-knob = _icon({   // réglage : potard
   place(dx: 0.6mm, dy: 0mm, circle(radius: 1.5mm, stroke: 0.8pt + ink))
   place(line(start: (2.1mm, 1.5mm), end: (3.1mm, 0.5mm), stroke: _ist))
@@ -368,6 +373,64 @@
     // Puce dans la ligne : alignée sur la ligne de base ; retrait suspendu pour les lignes suivantes.
     block(above: 0pt, below: 1.3mm, par(hanging-indent: 3.4mm, box(width: 3.4mm, text(size: 1.25em, weight: "extrabold", "»")) + md(it)))
   }
+}
+
+/// Encadré « Séquence » : grille des pas (16 par PAGE, comme les boutons PGM 1-16),
+/// réglages de lecture, transpositions au clavier, puis les conseils de jeu.
+/// steps : texte de jetons séparés par des espaces : note (« Bb4 », « C5 », « F#3 »),
+/// « . » = silence, « _ » = liaison avec le pas précédent, « | » = séparateur ignoré.
+#let seq-tokens(steps) = str(steps).split(regex("\\s+")).filter(t => t != "" and t != "|")
+
+#let sequence-box(seq, jeu: ()) = {
+  let toks = seq-tokens(seq.steps)
+  let n = toks.len()
+  let note-cell(t) = {
+    if t == "." { return [] }
+    if t == "_" { return align(horizon, line(length: 100%, stroke: 1.4pt + ink)) }
+    let m = t.match(regex("^([A-G])([b#]?)(-?\\d)$"))
+    let (l, acc, o) = m.captures
+    place(center + horizon, box(text(size: 6.6pt, weight: "extrabold", l + (if acc == "#" { "#" } else if acc == "b" { text(size: 5.2pt, "b") } else { "" }))
+      + text(size: 4.6pt, weight: "semibold", fill: luma(110), o)))
+  }
+  // Une rangée = une PAGE de 16 pas ; un petit écart sépare les temps (4 pas).
+  let page-row(p) = {
+    let cells = ()
+    for i in range(16) {
+      let k = p * 16 + i
+      let t = if k < n { toks.at(k) } else { none }
+      let out = t == none
+      cells.push(box(width: 100%, height: 4.6mm,
+        fill: if not out and t == "." { soft } else { white },
+        stroke: if out { 0.4pt + muted } else if t == "." { 0.4pt + luma(150) } else { 0.7pt + ink },
+        inset: (x: if t == "_" { 0mm } else { 0.2mm }),
+        if out { [] } else { note-cell(t) }))
+      if i in (3, 7, 11) { cells.push([]) }
+    }
+    grid(columns: (5mm,) + ((1fr,) * 4 + (0.8mm,)) * 3 + (1fr,) * 4, column-gutter: 0.35mm,
+      align(left + horizon, text(size: 4.8pt, weight: "extrabold", fill: luma(110), str(p * 16 + 1) + "\n" + str(p * 16 + 16))),
+      ..cells)
+  }
+  let kv(k, v) = text(weight: "extrabold", upper(k)) + " " + v
+  let info = (
+    kv("Tempo", str(seq.at("tempo", default: 120)) + " BPM"),
+    kv("Length", str(n)),
+    kv("Gate", str(seq.at("gate", default: 50)) + " %"),
+  )
+  if seq.at("swing", default: 50) != 50 { info.push(kv("Swing", str(seq.swing) + " %")) }
+  textbox("Séquence", icon: icon-steps, {
+    set par(leading: 0.45em)
+    text(size: 6.2pt, info.join(h(1.2mm) + "·" + h(1.2mm)))
+    v(0.2mm)
+    stack(spacing: 0.7mm, ..range(calc.ceil(n / 16)).map(page-row))
+    v(1mm)
+    let tr = seq.at("transpose", default: ())
+    if tr != none and tr.len() > 0 {
+      block(below: 1.2mm, par(hanging-indent: 3.4mm, box(width: 3.4mm, text(size: 1.25em, weight: "extrabold", "»"))
+        + text(weight: "extrabold", "TRANSPOSER") + " (touche tenue, réf. C5) : "
+        + tr.map(x => text(weight: "extrabold", x.touche) + " " + md(x.texte)).join(" · ")))
+    }
+    bullets(jeu)
+  })
 }
 
 /// Mise en page générique d'une fiche (pied de page, styles des liens et notes).
@@ -700,7 +763,11 @@
     textbox("Pour l'obtenir", icon: icon-knob, numbered(data.at("etapes", default: ()))),
     stack(spacing: 1.6mm,
       textbox("Ajuster à l'oreille", icon: icon-ear, bullets(data.at("oreille", default: ()))),
-      textbox("Jeu", icon: icon-keys, bullets(data.at("jeu", default: ()))),
+      if data.at("sequence", default: none) != none {
+        sequence-box(data.sequence, jeu: data.at("jeu", default: ()))
+      } else {
+        textbox("Jeu", icon: icon-keys, bullets(data.at("jeu", default: ())))
+      },
     ),
   )
   sources-page(machine, data, envs: envs)

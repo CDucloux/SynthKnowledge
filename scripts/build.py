@@ -113,6 +113,34 @@ def check_list_of(where, v, item, errors, required=()):
                 errors.append(f"{where}[{i}] : « {k} » manquant")
 
 
+SEQ_TOKEN = re.compile(r"^(?:[A-G][b#]?-?\d|\.|_)$")
+
+
+def check_sequence(where, v, spec, options, errors):
+    """Séquence de pas : jetons note / « . » / « _ », réglages de lecture, transpositions."""
+    if not isinstance(v, dict):
+        errors.append(f"{where} : doit être un objet {{steps, {', '.join(spec['fields'])}, transpose}}")
+        return
+    for k in v:
+        if k not in ("steps", "transpose", *spec["fields"]):
+            errors.append(f"{where} : clé inconnue « {k} » (attendu : steps, {', '.join(spec['fields'])}, transpose)")
+    toks = [t for t in str(v.get("steps", "")).split() if t != "|"]
+    if not toks:
+        errors.append(f"{where}.steps : manquant ou vide")
+    if len(toks) > spec["max_steps"]:
+        errors.append(f"{where}.steps : {len(toks)} pas, maximum {spec['max_steps']}")
+    for i, t in enumerate(toks, 1):
+        if not SEQ_TOKEN.match(t):
+            errors.append(f"{where}.steps : pas {i} « {t} » invalide (note comme Bb4 / C5 / F#3, « . » silence, « _ » liaison)")
+    if toks and toks[0] == "_":
+        errors.append(f"{where}.steps : le pas 1 ne peut pas être une liaison")
+    for k, fs in spec["fields"].items():
+        if k in v:
+            check_value(f"{where}.{k}", v[k], fs, options, errors)
+    if "transpose" in v:
+        check_list_of(f"{where}.transpose", v["transpose"], tuple(spec["transpose"]), errors, required=tuple(spec["transpose"]))
+
+
 TOP = {  # clés communes à toutes les fiches : (obligatoire, vérification)
     "synthe": True, "titre": True, "categorie": False, "tags": False, "confiance": True,
     "reference": True, "resume": True, "params": True, "etapes": True, "oreille": True,
@@ -191,7 +219,10 @@ def validate(path, raw, d):
         errors.append("sources : doit être une liste")
     for k, spec in extra.items():
         if k in d and d[k] is not None:
-            check_list_of(k, d[k], tuple(spec["item"]), errors)
+            if spec["type"] == "sequence":
+                check_sequence(k, d[k], spec, schema["options"], errors)
+            else:
+                check_list_of(k, d[k], tuple(spec["item"]), errors)
 
     # Paramètres de la façade
     params = d.get("params") or {}
