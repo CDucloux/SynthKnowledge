@@ -11,8 +11,8 @@ reference:
   synthe_origine: "ARP Odyssey (motif joué note à note, selon Cerrone)"
   synthe_court: ARP Odyssey
 resume: >-
-  Le moteur du morceau : une note qui pulse en continu, puis un petit motif qui
-  change avec l'accord. Un son court et nerveux d'ARP Odyssey, filtre fermé qui
+  Le moteur du morceau : une note qui pulse en doubles croches, sans un silence,
+  et qui suit l'accord (Do, Si bémol, Do). Un son court et nerveux d'ARP Odyssey, filtre fermé qui
   claque à chaque note grâce à une enveloppe brève et un peu de résonance.
 
 params:
@@ -39,11 +39,11 @@ sequence:
   tempo: 122
   gate: 50
   steps: >-
-    Bb4 B4 C5 . . Bb4 . . C5 . . . . . . . |
-    Bb4 B4 C5 . . C5 . C5 Bb4 . C5 . . . . .
+    C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5
   transpose:
-    - {touche: C5, texte: "Do mineur"}
-    - {touche: G4, texte: "Sol, quand l'accord change"}
+    - {touche: C5, texte: "1 mesure : Do mineur"}
+    - {touche: Bb4, texte: "2 mesures : Si bémol"}
+    - {touche: C5, texte: "2 mesures : Do mineur, puis tenue en Sol"}
 
 settings:
   - {nom: "Note Priority (CONFIG 2.1)", valeur: "*Low* : priorité grave, comme l'Odyssey"}
@@ -61,7 +61,7 @@ oreille:
   - "Trop « acid », ça siffle : *RESONANCE* vers 10:30."
   - "Manque de poids : *OSC 2* à fond ; trop grave ou trop aigu : *OCTAVE 1* et *2* d'un cran."
 jeu:
-  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, notes autour du Do5 (*ADV* = silence), *RECORD*, *PLAY*. *GATE* : *SETTINGS* 3."
+  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, 16 fois Do5, *RECORD*, *PLAY*, puis tenir les touches de la grille. *GATE* : *SETTINGS* 3."
 
 analyse:
   - titre: "Les oscillateurs : une scie et son ombre"
@@ -88,15 +88,17 @@ analyse:
     texte: >-
       D'après le récit de Cerrone, la batterie n'était pas calée sur une horloge :
       il aurait enregistré le motif note à note, à demi vitesse [2]. Le séquenceur du
-      Messenger refait ce geste : les notes relevées par deux tablatures [4][5]
-      (approche chromatique Si bémol, Si, Do) se transposent en Sol avec une touche, comme
-      Cerrone qui « change l'accord » [1]. Piste sèche et mécanique : pas d'effet.
+      Messenger refait ce geste : une seule note en doubles croches, comme la
+      partie relevée sur la piste « Rhythm Guitar » d'une tablature [4] (accords de
+      Do mineur et Si bémol frappés à chaque double croche), transposée d'une
+      touche quand Cerrone « change l'accord » [1]. Le Messenger étant monophonique,
+      on garde la note du dessus. Piste sèche et mécanique : pas d'effet.
 
 tracabilite:
   - "Documenté [1] : ARP Odyssey offert par ARP pendant les sessions à Trident (Londres) ; le motif est le premier son trouvé, il change avec l'accord, puis basse et batterie ajoutées ; même synthé cité par [3]."
   - "Récit rapporté [2] : motif d'abord sur une note, enregistré note à note à demi vitesse (source secondaire, d'après une interview vidéo)."
-  - "Transcrit [4] : notes et rythme de la séquence, d'après une tablature basse de l'intro (122 BPM, Do mineur puis Sol) ; une tablature générée par IA [5] donne les mêmes notes."
-  - "Hypothèse : la basse double le motif de l'Odyssey ; non vérifié."
+  - "Transcrit [4] : pulsation en doubles croches et enchaînement d'accords de l'intro (122 BPM : Do mineur 1 mesure, Si bémol 2, Do mineur 2, puis Sol), d'après la piste « Rhythm Guitar » ; tablature intitulée « AI Generated » : à vérifier à l'oreille."
+  - "Réduit : accords de quatre notes ramenés à la note du dessus (Do5, Si bémol 4), le Messenger est monophonique."
   - "Reconstitué : forme d'onde, filtre, enveloppes et toutes les positions Messenger, à l'oreille."
 
 sources:
@@ -113,13 +115,8 @@ sources:
     date: février 2020
     url: https://www.factmag.com/2020/02/07/cerrone-supernature/
     note: interview vidéo dans le studio de Cerrone
-  - titre: "Supernature (intro), Guitar Pro"
-    site: Ultimate Guitar, tablature de contributeur
-    date: mai 2022
-    url: https://tabs.ultimate-guitar.com/tab/cerrone/supernature-guitar-pro-4205149
-    note: basse de l'intro, 122 BPM ; mesures 1 et 2 en séquence, la 3e (en Sol) par transposition
-  - titre: "Supernature Bass Tab"
-    site: Songsterr, tablature générée par IA
-    date: août 2025
-    url: https://www.songsterr.com/a/wsa/cerrone-supernature-bass-tab-s1981613
-    note: recoupement des notes (Si bémol, Si, Do ; Fa, Fa dièse, Sol)
+  - titre: "Supernature (AI Generated), piste Rhythm Guitar"
+    site: Songsterr, tablature de contributeur
+    date: janvier 2026
+    url: https://www.songsterr.com/a/wsa/cerrone-supernature-ai-generated-tab-s3566610
+    note: mesures 6 à 10 de la piste Rhythm Guitar, accords en doubles croches à 122 BPM
