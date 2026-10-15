@@ -1,0 +1,133 @@
+synthe: messenger
+titre: I Feel Love Bass
+categorie: basse
+tags: [disco, "70s", sequence, moog-modulaire]
+confiance: 2
+reference:
+  artiste: Donna Summer
+  morceau: I Feel Love
+  annee: 1977
+  passage: ostinato de basse séquencé, tout le morceau
+  synthe_origine: "Moog modulaire d'Eberhard Schoener, programmé par Robby Wedel"
+  synthe_court: Moog modulaire
+resume: >-
+  La basse qui a inventé la dance électronique : un motif Do, Do, Sol, Si bémol
+  en croches, doublé par un écho à la double croche qui donne le célèbre
+  « ta-ta-ta-ta ». Deux scies de Moog modulaire, filtre fermé qui claque à chaque
+  note, aucun sustain : un marteau mécanique.
+
+params:
+  lfo1:
+    rate: 8
+    depth: 12.5
+    wave: tri
+    dest: cutoff
+  osc:
+    oct1: 16
+    oct2: 32
+    wave1: 12
+    wave2: 12
+    osc2_freq: 12.2
+  mixer:
+    osc1: 17
+    osc2: 14
+  filter:
+    mode: lp4
+    cutoff: 9.5
+    eg_amount: 14.5
+    resonance: 11
+    kb_tracking: true
+  fenv: {a: 7, d: 10.25, s: 7, r: 9.5}
+  aenv: {a: 7, d: 11.5, s: 7, r: 9.5}
+  env: {multi_trig: true}
+
+sequence:
+  tempo: 128
+  gate: 50
+  steps: >-
+    C5 C5 C5 C5 G5 G5 Bb5 Bb5 |
+    C5 C5 C5 C5 G5 G5 Bb5 Bb5
+  transpose:
+    - {touche: C5, texte: "intro et couplet, 24 mesures"}
+    - {touche: Eb5, texte: "4 mesures"}
+    - {touche: F5, texte: "4 mesures"}
+    - {touche: G4, texte: "3 mesures, puis Sol tenu"}
+    - {touche: C5, texte: "pont : Do, Mi bémol, Fa, Sol (1 mesure chacun)"}
+
+etapes:
+  - "Maintenir *PANEL* 1 s (init)."
+  - "*OCTAVE 1* sur 16', *OCTAVE 2* sur 32', *WAVESHAPE 1* et *2* à midi (deux scies)."
+  - "*OSC 2 FREQ* à peine à droite de midi (léger battement). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 2:00."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:30, *RESONANCE* ≈ 11:00, *KB TRACKING* ON."
+  - "*EG AMOUNT* ≈ 2:30. Enveloppe filtre : *DECAY* ≈ 10:15, *SUSTAIN* à 0. Enveloppe ampli : *DECAY* ≈ 11:30, *SUSTAIN* à 0."
+  - "*MULTI-TRIG* ON. *LFO 1* : TRI vers CUTOFF, *RATE* ≈ 8:00, *DEPTH* ≈ 12:30 (le filtre respire)."
+oreille:
+  - "Pas assez de « marteau » : *DECAY* du filtre vers 10:00, *EG AMOUNT* vers 3:00."
+  - "Trop brillant, ça sonne acid : *CUTOFF* vers 9:00, *RESONANCE* vers 10:00."
+  - "Les doubles croches se collent : *GATE* plus court (*SETTINGS* 3, PGM 6)."
+jeu:
+  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, les 16 notes, *RECORD*, *PLAY* ; tenir les touches de la grille pour suivre les accords."
+
+analyse:
+  - titre: "Les oscillateurs : deux scies qui battent"
+    texte: >-
+      Le Moog modulaire de Schoener était directement branché dans la console [1].
+      Deux *scies*, l'une une octave plus bas, à peine désaccordées l'une de
+      l'autre^[Un léger écart d'accord fait « battre » les deux ondes : le
+      son épaissit et bouge sans changer de note.], comme dans la recette de
+      MusicRadar [4] : toutes les harmoniques pour nourrir le filtre, et un grave
+      plein.
+  - titre: "Le filtre : fermé, frappé à chaque note"
+    texte: >-
+      *CUTOFF* bas et *EG AMOUNT* fort : chaque note ouvre le filtre d'un coup,
+      puis il se referme en 200 ms environ [4][5]. C'est le « marteau de géant sur
+      un mur » décrit par Pete Bellotte [1]. *RESONANCE* modérée pour une
+      pointe de voyelle, sans siffler ; *KB TRACKING* garde la même couleur quand
+      la séquence monte en Fa ou en Sol.
+  - titre: "Les enveloppes : rien que du decay"
+    texte: >-
+      Ni attaque ni sustain : les deux courbes tombent tout de suite, le filtre
+      plus vite que le volume [5]. La note commence brillante et finit sourde,
+      avant la suivante. *MULTI-TRIG* relance les enveloppes à chaque pas, même
+      sur deux notes identiques.
+  - titre: "Le mouvement : l'écho devenu motif"
+    texte: >-
+      Le motif joué est en croches (Do, Do, Sol, Si bémol) [3] ; un écho à la double
+      croche, à droite, double chaque note [2], ce qui donne quatre Do, deux Sol,
+      deux Si bémol [6]. Le Messenger n'a pas de delay : la grille écrit l'écho
+      comme des notes. Avec une pédale de delay, saisir C5 . C5 . G5 . Bb5 . et
+      régler l'écho à une double croche (≈ 117 ms à 128 BPM).
+
+tracabilite:
+  - "Documenté [1][2] : Moog modulaire de Schoener (Wedel), synchronisé sur la bande, branché en direct ; chaque note doublée par un écho, direct à gauche, écho à droite."
+  - "Transcrit [3][6] : Do, Do, Sol, Si bémol en croches (130 BPM), en doubles croches avec l'écho (128 BPM) ; accords Do, Mi bémol, Fa, Sol. Sol et Si bémol parfois notés sous le Do (G4, Bb4)."
+  - "Recette [4][5] : deux scies dont une en 32', passe-bas, enveloppes sans sustain. Reconstitué : positions Messenger, écho écrit en notes."
+
+sources:
+  - titre: "Classic Tracks: Donna Summer, I Feel Love"
+    site: Sound On Sound
+    date: octobre 2009
+    url: https://www.soundonsound.com/techniques/classic-tracks-donna-summer-feel-love
+    note: récit de Pete Bellotte
+  - titre: "I Feel Love"
+    site: Wikipédia (anglais)
+    url: https://en.wikipedia.org/wiki/I_Feel_Love
+    note: delay gauche/droite (d'après Pitchfork)
+  - titre: "How to create Donna Summer I feel love bassline and pad sounds"
+    site: Imaginando
+    date: juin 2018
+    url: https://www.imaginando.pt/media/how-to-create-donna-summer-i-feel-love-bassline-and-pad-sounds-in-drc
+    note: projet Ableton lu, vidéo non visionnée
+  - titre: "The 40 greatest synth sounds of all time, No 3: Donna Summer, I Feel Love"
+    site: MusicRadar
+    url: https://www.musicradar.com/news/donna-summer-i-fee-love-best-synth-sound
+    note: recette en six étapes
+  - titre: "Donna Summer, I Feel Love: Bass Synth Preset Remake"
+    site: Syntorial
+    url: https://syntorial.com/preset-recipe/donna-summer-i-feel-love-bass
+    note: réglages chiffrés
+  - titre: "I Feel Love, piste Synth Bass 1"
+    site: Songsterr
+    date: juillet 2025
+    url: https://www.songsterr.com/a/wsa/donna-summer-i-feel-love-bass-tab-s1867855
+    note: motif et accords, 128 BPM

@@ -35,4 +35,5 @@ Dans la réponse à l'utilisateur, dire ce que les sources de rang 1 et 2 ont do
 ## 4. Ressources déjà repérées
 
 - Anthony Marinelli : *Thriller* (basse ARP 2600 « Tonus », vidéo jkJVim4X9C4 ; 7 parties de basse avec Greg Phillinganes, 4UqxOg3M-OM), *PYT* (ARP 2600), *Billie Jean* (4 couches de basse) ; fiches de patch : Thriller Bass (ARP 2600), Chameleon Bass (ARP Odyssey).
-- Imaginando : *The Son of Flynn* (arpège, basse, nappe ; projet Ableton).
+- Imaginando : *The Son of Flynn* (arpège, basse, nappe ; projet Ableton) ; *I Feel Love* (basse et nappe ; projet Ableton : piste « Bass arp », 130 BPM).
+- Songsterr : *I Feel Love* (s1867855, piste Synth Bass, 128 BPM, écho noté en doubles croches).
