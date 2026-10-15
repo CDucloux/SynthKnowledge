@@ -273,10 +273,79 @@
 }
 
 /// Encadré de texte en bas de fiche.
-#let textbox(title, body, size: 6.9pt) = block(
+/// ---------------------------------------------------------------------------
+/// Icônes vectorielles des encadrés (dessin natif, noir et blanc, jamais d'emoji).
+/// Toutes dans une case de 4.2 × 3 mm, trait de 0.8 pt.
+/// ---------------------------------------------------------------------------
+#let _icw = 4.2mm
+#let _ich = 3mm
+#let _ist = (paint: ink, thickness: 0.8pt, join: "round", cap: "round")
+#let _poly(..pts) = { let p = pts.pos(); curve(stroke: _ist, curve.move(p.first()), ..p.slice(1).map(x => curve.line(x))) }
+#let _icon(body) = box(width: _icw, height: _ich, baseline: 0.35mm, body)
+
+#let icon-wave = _icon({   // oscillateur : dents de scie
+  place(_poly((0mm, 3mm), (1.4mm, 0mm), (1.4mm, 3mm), (2.8mm, 0mm), (2.8mm, 3mm), (4.2mm, 0mm)))
+})
+#let icon-filter = _icon({ // filtre passe-bas : plateau puis pente, petite bosse de résonance
+  place(curve(stroke: _ist, curve.move((0mm, 1.1mm)), curve.line((1.7mm, 1.1mm)),
+    curve.quad((2.3mm, 1.1mm), (2.5mm, 0.3mm)), curve.quad((2.75mm, 0.9mm), (4.2mm, 3mm))))
+})
+#let icon-env = _icon({    // enveloppe ADSR
+  place(_poly((0mm, 3mm), (0.7mm, 0mm), (1.6mm, 1.3mm), (3mm, 1.3mm), (4.2mm, 3mm)))
+})
+#let icon-space = _icon({  // espace / effets : ondes qui rayonnent
+  place(dx: 0mm, dy: 1.1mm, circle(radius: 0.4mm, fill: ink))
+  for (i, r) in (1.3mm, 2.3mm, 3.3mm).enumerate() {
+    place(dx: 0.4mm, dy: 1.5mm, curve(stroke: _ist, curve.move((r * 0.6, -r * 0.8)), curve.quad((r * 1.25, 0mm), (r * 0.6, r * 0.8))))
+  }
+})
+#let icon-motion = _icon({ // mouvement / modulation : sinusoïde
+  let pts = range(0, 25).map(i => (4.2mm * i / 24, 1.5mm - 1.3mm * calc.sin(2 * calc.pi * i / 24 * 1.5)))
+  place(curve(stroke: _ist, curve.move(pts.first()), ..pts.slice(1).map(x => curve.line(x))))
+})
+#let icon-keys = _icon({   // jeu : touches de clavier
+  place(rect(width: 4.2mm, height: 3mm, stroke: 0.7pt + ink))
+  for x in (1.05mm, 2.1mm, 3.15mm) { place(line(start: (x, 0mm), end: (x, 3mm), stroke: 0.5pt + ink)) }
+  for x in (0.75mm, 1.8mm, 3.15mm - 0.3mm) { place(dx: x, rect(width: 0.6mm, height: 1.7mm, fill: ink)) }
+})
+#let icon-knob = _icon({   // réglage : potard
+  place(dx: 0.6mm, dy: 0mm, circle(radius: 1.5mm, stroke: 0.8pt + ink))
+  place(line(start: (2.1mm, 1.5mm), end: (3.1mm, 0.5mm), stroke: _ist))
+})
+#let icon-ear = _icon({    // à l'oreille : arcs d'écoute autour d'un point
+  place(dx: 0.2mm, dy: 1.1mm, circle(radius: 0.4mm, fill: ink))
+  place(curve(stroke: _ist, curve.move((1.3mm, 0.2mm)), curve.quad((2.5mm, 1.5mm), (1.3mm, 2.8mm))))
+  place(curve(stroke: _ist, curve.move((2.5mm, 0mm)), curve.quad((4mm, 1.5mm), (2.5mm, 3mm))))
+})
+#let icon-source = _icon({ // sources : loupe
+  place(dx: 0.3mm, circle(radius: 1.15mm, stroke: 0.8pt + ink))
+  place(line(start: (2.3mm, 2.0mm), end: (3.6mm, 3mm), stroke: (paint: ink, thickness: 1.1pt, cap: "round")))
+})
+#let icon-info = _icon({   // contexte : i cerclé
+  place(dx: 0.6mm, circle(radius: 1.5mm, stroke: 0.8pt + ink))
+  place(dx: 2.1mm - 0.25mm, dy: 0.55mm, circle(radius: 0.25mm, fill: ink))
+  place(line(start: (2.1mm, 1.3mm), end: (2.1mm, 2.4mm), stroke: _ist))
+})
+
+/// Icône d'un encadré d'analyse choisie d'après son titre.
+#let auto-icon(titre) = {
+  let t = lower(str(titre))
+  if t.contains("oscillat") { icon-wave }
+  else if t.contains("filtre") { icon-filter }
+  else if t.contains("enveloppe") { icon-env }
+  else if t.contains("espace") or t.contains("effet") or t.contains("reverb") or t.contains("delay") { icon-space }
+  else if t.contains("jeu") { icon-keys }
+  else if t.contains("mouvement") or t.contains("glide") or t.contains("lfo") or t.contains("séquence") { icon-motion }
+  else { icon-info }
+}
+
+#let textbox(title, body, size: 6.9pt, icon: none) = block(
   width: 100%, stroke: 0.9pt + ink, inset: 0pt, breakable: false,
   stack(
-    block(width: 100%, inset: (x: 2.4mm, top: 1.8mm, bottom: 1.6mm), text(size: 7.2pt, weight: "extrabold", tracking: 0.06em, upper(title))),
+    block(width: 100%, inset: (x: 2.4mm, top: 1.8mm, bottom: 1.6mm), {
+      if icon != none { icon; h(1.4mm) }
+      text(size: 7.2pt, weight: "extrabold", tracking: 0.06em, upper(title))
+    }),
     block(width: 100%, inset: (x: 2.4mm, bottom: 2mm), { set text(size: size); body }),
   ),
 )
@@ -331,25 +400,26 @@
   body
 }
 
+/// Bandeau noir commun aux pages 1 et 2 (même hauteur sur les deux pages).
+#let title-bar(machine, kind, data) = block(width: 100%, fill: ink, inset: (x: 5mm, y: 3.4mm), grid(
+  columns: (1fr, auto),
+  align: (left + bottom, right + bottom),
+  {
+    text(white, size: 7pt, weight: "bold", tracking: 0.32em, upper(machine) + "  ·  " + upper(kind))
+    v(1.2mm)
+    text(white, size: 20pt, weight: "extrabold", tracking: 0.02em, upper(data.titre))
+  },
+  {
+    confidence(data.at("confiance", default: 1))
+    v(1.6mm)
+    let cats = (data.at("categorie", default: none),).filter(x => x != none) + data.at("tags", default: ())
+    text(white, size: 6.6pt, weight: "semibold", tracking: 0.12em, upper(cats.map(str).join("  ·  ")))
+  },
+))
+
 #let header(machine, data) = {
   let ref = data.at("reference", default: (:))
-  block(width: 100%, fill: ink, inset: (x: 5mm, y: 3.4mm), {
-    grid(
-      columns: (1fr, auto),
-      align: (left + bottom, right + bottom),
-      {
-        text(white, size: 7pt, weight: "bold", tracking: 0.32em, upper(machine) + "  ·  FICHE SON")
-        v(1.2mm)
-        text(white, size: 20pt, weight: "extrabold", tracking: 0.02em, upper(data.titre))
-      },
-      {
-        confidence(data.at("confiance", default: 1))
-        v(1.6mm)
-        let cats = (data.at("categorie", default: none),).filter(x => x != none) + data.at("tags", default: ())
-        text(white, size: 6.6pt, weight: "semibold", tracking: 0.12em, upper(cats.map(str).join("  ·  ")))
-      },
-    )
-  })
+  title-bar(machine, "Fiche son", data)
   v(2mm)
   let parts = ()
   if ref.at("artiste", default: none) != none { parts.push(text(weight: "extrabold", upper(ref.artiste))) }
@@ -440,15 +510,7 @@
     "Synthé d'origine et nature du son établis par les sources ; réglages reconstitués.",
     "Réglages ou patch publiés par une source fiable (manuel, interview, patch sheet).",
   )
-  block(width: 100%, fill: ink, inset: (x: 5mm, y: 3.4mm), grid(
-    columns: (1fr, auto), align: (left + bottom, right + bottom),
-    {
-      text(white, size: 7pt, weight: "bold", tracking: 0.32em, upper(machine) + "  ·  ANATOMIE DU SON")
-      v(1.2mm)
-      text(white, size: 16pt, weight: "extrabold", tracking: 0.02em, upper(data.titre))
-    },
-    confidence(n),
-  ))
+  title-bar(machine, "Anatomie du son", data)
   v(2.4mm)
   let note-env = text(size: 6pt, fill: luma(80), style: "italic", "Allure dessinée d'après les réglages de la page 1, même échelle de temps pour les deux courbes (la plus longue occupe toute la largeur) ; durées non calibrées en secondes.")
   // Échelle commune : la plus longue des enveloppes remplit la largeur.
@@ -462,12 +524,12 @@
   }
   let an = data.at("analyse", default: ())
   if an == none { an = () }
-  let boxes = an.map(x => textbox(size: 8pt, x.titre, { set par(leading: 0.6em); md(x.texte) }))
+  let boxes = an.map(x => textbox(size: 8pt, x.titre, icon: auto-icon(x.titre), { set par(leading: 0.6em); md(x.texte) }))
   // Paysage : enveloppes empilées à gauche, analyse 2 × 2 à droite.
   grid(
     columns: (96mm, 1fr), column-gutter: 2mm,
     if envs.len() > 0 {
-      textbox(size: 7.4pt, "Les enveloppes, en image", {
+      textbox(size: 7.4pt, "Les enveloppes, en image", icon: icon-env, {
         stack(spacing: 2.4mm, ..envs.map(e => plot(e, 88mm, 19mm)))
         v(0.4mm)
         note-env
@@ -511,6 +573,6 @@
       }
     }
   }
-  textbox(size: 7.4pt, "D'où ça vient",
+  textbox(size: 7.4pt, "D'où ça vient", icon: icon-source,
     grid(columns: (1fr, 1fr), column-gutter: 5mm, origin-part, grid.cell(stroke: (left: 0.4pt + muted), inset: (left: 4mm), sources-part)))
 }

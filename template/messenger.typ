@@ -229,10 +229,10 @@
   grid(
     columns: (92mm, 1fr, 1fr), column-gutter: 1.6mm,
     performance(params, data),
-    textbox("Pour l'obtenir", numbered(data.at("etapes", default: ()))),
+    textbox("Pour l'obtenir", icon: icon-knob, numbered(data.at("etapes", default: ()))),
     stack(spacing: 1.6mm,
-      textbox("Ajuster à l'oreille", bullets(data.at("oreille", default: ()))),
-      textbox("Jeu", bullets(data.at("jeu", default: ()))),
+      textbox("Ajuster à l'oreille", icon: icon-ear, bullets(data.at("oreille", default: ()))),
+      textbox("Jeu", icon: icon-keys, bullets(data.at("jeu", default: ()))),
     ),
   )
   let val(sec, k) = {
