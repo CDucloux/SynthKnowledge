@@ -4,35 +4,11 @@
 
 #import "style.typ": *
 
-// ---------------------------------------------------------------------------
-// Valeurs neutres de référence (« INIT SynthKnowledge »).
-// Ce ne sont PAS forcément les valeurs exactes du patch init usine :
-// la fiche affiche tous les contrôles, il suffit de tout régler comme dessiné.
-// ---------------------------------------------------------------------------
-#let defaults = (
-  lfo1: (rate: 12, depth: 12, wave: "tri", dest: "cutoff", sync: false, kb_reset: false),
-  osc: (
-    oct1: 8, oct2: 8, tune: 12, sub_wave: 7, wave1: 12, wave2: 12,
-    osc2_freq: 12, mod_amount: 12, mod_dest: "fm", sync: false,
-  ),
-  mixer: (osc1: 17, osc2: 7, sub: 7, noise: 7),
-  filter: (
-    fb_ext: 7, cutoff: 17, eg_amount: 12, osc2_cutoff: 7, resonance: 7,
-    res_bass: false, kb_tracking: false, mode: "lp4",
-  ),
-  fenv: (a: 7, d: 12, s: 17, r: 10),
-  aenv: (a: 7, d: 12, s: 17, r: 10),
-  env: (multi_trig: false, f_vel: false, f_loop: false, a_vel: false, a_loop: false),
-  perf: (glide: 7, lfo2_rate: 12, lfo2_dest: (), mod_wheel: 0, kb_octave: 0),
-)
-
-#let options = (
-  lfo1-wave: (("tri", "TRI"), ("saw", "SAW"), ("ramp", "RAMP"), ("sqr", "SQUARE")),
-  lfo1-dest: (("cutoff", "CUTOFF"), ("osc2_freq", "OSC 2 FREQ"), ("osc1_wave", "OSC 1 WAVE"), ("sub_wave", "SUB WAVE")),
-  octave: ((4, "4'"), (8, "8'"), (16, "16'"), (32, "32'")),
-  mod-dest: (("fm", "1→2 FM"), ("fenv_osc2_freq", "F ENV→OSC 2 FREQ"), ("fenv_osc2_wave", "F ENV→OSC 2 WAVE"), ("fenv_sub_wave", "F ENV→SUB WAVE")),
-  filter-mode: (("lp4", "4P LOW PASS"), ("lp2", "2P LOW PASS"), ("bp", "BAND PASS"), ("hp", "HIGH PASS")),
-)
+// Valeurs neutres et options : template/schema/messenger.yaml (source unique,
+// aussi lue par scripts/build.py pour valider les YAML de sons).
+#let schema = yaml("schema/messenger.yaml")
+#let defaults = schema-defaults(schema)
+#let options = schema.options
 
 // Libellé de forme d'onde d'après la position de WAVESHAPE (manuel p. 10 & 15).
 #let wave-hint(h) = {
@@ -47,29 +23,14 @@
   if h < 8 { "TRIANGLE" } else if h < 10.2 { "TRI → SQR" } else if h < 11.6 { "SQUARE" } else { "PULSE" }
 }
 
-#let _check(params) = {
-  for (sec, vals) in params {
-    assert(sec in defaults, message: "Section inconnue « " + sec + " », attendu : " + defaults.keys().join(", "))
-    for (k, _) in vals {
-      assert(k in defaults.at(sec), message: "Paramètre inconnu « " + sec + "." + k + " », attendu : " + defaults.at(sec).keys().join(", "))
-    }
-  }
-}
-
 // ---------------------------------------------------------------------------
 // Façade en bande unique, fidèle à l'overview du manuel (p. 6) :
 // LFO 1 | OSCILLATORS | MIXER | FILTER | ENVELOPES, deux rangées de potards
 // puis la rangée de boutons, titres centrés, séparateurs verticaux fins.
 // ---------------------------------------------------------------------------
-#let ov-title(t) = align(center + top, text(size: 7.2pt, weight: "extrabold", tracking: 0.16em, upper(t)))
-
 #let panel-overview(params) = {
-  _check(params)
-  let g(sec, k) = {
-    let s = params.at(sec, default: (:))
-    if s == none { s = (:) }
-    if k in s { (s.at(k), true) } else { (defaults.at(sec).at(k), false) }
-  }
+  check-params(params, defaults)
+  let g = param-reader(params, defaults)
   let kw = 14.6mm
   let K(name, sec, k, bipolar: false, hint: none) = {
     let (v, a) = g(sec, k)
@@ -139,9 +100,8 @@
 
 // Contrôleur main gauche + modulations assignées / réglages SETTINGS.
 #let performance(params, data) = {
-  let p = params.at("perf", default: (:))
-  if p == none { p = (:) }
-  let g(k) = if k in p { (p.at(k), true) } else { (defaults.perf.at(k), false) }
+  let get = param-reader(params, defaults)
+  let g(k) = get("perf", k)
   let (dests, da) = g("lfo2_dest")
   if type(dests) == str { dests = (dests,) }
   let (wheel, wa) = g("mod_wheel")
@@ -170,7 +130,7 @@
     )))
   }
   let dest-btns = stack(spacing: 1.1mm,
-    ..(("pitch", "PITCH"), ("cutoff", "CUTOFF"), ("amp", "AMP")).map(((k, l)) => pill(l, k in dests, active: da)),
+    ..options.lfo2-dest.map(((k, l)) => pill(l, k in dests, active: da)),
   )
 
   let assigns = data.at("modulations", default: ())
@@ -222,30 +182,18 @@
 #let fiche(data) = {
   let params = data.at("params", default: (:))
   if params == none { params = (:) }
-  show: page-setup.with(fichier: data.at("_fichier", default: none))
-  header("Moog Messenger", data)
-  panel-overview(params)
-  v(0.6mm)
-  grid(
-    columns: (90mm, 1fr, 1.12fr), column-gutter: 1.6mm,
-    performance(params, data),
-    textbox("Pour l'obtenir", icon: icon-knob, numbered(data.at("etapes", default: ()))),
-    stack(spacing: 1.6mm,
-      textbox("Ajuster à l'oreille", icon: icon-ear, bullets(data.at("oreille", default: ()))),
-      textbox("Jeu", icon: icon-keys, bullets(data.at("jeu", default: ()))),
-    ),
-  )
-  let val(sec, k) = {
-    let x = params.at(sec, default: (:))
-    if x == none { x = (:) }
-    x.at(k, default: defaults.at(sec).at(k))
-  }
+  let val(sec, k) = param-reader(params, defaults)(sec, k).at(0)
   let nrm(h) = (h - 7) / 10
-  let env(sec, titre) = (
-    titre: titre, a: nrm(val(sec, "a")), d: nrm(val(sec, "d")), s: nrm(val(sec, "s")), r: nrm(val(sec, "r")),
+  let env(sec, titre) = env-entry(titre,
+    nrm(val(sec, "a")), nrm(val(sec, "d")), nrm(val(sec, "s")), nrm(val(sec, "r")),
     sub: "A " + clock-label(val(sec, "a")) + " · D " + clock-label(val(sec, "d")) + " · S " + clock-label(val(sec, "s")) + " · R " + clock-label(val(sec, "r")),
   )
   let fe = env("fenv", "Filter env")
+  // EG AMOUNT à midi : l'enveloppe de filtre n'agit pas (courbe grise, hors échelle).
   if val("filter", "eg_amount") == 12 { fe.sub = "sans effet ici : EG AMOUNT à midi"; fe.inactive = true }
-  sources-page("Moog Messenger", data, envs: (fe, env("aenv", "Amp env")))
+  sheet("Moog Messenger", data,
+    panel: panel-overview(params),
+    aside: performance(params, data),
+    envs: (fe, env("aenv", "Amp env")),
+  )
 }

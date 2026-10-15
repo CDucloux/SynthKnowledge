@@ -10,11 +10,12 @@ Style graphique inspiré du manuel Moog Messenger : noir & blanc, Montserrat, ca
 manuals/            manuels PDF officiels (source de vérité sur les contrôles)
 knowledge/          base de connaissances synthèse (synthesis/ : notions condensées), index : knowledge/README.md (sources/ : Synth Secrets, lus n°1-30)
 sounds/<machine>/   un YAML par son  → données de la fiche
-template/           style.typ (composants) · messenger.typ / minilogue-xd.typ (façades) · sheet.typ (point d'entrée)
+template/           style.typ (composants et mise en page communs) · messenger.typ / minilogue-xd.typ (façades) · sheet.typ (point d'entrée)
+template/schema/    <machine>.yaml : paramètres de chaque synthé (valeurs neutres, plages, options), source unique template + validation
 theory/             fiches de théorie imprimables (.typ, d'après Synth Secrets), gabarit template/theory.typ
 sheets/<machine>/   PDF générés (versionnés), nommés « [Artiste] Morceau (Rôle).pdf » ; sheets/theory/ pour la théorie
 fonts/              Montserrat (OFL), ne pas modifier
-scripts/build.sh    compile les YAML en PDF (CLI typst, sinon paquet Python `typst`)
+scripts/build.py    valide les YAML, compile en PDF (CLI typst, sinon paquet Python `typst`), vérifie les 2 pages, met à jour le README ; scripts/build.sh = raccourci
 scripts/build-theory.sh  compile theory/*.typ (A4, pas de limite de pages)
 .claude/skills/     sound-sheet · adjust-sheet · add-synth
 ```
@@ -36,7 +37,7 @@ scripts/build-theory.sh  compile theory/*.typ (A4, pas de limite de pages)
 
 ## Règles du projet
 
-- **Tirets quadratins (U+2014) INTERDITS**, partout : fiches, YAML, Markdown, code, commits, réponses. Utiliser « : », « , », des parenthèses ou une nouvelle phrase. Pas de demi-cadratin (U+2013) non plus. `scripts/build.sh` refuse un YAML qui en contient.
+- **Tirets quadratins (U+2014) INTERDITS**, partout : fiches, YAML, Markdown, code, commits, réponses. Utiliser « : », « , », des parenthèses ou une nouvelle phrase. Pas de demi-cadratin (U+2013) non plus. `scripts/build.py` refuse un YAML qui en contient.
 - **Langue** : textes en français ; noms de contrôles en ANGLAIS, tels qu'écrits sur le panneau, en gras (`*CUTOFF*`).
 - **Notation Messenger** : positions en heures d'horloge, 7 = MIN, 12 = midi, 17 = MAX (décimales : 10.5 = 10:30).
 - **Notation minilogue XD** : valeurs écran du manuel (0-1023 pour la plupart des potards, cents pour PITCH, % pour EG INT et DEPTH des effets).
@@ -45,11 +46,12 @@ scripts/build-theory.sh  compile theory/*.typ (A4, pas de limite de pages)
 - **Honnêteté** : chaque fiche porte un indice de confiance (3 documenté · 2 déduit · 1 approximation), ses sources et une liste `tracabilite` qui sépare ce qui vient des sources de ce qui est reconstitué.
   Ne jamais inventer une source, un réglage « d'origine » ou une citation. Dire clairement quand un son dépend d'un effet ou de la polyphonie que la machine n'a pas.
 - **Entrée par défaut = titre + artiste** + recherche web. Le WAV est un bonus (analyse audio : mise de côté pour l'instant).
-- **Deux pages exactement** : page 1 = schéma, étapes, ajustements, jeu ; page 2 = « Anatomie du son » : courbes des enveloppes (dessinées automatiquement d'après les params), `analyse` (4 encadrés : oscillateurs, filtre, enveloppes, mouvement/espace/jeu : pourquoi chaque réglage donne ce son) puis « D'où ça vient » (confiance, `tracabilite`, sources structurées avec liens cliquables). Dans tous les textes : `[n]` = renvoi cliquable en exposant, `^[...]` = note de bas de page, `[texte](url)` = lien intégré. Ne jamais réintituler la page « sources et traçabilité » (choix de l'utilisateur). `scripts/build.sh` échoue si la page 1 déborde ; raccourcir les textes plutôt que réduire le schéma.
+- **Deux pages exactement** : page 1 = schéma, étapes, ajustements, jeu ; page 2 = « Anatomie du son » : courbes des enveloppes (dessinées automatiquement d'après les params), `analyse` (4 encadrés : oscillateurs, filtre, enveloppes, mouvement/espace/jeu : pourquoi chaque réglage donne ce son) puis « D'où ça vient » (confiance, `tracabilite`, sources structurées avec liens cliquables). Dans tous les textes : `[n]` = renvoi cliquable en exposant, `^[...]` = note de bas de page, `[texte](url)` = lien intégré. Ne jamais réintituler la page « sources et traçabilité » (choix de l'utilisateur). `scripts/build.py` échoue si la page 1 déborde ; raccourcir les textes plutôt que réduire le schéma.
 - Après toute modification du template ou d'un YAML : recompiler et **vérifier visuellement** le PNG du rendu (`pdftoppm -r 100 -png`).
 - Les leçons tirées des essais vont dans `knowledge/retours.md` et, si elles sont générales, dans le fichier de connaissance concerné.
 - Committer les YAML **et** les PDF générés.
-- **README** : vitrine du projet. Le tableau des fiches (Groupe, Morceau, Année, Type de son, Synthé, Son d'origine, Confiance, lien PDF) et les compteurs sont **générés** par `scripts/readme.py` (appelé par `build.sh`) entre les marqueurs `<!-- fiches -->` / `<!-- compteurs -->` : ne pas les éditer à la main. Option `reference.synthe_court` dans un YAML pour raccourcir la colonne « Son d'origine ». Aperçus PNG dans `docs/` : `python3 scripts/readme.py --previews`. Committer README.md avec chaque nouvelle fiche.
+- **Code** : les paramètres d'une machine ne se décrivent qu'à un seul endroit, `template/schema/<machine>.yaml` (jamais de `defaults` en dur dans un template). Ce qui est commun aux façades vit dans `style.typ` (`param-reader`, `check-params`, `sheet`, `env-entry`, `ov-title`…). Après un changement de template qui ne doit pas modifier le rendu, comparer les PNG avant / après.
+- **README** : vitrine du projet. Le tableau des fiches (Groupe, Morceau, Année, Type de son, Synthé, Son d'origine, Confiance, lien PDF) et les compteurs sont **générés** par `scripts/build.py` à chaque compilation entre les marqueurs `<!-- fiches -->` / `<!-- compteurs -->` : ne pas les éditer à la main. Option `reference.synthe_court` dans un YAML pour raccourcir la colonne « Son d'origine ». Aperçus PNG dans `docs/` : `scripts/build.sh --previews`. Committer README.md avec chaque nouvelle fiche.
 
 ## Fiches de théorie (theory/)
 
@@ -85,6 +87,8 @@ scripts/build-theory.sh  compile theory/*.typ (A4, pas de limite de pages)
 ```bash
 scripts/build.sh                                  # toutes les fiches
 scripts/build.sh sounds/messenger/<slug>.yaml       # une fiche
+scripts/build.sh --check [yaml…]                  # valider seulement (schéma template/schema/<machine>.yaml)
+scripts/build.sh --previews                       # + aperçus PNG du README (docs/)
 # équivalent CLI :
 typst compile --root . --font-path fonts --input son=/sounds/messenger/<slug>.yaml template/sheet.typ "sheets/messenger/[Artiste] Morceau (Rôle).pdf"
 ```

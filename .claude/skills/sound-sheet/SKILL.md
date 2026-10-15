@@ -59,13 +59,14 @@ Règles :
 ## 6. Compiler et vérifier
 
 ```bash
-scripts/build.sh sounds/<machine>/<slug>.yaml
+scripts/build.sh --check sounds/<machine>/<slug>.yaml   # valider d'abord (rapide)
+scripts/build.sh sounds/<machine>/<slug>.yaml           # compiler + mettre à jour le README
 ```
+- La validation (`scripts/build.py`, schéma `template/schema/<machine>.yaml`) liste toutes les erreurs d'un coup : clé inconnue ou manquante, valeur hors plage, option invalide, type d'effet inconnu, source mal formée, renvoi [n] sans source, tiret interdit. Corriger d'après les messages.
 - Le script exige **2 pages** (fiche + anatomie du son) : s'il en trouve 3, la page 1 déborde → raccourcir les textes.
-- Le template échoue sur une clé inconnue (faute de frappe) → corriger d'après le message.
 - **Vérifier le rendu visuellement** : `pdftoppm -r 100 -png sheets/<machine>/<slug>.pdf <scratchpad>/x` puis lire l'image. Contrôler : pas de chevauchement, valeurs lisibles, index des potards cohérents avec le texte.
 
 ## 7. Livrer
 
-- Commit sur `main` puis `git push origin main` (pas de branche, pas de PR). Commit du YAML, du PDF **et du README.md** (son tableau est régénéré par `build.sh`) (les PDF sont versionnés pour être consultables depuis le téléphone).
+- Commit sur `main` puis `git push origin main` (pas de branche, pas de PR). Commit du YAML, du PDF **et du README.md** (son tableau est régénéré par `scripts/build.py`) (les PDF sont versionnés pour être consultables depuis le téléphone).
 - Répondre à l'utilisateur : machine choisie, niveau de confiance et pourquoi, sources, compromis éventuels (effets absents, polyphonie), et l'inviter à faire un retour après essai (→ skill `adjust-sheet`). Pas de tiret quadratin dans les textes.

@@ -46,7 +46,7 @@ Cliquer sur **PDF** pour ouvrir la fiche (lisible sur téléphone, à imprimer e
 | **Van Halen** | Jump | 1984 | Cuivres | Korg minilogue XD | Oberheim OB-Xa | ●●○ déduit | [PDF](sheets/minilogue-xd/%5BVan%20Halen%5D%20Jump%20%28Brass%29.pdf) |
 <!-- fiches:end -->
 
-<sub>Tableau généré automatiquement depuis les fichiers `sounds/` par `scripts/build.sh`.</sub>
+<sub>Tableau généré automatiquement depuis les fichiers `sounds/` par `scripts/build.py`.</sub>
 
 ## Ce qu'il y a dans une fiche
 
@@ -88,6 +88,8 @@ Le projet est piloté avec [Claude Code](https://claude.ai/code). Il suffit de d
 
 > « Fais-moi la fiche de la basse de *Closer* de Nine Inch Nails. »
 
+Chaque fiche est validée avant compilation contre la description du synthé (`template/schema/`) : un réglage hors plage, une option qui n'existe pas sur la machine ou une source mal citée sont refusés avec un message clair.
+
 Claude cherche les sources, choisit la machine (polyphonie ou effets : minilogue XD ; basse, lead mono, glide : Messenger), écrit la fiche, la compile et vérifie le rendu. Après un essai, un retour du genre « trop brillant » ou « l'attaque est molle » suffit pour corriger la fiche, et la leçon est gardée pour les suivantes.
 
 À la main :
@@ -95,7 +97,8 @@ Claude cherche les sources, choisit la machine (polyphonie ou effets : minilogue
 ```bash
 scripts/build.sh                                   # toutes les fiches (et ce README)
 scripts/build.sh sounds/messenger/<son>.yaml       # une seule fiche
-python3 scripts/readme.py --previews               # régénérer aussi les aperçus de docs/
+scripts/build.sh --check                           # valider les fiches sans compiler
+scripts/build.sh --previews                        # régénérer aussi les aperçus de docs/
 ```
 
 Dépendances : [Typst](https://typst.app) (ou `pip install typst`), `poppler-utils` pour les aperçus.
@@ -106,6 +109,8 @@ Dépendances : [Typst](https://typst.app) (ou `pip install typst`), `poppler-uti
 sounds/<synthé>/    une fiche = un fichier YAML (les réglages et les textes)
 sheets/<synthé>/    les PDF générés, nommés « [Groupe] Morceau (Rôle).pdf »
 template/           le dessin des façades et la mise en page (Typst)
+template/schema/    la description de chaque synthé : contrôles, plages, options
+scripts/build.py    validation, compilation, mise à jour de ce README
 knowledge/          la base de connaissances : synthèse, synthés historiques, retours d'essai
 theory/             les fiches de théorie
 manuals/            les manuels officiels, source de vérité sur les contrôles

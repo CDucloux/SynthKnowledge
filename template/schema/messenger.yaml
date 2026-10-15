@@ -1,0 +1,75 @@
+# Schéma des paramètres du Moog Messenger : SOURCE UNIQUE pour
+#   - le template (template/messenger.typ) : valeurs neutres (default) et options des sélecteurs ;
+#   - la validation (scripts/build.py) : clés autorisées, types, plages, options.
+# Types : clock = position en heures 7-17 · bool · int / number avec min / max · str
+#         options: <liste> = une des clés de la liste · list + options = sous-ensemble de la liste.
+# Les valeurs neutres sont l'« INIT SynthKnowledge », pas forcément le patch init usine.
+
+options:
+  lfo1-wave: [[tri, TRI], [saw, SAW], [ramp, RAMP], [sqr, SQUARE]]
+  lfo1-dest: [[cutoff, CUTOFF], [osc2_freq, OSC 2 FREQ], [osc1_wave, OSC 1 WAVE], [sub_wave, SUB WAVE]]
+  octave: [[4, "4'"], [8, "8'"], [16, "16'"], [32, "32'"]]
+  mod-dest: [[fm, "1→2 FM"], [fenv_osc2_freq, "F ENV→OSC 2 FREQ"], [fenv_osc2_wave, "F ENV→OSC 2 WAVE"], [fenv_sub_wave, "F ENV→SUB WAVE"]]
+  filter-mode: [[lp4, 4P LOW PASS], [lp2, 2P LOW PASS], [bp, BAND PASS], [hp, HIGH PASS]]
+  lfo2-dest: [[pitch, PITCH], [cutoff, CUTOFF], [amp, AMP]]
+
+params:
+  lfo1:
+    rate: {default: 12, type: clock}
+    depth: {default: 12, type: clock}
+    wave: {default: tri, options: lfo1-wave}
+    dest: {default: cutoff, options: lfo1-dest}
+    sync: {default: false, type: bool}
+    kb_reset: {default: false, type: bool}
+  osc:
+    oct1: {default: 8, options: octave}
+    oct2: {default: 8, options: octave}
+    tune: {default: 12, type: clock}
+    sub_wave: {default: 7, type: clock}
+    wave1: {default: 12, type: clock}
+    wave2: {default: 12, type: clock}
+    osc2_freq: {default: 12, type: clock}
+    mod_amount: {default: 12, type: clock}
+    mod_dest: {default: fm, options: mod-dest}
+    sync: {default: false, type: bool}
+  mixer:
+    osc1: {default: 17, type: clock}
+    osc2: {default: 7, type: clock}
+    sub: {default: 7, type: clock}
+    noise: {default: 7, type: clock}
+  filter:
+    fb_ext: {default: 7, type: clock}
+    cutoff: {default: 17, type: clock}
+    eg_amount: {default: 12, type: clock}
+    osc2_cutoff: {default: 7, type: clock}
+    resonance: {default: 7, type: clock}
+    res_bass: {default: false, type: bool}
+    kb_tracking: {default: false, type: bool}
+    mode: {default: lp4, options: filter-mode}
+  fenv:
+    a: {default: 7, type: clock}
+    d: {default: 12, type: clock}
+    s: {default: 17, type: clock}
+    r: {default: 10, type: clock}
+  aenv:
+    a: {default: 7, type: clock}
+    d: {default: 12, type: clock}
+    s: {default: 17, type: clock}
+    r: {default: 10, type: clock}
+  env:
+    multi_trig: {default: false, type: bool}
+    f_vel: {default: false, type: bool}
+    f_loop: {default: false, type: bool}
+    a_vel: {default: false, type: bool}
+    a_loop: {default: false, type: bool}
+  perf:
+    glide: {default: 7, type: clock}
+    lfo2_rate: {default: 12, type: clock}
+    lfo2_dest: {default: [], type: list, options: lfo2-dest}
+    mod_wheel: {default: 0, type: number, min: 0, max: 100}
+    kb_octave: {default: 0, type: int, min: -2, max: 2}
+
+# Sections propres à cette machine en plus des sections communes à toutes les fiches.
+extra:
+  modulations: {type: list, item: {source: str, dest: str, depth: str}}
+  settings: {type: list, item: {nom: str, valeur: str}}

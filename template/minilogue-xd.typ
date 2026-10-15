@@ -5,40 +5,11 @@
 
 #import "style.typ": *
 
-#let defaults = (
-  voice: (mode: "poly", depth: 0, depth_label: "", portamento: 0, octave: 0, tempo: 120),
-  vco1: (wave: "saw", octave: 8, pitch: 0, shape: 0),
-  vco2: (wave: "saw", octave: 8, pitch: 0, shape: 0, sync: false, ring: false, cross_mod: 0),
-  multi: (engine: "noise", type: "High", shape: 0),
-  mixer: (vco1: 1023, vco2: 0, multi: 0),
-  filter: (cutoff: 1023, resonance: 0, drive: 0, keytrack: 0),
-  amp_eg: (a: 0, d: 512, s: 1023, r: 0),
-  eg: (a: 0, d: 512, int: 0, target: "cutoff"),
-  lfo: (wave: "tri", mode: "normal", rate: 512, rate_label: "", int: 0, target: "pitch"),
-  mod_fx: (on: false, type: "Chorus", subtype: "Stereo", time: 512, depth: 50),
-  reverb: (on: false, type: "Hall", time: 512, depth: 50),
-  delay: (on: false, type: "Stereo", time: 512, depth: 50),
-)
-
-#let options = (
-  voice-mode: (("poly", "POLY"), ("unison", "UNISON"), ("chord", "CHORD"), ("arp", "ARP/LATCH")),
-  wave: (("sqr", "SQR"), ("tri", "TRI"), ("saw", "SAW")),
-  octave: ((16, "16'"), (8, "8'"), (4, "4'"), (2, "2'")),
-  engine: (("noise", "NOISE"), ("vpm", "VPM"), ("usr", "USR")),
-  three: ((100, "100 %"), (50, "50 %"), (0, "0 %")),
-  eg-target: (("pitch", "PITCH"), ("pitch2", "PITCH 2"), ("cutoff", "CUTOFF")),
-  lfo-mode: (("one_shot", "1-SHOT"), ("normal", "NORMAL"), ("bpm", "BPM")),
-  lfo-target: (("cutoff", "CUTOFF"), ("shape", "SHAPE"), ("pitch", "PITCH")),
-)
-
-#let _check(params) = {
-  for (sec, vals) in params {
-    assert(sec in defaults, message: "Section inconnue « " + sec + " », attendu : " + defaults.keys().join(", "))
-    for (k, _) in vals {
-      assert(k in defaults.at(sec), message: "Paramètre inconnu « " + sec + "." + k + " », attendu : " + defaults.at(sec).keys().join(", "))
-    }
-  }
-}
+// Valeurs neutres et options : template/schema/minilogue-xd.yaml (source unique,
+// aussi lue par scripts/build.py pour valider les YAML de sons).
+#let schema = yaml("schema/minilogue-xd.yaml")
+#let defaults = schema-defaults(schema)
+#let options = schema.options
 
 // Affichage de VOICE MODE DEPTH selon le mode (manuel p. 15-16).
 #let depth-display(mode, v, lbl) = {
@@ -53,15 +24,9 @@
 // MASTER / VOICE MODE | VCO 1 · VCO 2 · MULTI ENGINE | MIXER | FILTER |
 // AMP EG · EG · LFO | EFFECTS. Trois rangées alignées, inverseurs à levier.
 // ---------------------------------------------------------------------------
-#let ov-title(t) = align(center + top, text(size: 7.2pt, weight: "extrabold", tracking: 0.16em, upper(t)))
-
 #let panel(params) = {
-  _check(params)
-  let g(sec, k) = {
-    let s = params.at(sec, default: (:))
-    if s == none { s = (:) }
-    if k in s { (s.at(k), true) } else { (defaults.at(sec).at(k), false) }
-  }
+  check-params(params, defaults)
+  let g = param-reader(params, defaults)
   let ks = 7.6mm
   let kw = 12.8mm
   let zone = ks + 2 * 2.6mm
@@ -219,31 +184,17 @@
 #let fiche(data) = {
   let params = data.at("params", default: (:))
   if params == none { params = (:) }
-  show: page-setup.with(fichier: data.at("_fichier", default: none))
-  header("Korg minilogue XD", data)
-  panel(params)
-  v(0.6mm)
-  grid(
-    columns: (90mm, 1fr, 1.12fr), column-gutter: 1.6mm,
-    program-edit(data),
-    textbox("Pour l'obtenir", icon: icon-knob, numbered(data.at("etapes", default: ()))),
-    stack(spacing: 1.6mm,
-      textbox("Ajuster à l'oreille", icon: icon-ear, bullets(data.at("oreille", default: ()))),
-      textbox("Jeu", icon: icon-keys, bullets(data.at("jeu", default: ()))),
-    ),
-  )
-  let val(sec, k) = {
-    let x = params.at(sec, default: (:))
-    if x == none { x = (:) }
-    x.at(k, default: defaults.at(sec).at(k))
-  }
+  let val(sec, k) = param-reader(params, defaults)(sec, k).at(0)
   let nrm(v) = v / 1023
   let ia = val("eg", "int")
-  let eg-target = val("eg", "target")
-  sources-page("Korg minilogue XD", data, envs: (
-    (titre: "Amp EG", a: nrm(val("amp_eg", "a")), d: nrm(val("amp_eg", "d")), s: nrm(val("amp_eg", "s")), r: nrm(val("amp_eg", "r")),
-     sub: "A " + str(val("amp_eg", "a")) + " · D " + str(val("amp_eg", "d")) + " · S " + str(val("amp_eg", "s")) + " · R " + str(val("amp_eg", "r"))),
-    (titre: "EG → " + upper(eg-target), a: nrm(val("eg", "a")), d: nrm(val("eg", "d")), s: 0, r: 0, sustain: false,
-     sub: "A " + str(val("eg", "a")) + " · D " + str(val("eg", "d")) + " · INT " + (if ia > 0 { "+" } else { "" }) + str(ia) + " %"),
-  ))
+  sheet("Korg minilogue XD", data,
+    panel: panel(params),
+    aside: program-edit(data),
+    envs: (
+      env-entry("Amp EG", nrm(val("amp_eg", "a")), nrm(val("amp_eg", "d")), nrm(val("amp_eg", "s")), nrm(val("amp_eg", "r")),
+        sub: "A " + str(val("amp_eg", "a")) + " · D " + str(val("amp_eg", "d")) + " · S " + str(val("amp_eg", "s")) + " · R " + str(val("amp_eg", "r"))),
+      env-entry("EG → " + upper(val("eg", "target")), nrm(val("eg", "a")), nrm(val("eg", "d")), 0, 0, sustain: false,
+        sub: "A " + str(val("eg", "a")) + " · D " + str(val("eg", "d")) + " · INT " + (if ia > 0 { "+" } else { "" }) + str(ia) + " %"),
+    ),
+  )
 }

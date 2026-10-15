@@ -1,0 +1,86 @@
+# Schéma des paramètres du Korg minilogue XD : SOURCE UNIQUE pour
+#   - le template (template/minilogue-xd.typ) : valeurs neutres (default) et options des inverseurs ;
+#   - la validation (scripts/build.py) : clés autorisées, types, plages, options.
+# Valeurs = valeurs écran du manuel (0-1023, cents, %). Types : voir schema/messenger.yaml ;
+# choices = liste de chaînes autorisées (types d'effets, d'après le manuel p. 53-54).
+
+options:
+  voice-mode: [[poly, POLY], [unison, UNISON], [chord, CHORD], [arp, ARP/LATCH]]
+  wave: [[sqr, SQR], [tri, TRI], [saw, SAW]]
+  octave: [[16, "16'"], [8, "8'"], [4, "4'"], [2, "2'"]]
+  engine: [[noise, NOISE], [vpm, VPM], [usr, USR]]
+  three: [[100, "100 %"], [50, "50 %"], [0, "0 %"]]
+  eg-target: [[pitch, PITCH], [pitch2, PITCH 2], [cutoff, CUTOFF]]
+  lfo-mode: [[one_shot, 1-SHOT], [normal, NORMAL], [bpm, BPM]]
+  lfo-target: [[cutoff, CUTOFF], [shape, SHAPE], [pitch, PITCH]]
+
+params:
+  voice:
+    mode: {default: poly, options: voice-mode}
+    depth: {default: 0, type: number, min: 0, max: 1023}
+    depth_label: {default: "", type: str}
+    portamento: {default: 0, type: number, min: 0, max: 127}
+    octave: {default: 0, type: int, min: -2, max: 2}
+    tempo: {default: 120, type: number, min: 56, max: 240}
+  vco1:
+    wave: {default: saw, options: wave}
+    octave: {default: 8, options: octave}
+    pitch: {default: 0, type: number, min: -1200, max: 1200}
+    shape: {default: 0, type: number, min: 0, max: 1023}
+  vco2:
+    wave: {default: saw, options: wave}
+    octave: {default: 8, options: octave}
+    pitch: {default: 0, type: number, min: -1200, max: 1200}
+    shape: {default: 0, type: number, min: 0, max: 1023}
+    sync: {default: false, type: bool}
+    ring: {default: false, type: bool}
+    cross_mod: {default: 0, type: number, min: 0, max: 1023}
+  multi:
+    engine: {default: noise, options: engine}
+    type: {default: High, type: str}
+    shape: {default: 0, type: number, min: 0, max: 1023}
+  mixer:
+    vco1: {default: 1023, type: number, min: 0, max: 1023}
+    vco2: {default: 0, type: number, min: 0, max: 1023}
+    multi: {default: 0, type: number, min: 0, max: 1023}
+  filter:
+    cutoff: {default: 1023, type: number, min: 0, max: 1023}
+    resonance: {default: 0, type: number, min: 0, max: 1023}
+    drive: {default: 0, options: three}
+    keytrack: {default: 0, options: three}
+  amp_eg:
+    a: {default: 0, type: number, min: 0, max: 1023}
+    d: {default: 512, type: number, min: 0, max: 1023}
+    s: {default: 1023, type: number, min: 0, max: 1023}
+    r: {default: 0, type: number, min: 0, max: 1023}
+  eg:
+    a: {default: 0, type: number, min: 0, max: 1023}
+    d: {default: 512, type: number, min: 0, max: 1023}
+    int: {default: 0, type: number, min: -100, max: 100}
+    target: {default: cutoff, options: eg-target}
+  lfo:
+    wave: {default: tri, options: wave}
+    mode: {default: normal, options: lfo-mode}
+    rate: {default: 512, type: number, min: 0, max: 1023}
+    rate_label: {default: "", type: str}
+    int: {default: 0, type: number, min: -511, max: 511}
+    target: {default: pitch, options: lfo-target}
+  mod_fx:
+    "on": {default: false, type: bool}
+    type: {default: Chorus, type: str, choices: [Chorus, Ensemble, Phaser, Flanger]}
+    subtype: {default: Stereo, type: str}
+    time: {default: 512, type: number, min: 0, max: 1023}
+    depth: {default: 50, type: number, min: 0, max: 100}
+  reverb:
+    "on": {default: false, type: bool}
+    type: {default: Hall, type: str, choices: [Hall, Smooth, Arena, Plate, Room, Early Ref, Space, Riser, Submarine, Horror]}
+    time: {default: 512, type: number, min: 0, max: 1023}
+    depth: {default: 50, type: number, min: 0, max: 100}
+  delay:
+    "on": {default: false, type: bool}
+    type: {default: Stereo, type: str, choices: [Stereo, Mono, Ping Pong, Hipass, Tape, One Tap, Stereo BPM, Mono BPM, Ping BPM, Hipass BPM, Tape BPM, Doubling]}
+    time: {default: 512, type: number, min: 0, max: 1023}
+    depth: {default: 50, type: number, min: 0, max: 100}
+
+extra:
+  settings: {type: list, item: {nom: str, valeur: str}}

@@ -435,6 +435,48 @@
   v(1.6mm)
 }
 
+// ---------------------------------------------------------------------------
+// Briques communes aux façades (Messenger, minilogue XD…).
+// ---------------------------------------------------------------------------
+
+/// Valeurs neutres d'une machine, tirées de son schéma (template/schema/<machine>.yaml).
+#let schema-defaults(schema) = {
+  let d = (:)
+  for (sec, keys) in schema.params {
+    let x = (:)
+    for (k, spec) in keys { x.insert(k, spec.default) }
+    d.insert(sec, x)
+  }
+  d
+}
+
+/// Garde-fou côté template : section ou paramètre inconnu = erreur de compilation.
+/// (La validation complète, types et plages, est faite par scripts/build.py.)
+#let check-params(params, defaults) = {
+  for (sec, vals) in params {
+    assert(sec in defaults, message: "Section inconnue « " + sec + " », attendu : " + defaults.keys().join(", "))
+    for (k, _) in vals {
+      assert(k in defaults.at(sec), message: "Paramètre inconnu « " + sec + "." + k + " », attendu : " + defaults.at(sec).keys().join(", "))
+    }
+  }
+}
+
+/// Lecteur de paramètres : `get(sec, k)` → (valeur, réglé par la fiche ?) ;
+/// une clé absente du YAML prend la valeur neutre et s'affiche en gris.
+#let param-reader(params, defaults) = (sec, k) => {
+  let s = params.at(sec, default: (:))
+  if s == none { s = (:) }
+  if k in s { (s.at(k), true) } else { (defaults.at(sec).at(k), false) }
+}
+
+/// Titre de section de façade : centré, sans onglet, comme sur le panneau.
+#let ov-title(t) = align(center + top, text(size: 7.2pt, weight: "extrabold", tracking: 0.16em, upper(t)))
+
+/// Entrée de courbe d'enveloppe pour la page 2 (temps et niveau normalisés 0-1).
+#let env-entry(titre, a, d, s, r, sub: none, sustain: true, inactive: false) = (
+  titre: titre, a: a, d: d, s: s, r: r, sub: sub, sustain: sustain, inactive: inactive,
+)
+
 /// Courbe d'enveloppe dessinée d'après les réglages.
 /// a, d, r : temps normalisés 0-1 (position du potard) ; s : niveau 0-1.
 /// sustain: false → enveloppe AD (pas de palier ni de release).
@@ -575,4 +617,23 @@
   }
   textbox(size: 7.4pt, "D'où ça vient", icon: icon-source,
     grid(columns: (1fr, 1fr), column-gutter: 5mm, origin-part, grid.cell(stroke: (left: 0.4pt + muted), inset: (left: 4mm), sources-part)))
+}
+
+/// Fiche complète (2 pages paysage) : bandeau, façade, cadre annexe à gauche
+/// (contrôleur, PROGRAM EDIT…), étapes / oreille / jeu, puis page 2.
+#let sheet(machine, data, panel: none, aside: none, envs: ()) = {
+  show: page-setup.with(fichier: data.at("_fichier", default: none))
+  header(machine, data)
+  panel
+  v(0.6mm)
+  grid(
+    columns: (90mm, 1fr, 1.12fr), column-gutter: 1.6mm,
+    aside,
+    textbox("Pour l'obtenir", icon: icon-knob, numbered(data.at("etapes", default: ()))),
+    stack(spacing: 1.6mm,
+      textbox("Ajuster à l'oreille", icon: icon-ear, bullets(data.at("oreille", default: ()))),
+      textbox("Jeu", icon: icon-keys, bullets(data.at("jeu", default: ()))),
+    ),
+  )
+  sources-page(machine, data, envs: envs)
 }
