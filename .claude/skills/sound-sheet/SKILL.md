@@ -22,7 +22,8 @@ Si l'utilisateur ne précise pas **quel son** du morceau et qu'il y en a plusieu
 Requêtes types :
 - `"<morceau>" <artiste> synth sound gear` · `"<morceau>" synth patch settings`
 - `<artiste> interview synthesizer <album>` · `"<morceau>" how to make the sound tutorial`
-- Sites utiles : gearspace, reddit r/synthesizers & r/synthrecipes, equipboard, syntorial (preset recipes), soundonsound, musicradar, muzines (archives), forum.moogmusic.com.
+- **À consulter en priorité (choix de l'utilisateur)** : les tutoriels de reproduction d'**Imaginando** (imaginando.pt/media, chaîne YouTube) et d'**Anthony Marinelli** (programmeur de synthés de *Thriller*, chaîne YouTube de reconstitutions de sons) : requêtes `imaginando "<morceau>"` et `"Anthony Marinelli" "<morceau>"`. Les vidéos YouTube ne sont pas visionnables ici (connexion exigée) : lire la description et les fichiers joints. Imaginando fournit souvent un projet Ableton (.zip → .als = XML compressé gzip) : on y lit les notes MIDI (`MidiNoteEvent` par `KeyTrack`/`MidiKey`), le tempo et la chaîne d'effets, ce qui recoupe une tablature (Son of Flynn : même motif que Songsterr, un demi-ton plus haut).
+- Autres sites utiles : gearspace, reddit r/synthesizers & r/synthrecipes, equipboard, syntorial (preset recipes), soundonsound, musicradar, muzines (archives), forum.moogmusic.com.
 
 Retenir : **synthé d'origine**, forme d'onde, filtre, enveloppe, effets, glide, techniques de jeu. Noter chaque URL utile.
 **Séquence ou ostinato** (bloc `sequence`, Messenger ou minilogue XD) : relever les notes sur une transcription réelle, jamais de mémoire.
