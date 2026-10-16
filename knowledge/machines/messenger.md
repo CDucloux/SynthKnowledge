@@ -34,6 +34,8 @@ Bipolaires (0 à midi) : TUNE, OSC 2 FREQ, MOD AMOUNT, EG AMOUNT, LFO 1 DEPTH.
 - FB / EXT IN (`fb_ext`) : sans câble, réinjecte la sortie du mixer → saturation / grain.
 - CUTOFF (`cutoff`), EG AMOUNT (`eg_amount`, bipolaire), OSC 2 → CUTOFF (`osc2_cutoff`, FM de filtre), RESONANCE (`resonance`, auto-oscillation au max).
 - RES BASS (`res_bass`) : garde le grave quand la résonance monte. OFF = ladder classique.
+  **Retour d'essai (2026-10-16)** : avec de la résonance et RES BASS OFF, les basses sonnent creuses (« dull, sans profondeur »). Par défaut sur une basse : RES BASS ON dès que RESONANCE > ≈ 9:00 ; OFF seulement pour un son acid volontairement maigre.
+- CUTOFF bas : le 4 pôles retire très vite le caractère. Pour une basse, partir de 10:00-11:00 et laisser l'EG AMOUNT faire le claquement, plutôt que 9:00.
 - KB TRACKING (`kb_tracking`) : suivi 1 V/oct (ON/OFF ; autres valeurs via [KB ASSIGN]).
 - MODE (`mode`) : `lp4` (24 dB) · `lp2` (12 dB) · `bp` (4 pôles) · `hp` (2 pôles).
 

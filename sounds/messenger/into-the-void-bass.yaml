@@ -27,9 +27,10 @@ params:
   filter:
     mode: lp4
     fb_ext: 9.5
-    cutoff: 10
+    cutoff: 11
     eg_amount: 14.5
     resonance: 11
+    res_bass: true
     kb_tracking: true
   fenv: {a: 7, d: 10.5, s: 8, r: 9}
   aenv: {a: 7, d: 12, s: 14, r: 8.5}
@@ -48,7 +49,7 @@ settings:
 steps:
   - "Maintenir *PANEL* 1 s (init). *OCTAVE 1* sur 16', *WAVESHAPE 1* à midi (scie)."
   - "*SUB WAVE* ≈ 10:30 (carré). *MIXER* : *OSC 1* à fond, *SUB* à midi."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:00, *RESONANCE* ≈ 11:00, *KB TRACKING* ON."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 11:00, *RESONANCE* ≈ 11:00, *RES BASS* ON, *KB TRACKING* ON."
   - "*EG AMOUNT* ≈ 2:30. F ENV : *DECAY* ≈ 10:30, *SUSTAIN* ≈ 8:00."
   - "A ENV : *DECAY* midi, *SUSTAIN* ≈ 2:00, *RELEASE* court. *MULTI-TRIG* ON."
   - "*FB / EXT IN* ≈ 9:30 : un peu de grain dans le filtre."
@@ -72,7 +73,8 @@ analysis:
     text: >-
       *CUTOFF* bas et *EG AMOUNT* fort : à chaque croche le passe-bas
       s'ouvre puis se referme vite, d'où la note qui « rebondit ». La
-      *RESONANCE* modérée souligne ce mouvement sans siffler. *FB / EXT IN*
+      *RESONANCE* modérée souligne ce mouvement sans siffler ; *RES BASS* ON
+      lui garde son grave. *FB / EXT IN*
       réinjecte la sortie dans le filtre^[Feedback : une boucle qui sature
       légèrement le filtre ; le son s'épaissit et prend du grain.] : la touche
       industrielle.

@@ -28,9 +28,10 @@ params:
     osc2: 15
   filter:
     mode: lp4
-    cutoff: 9
+    cutoff: 10
     eg_amount: 14.25
     resonance: 9.5
+    res_bass: true
   fenv: {a: 7, d: 10.5, s: 7, r: 9.5}
   aenv: {a: 7, d: 11, s: 10.5, r: 11}
   env: {multi_trig: true}
@@ -49,7 +50,7 @@ steps:
   - "Maintenir *PANEL* 1 s (init)."
   - "*OCTAVE 1* et *2* sur 16'. *WAVESHAPE 1* à midi (scie), *WAVESHAPE 2* ≈ 1:15 (carré)."
   - "*OSC 2 FREQ* à peine à droite de midi (quelques cents : l'épaisseur). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 3:00."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:00 (très fermé), *RESONANCE* ≈ 9:30, *EG AMOUNT* ≈ 2:15."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:00, *RESONANCE* ≈ 9:30, *RES BASS* ON, *EG AMOUNT* ≈ 2:15."
   - "Enveloppe filtre : *DECAY* ≈ 10:30, *SUSTAIN* à 0. Enveloppe ampli : *DECAY* 11:00, *SUSTAIN* ≈ 10:30, *RELEASE* 11:00."
   - "*MULTI-TRIG* ON. *SETTINGS* 9 (CLOCK DIV) sur 1/8 : le séquenceur avance en croches à 112 BPM."
 tweaks:
@@ -70,9 +71,10 @@ analysis:
   - title: "Le filtre : presque fermé, il claque"
     text: >-
       La recette met la coupure très bas (environ 170 Hz) avec une bonne dose
-      d'enveloppe et un peu de *RESONANCE* [1] : au repos, presque rien ne passe ;
+      d'enveloppe et un peu de *RESONANCE* [1] : au repos, le son est sourd ;
       à chaque croche, le filtre s'ouvre puis se referme en un demi-temps. C'est
-      ce pincement qui fait avancer le morceau.
+      ce pincement qui fait avancer le morceau. *RES BASS* ON : sur le
+      Messenger, la résonance creuse le grave, ce bouton le rend.
   - title: "Les enveloppes : le filtre court, le volume un peu plus"
     text: >-
       Filtre : aucune attaque ni sustain, *DECAY* d'environ 0,5 s [1]. Ampli :

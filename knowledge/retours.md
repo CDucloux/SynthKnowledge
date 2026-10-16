@@ -23,3 +23,8 @@ Format :
 - Retour : l'utilisateur montre les mesures 41 à 44 de la tablature : « le vrai enchaînement c'est ça » (Do, Mi bémol, Fa, Sol, une mesure chacun)
 - Correction : séquence de 16 pas + liste de transpositions calquée sur l'intro (Do 24 mesures, Mi bémol 4, Fa 4, Sol 3) → séquence de 64 pas qui contient la boucle de 4 mesures, écho compris
 - Leçon : retenir la boucle caractéristique du morceau, pas le découpage de l'intro. Quand la boucle tient dans les 64 pas du Messenger, l'écrire en entier plutôt que de la faire transposer à la main.
+
+## 2026-10-16 : College & Electric Youth, A Real Hero (Bass) ; Nine Inch Nails, Into the Void (Bass)
+- Retour : « les basses sonnent un peu dull, sans profondeur ; le cutoff retire vite beaucoup de caractère sur le Messenger »
+- Correction : A Real Hero CUTOFF 9:00 → 10:00, RES BASS OFF → ON ; Into the Void CUTOFF 10:00 → 11:00, RES BASS OFF → ON
+- Leçon : sur le Messenger, le ladder 4 pôles éteint vite le son quand le CUTOFF est bas, et la RESONANCE creuse le grave si RES BASS est OFF (manuel p. 17 et tutoriel p. 10-12). Pour une basse : CUTOFF de départ 10:00-11:00 plutôt que 9:00, et RES BASS ON dès que la RESONANCE dépasse ≈ 9:00, sauf son acid voulu maigre.
