@@ -14,13 +14,18 @@ Compilation : CLI `typst` si présente, sinon paquet Python `typst`.
 """
 
 import argparse
-import glob
 import os
 import sys
 from collections.abc import Iterator
+from pathlib import Path
 
-from synther import ROOT
-from synther.compiler import compile_sheet, compile_typst, page_count
+from synther import ROOT, SHEETS_DIR, SOUNDS_DIR, THEORY_DIR
+from synther.compiler import (
+    CompileError,
+    compile_sheet,
+    compile_typst,
+    page_count,
+)
 from synther.readme import update_previews, update_readme
 from synther.sheet import Sheet
 from synther.validate import InvalidSheetError, check_dashes, load_sheet
@@ -28,38 +33,40 @@ from synther.validate import InvalidSheetError, check_dashes, load_sheet
 COMMANDS = ("sheets", "check", "theory", "previews")
 
 
-def fail(name: str, errors: list[str]) -> None:
-    print(f"✗ {name}", file=sys.stderr)
-    for e in errors:
-        print(f"    {e}", file=sys.stderr)
+def fail(path: Path, errors: list[str]) -> None:
+    print(f"✗ {path}", file=sys.stderr)
+    for error in errors:
+        print(f"    {error}", file=sys.stderr)
 
 
-def load_valid(path: str) -> Sheet | None:
+def all_sounds() -> list[Path]:
+    return sorted(SOUNDS_DIR.glob("*/*.yaml"))
+
+
+def load_valid(path: Path) -> Sheet | None:
     """La fiche si elle est lisible et valide, sinon None.
 
     Les erreurs sont affichées au passage.
     """
     try:
         return load_sheet(path)
-    except InvalidSheetError as e:
-        fail(path, e.errors)
+    except InvalidSheetError as error:
+        fail(path, error.errors)
         return None
 
 
 def build_sheet(sheet: Sheet) -> bool:
     try:
         compile_sheet(sheet)
-    except Exception as e:  # erreur Typst : message déjà explicite
-        fail(sheet.source, ["compilation", str(e)])
+    except CompileError as error:
+        fail(sheet.source, ["compilation", str(error)])
         return False
-    if (n := page_count(sheet.pdf_path)) != 2:
-        fail(
-            sheet.pdf_path,
-            [
-                f"{n} pages au lieu de 2 (page 1 fiche, page 2 anatomie"
-                " du son) : raccourcir les textes"
-            ],
+    if (pages := page_count(sheet.pdf_path)) != 2:
+        message = (
+            f"{pages} pages au lieu de 2 (page 1 fiche, page 2 anatomie"
+            " du son) : raccourcir les textes"
         )
+        fail(sheet.pdf_path, [message])
         return False
     print(f"✓ {sheet.pdf_path}")
     return True
@@ -70,65 +77,72 @@ def readme_sheets() -> Iterator[Sheet]:
 
     Une fiche invalide reste hors du tableau (signalée par la validation).
     """
-    for path in sorted(glob.glob("sounds/*/*.yaml")):
+    for path in all_sounds():
         try:
             yield load_sheet(path)
         except InvalidSheetError:
             continue
 
 
-def cmd_sheets(files: list[str], compile_: bool = True) -> bool:
-    ok = True
-    for path in files or sorted(glob.glob("sounds/*/*.yaml")):
+def cmd_sheets(files: list[Path], compile_: bool = True) -> bool:
+    all_ok = True
+    for path in files or all_sounds():
         sheet = load_valid(path)
         if sheet is None:
-            ok = False
+            all_ok = False
         elif not compile_:
             print(f"✓ {path} (valide)")
         else:
-            ok = build_sheet(sheet) and ok
+            all_ok = build_sheet(sheet) and all_ok
     if compile_:
-        update_readme(list(readme_sheets()))
-    return ok
+        update_readme(readme_sheets())
+    return all_ok
 
 
-def cmd_theory(files: list[str]) -> bool:
-    ok = True
-    for path in files or sorted(glob.glob("theory/*.typ")):
-        with open(path, encoding="utf-8") as f:
-            if errors := list(check_dashes(f.read())):
-                fail(path, errors)
-                ok = False
-                continue
-        out = (
-            f"sheets/theory/{os.path.splitext(os.path.basename(path))[0]}.pdf"
-        )
+def cmd_theory(files: list[Path]) -> bool:
+    all_ok = True
+    for source in files or sorted(THEORY_DIR.glob("*.typ")):
+        output = SHEETS_DIR / "theory" / f"{source.stem}.pdf"
         try:
-            compile_typst(path, out)
-        except Exception as e:  # erreur Typst : message déjà explicite
-            fail(path, ["compilation", str(e)])
-            ok = False
+            if errors := list(check_dashes(source.read_text("utf-8"))):
+                fail(source, errors)
+                all_ok = False
+                continue
+            compile_typst(source, output)
+        except CompileError as error:
+            fail(source, ["compilation", str(error)])
+            all_ok = False
             continue
-        print(f"✓ {out}")
-    return ok
+        print(f"✓ {output}")
+    return all_ok
+
+
+def from_root(path: str) -> Path:
+    """Chemin donné depuis le dossier courant, relatif à la racine.
+
+    Absolu s'il est hors du dépôt.
+    """
+    absolute = Path(path).resolve()
+    if absolute.is_relative_to(ROOT):
+        return absolute.relative_to(ROOT)
+    return absolute
 
 
 def main(argv: list[str]) -> bool:
     if not argv or argv[0] not in (*COMMANDS, "-h", "--help"):
         argv = ["sheets", *argv]
-    ap = argparse.ArgumentParser(
+    parser = argparse.ArgumentParser(
         description=__doc__,
         formatter_class=argparse.RawDescriptionHelpFormatter,
     )
-    ap.add_argument("command", choices=COMMANDS, help="défaut : sheets")
-    ap.add_argument(
+    parser.add_argument("command", choices=COMMANDS, help="défaut : sheets")
+    parser.add_argument(
         "files", nargs="*", help="fichiers à traiter (défaut : tous)"
     )
-    args = ap.parse_args(argv)
+    args = parser.parse_args(argv)
 
-    # Chemins donnés depuis le dossier courant, puis travail à la racine.
-    files = [os.path.relpath(os.path.abspath(f), ROOT) for f in args.files]
-    os.chdir(ROOT)
+    files = [from_root(path) for path in args.files]
+    os.chdir(ROOT)  # voir synther/__init__.py : chemins relatifs à ROOT
     if args.command == "previews":
         update_previews()
         return True

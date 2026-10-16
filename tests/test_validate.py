@@ -1,5 +1,6 @@
 """Messages d'erreur de la validation, sur des fiches fausses."""
 
+from pathlib import Path
 from typing import Any
 
 import pytest
@@ -9,7 +10,7 @@ from synther.validate import InvalidSheetError, _location, load_sheet
 from .conftest import WriteSheet
 
 
-def errors_of(path: str) -> list[str]:
+def errors_of(path: Path) -> list[str]:
     with pytest.raises(InvalidSheetError) as info:
         load_sheet(path)
     return info.value.errors
@@ -21,6 +22,10 @@ def test_valid_copy_loads(
     sheet = load_sheet(write_sheet(thriller))
     assert sheet.role == "Bass"
     assert sheet.reference.artist == "Michael Jackson"
+
+
+def test_missing_file(tmp_path: Path) -> None:
+    assert errors_of(tmp_path / "absente.yaml") == ["fichier introuvable"]
 
 
 def test_unreadable_yaml(write_sheet: WriteSheet) -> None:

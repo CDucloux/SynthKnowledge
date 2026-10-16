@@ -3,14 +3,14 @@
 Le tableau et les compteurs sont régénérés entre des marqueurs HTML.
 """
 
-import os
 import re
 import subprocess
 import urllib.parse
 from collections.abc import Iterable
+from pathlib import Path
 from typing import NamedTuple, Self
 
-from . import MACHINES
+from . import MACHINES, README
 from .models import Reference
 from .sheet import Sheet
 
@@ -42,22 +42,24 @@ CONFIDENCE = {
     2: "⚫⚫⚪ déduit",
     1: "⚫⚪⚪ approximation",
 }
-PREVIEWS = [  # (PDF, page, PNG sans extension)
-    (
-        "sheets/messenger/[Michael Jackson] Thriller (Bass).pdf",
-        1,
-        "docs/apercu-messenger-p1",
-    ),
-    (
-        "sheets/messenger/[Michael Jackson] Thriller (Bass).pdf",
-        2,
-        "docs/apercu-messenger-p2",
-    ),
-    (
-        "sheets/minilogue-xd/[MGMT] Little Dark Age (Intro).pdf",
-        1,
-        "docs/apercu-minilogue-xd-p1",
-    ),
+
+
+class Preview(NamedTuple):
+    """Une page de PDF rendue en PNG pour le README."""
+
+    pdf: Path
+    page: int
+    png: Path  # sans extension (pdftoppm l'ajoute)
+
+
+_THRILLER = Path("sheets/messenger/[Michael Jackson] Thriller (Bass).pdf")
+_LITTLE_DARK_AGE = Path(
+    "sheets/minilogue-xd/[MGMT] Little Dark Age (Intro).pdf"
+)
+PREVIEWS = [
+    Preview(_THRILLER, 1, Path("docs/apercu-messenger-p1")),
+    Preview(_THRILLER, 2, Path("docs/apercu-messenger-p2")),
+    Preview(_LITTLE_DARK_AGE, 1, Path("docs/apercu-minilogue-xd-p1")),
 ]
 
 
@@ -82,7 +84,7 @@ class Row(NamedTuple):
             sheet.machine_name,
             _origin(ref),
             CONFIDENCE[sheet.model.confidence],
-            urllib.parse.quote(sheet.pdf_path),
+            urllib.parse.quote(sheet.pdf_path.as_posix()),
         )
 
     def sort_key(self) -> tuple[str, str, str]:
@@ -120,32 +122,30 @@ def _origin(ref: Reference) -> str:
     return text[:1].upper() + text[1:]
 
 
-def update_readme(sheets: Iterable[Sheet], path: str = "README.md") -> None:
-    rows = sorted((Row.of(s) for s in sheets), key=Row.sort_key)
+def update_readme(sheets: Iterable[Sheet], readme: Path = README) -> None:
+    rows = sorted((Row.of(sheet) for sheet in sheets), key=Row.sort_key)
     table = [
         "| Groupe | Morceau | Année | Type de son | Synthé "
         "| Son d'origine | Confiance | Fiche |",
         "|---|---|:-:|---|---|---|---|:-:|",
-        *(r.markdown() for r in rows),
+        *(row.markdown() for row in rows),
     ]
     # Compteurs dans un <p> HTML : pas de Markdown (GitHub afficherait
     # les **), donc <b>.
     per_machine = " · ".join(
-        f"{sum(r.synth == m for r in rows)} pour le {m}"
-        for m in MACHINES.values()
+        f"{sum(row.synth == machine for row in rows)} pour le {machine}"
+        for machine in MACHINES.values()
     )
-    n_artists = len({r.artist for r in rows})
+    n_artists = len({row.artist for row in rows})
     counts = (
         f"📄 <b>{len(rows)} fiches</b> · 🎤 {n_artists} groupes"
         f" · 🎹 {per_machine}"
     )
 
-    with open(path, encoding="utf-8") as f:
-        text = f.read()
+    text = readme.read_text(encoding="utf-8")
     for tag, body in (("fiches", "\n".join(table)), ("compteurs", counts)):
         text = _replace_between_markers(text, tag, body)
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(text)
+    readme.write_text(text, encoding="utf-8")
     print(f"README.md : {len(rows)} fiches")
 
 
@@ -158,26 +158,20 @@ def _replace_between_markers(text: str, tag: str, body: str) -> str:
             f"README.md : marqueurs <!-- {tag}:start --> / "
             f"<!-- {tag}:end --> introuvables"
         )
-    return pattern.sub(lambda m: m.group(1) + body + "\n" + m.group(2), text)
+    return pattern.sub(
+        lambda match: match.group(1) + body + "\n" + match.group(2), text
+    )
 
 
 def update_previews() -> None:
-    for pdf, page, png in PREVIEWS:
-        if os.path.exists(pdf):
-            subprocess.run(
-                [
-                    "pdftoppm",
-                    "-r",
-                    "110",
-                    "-png",
-                    "-singlefile",
-                    "-f",
-                    str(page),
-                    "-l",
-                    str(page),
-                    pdf,
-                    png,
-                ],
-                check=True,
-            )
+    for preview in PREVIEWS:
+        if not preview.pdf.exists():
+            print(f"docs/ : {preview.pdf} introuvable, aperçu ignoré")
+            continue
+        page = str(preview.page)
+        subprocess.run(
+            ["pdftoppm", "-r", "110", "-png", "-singlefile"]
+            + ["-f", page, "-l", page, str(preview.pdf), str(preview.png)],
+            check=True,
+        )
     print("docs/ : aperçus régénérés")

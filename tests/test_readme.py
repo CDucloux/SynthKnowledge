@@ -1,5 +1,7 @@
 """Tableau du README : colonnes calculées et remplacement entre marqueurs."""
 
+from pathlib import Path
+
 import pytest
 
 from synther.models import Reference
@@ -27,11 +29,11 @@ def test_origin(reference: Reference, expected: str) -> None:
 @pytest.mark.parametrize(
     ("path", "sound_type"),
     [
-        ("sounds/messenger/thriller-bass.yaml", "Basse"),
-        ("sounds/minilogue-xd/jump-brass.yaml", "Cuivres"),
+        (Path("sounds/messenger/thriller-bass.yaml"), "Basse"),
+        (Path("sounds/minilogue-xd/jump-brass.yaml"), "Cuivres"),
     ],
 )
-def test_row(path: str, sound_type: str) -> None:
+def test_row(path: Path, sound_type: str) -> None:
     row = Row.of(load_sheet(path))
     assert row.type == sound_type
     assert row.pdf.startswith("sheets/") and row.pdf.endswith(".pdf")

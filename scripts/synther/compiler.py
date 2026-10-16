@@ -3,22 +3,34 @@
 CLI `typst` si elle est installée, sinon paquet Python `typst`.
 """
 
-import os
 import re
 import shutil
 import subprocess
+from pathlib import Path
 
+from . import FONTS_DIR, SHEET_TEMPLATE
 from .sheet import Sheet
 
 
+class CompileError(Exception):
+    """Échec de Typst ; le message est celui de Typst."""
+
+
 def compile_typst(
-    source: str, output: str, inputs: dict[str, str] | None = None
+    source: Path, output: Path, inputs: dict[str, str] | None = None
 ) -> None:
+    """Compile `source` en `output`, racine Typst = dossier courant.
+
+    `inputs` : valeurs lues dans le template par `sys.inputs`.
+    Lève CompileError si Typst échoue.
+    """
     inputs = inputs or {}
-    os.makedirs(os.path.dirname(output), exist_ok=True)
+    output.parent.mkdir(parents=True, exist_ok=True)
     if shutil.which("typst"):
-        flags = [
-            arg for k, v in inputs.items() for arg in ("--input", f"{k}={v}")
+        input_flags = [
+            flag
+            for key, value in inputs.items()
+            for flag in ("--input", f"{key}={value}")
         ]
         command = [
             "typst",
@@ -26,36 +38,42 @@ def compile_typst(
             "--root",
             ".",
             "--font-path",
-            "fonts",
-            *flags,
-            source,
-            output,
+            str(FONTS_DIR),
+            *input_flags,
+            str(source),
+            str(output),
         ]
-        subprocess.run(command, check=True)
-    else:
-        import typst
+        # Messages de Typst affichés directement (stderr non capturé).
+        if subprocess.run(command).returncode != 0:
+            raise CompileError("typst a échoué (voir ci-dessus)")
+        return
 
+    import typst
+
+    try:
         typst.compile(
-            source,
-            output=output,
+            str(source),
+            output=str(output),
             root=".",
-            font_paths=["fonts"],
+            font_paths=[str(FONTS_DIR)],
             sys_inputs=inputs,
         )
+    except typst.TypstError as error:
+        raise CompileError(str(error)) from error
 
 
 def compile_sheet(sheet: Sheet) -> None:
-    compile_typst(
-        "template/sheet.typ", sheet.pdf_path, {"son": "/" + sheet.source}
-    )
+    # Chemin Typst absolu depuis la racine du projet : « /sounds/… ».
+    son = "/" + sheet.source.as_posix()
+    compile_typst(SHEET_TEMPLATE, sheet.pdf_path, {"son": son})
 
 
-def page_count(pdf_path: str) -> int:
+def page_count(pdf: Path) -> int:
+    """Nombre de pages : pdfinfo si présent, sinon lecture du PDF brut."""
     if shutil.which("pdfinfo"):
-        out = subprocess.run(
-            ["pdfinfo", pdf_path], capture_output=True, text=True
+        info = subprocess.run(
+            ["pdfinfo", str(pdf)], capture_output=True, text=True
         ).stdout
-        if m := re.search(r"^Pages:\s+(\d+)", out, re.M):
-            return int(m.group(1))
-    with open(pdf_path, "rb") as f:
-        return len(re.findall(rb"/Type\s*/Page[^s]", f.read()))
+        if match := re.search(r"^Pages:\s+(\d+)", info, re.MULTILINE):
+            return int(match.group(1))
+    return len(re.findall(rb"/Type\s*/Page[^s]", pdf.read_bytes()))

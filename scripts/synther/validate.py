@@ -4,10 +4,10 @@ Les erreurs pydantic sont reformulées en français, une ligne par problème,
 avec le chemin de la clé (`params.osc.wave1`, `sources[2].url`).
 """
 
-import os
 import types
 import typing
 from collections.abc import Iterator
+from pathlib import Path
 from typing import Any
 
 import yaml
@@ -38,17 +38,19 @@ MESSAGES = {
 class InvalidSheetError(Exception):
     """Fiche illisible ou invalide ; `errors` : une ligne par problème."""
 
-    def __init__(self, path: str, errors: list[str]) -> None:
+    def __init__(self, path: Path, errors: list[str]) -> None:
         super().__init__(f"{path} : {len(errors)} erreur(s)")
         self.errors = errors
 
 
-def load_sheet(path: str) -> Sheet:
+def load_sheet(path: Path) -> Sheet:
     """La fiche validée, ou InvalidSheetError avec toutes ses erreurs."""
     try:
         raw, data = read_yaml(path)
-    except yaml.YAMLError as e:
-        raise InvalidSheetError(path, [yaml_error_message(e)]) from e
+    except FileNotFoundError as error:
+        raise InvalidSheetError(path, ["fichier introuvable"]) from error
+    except yaml.YAMLError as error:
+        raise InvalidSheetError(path, [yaml_error_message(error)]) from error
     model, errors = _validate(path, raw, data)
     if model is None or errors:
         raise InvalidSheetError(path, errors)
@@ -56,7 +58,7 @@ def load_sheet(path: str) -> Sheet:
 
 
 def _validate(
-    path: str, raw: str, data: Any
+    path: Path, raw: str, data: Any
 ) -> tuple[SheetModel | None, list[str]]:
     """(modèle si la structure est valide, erreurs de toute la fiche)."""
     errors = list(check_dashes(raw))
@@ -66,7 +68,7 @@ def _validate(
     if machine not in MACHINES:
         known = ", ".join(MACHINES)
         return None, [*errors, f"synth : « {machine} » inconnu ({known})"]
-    folder = os.path.basename(os.path.dirname(path))
+    folder = path.parent.name
     if folder != machine:
         errors.append(
             f"synth : « {machine} » mais le fichier est dans sounds/{folder}/"
@@ -81,11 +83,12 @@ def _validate(
 
 
 def check_dashes(text: str) -> Iterator[str]:
-    for n, line in enumerate(text.splitlines(), 1):
+    for line_number, line in enumerate(text.splitlines(), 1):
         for dash in FORBIDDEN_DASHES:
             if dash in line:
+                code = f"U+{ord(dash):04X}"
                 yield (
-                    f"ligne {n} : tiret interdit (U+{ord(dash):04X}), "
+                    f"ligne {line_number} : tiret interdit ({code}), "
                     "utiliser « : », « , » ou des parenthèses"
                 )
 

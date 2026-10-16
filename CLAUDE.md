@@ -16,7 +16,7 @@ theory/             fiches de théorie imprimables (.typ, d'après Synth Secrets
 sheets/<machine>/   PDF générés (versionnés), nommés « [Artiste] Morceau (Rôle).pdf » ; sheets/theory/ pour la théorie
 fonts/              Montserrat (OFL), ne pas modifier
 scripts/build.py    point d'entrée : valide les YAML, compile en PDF (CLI typst, sinon paquet Python `typst`), vérifie les 2 pages, met à jour le README ; sous-commandes check · theory · previews
-scripts/synther/    le code : yamlfile.py (lecture YAML, schémas) · models.py (modèles pydantic, générés depuis template/schema/) · validate.py (load_sheet, erreurs en français) · sheet.py (fiche validée, nommage) · compiler.py (Typst, partagé avec la théorie) · readme.py
+scripts/synther/    le code : yamlfile.py (lecture YAML, schémas) · models.py (modèles pydantic, générés depuis template/schema/) · validate.py (load_sheet, erreurs en français) · tous les chemins en pathlib.Path, relatifs à la racine (constantes dans __init__.py) · sheet.py (fiche validée, nommage) · compiler.py (Typst, partagé avec la théorie) · readme.py
 tests/              pytest : toutes les fiches valides et compilées en 2 pages, messages d'erreur, README
 .github/workflows/  CI : ruff, mypy, pytest à chaque push
 .claude/skills/     sound-sheet · adjust-sheet · add-synth

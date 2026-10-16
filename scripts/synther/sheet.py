@@ -1,8 +1,9 @@
 """Fiche son validée : accès typé aux données, nommage du PDF."""
 
 from dataclasses import dataclass
+from pathlib import Path
 
-from . import MACHINES
+from . import MACHINES, SHEETS_DIR
 from .models import Reference, SheetModel
 
 
@@ -10,7 +11,7 @@ from .models import Reference, SheetModel
 class Sheet:
     """Une fiche de sounds/<machine>/<son>.yaml, déjà validée."""
 
-    source: str
+    source: Path
     model: SheetModel
 
     @property
@@ -34,9 +35,9 @@ class Sheet:
         return ""
 
     @property
-    def pdf_path(self) -> str:
+    def pdf_path(self) -> Path:
         """« sheets/<machine>/[Artiste] Morceau (Rôle).pdf »"""
         name = f"[{self.reference.artist}] {self.reference.song}"
         if self.role:
             name += f" ({self.role})"
-        return f"sheets/{self.machine}/{name.replace('/', '-')}.pdf"
+        return SHEETS_DIR / self.machine / f"{name.replace('/', '-')}.pdf"

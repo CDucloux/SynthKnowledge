@@ -1,17 +1,17 @@
 """Non-régression : toutes les fiches du dépôt et leurs PDF."""
 
-import glob
-import os
+from pathlib import Path
 
 import pytest
 
-from synther import MACHINES, ROOT
+from synther import MACHINES, ROOT, SCHEMA_DIR, SOUNDS_DIR
 from synther.compiler import page_count
 from synther.models import sheet_model
 from synther.validate import load_sheet
 
+# Relatifs à la racine (les tests s'y placent, voir conftest.py).
 SOUNDS = sorted(
-    os.path.relpath(p, ROOT) for p in glob.glob(str(ROOT / "sounds/*/*.yaml"))
+    path.relative_to(ROOT) for path in (ROOT / SOUNDS_DIR).glob("*/*.yaml")
 )
 
 
@@ -21,14 +21,12 @@ def test_schema_builds_a_model(machine: str) -> None:
 
 
 def test_every_machine_has_a_schema() -> None:
-    schemas = glob.glob(str(ROOT / "template/schema/*.yaml"))
-    assert {os.path.basename(p).removesuffix(".yaml") for p in schemas} == set(
-        MACHINES
-    )
+    schemas = (ROOT / SCHEMA_DIR).glob("*.yaml")
+    assert {schema.stem for schema in schemas} == set(MACHINES)
 
 
-@pytest.mark.parametrize("path", SOUNDS)
-def test_sheet_is_valid_and_compiled(path: str) -> None:
+@pytest.mark.parametrize("path", SOUNDS, ids=str)
+def test_sheet_is_valid_and_compiled(path: Path) -> None:
     sheet = load_sheet(path)
-    assert os.path.exists(sheet.pdf_path), "PDF manquant ou mal nommé"
+    assert sheet.pdf_path.exists(), "PDF manquant ou mal nommé"
     assert page_count(sheet.pdf_path) == 2
