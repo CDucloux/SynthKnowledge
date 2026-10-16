@@ -11,11 +11,11 @@ dependencies = [
 [project.optional-dependencies]
 # Compilation sans la CLI typst.
 typst = ["typst>=0.13"]
-dev = ["mypy>=1.10", "ruff>=0.5", "types-PyYAML"]
+dev = ["mypy>=1.10", "pytest>=8", "ruff>=0.5", "types-PyYAML"]
 
 [tool.ruff]
 line-length = 79
-src = ["scripts"]
+src = ["scripts", "tests"]
 
 [tool.ruff.lint]
 # pycodestyle (PEP 8), pyflakes, imports, nommage PEP 8, annotations.
@@ -23,8 +23,12 @@ select = ["E", "W", "F", "I", "N", "UP", "ANN", "B"]
 # Any : les données YAML brutes ne sont pas typées avant validation.
 ignore = ["ANN401"]
 
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["scripts", "."]
+
 [tool.mypy]
-files = ["scripts"]
+files = ["scripts", "tests"]
 mypy_path = "scripts"
 strict = true
 plugins = ["pydantic.mypy"]

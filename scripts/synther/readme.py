@@ -8,9 +8,10 @@ import re
 import subprocess
 import urllib.parse
 from collections.abc import Iterable
-from typing import Any, NamedTuple, Self
+from typing import NamedTuple, Self
 
 from . import MACHINES
+from .models import Reference
 from .sheet import Sheet
 
 TYPES = {
@@ -74,13 +75,13 @@ class Row(NamedTuple):
     def of(cls, sheet: Sheet) -> Self:
         ref = sheet.reference
         return cls(
-            ref.get("artist", ""),
-            ref.get("song", ""),
-            ref.get("year", ""),
+            ref.artist,
+            ref.song,
+            ref.year or "",
             _sound_type(sheet),
             sheet.machine_name,
             _origin(ref),
-            CONFIDENCE.get(sheet.data.get("confidence", 0), ""),
+            CONFIDENCE[sheet.model.confidence],
             urllib.parse.quote(sheet.pdf_path),
         )
 
@@ -97,8 +98,8 @@ class Row(NamedTuple):
 
 def _sound_type(sheet: Sheet) -> str:
     """« Basse », ou « Pluck (intro) » si le rôle du titre précise le type."""
-    role = (sheet.role or sheet.data["title"]).lower()
-    category = str(sheet.data.get("category", ""))
+    role = (sheet.role or sheet.model.title).lower()
+    category = sheet.model.category or ""
     label = TYPES.get(category.lower(), category.capitalize())
     return (
         label
@@ -107,16 +108,14 @@ def _sound_type(sheet: Sheet) -> str:
     )
 
 
-def _origin(ref: dict[str, Any]) -> str:
+def _origin(ref: Reference) -> str:
     """Synthé d'origine en quelques mots.
 
     `original_synth_short`, sinon le début de `original_synth`.
     """
     text = (
-        ref.get("original_synth_short")
-        or re.split(
-            r" \(| ;|, |\.", str(ref.get("original_synth") or "?").strip()
-        )[0]
+        ref.original_synth_short
+        or re.split(r" \(| ;|, |\.", (ref.original_synth or "?").strip())[0]
     )
     return text[:1].upper() + text[1:]
 

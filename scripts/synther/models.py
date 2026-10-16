@@ -24,7 +24,7 @@ from pydantic import (
 )
 from pydantic_core import InitErrorDetails, PydanticCustomError
 
-from .sheet import load_schema
+from .yamlfile import load_schema
 
 SEQ_NOTE = re.compile(r"^[A-G][b#]?-?\d$")
 CITATION = re.compile(r"\[(\d+)\](?!\()")  # [n], pas un lien [texte](url)

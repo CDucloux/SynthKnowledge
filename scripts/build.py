@@ -19,13 +19,11 @@ import os
 import sys
 from collections.abc import Iterator
 
-import yaml
-
-from synther import MACHINES, ROOT
+from synther import ROOT
 from synther.compiler import compile_sheet, compile_typst, page_count
 from synther.readme import update_previews, update_readme
-from synther.sheet import Sheet, read_yaml, yaml_error_message
-from synther.validate import check_dashes, validate
+from synther.sheet import Sheet
+from synther.validate import InvalidSheetError, check_dashes, load_sheet
 
 COMMANDS = ("sheets", "check", "theory", "previews")
 
@@ -42,14 +40,10 @@ def load_valid(path: str) -> Sheet | None:
     Les erreurs sont affichées au passage.
     """
     try:
-        raw, data = read_yaml(path)
-    except yaml.YAMLError as e:
-        fail(path, [yaml_error_message(e)])
+        return load_sheet(path)
+    except InvalidSheetError as e:
+        fail(path, e.errors)
         return None
-    if errors := validate(path, raw, data):
-        fail(path, errors)
-        return None
-    return Sheet(path, data)
 
 
 def build_sheet(sheet: Sheet) -> bool:
@@ -72,17 +66,15 @@ def build_sheet(sheet: Sheet) -> bool:
 
 
 def readme_sheets() -> Iterator[Sheet]:
-    """Toutes les fiches lisibles de sounds/.
+    """Toutes les fiches valides de sounds/.
 
-    Une fiche illisible reste hors du tableau (déjà signalée).
+    Une fiche invalide reste hors du tableau (signalée par la validation).
     """
     for path in sorted(glob.glob("sounds/*/*.yaml")):
         try:
-            data = read_yaml(path)[1]
-        except yaml.YAMLError:
+            yield load_sheet(path)
+        except InvalidSheetError:
             continue
-        if isinstance(data, dict) and data.get("synth") in MACHINES:
-            yield Sheet(path, data)
 
 
 def cmd_sheets(files: list[str], compile_: bool = True) -> bool:
@@ -111,7 +103,12 @@ def cmd_theory(files: list[str]) -> bool:
         out = (
             f"sheets/theory/{os.path.splitext(os.path.basename(path))[0]}.pdf"
         )
-        compile_typst(path, out)
+        try:
+            compile_typst(path, out)
+        except Exception as e:  # erreur Typst : message déjà explicite
+            fail(path, ["compilation", str(e)])
+            ok = False
+            continue
         print(f"✓ {out}")
     return ok
 

@@ -16,7 +16,9 @@ theory/             fiches de théorie imprimables (.typ, d'après Synth Secrets
 sheets/<machine>/   PDF générés (versionnés), nommés « [Artiste] Morceau (Rôle).pdf » ; sheets/theory/ pour la théorie
 fonts/              Montserrat (OFL), ne pas modifier
 scripts/build.py    point d'entrée : valide les YAML, compile en PDF (CLI typst, sinon paquet Python `typst`), vérifie les 2 pages, met à jour le README ; sous-commandes check · theory · previews
-scripts/synther/    le code : sheet.py (lecture, nommage) · models.py (modèles pydantic, générés depuis template/schema/) · validate.py (erreurs en français) · compiler.py (Typst, partagé avec la théorie) · readme.py
+scripts/synther/    le code : yamlfile.py (lecture YAML, schémas) · models.py (modèles pydantic, générés depuis template/schema/) · validate.py (load_sheet, erreurs en français) · sheet.py (fiche validée, nommage) · compiler.py (Typst, partagé avec la théorie) · readme.py
+tests/              pytest : toutes les fiches valides et compilées en 2 pages, messages d'erreur, README
+.github/workflows/  CI : ruff, mypy, pytest à chaque push
 .claude/skills/     sound-sheet · adjust-sheet · add-synth
 ```
 
@@ -99,10 +101,10 @@ scripts/build.py previews                         # aperçus PNG du README (docs
 typst compile --root . --font-path fonts --input son=/sounds/messenger/<slug>.yaml template/sheet.typ "sheets/messenger/[Artiste] Morceau (Rôle).pdf"
 ```
 
-Dépendances (`pyproject.toml`) : `pydantic`, `PyYAML`, `typst` (CLI ≥ 0.13, ou `pip install typst`), `poppler-utils` pour la vérification visuelle ; en développement `ruff`, `mypy`, `types-PyYAML`.
+Dépendances (`pyproject.toml`) : `pydantic`, `PyYAML`, `typst` (CLI ≥ 0.13, ou `pip install typst`), `poppler-utils` pour la vérification visuelle ; en développement `ruff`, `mypy`, `pytest`, `types-PyYAML`.
 
 ```bash
-ruff check scripts && ruff format --check scripts && python3 -m mypy   # après toute modification du code Python
+ruff check scripts tests && ruff format --check scripts tests && python3 -m mypy && python3 -m pytest   # après toute modification du code Python (même contrôle en CI)
 ```
 
 ## État / à faire

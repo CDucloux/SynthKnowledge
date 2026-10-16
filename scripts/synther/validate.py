@@ -1,4 +1,4 @@
-"""Validation d'une fiche : contrôles du fichier, puis modèle pydantic.
+"""Chargement d'une fiche : contrôles du fichier, puis modèle pydantic.
 
 Les erreurs pydantic sont reformulées en français, une ligne par problème,
 avec le chemin de la clé (`params.osc.wave1`, `sources[2].url`).
@@ -10,11 +10,14 @@ import typing
 from collections.abc import Iterator
 from typing import Any
 
+import yaml
 from pydantic import BaseModel, ValidationError
 from pydantic_core import ErrorDetails
 
 from . import MACHINES
 from .models import SheetModel, sheet_model
+from .sheet import Sheet
+from .yamlfile import read_yaml, yaml_error_message
 
 FORBIDDEN_DASHES = ("\u2014", "\u2013")  # cadratin, demi-cadratin
 
@@ -32,15 +35,37 @@ MESSAGES = {
 }
 
 
-def validate(path: str, raw: str, data: Any) -> list[str]:
-    """Renvoie la liste des erreurs de la fiche (vide si elle est valide)."""
+class InvalidSheetError(Exception):
+    """Fiche illisible ou invalide ; `errors` : une ligne par problème."""
+
+    def __init__(self, path: str, errors: list[str]) -> None:
+        super().__init__(f"{path} : {len(errors)} erreur(s)")
+        self.errors = errors
+
+
+def load_sheet(path: str) -> Sheet:
+    """La fiche validée, ou InvalidSheetError avec toutes ses erreurs."""
+    try:
+        raw, data = read_yaml(path)
+    except yaml.YAMLError as e:
+        raise InvalidSheetError(path, [yaml_error_message(e)]) from e
+    model, errors = _validate(path, raw, data)
+    if model is None or errors:
+        raise InvalidSheetError(path, errors)
+    return Sheet(path, model)
+
+
+def _validate(
+    path: str, raw: str, data: Any
+) -> tuple[SheetModel | None, list[str]]:
+    """(modèle si la structure est valide, erreurs de toute la fiche)."""
     errors = list(check_dashes(raw))
     if not isinstance(data, dict):
-        return [*errors, "le fichier ne contient pas un objet YAML"]
+        return None, [*errors, "le fichier ne contient pas un objet YAML"]
     machine = data.get("synth")
     if machine not in MACHINES:
         known = ", ".join(MACHINES)
-        return [*errors, f"synth : « {machine} » inconnu ({known})"]
+        return None, [*errors, f"synth : « {machine} » inconnu ({known})"]
     folder = os.path.basename(os.path.dirname(path))
     if folder != machine:
         errors.append(
@@ -48,11 +73,11 @@ def validate(path: str, raw: str, data: Any) -> list[str]:
         )
     model = sheet_model(machine)
     try:
-        model.model_validate(data)
+        return model.model_validate(data), errors
     except ValidationError as error:
         for detail in error.errors():
             errors.extend(_describe(detail, model))
-    return errors
+        return None, errors
 
 
 def check_dashes(text: str) -> Iterator[str]:
