@@ -16,7 +16,7 @@ from pydantic_core import ErrorDetails
 from . import MACHINES
 from .models import SheetModel, sheet_model
 
-FORBIDDEN_DASHES = ("—", "–")  # cadratin, demi-cadratin
+FORBIDDEN_DASHES = ("\u2014", "\u2013")  # cadratin, demi-cadratin
 
 MESSAGES = {
     "missing": "manquant",
