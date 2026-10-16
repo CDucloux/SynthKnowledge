@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Compile les fiches son SynthKnowledge (YAML → PDF Typst) et met à jour le README.
+"""Compile les fiches son Synther (YAML → PDF Typst) et met à jour le README.
 
     scripts/build.py                          toutes les fiches
     scripts/build.py sounds/messenger/x.yaml  une ou plusieurs fiches
@@ -287,7 +287,8 @@ TYPES = {"basse": "Basse", "lead": "Lead", "pluck": "Pluck", "cuivre": "Cuivres"
          "keys": "Clavier", "percussion": "Percussion", "fx": "Effet", "arp": "Arpège", "sequence": "Séquence"}
 # Rôle du titre (anglais) équivalent au type (français) : pas de redite « Basse (bass) ».
 SAME = {"bass": "basse", "brass": "cuivres", "keys": "clavier", "arp": "arpège", "sequence": "séquence"}
-CONF = {3: "●●● documenté", 2: "●●○ déduit", 1: "●○○ approximation"}
+# Emoji ⚫/⚪ : même taille à l'affichage (● et ○ n'ont pas la même chasse selon les polices).
+CONF = {3: "⚫⚫⚫ documenté", 2: "⚫⚫⚪ déduit", 1: "⚫⚪⚪ approximation"}
 
 
 def readme_row(d):
@@ -310,8 +311,9 @@ def update_readme(sheets):
              "|---|---|:-:|---|---|---|---|:-:|"]
     table += [f"| **{r['artiste']}** | {r['morceau']} | {r['annee']} | {r['type']} | {r['synthe']} "
               f"| {r['origine']} | {r['confiance']} | [PDF]({r['pdf']}) |" for r in rows]
+    # Compteurs dans un <p> HTML : pas de Markdown (GitHub afficherait les **), donc <b>.
     per = " · ".join(f"{sum(r['synthe'] == s for r in rows)} pour le {s}" for s in MACHINES.values())
-    counts = f"**{len(rows)} fiches** · {len({r['artiste'] for r in rows})} groupes · {per}"
+    counts = f"📄 <b>{len(rows)} fiches</b> · 🎤 {len({r['artiste'] for r in rows})} groupes · 🎹 {per}"
 
     text = open("README.md", encoding="utf-8").read()
     for tag, body in (("fiches", "\n".join(table)), ("compteurs", counts)):

@@ -107,7 +107,7 @@ settings:
 ## Programme init
 
 Programmes **201 à 500** = programmes initialisés, ou PROGRAM EDIT bouton 13. Les valeurs exactes de l'init ne sont pas listées dans le manuel :
-la fiche affiche **tous** les contrôles (gris = valeur neutre SynthKnowledge, définie dans `template/minilogue-xd.typ`).
+la fiche affiche **tous** les contrôles (gris = valeur neutre Synther, définie dans `template/minilogue-xd.typ`).
 
 ## Inconnues à calibrer
 

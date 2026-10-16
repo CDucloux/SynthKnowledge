@@ -1,4 +1,4 @@
-# SynthKnowledge
+# Synther
 
 Fiches synthétiques et visuelles (PDF Typst A4 : **page 1 = réglages**, **page 2 = anatomie du son** : analyse + sources) pour reproduire des sons de synthé sur les deux machines de l'utilisateur :
 **Moog Messenger** et **Korg minilogue XD** (templates prêts).

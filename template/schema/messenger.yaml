@@ -3,7 +3,7 @@
 #   - la validation (scripts/build.py) : clés autorisées, types, plages, options.
 # Types : clock = position en heures 7-17 · bool · int / number avec min / max · str
 #         options: <liste> = une des clés de la liste · list + options = sous-ensemble de la liste.
-# Les valeurs neutres sont l'« INIT SynthKnowledge », pas forcément le patch init usine.
+# Les valeurs neutres sont l'« INIT Synther », pas forcément le patch init usine.
 
 options:
   lfo1-wave: [[tri, TRI], [saw, SAW], [ramp, RAMP], [sqr, SQUARE]]

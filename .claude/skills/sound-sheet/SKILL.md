@@ -1,6 +1,6 @@
 ---
 name: sound-sheet
-description: Créer une fiche son SynthKnowledge (PDF Typst A4 : page 1 réglages, page 2 anatomie du son) pour reproduire un son de synthé sur le Moog Messenger ou le Korg minilogue XD, à partir d'un titre + artiste, d'une description ou d'une référence. Utiliser dès que l'utilisateur demande « fais-moi la fiche de… », « comment faire le son de… », « reproduire le lead/la basse de… ».
+description: Créer une fiche son Synther (PDF Typst A4 : page 1 réglages, page 2 anatomie du son) pour reproduire un son de synthé sur le Moog Messenger ou le Korg minilogue XD, à partir d'un titre + artiste, d'une description ou d'une référence. Utiliser dès que l'utilisateur demande « fais-moi la fiche de… », « comment faire le son de… », « reproduire le lead/la basse de… ».
 ---
 
 # Créer une fiche son

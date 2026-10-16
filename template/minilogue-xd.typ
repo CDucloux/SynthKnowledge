@@ -1,4 +1,4 @@
-// SynthKnowledge : schéma de façade du Korg minilogue XD.
+// Synther : schéma de façade du Korg minilogue XD.
 // Référence : manuals/minilogue-xd-user-manual.pdf (p. 5 façade, p. 15-24 paramètres, p. 32-36 PROGRAM EDIT, p. 53-54 effets).
 // Valeurs = valeurs écran du manuel (0-1023 pour la plupart des potards).
 // Toute clé absente du YAML prend la valeur neutre ci-dessous et s'affiche en gris.

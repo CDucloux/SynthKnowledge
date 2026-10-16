@@ -87,7 +87,7 @@ settings:
 ## Patch init
 
 Maintenir **PANEL** 1 s → patch initialisé (une scie OSC 1). Les valeurs exactes de l'init usine ne sont pas toutes documentées :
-la fiche affiche **tous** les contrôles (gris = valeur neutre SynthKnowledge, définie dans `template/messenger.typ`).
+la fiche affiche **tous** les contrôles (gris = valeur neutre Synther, définie dans `template/messenger.typ`).
 
 ## Inconnues à calibrer
 

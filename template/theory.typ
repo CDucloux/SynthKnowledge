@@ -1,4 +1,4 @@
-// SynthKnowledge : fiches de théorie imprimables (d'après Synth Secrets, rédigé avec nos mots).
+// Synther : fiches de théorie imprimables (d'après Synth Secrets, rédigé avec nos mots).
 // Même esthétique que les fiches son : noir & blanc, Montserrat, onglets noirs, vignettes encadrées.
 // Les schémas sont calculés (formes d'onde, spectres, courbes) : aucune image copiée.
 

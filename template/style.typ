@@ -1,4 +1,4 @@
-// SynthKnowledge : composants graphiques communs.
+// Synther : composants graphiques communs.
 // Esthétique inspirée des manuels Moog : noir & blanc, sans-serif géométrique,
 // titres capitales grasses, vignettes encadrées.
 
