@@ -1,0 +1,93 @@
+synth: minilogue-xd
+title: A Real Hero Strings
+category: lead
+tags: [synthwave, "2010s", strings, drive]
+confidence: 1
+reference:
+  artist: College & Electric Youth
+  song: A Real Hero
+  year: 2010
+  part: "arpège de « cordes » en contretemps (Fa, Si bémol, Fa, La), puis la mélodie aiguë, même son"
+  original_synth: "non documenté (production de David Grellier, alias College)"
+  original_synth_short: non documenté
+summary: >-
+  Le son rêveur de Drive : des cordes synthétiques douces qui jouent en
+  contretemps au-dessus de la basse. Une scie en unisson, filtre bas, attaque
+  lente, puis beaucoup d'effets : chorus, delay et une grande reverb qui
+  noie les notes dans le brouillard.
+
+params:
+  voice: {mode: unison, depth: 250, tempo: 112}
+  vco1: {wave: saw, octave: 8}
+  mixer: {vco1: 1023}
+  filter: {cutoff: 420, resonance: 60, keytrack: 0}
+  amp_eg: {a: 180, d: 750, s: 880, r: 480}
+  eg: {a: 100, d: 750, int: 30, target: cutoff}
+  mod_fx: {on: true, type: Chorus, subtype: Stereo, time: 450, depth: 60}
+  delay: {on: true, type: Stereo BPM, time: 512, depth: 25}
+  reverb: {on: true, type: Hall, time: 700, depth: 50}
+
+sequence:
+  tempo: 112
+  resolution: 1/8
+  gate: 70
+  steps: >-
+    . F4 . Bb4 . F4 . A4 . F4 . Bb4 . F4 . A4
+
+steps:
+  - "Programme init (201 à 500), *TEMPO* 112. *VOICE MODE* UNISON, *V.M. DEPTH* 250 (≈ 12 cents de désaccord)."
+  - "*VCO 1* : SAW 8'. *MIXER* : *VCO 1* à fond, *VCO 2* et *MULTI* à 0."
+  - "*FILTER* : *CUTOFF* 420, *RESONANCE* 60, *KEY TRACK* 0 %."
+  - "*EG* sur CUTOFF : *ATTACK* 100, *DECAY* 750, *EG INT* +30 %."
+  - "*AMP EG* : *ATTACK* 180 (attaque douce), *DECAY* 750, *SUSTAIN* 880, *RELEASE* 480."
+  - "*EFFECTS* : MOD FX Chorus Stereo (60 %), DELAY Stereo BPM (25 %), REVERB Hall (50 %, *TIME* 700)."
+tweaks:
+  - "Trop sombre : *CUTOFF* vers 550 ; trop présent dans le grave : *VCO 1* sur 4'."
+  - "Pas assez rêveur : REVERB vers 60 %, *ATTACK* de l'*AMP EG* vers 250."
+  - "Les échos brouillent l'arpège : DELAY vers 15 %."
+playing:
+  - "Arpège en contretemps sur tout le morceau ; la mélodie aiguë se joue à la main avec le même son (pas de relevé fiable)."
+
+analysis:
+  - title: "Les oscillateurs : une scie, quatre fois"
+    text: >-
+      Reverb Machine part d'une seule *scie* en unisson [1] : les voix empilées et
+      légèrement désaccordées font l'épaisseur des cordes. Le XD fait pareil en
+      UNISON, ses 4 voix sur une note, avec *V.M. DEPTH* pour le désaccord^[Chaque
+      voix est décalée de quelques cents : elles battent entre elles, comme les
+      musiciens d'un pupitre de cordes qui ne jouent jamais exactement juste
+      ensemble.].
+  - title: "Le filtre : bas et sans suivi de clavier"
+    text: >-
+      La recette met la coupure très bas avec une enveloppe qui l'ouvre
+      doucement, sans *KEY TRACK* [1] : le son reste feutré, même en haut du
+      clavier. Le XD n'a pas d'enveloppe de filtre à sustain : *CUTOFF* un peu plus
+      haut, et l'*EG* ne fait qu'une petite bouffée au début de la note.
+  - title: "Les enveloppes : une attaque qui gonfle"
+    text: >-
+      Attaque douce (environ 70 ms dans la recette [1]), decay long, sustain
+      haut : la note gonfle au lieu de frapper, comme un archet. Le *RELEASE*
+      laisse traîner la note, que la reverb prolonge encore.
+  - title: "L'espace : tout se joue dans les effets"
+    text: >-
+      Chorus façon Juno-60, delay à 25 % et reverb à 50 % [1] : c'est ce bain qui
+      rend le son « rêveur ». L'arpège joue sur les contretemps (Fa, Si bémol, Fa,
+      La) [1], ce qui donne l'élan du morceau face à la basse en croches. Le XD a
+      les trois effets : c'est pour ça qu'il remplace le Messenger ici.
+
+traceability:
+  - "Recette [1] : scie en unisson, coupure basse sans suivi de clavier, attaque d'environ 70 ms, decay 1,2 s, sustain haut, chorus Jun-6, delay 25 %, reverb 50 % (Prophet-5 V, pas l'instrument d'origine)."
+  - "Documenté [1] : arpège en contretemps Fa, Si bémol, Fa, La sur tout le morceau, mélodie aiguë avec le même son. Recoupé [2] : mêmes notes (La, Fa, Si bémol) sur une tablature générée par IA, rythme différent."
+  - "Reconstitué : réglages XD à l'oreille, octave de l'arpège ; synthé d'origine non documenté ; mélodie aiguë non relevée."
+
+sources:
+  - title: "Drive Synth Sounds"
+    site: Reverb Machine
+    date: janvier 2025, mis à jour mai 2026
+    url: https://reverbmachine.com/blog/drive-synth-sounds/
+    note: recette chiffrée des cordes et notes de l'arpège
+  - title: "A Real Hero, piste guitare"
+    site: Songsterr, tablature générée par IA
+    date: mars 2025
+    url: https://www.songsterr.com/a/wsa/college-a-real-hero-tab-s175703
+    note: mesures 117 à 124 (La, Fa, Si bémol)

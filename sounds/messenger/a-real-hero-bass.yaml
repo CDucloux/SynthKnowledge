@@ -1,0 +1,109 @@
+synth: messenger
+title: A Real Hero Bass
+category: basse
+tags: [synthwave, "2010s", sequence, drive]
+confidence: 1
+reference:
+  artist: College & Electric Youth
+  song: A Real Hero
+  year: 2010
+  part: basse en croches pincées, tout le morceau (BO de Drive)
+  original_synth: "non documenté (production de David Grellier, alias College)"
+  original_synth_short: non documenté
+summary: >-
+  La basse qui fait rouler le morceau : des croches régulières, épaisses et
+  pincées, sur Do, Fa, Ré et Si bémol. Une scie et un carré à peine désaccordés,
+  un filtre très fermé qui s'ouvre d'un coup à chaque note : un son mono et
+  vintage, plus rond que tranchant.
+
+params:
+  osc:
+    oct1: 16
+    oct2: 16
+    wave1: 12
+    wave2: 13.25
+    osc2_freq: 12.1
+  mixer:
+    osc1: 17
+    osc2: 15
+  filter:
+    mode: lp4
+    cutoff: 9
+    eg_amount: 14.25
+    resonance: 9.5
+  fenv: {a: 7, d: 10.5, s: 7, r: 9.5}
+  aenv: {a: 7, d: 11, s: 10.5, r: 11}
+  env: {multi_trig: true}
+
+sequence:
+  tempo: 112
+  gate: 70
+  steps: >-
+    C4 C4 C4 C4 C4 C4 C4 C4 | C4 C4 F4 F4 F4 F4 F4 F4 |
+    D4 D4 D4 D4 D4 D4 D4 D4 | C4 C4 C4 Bb3 Bb3 Bb3 Bb3 Bb3
+
+settings:
+  - {name: "Clock Div (SETTINGS 9)", value: "PGM 7 *1/8* : un pas = une croche"}
+
+steps:
+  - "Maintenir *PANEL* 1 s (init)."
+  - "*OCTAVE 1* et *2* sur 16'. *WAVESHAPE 1* à midi (scie), *WAVESHAPE 2* ≈ 1:15 (carré)."
+  - "*OSC 2 FREQ* à peine à droite de midi (quelques cents : l'épaisseur). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 3:00."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:00 (très fermé), *RESONANCE* ≈ 9:30, *EG AMOUNT* ≈ 2:15."
+  - "Enveloppe filtre : *DECAY* ≈ 10:30, *SUSTAIN* à 0. Enveloppe ampli : *DECAY* 11:00, *SUSTAIN* ≈ 10:30, *RELEASE* 11:00."
+  - "*MULTI-TRIG* ON. *SETTINGS* 9 (CLOCK DIV) sur 1/8 : le séquenceur avance en croches à 112 BPM."
+tweaks:
+  - "Pas assez pincé : *DECAY* du filtre vers 10:00, *EG AMOUNT* vers 2:45."
+  - "Trop fin, pas assez « chunky » : *OSC 2* à fond, *OSC 2 FREQ* un peu plus loin de midi."
+  - "Pour jouer sur le disque : *TUNE* un peu à gauche de midi (le morceau est 35 cents sous le La 440)."
+playing:
+  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, les 32 croches, *RECORD*, *PLAY*. Les notes répétées restent détachées."
+
+analysis:
+  - title: "Les oscillateurs : scie, carré et un soupçon de désaccord"
+    text: >-
+      Reverb Machine reconstruit cette basse avec une *scie* et un *carré*, le
+      second désaccordé d'environ 9 cents pour l'épaisseur [1]. La scie apporte
+      toutes les harmoniques, le carré les impaires et du poids dans le grave ;
+      leur léger battement donne le côté « gros » sans élargir le son, qui reste
+      mono comme une basse vintage.
+  - title: "Le filtre : presque fermé, il claque"
+    text: >-
+      La recette met la coupure très bas (environ 170 Hz) avec une bonne dose
+      d'enveloppe et un peu de *RESONANCE* [1] : au repos, presque rien ne passe ;
+      à chaque croche, le filtre s'ouvre puis se referme en un demi-temps. C'est
+      ce pincement qui fait avancer le morceau.
+  - title: "Les enveloppes : le filtre court, le volume un peu plus"
+    text: >-
+      Filtre : aucune attaque ni sustain, *DECAY* d'environ 0,5 s [1]. Ampli :
+      *DECAY* un peu plus long, petit *SUSTAIN*, *RELEASE* du même ordre que le
+      decay : la note s'éteint en douceur sans baver. À 112 BPM, une croche dure
+      268 ms.
+  - title: "Le jeu : un tapis de croches"
+    text: >-
+      Toujours des croches, la note change sur la mesure ou juste avant
+      (Do, Fa, Ré, Si bémol) [2][3]. Au mix, Reverb Machine ajoute saturation,
+      bosse vers 420 Hz et compression [1] : sur le Messenger, monter un peu le
+      volume de sortie et compter sur le grain du filtre.
+
+traceability:
+  - "Recette [1] : scie et carré désaccordés d'environ 9 cents, coupure vers 170 Hz, enveloppe filtre sans sustain d'environ 0,5 s, ampli plus long (Prophet-5 V en unisson, pas l'instrument d'origine)."
+  - "Transcrit [2][3] : notes et rythme (Do, Fa, Ré, Si bémol en croches, 112 BPM), tablatures générées par IA, qui ne diffèrent que d'une croche (Fa anticipé ou non, 2e passage) : à vérifier à l'oreille."
+  - "Reconstitué : positions Messenger à l'oreille ; synthé d'origine non documenté ; notes saisies deux octaves plus haut (étendue du clavier) ; morceau environ 35 cents sous le diapason [1]."
+
+sources:
+  - title: "Drive Synth Sounds"
+    site: Reverb Machine
+    date: janvier 2025, mis à jour mai 2026
+    url: https://reverbmachine.com/blog/drive-synth-sounds/
+    note: recette chiffrée de la basse (Prophet-5 V)
+  - title: "A Real Hero, piste basse"
+    site: Songsterr, tablature générée par IA
+    date: mars 2025
+    url: https://www.songsterr.com/a/wsa/college-a-real-hero-tab-s175703
+    note: mesures 5 à 8, 112 BPM
+  - title: "A Real Hero, piste basse"
+    site: Songsterr, tablature générée par IA
+    date: avril 2025
+    url: https://www.songsterr.com/a/wsa/electric-youth-college-a-real-hero-tab-s1245879
+    note: mêmes notes, recoupement
