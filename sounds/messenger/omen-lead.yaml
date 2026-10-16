@@ -1,15 +1,15 @@
-synthe: messenger
-titre: Omen Lead
-categorie: lead
+synth: messenger
+title: Omen Lead
+category: lead
 tags: [big-beat, electro, "2000s", glide, drive]
-confiance: 2
+confidence: 2
 reference:
-  artiste: The Prodigy
-  morceau: Omen
-  annee: 2009
-  passage: hook strident en trilles rapides, intro et refrains
-  synthe_origine: "Access Virus TI Polar (selon Syntorial et un forum)"
-resume: >-
+  artist: The Prodigy
+  song: Omen
+  year: 2009
+  part: hook strident en trilles rapides, intro et refrains
+  original_synth: "Access Virus TI Polar (selon Syntorial et un forum)"
+summary: >-
   Le hook qui perce tout : deux scies désaccordées façon unisson, un peu de bruit,
   filtre presque ouvert et une saturation à fond. Enveloppe courte qui retombe vite
   vers un sustain bas, et un glide rapide qui lie les trilles.
@@ -37,69 +37,69 @@ params:
     kb_octave: 1
 
 settings:
-  - {nom: "Glide Config (CONFIG 1.3)", valeur: "PGM 1 *Legato Glide* ON : glisse seulement entre notes liées"}
+  - {name: "Glide Config (CONFIG 1.3)", value: "PGM 1 *Legato Glide* ON : glisse seulement entre notes liées"}
 
-etapes:
+steps:
   - "Maintenir *PANEL* 1 s (init). *KB OCTAVE* +1 : le hook vit dans l'aigu."
   - "*OCTAVE 1* et *2* sur 8', *WAVESHAPE 1* et *2* à midi (scies). *OSC 2 FREQ* à peine à droite de midi."
   - "*MIXER* : *OSC 1* à fond, *OSC 2* ≈ 4:00, *NOISE* ≈ 10:00."
   - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 3:30, *KB TRACKING* ON. *FB / EXT IN* ≈ 3:30 : la saturation."
   - "Enveloppe ampli : *ATTACK* nulle, *DECAY* ≈ 10:30, *SUSTAIN* ≈ 9:00, *RELEASE* très court."
   - "*GLIDE* ≈ 9:30 (≈ 70 ms), puis *SETTINGS* → *CONFIG* page 1, PGM 3 → PGM 1 (*Legato Glide*)."
-oreille:
+tweaks:
   - "Pas assez agressif : *FB / EXT IN* à fond ; ça bave trop : vers 2:30."
   - "Trop épais, pas assez perçant : *OSC 2* plus bas ou *OSC 2 FREQ* plus près de midi."
   - "Notes trop courtes dans les trilles : *SUSTAIN* vers 10:00."
   - "Le glide traîne : *GLIDE* vers 8:30, ou jouer plus détaché."
-jeu:
+playing:
   - "Trilles rapides en legato : le glide lie les notes. Détacher pour couper le glide."
   - "Sur le disque le glide disparaît sur la 2e trille de la mesure : la jouer détachée."
 
-analyse:
-  - titre: "Les oscillateurs : deux scies qui se frottent"
-    texte: >-
+analysis:
+  - title: "Les oscillateurs : deux scies qui se frottent"
+    text: >-
       L'original est un Virus TI [1][2] en mode unisson : deux voix de *scie*
       désaccordées d'environ 40 cents [1]. Sur le Messenger, *OSC 1* et *OSC 2* en
       scie, légèrement écartés, font le même frottement qui élargit la note. Un peu de
       *NOISE* (25 % dans la recette [1]) ajoute un souffle qui rend l'attaque plus
       sale et plus présente.
-  - titre: "Le filtre : ouvert, mais saturé"
-    texte: >-
+  - title: "Le filtre : ouvert, mais saturé"
+    text: >-
       Le filtre sert peu : *CUTOFF* à 85 % [1], juste pour limer l'extrême aigu. Le
       vrai caractère vient de la saturation (drive à 100 % [1]) : sur le Messenger,
       *FB / EXT IN* réinjecte la sortie dans le filtre^[Cette réinjection sature
       l'entrée du filtre ladder : on ajoute des harmoniques et on compresse le son,
       comme une distorsion intégrée.] et le rend rugueux et compressé.
-  - titre: "Les enveloppes : un pic puis un fil"
-    texte: >-
+  - title: "Les enveloppes : un pic puis un fil"
+    text: >-
       Ampli sans attaque, *DECAY* court (250 ms [1]) vers un *SUSTAIN* bas (20 % [1]) :
       chaque note claque fort puis retombe à un filet. Dans des trilles rapides, on
       n'entend que des attaques : d'où l'effet percussif et strident. Pas
       d'enveloppe de filtre : le timbre ne bouge pas, c'est le volume qui pulse.
-  - titre: "Le mouvement : le glide sélectif"
-    texte: >-
+  - title: "Le mouvement : le glide sélectif"
+    text: >-
       Portamento court (70 ms [1]) : les trilles glissent légèrement d'une note à
       l'autre. Sur le disque, le glide est coupé sur la deuxième trille de chaque
       mesure [1] ; le *Legato Glide* du Messenger permet de le faire au jeu, sans
       automation. La petite reverb de la recette [1] manque : le Messenger n'a pas
       d'effets.
 
-tracabilite:
+traceability:
   - "Recette d'écoute [1] : Virus TI Polar, mono, portamento 70 ms, scie en unisson 2 voix (40 cents), bruit 25 %, passe-bas 85 %, amp A 0 / D 250 ms / S 20 % / R 20 ms, drive 100 %, petite reverb 30 %."
   - "Non vérifié [2] : un intervenant de forum affirme que la plupart des hooks de l'album ont été joués sur Virus TI Polar."
   - "Contexte [3] : en 2010, le rig de Liam Howlett comprend un Virus TI et un SH-101."
   - "Reconstitué : traduction Messenger (OSC 2 désaccordé à la place de l'unisson, *FB / EXT IN* à la place du drive, legato glide) ; reverb absente."
 
 sources:
-  - titre: "The Prodigy, Omen lead"
+  - title: "The Prodigy, Omen lead"
     site: Syntorial, preset recipe
     url: https://www.syntorial.com/preset-recipe/the-prodigy-omen-lead/
     note: patch complet reconstitué à l'oreille
-  - titre: "Access Virus TI (recommend me some tracks that have Virus as main instrument)"
+  - title: "Access Virus TI (recommend me some tracks that have Virus as main instrument)"
     site: Gearspace, forum
     url: https://gearspace.com/threads/access-virus-ti-recomend-me-some-tracks-that-have-virus-as-main-instrumnet.648618/
     note: attribution des hooks d'Invaders Must Die au Virus TI Polar
-  - titre: "Liam Howlett's Mysterious Invaders Machine"
+  - title: "Liam Howlett's Mysterious Invaders Machine"
     site: Sonicstate
     date: décembre 2024
     url: https://www.sonicstate.com/news/2024/12/15/liam-howlett-invaders-machine

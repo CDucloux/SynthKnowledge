@@ -1,15 +1,15 @@
-synthe: minilogue-xd
-titre: Jump Brass
-categorie: cuivre
+synth: minilogue-xd
+title: Jump Brass
+category: cuivre
 tags: [poly, "80s", stab]
-confiance: 2
+confidence: 2
 reference:
-  artiste: Van Halen
-  morceau: Jump
-  annee: 1984
-  passage: riff d'accords de l'intro, dès 0:00
-  synthe_origine: Oberheim OB-Xa (preset A1), chorus et delay
-resume: >-
+  artist: Van Halen
+  song: Jump
+  year: 1984
+  part: riff d'accords de l'intro, dès 0:00
+  original_synth: Oberheim OB-Xa (preset A1), chorus et delay
+summary: >-
   Le stab de cuivres synthétiques le plus célèbre des années 80 : deux scies
   légèrement désaccordées par voix, filtre assez ouvert avec un petit coup
   d'enveloppe, sustain haut, puis chorus et un soupçon de delay pour l'épaisseur.
@@ -25,12 +25,12 @@ params:
   delay: {on: true, type: Stereo, time: 300, depth: 20}
 
 settings:
-  - nom: "Amp Velocity (bouton 8)"
-    valeur: "0 : stabs réguliers quelle que soit la frappe"
-  - nom: "Initialize (bouton 13)"
-    valeur: "partir d'un programme init (201 à 500)"
+  - name: "Amp Velocity (bouton 8)"
+    value: "0 : stabs réguliers quelle que soit la frappe"
+  - name: "Initialize (bouton 13)"
+    value: "partir d'un programme init (201 à 500)"
 
-etapes:
+steps:
   - "Charger un programme init (201 à 500), *VOICE MODE* sur POLY."
   - "*VCO 1* et *VCO 2* : *WAVE* SAW, *OCTAVE* 8'. *PITCH* du *VCO 2* à +8 cents."
   - "*MIXER* : *VCO 1* et *VCO 2* à 900, *MULTI* à 0."
@@ -38,48 +38,48 @@ etapes:
   - "*EG* sur CUTOFF : *ATTACK* 30, *DECAY* 450, *EG INT* +40 %."
   - "*AMP EG* : attaque courte (20), *SUSTAIN* haut (900), *RELEASE* 300."
   - "*EFFECTS* : MOD sur CHORUS Stereo (ON), DEL sur Stereo (ON, *DEPTH* 20 %)."
-oreille:
+tweaks:
   - "Pas assez cuivré : *EG INT* vers +55 %, ou *ATTACK* de l'EG vers 60."
   - "Trop brillant ou criard : *CUTOFF* vers 520, *RESONANCE* vers 200."
   - "Plus large : *DEPTH* du chorus vers 60 %, ou *PITCH* du *VCO 2* à +12 C."
-jeu:
+playing:
   - "Accords à trois sons en position serrée, main droite, registre médium."
   - "Stabs détachés et rythmés : relâcher franchement entre les accords."
-analyse:
-  - titre: "Les oscillateurs : deux scies désaccordées"
-    texte: >-
+analysis:
+  - title: "Les oscillateurs : deux scies désaccordées"
+    text: >-
       Deux *scies* en 8', le *VCO 2* à +8 cents : chaque voix bat légèrement et sonne
       large. La scie contient toutes les harmoniques, comme un cuivre réel : c'est la
       base de tous les « brass » synthétiques.
-  - titre: "Le filtre : ouvert à moitié, avec un coup"
-    texte: >-
+  - title: "Le filtre : ouvert à moitié, avec un coup"
+    text: >-
       *CUTOFF* au milieu (620) avec un peu de *RESONANCE* : brillant sans être criard.
       *DRIVE* à 50 % ajoute du mordant. *KEYTRACK* à 50 % garde l'équilibre entre les
       accords graves et aigus.
-  - titre: "Les enveloppes : l'attaque cuivrée"
-    texte: >-
+  - title: "Les enveloppes : l'attaque cuivrée"
+    text: >-
       L'*EG* sur CUTOFF, avec une petite attaque (30), ouvre le filtre juste après le
       début de la note : c'est le « blat » qui fait cuivre. L'ampli a un sustain haut
       (stabs pleins) et un *RELEASE* moyen pour que les accords ne se coupent pas net.
-  - titre: "L'espace : chorus et delay"
-    texte: >-
+  - title: "L'espace : chorus et delay"
+    text: >-
       Le *CHORUS* stéréo double chaque voix avec un léger décalage de hauteur : le son
       s'élargit, comme l'OB-Xa passé dans ses effets. Un soupçon de *DELAY* prolonge
       les stabs sans écho audible. En POLY, quatre voix suffisent pour les accords à
       trois sons.
-tracabilite:
+traceability:
   - "Documenté [1] : Oberheim OB-Xa, preset A1, passé dans un chorus et un delay."
   - "Repères d'émulation [2] : scies désaccordées, cutoff ≈ 50 %, résonance ≈ 42 %, mesurés sur un autre synthé."
   - "Reconstitué : toutes les valeurs du minilogue XD, enveloppes et profondeurs d'effets."
 sources:
-  - titre: "The Synth Sounds of Van Halen's Jump"
+  - title: "The Synth Sounds of Van Halen's Jump"
     site: Reverb News
     url: https://reverb.com/news/the-synth-sounds-of-van-halens-jump
     note: OB-Xa, patch A1, chorus et delay
-  - titre: "The 40 greatest synth sounds of all time, No 4"
+  - title: "The 40 greatest synth sounds of all time, No 4"
     site: MusicRadar
     url: https://www.musicradar.com/news/van-halen-jump-best-synth-sound
     note: scies désaccordées, cutoff 50 %, résonance 42 %
-  - titre: "Weekend Workshop : Prince and Van Halen synth sounds with OB-Xd"
+  - title: "Weekend Workshop : Prince and Van Halen synth sounds with OB-Xd"
     site: MusicTech
     url: https://musictech.com/tutorials/weekend-workshop-prince-van-halen-synth-ob-xd

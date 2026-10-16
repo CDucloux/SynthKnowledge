@@ -21,41 +21,41 @@ PREVIEWS = [  # (PDF, page, PNG sans extension)
 
 
 class Row(NamedTuple):
-    artiste: str
-    morceau: str
-    annee: str
+    artist: str
+    song: str
+    year: str
     type: str
-    synthe: str
-    origine: str
-    confiance: str
+    synth: str
+    origin: str
+    confidence: str
     pdf: str
 
     @classmethod
     def of(cls, sheet):
         ref = sheet.reference
-        return cls(ref.get("artiste", ""), ref.get("morceau", ""), ref.get("annee", ""), _sound_type(sheet),
-                   sheet.machine_name, _origin(ref), CONFIDENCE.get(sheet.data.get("confiance"), ""),
+        return cls(ref.get("artist", ""), ref.get("song", ""), ref.get("year", ""), _sound_type(sheet),
+                   sheet.machine_name, _origin(ref), CONFIDENCE.get(sheet.data.get("confidence"), ""),
                    urllib.parse.quote(sheet.pdf_path))
 
     def sort_key(self):
-        return self.artiste.lower().removeprefix("the "), self.morceau, self.type
+        return self.artist.lower().removeprefix("the "), self.song, self.type
 
     def markdown(self):
-        return (f"| **{self.artiste}** | {self.morceau} | {self.annee} | {self.type} | {self.synthe} "
-                f"| {self.origine} | {self.confiance} | [PDF]({self.pdf}) |")
+        return (f"| **{self.artist}** | {self.song} | {self.year} | {self.type} | {self.synth} "
+                f"| {self.origin} | {self.confidence} | [PDF]({self.pdf}) |")
 
 
 def _sound_type(sheet):
     """« Basse », ou « Pluck (intro) » quand le rôle du titre précise le type."""
-    role = (sheet.role or sheet.data["titre"]).lower()
-    category = str(sheet.data.get("categorie", ""))
+    role = (sheet.role or sheet.data["title"]).lower()
+    category = str(sheet.data.get("category", ""))
     label = TYPES.get(category.lower(), category.capitalize())
     return label if SAME_ROLE.get(role, role) == label.lower() else f"{label} ({role})"
 
 
 def _origin(ref):
-    """Synthé d'origine en quelques mots (`synthe_court`, sinon début de `synthe_origine`)."""
-    text = ref.get("synthe_court") or re.split(r" \(| ;|, |\.", str(ref.get("synthe_origine") or "?").strip())[0]
+    """Synthé d'origine en quelques mots (`original_synth_short`, sinon début de `original_synth`)."""
+    text = ref.get("original_synth_short") or re.split(r" \(| ;|, |\.", str(ref.get("original_synth") or "?").strip())[0]
     return text[:1].upper() + text[1:]
 
 
@@ -64,8 +64,8 @@ def update_readme(sheets, path="README.md"):
     table = ["| Groupe | Morceau | Année | Type de son | Synthé | Son d'origine | Confiance | Fiche |",
              "|---|---|:-:|---|---|---|---|:-:|", *(r.markdown() for r in rows)]
     # Compteurs dans un <p> HTML : pas de Markdown (GitHub afficherait les **), donc <b>.
-    per_machine = " · ".join(f"{sum(r.synthe == m for r in rows)} pour le {m}" for m in MACHINES.values())
-    counts = f"📄 <b>{len(rows)} fiches</b> · 🎤 {len({r.artiste for r in rows})} groupes · 🎹 {per_machine}"
+    per_machine = " · ".join(f"{sum(r.synth == m for r in rows)} pour le {m}" for m in MACHINES.values())
+    counts = f"📄 <b>{len(rows)} fiches</b> · 🎤 {len({r.artist for r in rows})} groupes · 🎹 {per_machine}"
 
     with open(path, encoding="utf-8") as f:
         text = f.read()

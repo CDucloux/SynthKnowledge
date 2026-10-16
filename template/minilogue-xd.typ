@@ -150,8 +150,8 @@
       } else {
         let rows = ()
         for s in settings {
-          rows.push(text(weight: "extrabold", upper(s.nom)))
-          rows.push(md(s.valeur))
+          rows.push(text(weight: "extrabold", upper(s.name)))
+          rows.push(md(s.value))
         }
         table(
           columns: (auto, 1fr), stroke: none, inset: (x: 1mm, y: 0.9mm),

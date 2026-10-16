@@ -30,20 +30,20 @@ Retenir : **synthé d'origine**, forme d'onde, filtre, enveloppe, effets, glide,
 **Séquence ou ostinato** (bloc `sequence`, Messenger ou minilogue XD) : relever les notes sur une transcription réelle, jamais de mémoire.
 - Prendre la piste qui joue la partie de synthé, pas la basse (leçon Supernature : la tablature basse donnait un autre motif). Sur Songsterr, lister les pistes avec `https://www.songsterr.com/api/songs?pattern=<morceau>` et lire celle qui transcrit le synthé (souvent « Rhythm Guitar » ou « Keys ») ; comparer avec la basse.
 - Repérer la mesure où la partie entre, le tempo, la durée de chaque accord (→ `transpose`).
-- Messenger monophonique : accord → une note (celle du dessus) ; à écrire dans `tracabilite`. minilogue XD : accord gardé tel quel (`G3+Bb3+D4`, 4 notes au plus), mais 16 pas seulement et pas de transposition au clavier : une mesure type dans la grille, la suite d'accords dans `jeu` (ARP/LATCH ou un programme par accord). Tablature « AI Generated » : le signaler, confiance 2 au plus.
+- Messenger monophonique : accord → une note (celle du dessus) ; à écrire dans `traceability`. minilogue XD : accord gardé tel quel (`G3+Bb3+D4`, 4 notes au plus), mais 16 pas seulement et pas de transposition au clavier : une mesure type dans la grille, la suite d'accords dans `playing` (ARP/LATCH ou un programme par accord). Tablature « AI Generated » : le signaler, confiance 2 au plus.
 
 Ne jamais citer une source qu'on n'a pas réellement trouvée ; ne jamais présenter une hypothèse comme un fait documenté.
 
 ## 3. Choisir la machine
 
 Règles dans `knowledge/synthes-historiques.md` (« Choisir la machine ») :
-- accords, nappes, son qui dépend d'un chorus, d'un delay ou d'une reverb, FM type DX → **minilogue XD** (`synthe: minilogue-xd`) ;
-- basse, lead mono, acid, glide, gros son Moog → **Messenger** (`synthe: messenger`).
+- accords, nappes, son qui dépend d'un chorus, d'un delay ou d'une reverb, FM type DX → **minilogue XD** (`synth: minilogue-xd`) ;
+- basse, lead mono, acid, glide, gros son Moog → **Messenger** (`synth: messenger`).
 Dire à l'utilisateur pourquoi cette machine, et les compromis.
 
 ## 4. Fixer l'indice de confiance
 
-| `confiance` | Sens | Critère |
+| `confidence` | Sens | Critère |
 |---|---|---|
 | 3 : DOCUMENTÉ | réglages ou patch publiés par une source fiable (manuel, interview, patch sheet) | sources explicites sur le patch |
 | 2 : DÉDUIT | synthé et nature du son connus, réglages reconstitués | sources sur le matériel / le caractère |
@@ -57,11 +57,11 @@ Règles :
 - Messenger : positions en heures (7-17, décimales 0.25 / 0.5). minilogue XD : valeurs écran du manuel (0-1023, cents, %).
 - Textes en français, noms de contrôles en ANGLAIS et en gras via `*CONTROL*` (markup Typst).
 - Dans les textes : pas de `#`, `$`, `@`, `<`, `_` nus (markup Typst) ; mettre entre guillemets YAML toute chaîne contenant `:`.
-- `etapes` : 5-7 étapes, du patch init au son final, dans l'ordre du panneau. `oreille` : 3-4 ajustements « symptôme → geste ». `jeu` : 2-3 conseils.
-- `analyse` (page 2, « Anatomie du son ») : 4 encadrés `{titre, texte}` dans l'ordre oscillateurs, filtre, enveloppes, puis mouvement / espace / jeu. Expliquer **pourquoi** chaque réglage produit le son (harmoniques de l'onde, pente du filtre, forme des enveloppes, rôle des effets), 3-5 lignes chacun, titre accrocheur (« Le filtre : la résonance qui chante »). Les courbes ADSR sont dessinées automatiquement d'après `params`.
-- `tracabilite` : 2-4 puces « Documenté [n] : … », « Hypothèse [n] : … », « Reconstitué : … ». Les [n] renvoient à l'ordre de `sources`.
-- `sources` : entrées structurées `{titre, site, date, url, note}` (voir schéma). `url` = URL complète et vérifiée (cliquable, affichée abrégée) ; si on ne la retrouve pas, l'omettre et le dire dans `note`. Numérotées [1], [2]… en page 2.
-- Renvois et notes dans les textes : `[n]` → exposant cliquable vers la source n ; `^[...]` → note de bas de page (définir un terme technique, préciser une nuance) ; `[texte](https://…)` → lien intégré. Utiliser les renvois dans `analyse` dès qu'une affirmation vient d'une source.
+- `steps` : 5-7 étapes, du patch init au son final, dans l'ordre du panneau. `tweaks` : 3-4 ajustements « symptôme → geste ». `playing` : 2-3 conseils.
+- `analysis` (page 2, « Anatomie du son ») : 4 encadrés `{title, text}` dans l'ordre oscillateurs, filtre, enveloppes, puis mouvement / espace / jeu. Expliquer **pourquoi** chaque réglage produit le son (harmoniques de l'onde, pente du filtre, forme des enveloppes, rôle des effets), 3-5 lignes chacun, titre accrocheur (« Le filtre : la résonance qui chante »). Les courbes ADSR sont dessinées automatiquement d'après `params`.
+- `traceability` : 2-4 puces « Documenté [n] : … », « Hypothèse [n] : … », « Reconstitué : … ». Les [n] renvoient à l'ordre de `sources`.
+- `sources` : entrées structurées `{title, site, date, url, note}` (voir schéma). `url` = URL complète et vérifiée (cliquable, affichée abrégée) ; si on ne la retrouve pas, l'omettre et le dire dans `note`. Numérotées [1], [2]… en page 2.
+- Renvois et notes dans les textes : `[n]` → exposant cliquable vers la source n ; `^[...]` → note de bas de page (définir un terme technique, préciser une nuance) ; `[texte](https://…)` → lien intégré. Utiliser les renvois dans `analysis` dès qu'une affirmation vient d'une source.
 
 ## 6. Compiler et vérifier
 

@@ -1,15 +1,15 @@
-synthe: minilogue-xd
-titre: Little Dark Age Intro
-categorie: lead
+synth: minilogue-xd
+title: Little Dark Age Intro
+category: lead
 tags: [synthpop, "2010s", accords, sequence, vibrato]
-confiance: 2
+confidence: 2
 reference:
-  artiste: MGMT
-  morceau: Little Dark Age
-  annee: 2017
-  passage: suite d'accords inquiétante de l'intro, filtre qui pulse en séquence
-  synthe_origine: "non documenté ; son très traité par les effets selon Reverb Machine"
-resume: >-
+  artist: MGMT
+  song: Little Dark Age
+  year: 2017
+  part: suite d'accords inquiétante de l'intro, filtre qui pulse en séquence
+  original_synth: "non documenté ; son très traité par les effets selon Reverb Machine"
+summary: >-
   Les accords sombres qui ouvrent le morceau : des scies légèrement désaccordées,
   un vibrato rapide qui fait « tanguer » la note, et un filtre résonant qui s'ouvre
   et se ferme en rythme comme une séquence. Delay en doubles croches et reverb.
@@ -27,10 +27,10 @@ params:
   reverb: {on: true, type: Hall, time: 600, depth: 30}
 
 settings:
-  - {nom: "LFO (bouton 7)", valeur: "Key Sync On : la séquence repart à chaque accord"}
-  - {nom: "Tempo", valeur: "*TEMPO* calé sur le morceau : le LFO et le delay s'y synchronisent"}
+  - {name: "LFO (bouton 7)", value: "Key Sync On : la séquence repart à chaque accord"}
+  - {name: "Tempo", value: "*TEMPO* calé sur le morceau : le LFO et le delay s'y synchronisent"}
 
-etapes:
+steps:
   - "Programme init (201 à 500), *VOICE MODE* POLY ; régler *TEMPO* sur le morceau."
   - "*VCO 1* et *VCO 2* : SAW 8'. *PITCH* du *VCO 2* à +8 cents. *MIXER* : 900 et 800."
   - "*FILTER* : *CUTOFF* 470, *RESONANCE* 330, *KEYTRACK* 50 %."
@@ -38,49 +38,49 @@ etapes:
   - "*AMP EG* : attaque douce (15), *SUSTAIN* à fond, *RELEASE* 320."
   - "*MOD FX* : CHORUS, sous-type Vibrato (SHIFT + SELECT), *TIME* 720, *DEPTH* 35 %."
   - "*DELAY* Stereo BPM sur la double croche (25 %), *REVERB* Hall 30 %."
-oreille:
+tweaks:
   - "La séquence ne s'entend pas assez : *INT* du LFO vers 320, *RESONANCE* vers 420."
   - "Trop sombre (l'original garde des aigus non filtrés) : *CUTOFF* vers 560."
   - "Vibrato trop lent ou trop doux : *TIME* (vitesse) et *DEPTH* du vibrato, à l'oreille vers ≈ 6-7 Hz."
   - "Les échos brouillent les accords : *DEPTH* du delay vers 15 %."
-jeu:
+playing:
   - "Accords tenus, main droite, une harmonie par mesure : la séquence fait le rythme."
   - "Le Key Sync relance la séquence à chaque accord : attaquer les accords pile sur le temps."
 
-analyse:
-  - titre: "Les oscillateurs : des scies qui tanguent"
-    texte: >-
+analysis:
+  - title: "Les oscillateurs : des scies qui tanguent"
+    text: >-
       La recréation de [1] part d'une seule *scie* avec un peu d'unisson désaccordé :
       on la reproduit par deux scies à +8 cents. Le vibrato rapide (6,7 Hz dans [1])
       fait osciller la hauteur : avec les accords mineurs, cela donne ce côté
       instable et inquiétant. Ici, il vient du *CHORUS* en mode Vibrato, ce qui
       laisse le *LFO* libre pour le filtre.
-  - titre: "Le filtre : la séquence résonante"
-    texte: >-
+  - title: "Le filtre : la séquence résonante"
+    text: >-
       Dans [1], le filtre (passe-bas 12 dB, résonance 32 %) est piloté par une
       séquence de pas dessinée^[Un LFO dont on dessine la forme pas par pas : le
       filtre saute d'une valeur à l'autre au lieu de glisser.] . Le *LFO* du XD en
       carré synchronisé au tempo fait une version à deux pas : ouvert, fermé, en
       doubles croches. La *RESONANCE* fait « parler » chaque ouverture.
-  - titre: "Les enveloppes : des accords tenus"
-    texte: >-
+  - title: "Les enveloppes : des accords tenus"
+    text: >-
       L'ampli est presque un orgue : attaque très légèrement adoucie, *SUSTAIN* à
       fond, *RELEASE* moyen pour que les accords se fondent. Tout le mouvement vient
       du *LFO* sur le filtre : l'enveloppe ne fait que tenir la note.
-  - titre: "L'espace : le traitement fait le son"
-    texte: >-
+  - title: "L'espace : le traitement fait le son"
+    text: >-
       Selon [1], le son d'origine est « fortement traité » : phaser, delay à la double
       croche, reverb, filtrage des extrêmes. Le XD n'a qu'un MOD FX : on garde le
       vibrato plutôt que le phaser. Le *DELAY* BPM en doubles croches renforce la
       pulsation de la séquence, la reverb donne la profondeur sombre.
 
-tracabilite:
+traceability:
   - "Recette d'écoute [1] : scie avec léger unisson, vibrato LFO 6,7 Hz, passe-bas 12 dB modulé par une séquence de pas dessinée, résonance 32 %, mix de filtre 82 %, phaser 40 %, delay 1/16, reverb, son « fortement traité »."
   - "Non documenté : synthé d'origine de cette partie (aucune source)."
   - "Reconstitué : traduction XD (2 VCO désaccordés, LFO carré BPM à la place de la séquence dessinée, vibrato par le MOD FX, phaser abandonné)."
 
 sources:
-  - titre: "MGMT's Little Dark Age Synth Sounds"
+  - title: "MGMT's Little Dark Age Synth Sounds"
     site: Reverb Machine
     date: mai 2021
     url: https://reverbmachine.com/blog/mgmt-little-dark-age-synth-sounds

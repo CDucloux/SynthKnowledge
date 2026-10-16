@@ -13,13 +13,13 @@ FORBIDDEN_DASHES = ("\u2014", "\u2013")  # cadratin, demi-cadratin
 
 # Clés de premier niveau communes à toutes les fiches : clé → obligatoire
 TOP_KEYS = {
-    "synthe": True, "titre": True, "categorie": False, "tags": False, "confiance": True,
-    "reference": True, "resume": True, "params": True, "etapes": True, "oreille": True,
-    "jeu": True, "analyse": True, "tracabilite": True, "sources": True,
+    "synth": True, "title": True, "category": False, "tags": False, "confidence": True,
+    "reference": True, "summary": True, "params": True, "steps": True, "tweaks": True,
+    "playing": True, "analysis": True, "traceability": True, "sources": True,
 }
-TEXT_LISTS = ("etapes", "oreille", "jeu", "tracabilite")
-REFERENCE_KEYS = ("artiste", "morceau", "annee", "passage", "synthe_origine", "synthe_court")
-SOURCE_KEYS = ("titre", "site", "date", "url", "note")
+TEXT_LISTS = ("steps", "tweaks", "playing", "traceability")
+REFERENCE_KEYS = ("artist", "song", "year", "part", "original_synth", "original_synth_short")
+SOURCE_KEYS = ("title", "site", "date", "url", "note")
 SEQ_NOTE = re.compile(r"^[A-G][b#]?-?\d$")
 CITATION = re.compile(r"\[(\d+)\](?!\()")  # [n], pas un lien [texte](url)
 
@@ -29,9 +29,9 @@ def validate(path, raw, data):
     errors = list(check_dashes(raw))
     if not isinstance(data, dict):
         return errors + ["le fichier ne contient pas un objet YAML"]
-    machine = data.get("synthe")
+    machine = data.get("synth")
     if machine not in MACHINES:
-        return errors + [f"synthe : « {machine} » inconnu ({', '.join(MACHINES)})"]
+        return errors + [f"synth : « {machine} » inconnu ({', '.join(MACHINES)})"]
     schema = load_schema(machine)
     checks = (
         _check_folder(path, machine),
@@ -60,7 +60,7 @@ def check_dashes(text):
 def _check_folder(path, machine):
     folder = os.path.basename(os.path.dirname(path))
     if folder != machine:
-        yield f"synthe : « {machine} » mais le fichier est dans sounds/{folder}/"
+        yield f"synth : « {machine} » mais le fichier est dans sounds/{folder}/"
 
 
 def _check_top_keys(data, extra):
@@ -70,8 +70,8 @@ def _check_top_keys(data, extra):
     for key, required in TOP_KEYS.items():
         if required and data.get(key) in (None, "", [], {}):
             yield f"« {key} » manquant ou vide"
-    if "confiance" in data and data["confiance"] not in (1, 2, 3):
-        yield f"confiance : {data['confiance']!r} doit valoir 1, 2 ou 3"
+    if "confidence" in data and data["confidence"] not in (1, 2, 3):
+        yield f"confidence : {data['confidence']!r} doit valoir 1, 2 ou 3"
 
 
 def _check_reference(data):
@@ -82,7 +82,7 @@ def _check_reference(data):
     for key in ref:
         if key not in REFERENCE_KEYS:
             yield f"reference : clé inconnue « {key} » (attendu : {', '.join(REFERENCE_KEYS)})"
-    for key in ("artiste", "morceau"):
+    for key in ("artist", "song"):
         if not ref.get(key):
             yield f"reference.{key} manquant"
 
@@ -91,8 +91,8 @@ def _check_texts(data):
     for key in TEXT_LISTS:
         if key in data:
             yield from check_list(key, data[key], "str")
-    if "analyse" in data:
-        yield from check_list("analyse", data["analyse"], ("titre", "texte"), required=("titre", "texte"))
+    if "analysis" in data:
+        yield from check_list("analysis", data["analysis"], ("title", "text"), required=("title", "text"))
 
 
 def _check_sources(sources):
@@ -108,8 +108,8 @@ def _check_sources(sources):
         for key in src:
             if key not in SOURCE_KEYS:
                 yield f"sources[{i}] : clé inconnue « {key} » (attendu : {', '.join(SOURCE_KEYS)})"
-        if not src.get("titre"):
-            yield f"sources[{i}] : « titre » manquant"
+        if not src.get("title"):
+            yield f"sources[{i}] : « title » manquant"
         if src.get("url") and not str(src["url"]).startswith(("http://", "https://")):
             yield f"sources[{i}].url : doit commencer par https://"
 

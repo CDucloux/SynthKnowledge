@@ -1,16 +1,16 @@
-synthe: minilogue-xd
-titre: The Son of Flynn Arpeggio
-categorie: arp
+synth: minilogue-xd
+title: The Son of Flynn Arpeggio
+category: arp
 tags: [soundtrack, "2010s", sequence, arpeggio]
-confiance: 1
+confidence: 1
 reference:
-  artiste: Daft Punk
-  morceau: The Son of Flynn
-  annee: 2010
-  passage: arpège en doubles croches qui ouvre le morceau (TRON Legacy, piste 3)
-  synthe_origine: "non documenté (score électronique et orchestre de 85 musiciens)"
-  synthe_court: non documenté
-resume: >-
+  artist: Daft Punk
+  song: The Son of Flynn
+  year: 2010
+  part: arpège en doubles croches qui ouvre le morceau (TRON Legacy, piste 3)
+  original_synth: "non documenté (score électronique et orchestre de 85 musiciens)"
+  original_synth_short: non documenté
+summary: >-
   Le moteur du morceau : un accord de Sol dièse mineur égrené en doubles croches sur deux
   octaves, son pincé et brillant, qui pose la tension avant l'entrée des cordes.
   Notes d'après une transcription ; le synthé d'origine n'est pas documenté, le son
@@ -36,50 +36,50 @@ sequence:
     G#3 B3 D#4 G#4 B4 D#5 G#3 B3 D#4 G#4 B4 D#5 G#3 B3 D#4 D#4
 
 settings:
-  - {nom: "EG Velocity (bouton 8)", valeur: "0 : toutes les notes du séquenceur s'ouvrent pareil"}
+  - {name: "EG Velocity (bouton 8)", value: "0 : toutes les notes du séquenceur s'ouvrent pareil"}
 
-etapes:
+steps:
   - "Programme init (201 à 500), *VOICE MODE* POLY, *TEMPO* 106.7."
   - "*VCO 1* : SAW 8'. *VCO 2* : SAW 4', *PITCH* +6 cents. *MIXER* : 1023 et 650."
   - "*FILTER* : *CUTOFF* 430, *RESONANCE* 220, *KEYTRACK* 50 %."
   - "*EG* sur CUTOFF : *ATTACK* 0, *DECAY* 330, *EG INT* +45 %."
   - "*AMP EG* : *ATTACK* 0, *DECAY* 430, *SUSTAIN* 0, *RELEASE* 320."
   - "*MOD FX* Chorus Stereo (30 %), *DELAY* Tape BPM (18 %), *REVERB* Hall (30 %)."
-oreille:
+tweaks:
   - "Trop mou : *DECAY* de l'*EG* vers 250 et *EG INT* vers +55 %."
   - "Trop agressif : *CUTOFF* vers 350, *VCO 2* vers 450."
   - "Trop sec face aux cordes : *REVERB* *DEPTH* vers 40 %."
-jeu:
+playing:
   - "Saisie : *REC* à l'arrêt, une note par pas, *PLAY*. Grille = mesure 1. Un demi-ton trop haut : Transpose -1 (PROGRAM EDIT, bouton 6)."
   - "Accords suivants : mode ARP/LATCH, tenir l'accord ; motif à vérifier à l'oreille."
 
-analyse:
-  - titre: "Les oscillateurs : deux scies à l'octave"
-    texte: >-
+analysis:
+  - title: "Les oscillateurs : deux scies à l'octave"
+    text: >-
       La *scie* contient toutes les harmoniques : chaque note est riche avant même
       le filtre. Doubler par une seconde scie une octave plus haut, à peine
       désaccordée, ajoute de l'éclat et un léger mouvement, sans épaissir le grave
       que les cordes et la basse occupent déjà.
-  - titre: "Le filtre : un pincement à chaque pas"
-    texte: >-
+  - title: "Le filtre : un pincement à chaque pas"
+    text: >-
       *CUTOFF* assez bas, *EG INT* positif : le filtre s'ouvre à l'attaque puis se
       referme en quelques dixièmes de seconde. C'est ce « pinc » qui détache les
       doubles croches. Le *KEYTRACK* à 50 % garde les notes aiguës de l'arpège
       (jusqu'au Ré dièse 5) aussi brillantes que les graves.
-  - titre: "Les enveloppes : rien ne tient"
-    texte: >-
+  - title: "Les enveloppes : rien ne tient"
+    text: >-
       Pas de sustain : chaque note s'éteint d'elle-même, le séquenceur en relance
       une toutes les doubles croches. Le *RELEASE* court laisse les notes se
       chevaucher un peu (4 voix), ce qui lie l'arpège comme une seule ligne.
-  - titre: "L'espace et le jeu : une machine qui tourne"
-    texte: >-
+  - title: "L'espace et le jeu : une machine qui tourne"
+    text: >-
       Deux relevés [2][3] donnent le même motif de six notes (l'accord sur deux
       octaves) qui boucle sur 16 pas et change d'accord toutes les deux mesures.
       Imaginando passe le synthé dans un effet de modulation stéréo et un écho à
       bande calé sur le tempo [3] : d'où le chorus et le *Tape BPM*. Avec la reverb, le
       synthé partage l'espace de l'orchestre, arpèges et cordes « imbriqués » [1].
 
-tracabilite:
+traceability:
   - "Documenté [1] : score de Daft Punk mêlant électronique et orchestre de 85 musiciens (AIR Lyndhurst), arrangé par Joseph Trapanese ; aucun synthé précis cité pour ce morceau."
   - "Transcrit [3] : projet Ableton d'Imaginando, arpège en Sol dièse mineur à 106,7 BPM, effets DLYM (modulation stéréo) et K7D (écho à bande synchronisé, ping-pong) ; c'est la version de la grille."
   - "Transcrit [2] : même motif, piste « Synth » (distincte des cordes et de la basse), mais un demi-ton plus bas (Sol mineur) et à 105 BPM. Tonalité à trancher à l'oreille."
@@ -87,21 +87,21 @@ tracabilite:
   - "Reconstitué : formes d'onde, filtre, enveloppes, effets et toutes les valeurs XD, à l'oreille."
 
 sources:
-  - titre: "Tron: Legacy (soundtrack)"
+  - title: "Tron: Legacy (soundtrack)"
     site: Wikipedia
     url: https://en.wikipedia.org/wiki/Tron:_Legacy_(soundtrack)
     note: crédits, orchestre, citation de la critique AllMusic sur ce morceau
-  - titre: "Daft Punk, The Son Of Flynn, piste Synth"
+  - title: "Daft Punk, The Son Of Flynn, piste Synth"
     site: Songsterr, tablature de contributeur
     date: février 2011
     url: https://www.songsterr.com/a/wsa/daft-punk-the-son-of-flynn-tab-s69803
     note: mesures 1 à 36, arpège en doubles croches, 105 BPM
-  - titre: "How to make the arpeggio from Daft Punk 'Son Of Flynn'"
+  - title: "How to make the arpeggio from Daft Punk 'Son Of Flynn'"
     site: Imaginando
     date: septembre 2019
     url: https://www.imaginando.pt/media/how-to-make-the-arpeggio-from-daft-punk-son-of-flynn
     note: vidéo non visionnée ici ; notes, tempo et effets lus dans le projet Ableton téléchargeable
-  - titre: "Daft Punk sound"
+  - title: "Daft Punk sound"
     site: GearSpace, forum
     url: https://gearspace.com/threads/daft-punk-sound.980928/
     note: page non lisible ici (accès refusé) ; avis relevés dans le résumé du moteur de recherche

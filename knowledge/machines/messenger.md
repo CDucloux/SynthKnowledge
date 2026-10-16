@@ -81,7 +81,7 @@ modulations:
 
 ```yaml
 settings:
-  - {nom: "LFO 1 Fade (SETTINGS 10)", valeur: "fade-in ≈ 1 s (TEMPO ≈ 11:00)"}
+  - {name: "LFO 1 Fade (SETTINGS 10)", value: "fade-in ≈ 1 s (TEMPO ≈ 11:00)"}
 ```
 
 ## Patch init

@@ -1,15 +1,15 @@
-synthe: minilogue-xd
-titre: I Gotta Feeling Intro
-categorie: pluck
+synth: minilogue-xd
+title: I Gotta Feeling Intro
+category: pluck
 tags: [dance-pop, "2000s", riff, delay]
-confiance: 1
+confidence: 1
 reference:
-  artiste: The Black Eyed Peas
-  morceau: I Gotta Feeling
-  annee: 2009
-  passage: riff pincé en boucle de l'intro
-  synthe_origine: "non documenté (synthés crédités à will.i.am ; guitare ou synthé, les descriptions divergent)"
-resume: >-
+  artist: The Black Eyed Peas
+  song: I Gotta Feeling
+  year: 2009
+  part: riff pincé en boucle de l'intro
+  original_synth: "non documenté (synthés crédités à will.i.am ; guitare ou synthé, les descriptions divergent)"
+summary: >-
   La boucle claire et entraînante de l'intro : un son pincé entre la guitare
   étouffée et le pluck de synthé, attaque nette, extinction rapide, un peu de chorus
   et un delay calé sur 128 BPM. Aucune source sur l'instrument : approximation.
@@ -27,9 +27,9 @@ params:
   reverb: {on: true, type: Room, time: 380, depth: 18}
 
 settings:
-  - {nom: "EG Velocity (bouton 8)", valeur: "≈ 70 : les notes frappées fort s'ouvrent plus"}
+  - {name: "EG Velocity (bouton 8)", value: "≈ 70 : les notes frappées fort s'ouvrent plus"}
 
-etapes:
+steps:
   - "Programme init (201 à 500), *VOICE MODE* POLY, *TEMPO* 128 BPM."
   - "*VCO 1* : SAW 8'. *VCO 2* : SQR 8', *PITCH* -6 cents, *SHAPE* 300. *MIXER* : 900 et 600."
   - "*FILTER* : *CUTOFF* 380, *RESONANCE* 180, *DRIVE* 50 %, *KEYTRACK* 50 %."
@@ -37,46 +37,46 @@ etapes:
   - "*AMP EG* : *ATTACK* 0, *DECAY* 380, *SUSTAIN* 0, *RELEASE* 220."
   - "*MOD FX* CHORUS Light (30 %), *DELAY* Stereo BPM réglé à l'oreille sur la croche pointée (22 %)."
   - "*REVERB* Room discrète (18 %)."
-oreille:
+tweaks:
   - "Trop « synthé », pas assez guitare : *VCO 2* vers 800 et *DECAY* de l'*EG* vers 180."
   - "Trop sec : *DECAY* de l'*AMP EG* vers 480 ; trop long : vers 280."
   - "Pas assez brillant pour le mix dance : *CUTOFF* vers 480 ou *EG INT* vers +65 %."
   - "Les échos brouillent le groove : delay sur la croche ou *DEPTH* vers 15 %."
-jeu:
+playing:
   - "Boucle régulière en croches, médium, notes détachées : c'est le delay qui lie."
   - "Accentuer les temps forts : avec l'EG Velocity, ils s'ouvrent davantage."
 
-analyse:
-  - titre: "Les oscillateurs : un pinc qui sonne guitare"
-    texte: >-
+analysis:
+  - title: "Les oscillateurs : un pinc qui sonne guitare"
+    text: >-
       *Scie* et *carré* légèrement désaccordés : la scie apporte le mordant d'une
       corde, le carré (un peu étroit avec *SHAPE*) le côté creux et boisé d'une
       guitare étouffée. Le désaccord de quelques cents évite le son trop « parfait »
       du synthé et rappelle les petites irrégularités d'un vrai instrument.
-  - titre: "Le filtre : le coup d'ouverture"
-    texte: >-
+  - title: "Le filtre : le coup d'ouverture"
+    text: >-
       *CUTOFF* assez bas et un fort *EG INT* : chaque note commence brillante puis se
       referme tout de suite. C'est ce coup d'ouverture qui fait « pincé ». Le *DRIVE*
       à 50 % arrondit et densifie, la petite *RESONANCE* donne un peu de « twang ».
-  - titre: "Les enveloppes : tout est dans l'attaque"
-    texte: >-
+  - title: "Les enveloppes : tout est dans l'attaque"
+    text: >-
       Deux enveloppes courtes et sans sustain : le timbre (*EG*, 240) se ferme plus
       vite que le volume (*AMP EG*, 380). On entend d'abord un claquement brillant,
       puis une petite queue sombre, exactement comme une corde étouffée par la paume.
-  - titre: "L'espace : le delay sur le tempo"
-    texte: >-
+  - title: "L'espace : le delay sur le tempo"
+    text: >-
       Le morceau tourne à 128 BPM [1] : le *DELAY* en mode BPM renvoie des échos calés
       qui remplissent les trous de la boucle et donnent l'élan. Chorus léger pour la
       largeur, reverb courte pour rester au premier plan du mix. Le morceau mise sur
       des synthés « futuristes » et l'Auto-Tune [1] : ce son clair fait contraste.
 
-tracabilite:
+traceability:
   - "Documenté [1] : 128 BPM, sol majeur ; synthés crédités à will.i.am ; production David Guetta et Frédéric Riesterer ; le morceau « commence de façon retenue » (aucune description du riff)."
   - "Non vérifié : des blogs sans source parlent d'un pinc de guitare ou d'une ligne de synthé pour l'ouverture ; aucune source de production ne tranche."
   - "Reconstitué : tout le patch (pluck guitare-synthé), d'après l'écoute du caractère. Confiance 1."
 
 sources:
-  - titre: "I Gotta Feeling"
+  - title: "I Gotta Feeling"
     site: Wikipédia (en)
     url: https://en.wikipedia.org/wiki/I_Gotta_Feeling
     note: tempo, tonalité, crédits, studios

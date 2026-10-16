@@ -1,15 +1,15 @@
-synthe: messenger
-titre: Stylo Bass
-categorie: basse
+synth: messenger
+title: Stylo Bass
+category: basse
 tags: [electro-funk, "2010s", synth-pop, legato]
-confiance: 1
+confidence: 1
 reference:
-  artiste: Gorillaz
-  morceau: Stylo
-  annee: 2010
-  passage: riff de basse synthé, tout le morceau
-  synthe_origine: "non documenté (Albarn crédité aux claviers ; source « module ou VST » selon [2])"
-resume: >-
+  artist: Gorillaz
+  song: Stylo
+  year: 2010
+  part: riff de basse synthé, tout le morceau
+  original_synth: "non documenté (Albarn crédité aux claviers ; source « module ou VST » selon [2])"
+summary: >-
   Basse électro-funk sombre et ronde : deux scies graves légèrement désaccordées
   et un sub carré, dans un passe-bas 4 pôles assez fermé que l'enveloppe ouvre à
   peine à chaque note. Riff syncopé de quatre notes, joué serré et legato.
@@ -39,62 +39,62 @@ params:
   perf:
     glide: 8
 
-etapes:
+steps:
   - Maintenir *PANEL* 1 s (init).
   - "*OCTAVE 1* et *2* sur 16', scies (*WAVESHAPE* à midi). *OSC 2 FREQ* à peine à droite de midi (≈ 12:05)."
   - "*SUB WAVE* ≈ 10:45 (carré). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 2:00, *SUB* ≈ 1:00."
   - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:30, *RESONANCE* ≈ 9:00, *RES BASS* ON."
   - "*EG AMOUNT* ≈ 1:30 ; enveloppe filtre : *DECAY* ≈ 11:30, *SUSTAIN* ≈ 10:00."
   - "Enveloppe ampli : orgue, *RELEASE* très court ≈ 8:30. *MULTI-TRIG* OFF, *GLIDE* ≈ 8:00 (à peine)."
-oreille:
+tweaks:
   - "Trop clair, pas assez « nuit » : *CUTOFF* vers 9:00, *EG AMOUNT* vers 1:00."
   - "Les notes manquent d'attaque : *DECAY* filtre vers 12:00, *MULTI-TRIG* ON."
   - "Pas assez de poids dans le bas : *SUB* vers 2:00, *OSC 2* un peu moins fort."
   - "Trop statique : *OSC 2 FREQ* un peu plus loin de midi pour un léger battement."
-jeu:
+playing:
   - "Riff syncopé : notes courtes et précises, le groove vient des silences."
   - "Lier les notes du passage chromatique : elles glissent dans l'enveloppe sans repincer."
   - "Le Messenger n'a pas d'écho : ajouter un delay externe si on veut l'ambiance du disque."
 
-analyse:
-  - titre: "Les oscillateurs : deux scies et un sub"
-    texte: >-
+analysis:
+  - title: "Les oscillateurs : deux scies et un sub"
+    text: >-
       Deux scies 16' donnent toutes les harmoniques, donc de la matière à
       filtrer ; *OSC 2* très légèrement désaccordé crée un battement lent qui
       épaissit la note sans la rendre floue. Le *SUB* carré, une octave sous
       *OSC 1*, assoit le fondamental : c'est lui qui pèse dans un mix chargé.
-  - titre: "Le filtre : sombre mais vivant"
-    texte: >-
+  - title: "Le filtre : sombre mais vivant"
+    text: >-
       Le passe-bas 4 pôles (24 dB par octave) coupe net au-dessus du
       *CUTOFF* : à 9:30 il ne reste que le bas du spectre, d'où la couleur
       sourde et nocturne du morceau, que Wikipédia classe en électro-funk [1].
       Une résonance faible sans plus : on veut de la rondeur, pas un « wah ».
       *RES BASS* garde le grave intact.
-  - titre: "Les enveloppes : un pincé discret"
-    texte: >-
+  - title: "Les enveloppes : un pincé discret"
+    text: >-
       L'enveloppe de filtre ouvre brièvement chaque note puis redescend vers un
       *SUSTAIN* bas : un petit « tok » d'attaque, puis une tenue ronde.
       L'ampli reste en orgue (*SUSTAIN* au max) avec un *RELEASE* très court :
       la note s'arrête dès qu'on lâche, ce qui rend la syncope lisible.
-  - titre: "Le jeu : quatre notes et des silences"
-    texte: >-
+  - title: "Le jeu : quatre notes et des silences"
+    text: >-
       Selon [2], le groove repose sur une figure syncopée de quatre notes qui
       rebondit trois mesures puis descend chromatiquement. Sur le Messenger,
       *MULTI-TRIG* OFF laisse les notes liées dans la même enveloppe : on
       pince les notes détachées, on lie la descente^[Un soupçon de *GLIDE*
       adoucit les liaisons sans faire glisser audiblement.].
 
-tracabilite:
+traceability:
   - "Documenté [1] : morceau de 2009-2010, électro-funk, Damon Albarn aux claviers, produit par Gorillaz ; aucun synthé nommé."
   - "Documenté [2] : figure syncopée de quatre notes puis passage chromatique ; l'auteur ne sait pas si c'est un module ou un VST."
   - "Reconstitué : tout le patch (scies, sub, filtre, enveloppes) est une approximation à l'écoute ; le synthé d'origine reste inconnu."
 
 sources:
-  - titre: "Stylo (song)"
+  - title: "Stylo (song)"
     site: Wikipedia
     url: https://en.wikipedia.org/wiki/Stylo_(song)
     note: genre, crédits (Albarn claviers, enregistré en 2009 au Studio 13 et Chung King)
-  - titre: "Beat Breakdown: Gorillaz feat. Mos Def & Bobby Womack, Stylo"
+  - title: "Beat Breakdown: Gorillaz feat. Mos Def & Bobby Womack, Stylo"
     site: BeatTips (Amir Said)
     date: octobre 2019
     url: https://beattips.com/beat-breakdown-gorillaz-feat-mos-def-bobby-womack-stylo/

@@ -1,16 +1,16 @@
-synthe: messenger
-titre: Supernature Séquence
-categorie: basse
+synth: messenger
+title: Supernature Séquence
+category: basse
 tags: [disco, "70s", sequence, staccato]
-confiance: 2
+confidence: 2
 reference:
-  artiste: Cerrone
-  morceau: Supernature
-  annee: 1977
-  passage: ostinato pulsé de l'intro, qui porte tout le morceau
-  synthe_origine: "ARP Odyssey (motif joué note à note, selon Cerrone)"
-  synthe_court: ARP Odyssey
-resume: >-
+  artist: Cerrone
+  song: Supernature
+  year: 1977
+  part: ostinato pulsé de l'intro, qui porte tout le morceau
+  original_synth: "ARP Odyssey (motif joué note à note, selon Cerrone)"
+  original_synth_short: ARP Odyssey
+summary: >-
   Le moteur du morceau : une note qui pulse en doubles croches, sans un silence,
   et qui suit l'accord (Do, Si bémol, Do). Un son court et nerveux d'ARP Odyssey, filtre fermé qui
   claque à chaque note grâce à une enveloppe brève et un peu de résonance.
@@ -41,14 +41,14 @@ sequence:
   steps: >-
     C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5 C5
   transpose:
-    - {touche: C5, texte: "1 mesure : Do mineur"}
-    - {touche: Bb4, texte: "2 mesures : Si bémol"}
-    - {touche: C5, texte: "2 mesures : Do mineur, puis tenue en Sol"}
+    - {key: C5, text: "1 mesure : Do mineur"}
+    - {key: Bb4, text: "2 mesures : Si bémol"}
+    - {key: C5, text: "2 mesures : Do mineur, puis tenue en Sol"}
 
 settings:
-  - {nom: "Note Priority (CONFIG 2.1)", valeur: "*Low* : priorité grave, comme l'Odyssey"}
+  - {name: "Note Priority (CONFIG 2.1)", value: "*Low* : priorité grave, comme l'Odyssey"}
 
-etapes:
+steps:
   - "Maintenir *PANEL* 1 s (init)."
   - "*OCTAVE 1* sur 16', *WAVESHAPE 1* à midi (scie). *OCTAVE 2* sur 32', *WAVESHAPE 2* ≈ 1:15 (carré)."
   - "*MIXER* : *OSC 1* à fond, *OSC 2* ≈ 1:00 pour asseoir le grave."
@@ -56,36 +56,36 @@ etapes:
   - "*EG AMOUNT* ≈ 2:30. Enveloppe filtre : *DECAY* ≈ 10:00, *SUSTAIN* à 0, *RELEASE* court."
   - "Enveloppe ampli : *DECAY* ≈ 11:00, *SUSTAIN* à 0 : chaque note s'éteint seule."
   - "*MULTI-TRIG* ON (chaque note relance les enveloppes) et *F ENV VEL* ON."
-oreille:
+tweaks:
   - "Trop mou, pas assez de claquement : *DECAY* du filtre vers 9:30, *EG AMOUNT* vers 3:00."
   - "Trop « acid », ça siffle : *RESONANCE* vers 10:30."
   - "Manque de poids : *OSC 2* à fond ; trop grave ou trop aigu : *OCTAVE 1* et *2* d'un cran."
-jeu:
+playing:
   - "Saisie : *DIRECTION* sur SEQ, *RECORD*, 16 fois Do5, *RECORD*, *PLAY*, puis tenir les touches de la grille. *GATE* : *SETTINGS* 3."
 
-analyse:
-  - titre: "Les oscillateurs : une scie et son ombre"
-    texte: >-
+analysis:
+  - title: "Les oscillateurs : une scie et son ombre"
+    text: >-
       Cerrone a trouvé ce motif sur l'ARP Odyssey qu'ARP venait de lui offrir [1].
       La *scie* en 16' donne toutes les harmoniques, de quoi faire mordre le filtre ;
       le *carré* une octave plus bas n'ajoute que des harmoniques impaires et
       remplit le grave sans brouiller l'attaque.
-  - titre: "Le filtre : fermé, il s'ouvre à chaque note"
-    texte: >-
+  - title: "Le filtre : fermé, il s'ouvre à chaque note"
+    text: >-
       *CUTOFF* bas : au repos, le son est sourd. L'*EG AMOUNT* fort ouvre le filtre
       d'un coup puis il se referme en 100 à 200 ms : c'est le « dut » de Cerrone [1].
       Une *RESONANCE* moyenne accentue la fréquence de coupure au passage^[La
       résonance renforce les harmoniques proches de la coupure : quand celle-ci
       descend, on entend une petite « voyelle » qui glisse.] sans aller jusqu'au
       sifflement acid.
-  - titre: "Les enveloppes : tout en decay"
-    texte: >-
+  - title: "Les enveloppes : tout en decay"
+    text: >-
       Les deux courbes n'ont ni attaque ni sustain : seul le *DECAY* compte. Le
       filtre se referme plus vite que le volume, si bien que la note commence
       brillante et finit sourde. *MULTI-TRIG* reproduit l'Odyssey, qui relance ses
       enveloppes à chaque note : indispensable pour un motif rapide.
-  - titre: "Le jeu : une machine jouée à la main"
-    texte: >-
+  - title: "Le jeu : une machine jouée à la main"
+    text: >-
       D'après le récit de Cerrone, la batterie n'était pas calée sur une horloge :
       il aurait enregistré le motif note à note, à demi vitesse [2]. Le séquenceur du
       Messenger refait ce geste : une seule note en doubles croches, comme la
@@ -94,7 +94,7 @@ analyse:
       touche quand Cerrone « change l'accord » [1]. Le Messenger étant monophonique,
       on garde la note du dessus. Piste sèche et mécanique : pas d'effet.
 
-tracabilite:
+traceability:
   - "Documenté [1] : ARP Odyssey offert par ARP pendant les sessions à Trident (Londres) ; le motif est le premier son trouvé, il change avec l'accord, puis basse et batterie ajoutées ; même synthé cité par [3]."
   - "Récit rapporté [2] : motif d'abord sur une note, enregistré note à note à demi vitesse (source secondaire, d'après une interview vidéo)."
   - "Transcrit [4] : pulsation en doubles croches et enchaînement d'accords de l'intro (122 BPM : Do mineur 1 mesure, Si bémol 2, Do mineur 2, puis Sol), d'après la piste « Rhythm Guitar » ; tablature intitulée « AI Generated » : à vérifier à l'oreille."
@@ -102,20 +102,20 @@ tracabilite:
   - "Reconstitué : forme d'onde, filtre, enveloppes et toutes les positions Messenger, à l'oreille."
 
 sources:
-  - titre: "Marc Cerrone, Supernature"
+  - title: "Marc Cerrone, Supernature"
     site: Electronic Sound, Landmarks
     url: https://www.electronicsound.co.uk/features/landmarks/marc-cerrone/
     note: récit de Cerrone (ARP Odyssey, séquence, Trident)
-  - titre: "How Cerrone recorded his hit track Supernature"
+  - title: "How Cerrone recorded his hit track Supernature"
     site: Radio Ronix
     url: https://radioronix.ru/en/cerrone-supernature/
     note: motif joué à demi vitesse, parti d'une seule note
-  - titre: "Cerrone on how disco classic Supernature was made"
+  - title: "Cerrone on how disco classic Supernature was made"
     site: FACT
     date: février 2020
     url: https://www.factmag.com/2020/02/07/cerrone-supernature/
     note: interview vidéo dans le studio de Cerrone
-  - titre: "Supernature (AI Generated), piste Rhythm Guitar"
+  - title: "Supernature (AI Generated), piste Rhythm Guitar"
     site: Songsterr, tablature de contributeur
     date: janvier 2026
     url: https://www.songsterr.com/a/wsa/cerrone-supernature-ai-generated-tab-s3566610

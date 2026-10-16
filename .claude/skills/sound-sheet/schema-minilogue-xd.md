@@ -4,13 +4,13 @@ Référence exhaustive des paramètres (clés, valeurs neutres, plages, options,
 Valeurs = **valeurs écran** du manuel (détails : `knowledge/machines/minilogue-xd.md`).
 
 ```yaml
-synthe: minilogue-xd              # obligatoire
-titre: Nom Du Son
-categorie: cuivre
+synth: minilogue-xd              # obligatoire
+title: Nom Du Son
+category: cuivre
 tags: [poly, "80s"]
-confiance: 2
-reference: {artiste: ..., morceau: ..., annee: 1984, passage: ..., synthe_origine: ..., synthe_court: ...}   # synthe_court optionnel (tableau du README)
-resume: >-
+confidence: 2
+reference: {artist: ..., song: ..., year: 1984, part: ..., original_synth: ..., original_synth_short: ...}   # original_synth_short optionnel (tableau du README)
+summary: >-
   2-3 phrases.
 
 params:                           # uniquement ce qui diffère du neutre (ou ce qu'on veut faire ressortir)
@@ -29,7 +29,7 @@ params:                           # uniquement ce qui diffère du neutre (ou ce 
   # (les valeurs ci-dessus sont les neutres ; pitch en cents ±1200, eg.int en % ±100, lfo.int 0-511 (négatif = inversé), depth des effets en %)
 
 settings:                         # optionnel : réglages PROGRAM EDIT (bouton : valeur)
-  - {nom: "Amp Velocity (bouton 8)", valeur: "0"}
+  - {name: "Amp Velocity (bouton 8)", value: "0"}
 
 sequence:                         # optionnel : séquenceur pas à pas (manuel p. 25-27, SEQ EDIT p. 37), remplace l'encadré « Jeu » en page 1
   tempo: 105                      # BPM (10-300), mettre la même valeur dans params.voice.tempo
@@ -38,19 +38,19 @@ sequence:                         # optionnel : séquenceur pas à pas (manuel p
   steps: >-                       # 16 pas max ; note (Bb4), accord (G3+Bb3+D4, 4 notes max), « . » silence (REST), « _ » liaison
     G3 Bb3 D4 G4 Bb4 D5 G3 Bb3 D4 G4 Bb4 D5 G3 Bb3 D4 D4
 # Pas de `transpose` : le XD ne transpose pas la séquence au clavier. Notation standard des octaves (C4 = Do central).
-# Avec une séquence, garder `jeu` à 1-2 puces courtes et `oreille` à 3 puces : la page 1 doit tenir.
+# Avec une séquence, garder `playing` à 1-2 puces courtes et `tweaks` à 3 puces : la page 1 doit tenir.
 
-etapes: [ ... ]                   # 5-7 étapes
-oreille: [ ... ]                  # 3-4 ajustements symptôme → geste
-jeu: [ ... ]                      # 2-3 conseils
-analyse:                          # page 2 « Anatomie du son » : 4 encadrés, 3-5 lignes chacun
-  - {titre: "Les oscillateurs : ...", texte: "pourquoi ces formes d'onde, octaves, désaccord"}
-  - {titre: "Le filtre : ...", texte: "..."}
-  - {titre: "Les enveloppes : ...", texte: "lecture des courbes ADSR dessinées au-dessus"}
-  - {titre: "Le mouvement / L'espace / Le jeu : ...", texte: "glide, LFO, arpégiateur, effets"}
-tracabilite: [ "Documenté [1] : ...", "Reconstitué : ..." ]   # page 2, renvois aux sources
+steps: [ ... ]                   # 5-7 étapes
+tweaks: [ ... ]                  # 3-4 ajustements symptôme → geste
+playing: [ ... ]                      # 2-3 conseils
+analysis:                          # page 2 « Anatomie du son » : 4 encadrés, 3-5 lignes chacun
+  - {title: "Les oscillateurs : ...", text: "pourquoi ces formes d'onde, octaves, désaccord"}
+  - {title: "Le filtre : ...", text: "..."}
+  - {title: "Les enveloppes : ...", text: "lecture des courbes ADSR dessinées au-dessus"}
+  - {title: "Le mouvement / L'espace / Le jeu : ...", text: "glide, LFO, arpégiateur, effets"}
+traceability: [ "Documenté [1] : ...", "Reconstitué : ..." ]   # page 2, renvois aux sources
 sources:                          # page 2, numérotées [1], [2]… dans l'ordre
-  - titre: "Titre exact de l'article ou de la vidéo"
+  - title: "Titre exact de l'article ou de la vidéo"
     site: Reverb News               # média, forum, manuel…
     date: avril 2024                # optionnel
     url: https://reverb.com/news/...   # URL complète (cliquable dans le PDF) ; omettre si inconnue, ne jamais l'inventer

@@ -3,19 +3,19 @@
 Référence exhaustive des paramètres (clés, valeurs neutres, plages, options) : **`template/schema/messenger.yaml`**, source unique lue par le template et par la validation. `scripts/build.py check <yaml>` signale toute clé inconnue, valeur hors plage, option invalide, renvoi [n] sans source ou tiret interdit.
 
 ```yaml
-synthe: messenger                 # obligatoire
-titre: Nom Du Son                 # affiché en capitales
-categorie: basse                  # basse | lead | pad | pluck | keys | cuivre | percussion | fx …
+synth: messenger                 # obligatoire
+title: Nom Du Son                 # affiché en capitales
+category: basse                  # basse | lead | pad | pluck | keys | cuivre | percussion | fx …
 tags: [house, 80s]                # chaînes courtes (mettre "303" entre guillemets si numérique)
-confiance: 2                      # 1 approximation · 2 déduit · 3 documenté
+confidence: 2                      # 1 approximation · 2 déduit · 3 documenté
 reference:
-  artiste: Phuture
-  morceau: Acid Tracks
-  annee: 1987
-  passage: ligne de basse, tout le morceau
-  synthe_origine: Roland TB-303
-  synthe_court: Roland TB-303         # optionnel : version courte pour le tableau du README
-resume: >-
+  artist: Phuture
+  song: Acid Tracks
+  year: 1987
+  part: ligne de basse, tout le morceau
+  original_synth: Roland TB-303
+  original_synth_short: Roland TB-303         # optionnel : version courte pour le tableau du README
+summary: >-
   2-3 phrases : caractère du son et ce qui le fait.
 
 params:                           # uniquement ce qui diffère du neutre (ou ce qu'on veut faire ressortir)
@@ -34,7 +34,7 @@ params:                           # uniquement ce qui diffère du neutre (ou ce 
 modulations:                      # optionnel, assignations Quick Assign
   - {source: aftertouch, dest: cutoff, depth: "+40 %"}
 settings:                         # optionnel, SETTINGS / CONFIG utiles au son
-  - {nom: "Glide Config (CONFIG 1.3)", valeur: "PGM 14 *Exponential*"}
+  - {name: "Glide Config (CONFIG 1.3)", value: "PGM 14 *Exponential*"}
 
 sequence:                         # optionnel : séquenceur du Messenger (manuel p. 22-24), remplace l'encadré « Jeu » en page 1
   tempo: 122                      # BPM (30-300)
@@ -43,23 +43,23 @@ sequence:                         # optionnel : séquenceur du Messenger (manuel
     Bb4 B4 C5 . . Bb4 . . C5 . . . . . . . |
     Bb4 B4 C5 . . C5 . C5 Bb4 . C5 . . . . .
   transpose:                      # optionnel : touche tenue pendant PLAY (référence C5 = non transposé)
-    - {touche: G4, texte: "Sol, quand l'accord change"}
+    - {key: G4, text: "Sol, quand l'accord change"}
 # Les notes s'écrivent en notation anglaise dans le YAML (C D E F G A B) et s'affichent en solfège (Do Ré Mi…) sur la fiche.
 # Notes relevées sur la piste qui joue la partie (pas la basse) ; accords réduits à la note du dessus (voir SKILL.md, étape 2).
 # Saisir les notes autour du C5 pour que la transposition au clavier tombe juste. Pas de « # » nu dans les textes (écrire « Fa dièse »).
-# Avec une séquence, garder `jeu` à 1-2 puces courtes (saisie) et `oreille` à 3 puces : la page 1 doit tenir.
+# Avec une séquence, garder `playing` à 1-2 puces courtes (saisie) et `tweaks` à 3 puces : la page 1 doit tenir.
 
-etapes: [ "...", ... ]            # 5-7 étapes
-oreille: [ "...", ... ]           # 3-4 ajustements symptôme → geste
-jeu: [ "...", ... ]               # 2-3 conseils de jeu
-analyse:                          # page 2 « Anatomie du son » : 4 encadrés, 3-5 lignes chacun
-  - {titre: "Les oscillateurs : ...", texte: "pourquoi ces formes d'onde, octaves, désaccord"}
-  - {titre: "Le filtre : ...", texte: "..."}
-  - {titre: "Les enveloppes : ...", texte: "lecture des courbes ADSR dessinées au-dessus"}
-  - {titre: "Le mouvement / L'espace / Le jeu : ...", texte: "glide, LFO, arpégiateur, effets"}
-tracabilite: [ "Documenté [1] : ...", "Reconstitué : ..." ]   # page 2, renvois aux sources
+steps: [ "...", ... ]            # 5-7 étapes
+tweaks: [ "...", ... ]           # 3-4 ajustements symptôme → geste
+playing: [ "...", ... ]               # 2-3 conseils de jeu
+analysis:                          # page 2 « Anatomie du son » : 4 encadrés, 3-5 lignes chacun
+  - {title: "Les oscillateurs : ...", text: "pourquoi ces formes d'onde, octaves, désaccord"}
+  - {title: "Le filtre : ...", text: "..."}
+  - {title: "Les enveloppes : ...", text: "lecture des courbes ADSR dessinées au-dessus"}
+  - {title: "Le mouvement / L'espace / Le jeu : ...", text: "glide, LFO, arpégiateur, effets"}
+traceability: [ "Documenté [1] : ...", "Reconstitué : ..." ]   # page 2, renvois aux sources
 sources:                          # page 2, numérotées [1], [2]… dans l'ordre
-  - titre: "Titre exact de l'article ou de la vidéo"
+  - title: "Titre exact de l'article ou de la vidéo"
     site: Reverb News               # média, forum, manuel…
     date: avril 2024                # optionnel
     url: https://reverb.com/news/...   # URL complète (cliquable dans le PDF) ; omettre si inconnue, ne jamais l'inventer

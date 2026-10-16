@@ -395,7 +395,7 @@
 
 /// Grille de pas (16 par rangée) à la place de l'encadré « Jeu ». spec = extra.sequence du
 /// schéma de la machine : réglages de lecture (libellé, unité, valeur neutre), aide à la transposition.
-#let sequence-box(seq, spec, jeu: ()) = {
+#let sequence-box(seq, spec, playing: ()) = {
   let toks = seq-tokens(seq.steps)
   let n = toks.len()
   // Accord : notes empilées, la plus aiguë en haut ; la case grandit avec le plus gros accord.
@@ -443,9 +443,9 @@
     if tr != none and tr.len() > 0 {
       block(below: 1.2mm, par(hanging-indent: 3.4mm, box(width: 3.4mm, text(size: 1.25em, weight: "extrabold", "»"))
         + text(weight: "extrabold", "TRANSPOSER") + " (" + spec.at("transpose_hint", default: "touche tenue") + ") : "
-        + tr.map(x => note-fr(x.touche, size: 1em) + " " + md(x.texte)).join(" · ")))
+        + tr.map(x => note-fr(x.key, size: 1em) + " " + md(x.text)).join(" · ")))
     }
-    bullets(jeu)
+    bullets(playing)
   })
 }
 
@@ -486,12 +486,12 @@
   {
     text(white, size: 7pt, weight: "bold", tracking: 0.32em, upper(machine) + "  ·  " + upper(kind))
     v(1.2mm)
-    text(white, size: 20pt, weight: "extrabold", tracking: 0.02em, upper(data.titre))
+    text(white, size: 20pt, weight: "extrabold", tracking: 0.02em, upper(data.title))
   },
   {
-    confidence(data.at("confiance", default: 1))
+    confidence(data.at("confidence", default: 1))
     v(1.6mm)
-    let cats = (data.at("categorie", default: none),).filter(x => x != none) + data.at("tags", default: ())
+    let cats = (data.at("category", default: none),).filter(x => x != none) + data.at("tags", default: ())
     text(white, size: 6.6pt, weight: "semibold", tracking: 0.12em, upper(cats.map(str).join("  ·  ")))
   },
 ))
@@ -501,15 +501,15 @@
   title-bar(machine, "Fiche son", data)
   v(2mm)
   let parts = ()
-  if ref.at("artiste", default: none) != none { parts.push(text(weight: "extrabold", upper(ref.artiste))) }
-  if ref.at("morceau", default: none) != none { parts.push(ref.morceau) }
-  if ref.at("annee", default: none) != none { parts.push(str(ref.annee)) }
-  if ref.at("passage", default: none) != none { parts.push(text(style: "italic", ref.passage)) }
-  if ref.at("synthe_origine", default: none) != none { parts.push([Original : #ref.synthe_origine]) }
+  if ref.at("artist", default: none) != none { parts.push(text(weight: "extrabold", upper(ref.artist))) }
+  if ref.at("song", default: none) != none { parts.push(ref.song) }
+  if ref.at("year", default: none) != none { parts.push(str(ref.year)) }
+  if ref.at("part", default: none) != none { parts.push(text(style: "italic", ref.part)) }
+  if ref.at("original_synth", default: none) != none { parts.push([Original : #ref.original_synth]) }
   if parts.len() > 0 { text(size: 8pt, parts.join(h(1.2mm) + text(fill: muted, "|") + h(1.2mm))) }
-  if data.at("resume", default: none) != none {
+  if data.at("summary", default: none) != none {
     v(0.4mm)
-    block(width: 100%, text(size: 7.6pt, md(data.resume)))
+    block(width: 100%, text(size: 7.6pt, md(data.summary)))
   }
   v(1.6mm)
 }
@@ -693,7 +693,7 @@
   pagebreak(weak: true)
   let ref = data.at("reference", default: (:))
   if ref == none { ref = (:) }
-  let n = calc.clamp(data.at("confiance", default: 1), 1, 3)
+  let n = calc.clamp(data.at("confidence", default: 1), 1, 3)
   let meaning = (
     "Rien de spécifique trouvé : reconstitution d'après le style, l'époque et le genre.",
     "Synthé d'origine et nature du son établis par les sources ; réglages reconstitués.",
@@ -711,9 +711,9 @@
     let off = e.at("inactive", default: false)
     env-plot(e.a, e.d, e.s, e.r, e.titre, sub: e.at("sub", default: none), sustain: e.at("sustain", default: true), width: w, height: h, span: if off { none } else { span }, muted-curve: off)
   }
-  let an = data.at("analyse", default: ())
+  let an = data.at("analysis", default: ())
   if an == none { an = () }
-  let boxes = an.map(x => textbox(size: 8pt, x.titre, icon: auto-icon(x.titre), { set par(leading: 0.6em); md(x.texte) }))
+  let boxes = an.map(x => textbox(size: 8pt, x.title, icon: auto-icon(x.title), { set par(leading: 0.6em); md(x.text) }))
   // Paysage : enveloppes empilées à gauche, analyse 2 × 2 à droite.
   grid(
     columns: (96mm, 1fr), column-gutter: 2mm,
@@ -728,13 +728,13 @@
   )
   v(2mm)
 
-  let notes = data.at("tracabilite", default: ())
+  let notes = data.at("traceability", default: ())
   if notes == none { notes = () }
   let src = data.at("sources", default: ())
   if src == none { src = () }
   let origin-part = {
     let bits = ()
-    if ref.at("synthe_origine", default: none) != none { bits.push([*Original :* #md(str(ref.synthe_origine))]) }
+    if ref.at("original_synth", default: none) != none { bits.push([*Original :* #md(str(ref.original_synth))]) }
     bits.push([*Confiance :* #confidence(n, fill: ink) #h(1mm) #meaning.at(n - 1)])
     for b in bits { block(above: 0pt, below: 1.4mm, b) }
     if notes.len() > 0 { bullets(notes) }
@@ -748,7 +748,7 @@
       for (i, s) in src.enumerate() {
         let body = if type(s) == dictionary {
           let meta = (s.at("site", default: none), s.at("date", default: none)).filter(x => x != none).map(str)
-          text(weight: "bold", md(s.at("titre", default: "")))
+          text(weight: "bold", md(s.at("title", default: "")))
           if meta.len() > 0 { h(1.2mm); text(fill: luma(90), meta.join(", ")) }
           let u = s.at("url", default: none)
           let note = s.at("note", default: none)
@@ -767,7 +767,7 @@
 }
 
 /// Fiche complète (2 pages paysage) : bandeau, façade, cadre annexe à gauche
-/// (contrôleur, PROGRAM EDIT…), étapes / oreille / jeu, puis page 2.
+/// (contrôleur, PROGRAM EDIT…), steps / tweaks / playing, puis page 2.
 #let sheet(machine, data, panel: none, aside: none, envs: (), seq-spec: none) = {
   show: page-setup.with(fichier: data.at("_fichier", default: none))
   header(machine, data)
@@ -776,13 +776,13 @@
   grid(
     columns: (ui.aside, 1fr, 1.12fr), column-gutter: ui.gap,
     aside,
-    textbox("Pour l'obtenir", icon: icon-knob, numbered(data.at("etapes", default: ()))),
+    textbox("Pour l'obtenir", icon: icon-knob, numbered(data.at("steps", default: ()))),
     stack(spacing: 1.6mm,
-      textbox("Ajuster à l'oreille", icon: icon-ear, bullets(data.at("oreille", default: ()))),
+      textbox("Ajuster à l'oreille", icon: icon-ear, bullets(data.at("tweaks", default: ()))),
       if data.at("sequence", default: none) != none {
-        sequence-box(data.sequence, seq-spec, jeu: data.at("jeu", default: ()))
+        sequence-box(data.sequence, seq-spec, playing: data.at("playing", default: ()))
       } else {
-        textbox("Jeu", icon: icon-keys, bullets(data.at("jeu", default: ())))
+        textbox("Jeu", icon: icon-keys, bullets(data.at("playing", default: ())))
       },
     ),
   )

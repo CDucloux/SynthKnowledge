@@ -1,16 +1,16 @@
-synthe: messenger
-titre: Thriller Bass
-categorie: basse
+synth: messenger
+title: Thriller Bass
+category: basse
 tags: [funk, disco, "80s", pwm, arp-2600]
-confiance: 2
+confidence: 2
 reference:
-  artiste: Michael Jackson
-  morceau: Thriller
-  annee: 1982
-  passage: ligne de basse de Rod Temperton, tout le morceau
-  synthe_origine: "ARP 2600 « Tonus » (Anthony Marinelli) ; Minimoog ou Jupiter-8 selon d'autres récits"
-  synthe_court: ARP 2600
-resume: >-
+  artist: Michael Jackson
+  song: Thriller
+  year: 1982
+  part: ligne de basse de Rod Temperton, tout le morceau
+  original_synth: "ARP 2600 « Tonus » (Anthony Marinelli) ; Minimoog ou Jupiter-8 selon d'autres récits"
+  original_synth_short: ARP 2600
+summary: >-
   La basse funk-disco la plus célèbre des années 80 : une scie et un carré en 16',
   légèrement désaccordés, sous un filtre 4 pôles assez fermé qui s'ouvre à chaque
   note. Un PWM lent fait bouger le carré : la basse vit sans changer de hauteur.
@@ -41,7 +41,7 @@ params:
   env:
     f_vel: true
 
-etapes:
+steps:
   - Maintenir *PANEL* 1 s (init).
   - "*OCTAVE 1* et *OCTAVE 2* sur 16'. *WAVESHAPE 1* ≈ 1:30 (carré), *WAVESHAPE 2* à midi (scie)."
   - "*OSC 2 FREQ* à peine à droite de midi (battement lent). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 3:00."
@@ -49,66 +49,66 @@ etapes:
   - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:00, *RESONANCE* à midi, *RES BASS* ON."
   - "*EG AMOUNT* ≈ 2:00 ; enveloppe filtre : *DECAY* ≈ 10:00 (court), *SUSTAIN* ≈ 9:00. *F ENV VEL* ON."
   - "Enveloppe ampli : orgue (*SUSTAIN* à fond), *RELEASE* court ≈ 8:30."
-oreille:
+tweaks:
   - "Pas assez de « pop » sur les notes : *EG AMOUNT* vers 2:30, *DECAY* filtre plus court."
   - "Trop sourd : *CUTOFF* vers 9:45 ; trop brillant, ça ne sonne plus « ronde » : vers 8:30."
   - "Ça siffle, trop « acid » : *RESONANCE* vers 11:00."
   - "Le carré bouge trop, effet « chorus » gênant : *DEPTH* du *LFO 1* vers 12:20."
-jeu:
+playing:
   - "Tempo 118 BPM : notes courtes et détachées, le groove est dans les silences."
   - "Frapper un peu plus fort les notes d'appui : *F ENV VEL* les ouvre davantage."
   - "Pas de glide : chaque note attaque franchement, comme une basse au doigt."
 
-analyse:
-  - titre: "Les oscillateurs : scie + carré, le duo funk"
-    texte: >-
+analysis:
+  - title: "Les oscillateurs : scie + carré, le duo funk"
+    text: >-
       La *scie* apporte toutes les harmoniques (le mordant), le *carré* seulement les
       impaires (le creux, le rond). Ensemble en 16', légèrement désaccordés, ils
       donnent une note épaisse qui bat doucement [4]. Le *LFO 1* lent sur la forme du
       carré fait un PWM discret (la largeur du carré varie, son timbre aussi) : « de l'expression et du mouvement », selon [3].
-  - titre: "Le filtre : un ladder bien fermé qui mord"
-    texte: >-
+  - title: "Le filtre : un ladder bien fermé qui mord"
+    text: >-
       Le Tonus de Marinelli [2] a un filtre de type Moog [3], comme le 4 pôles du
       Messenger. *CUTOFF* bas (150 Hz selon [4]) : sans enveloppe, un grave sourd.
       La *RESONANCE* à mi-course donne le mordant [4], *RES BASS* garde le bas.
-  - titre: "Les enveloppes : ouvrir puis refermer"
-    texte: >-
+  - title: "Les enveloppes : ouvrir puis refermer"
+    text: >-
       Tout le caractère vient de l'enveloppe de filtre [4] : à chaque note elle ouvre
       grand puis redescend en 100 ms environ vers un sustain bas. On entend un « pop » brillant
       puis une queue ronde. L'ampli reste plein (orgue) : ce sont la longueur des
       notes jouées et le *RELEASE* court qui découpent le groove.
-  - titre: "Le jeu : la précision avant tout"
-    texte: >-
+  - title: "Le jeu : la précision avant tout"
+    text: >-
       Ligne de Rod Temperton jouée à la main par Greg Phillinganes [2], 118 BPM, do
       dièse dorien [1]. Marinelli rejoue aussi la partie au Minimoog pour comparer
       [2]. La vélocité sur le filtre rend les nuances d'attaque.
 
-tracabilite:
+traceability:
   - "Documenté [2] : Marinelli lui-même, ARP 2600 « Tonus », ligne de Temperton jouée par Phillinganes."
   - "Documenté [3][4] : filtre ladder, PWM ; scie et carré, 150 Hz, résonance à mi-course, decay 100 ms."
   - "Divergent : Minimoog, croyance répandue [4] ; Jupiter-8 [5] (fil non lu). Patch PDF de Marinelli non consulté."
   - "Reconstitué : toutes les positions Messenger."
 
 sources:
-  - titre: "Thriller (song)"
+  - title: "Thriller (song)"
     site: Wikipédia (en)
     url: https://en.wikipedia.org/wiki/Thriller_(song)
     note: tempo, tonalité
-  - titre: "How I Programmed Michael Jackson's Thriller Bass on my Tonus ARP 2600"
+  - title: "How I Programmed Michael Jackson's Thriller Bass on my Tonus ARP 2600"
     site: YouTube
     date: janvier 2023
     url: https://www.youtube.com/watch?v=jkJVim4X9C4
     note: description lue
-  - titre: "Darkness Falls : How To Sound Like Michael Jackson, Thriller"
+  - title: "Darkness Falls : How To Sound Like Michael Jackson, Thriller"
     site: Gearnews
     date: octobre 2023
     url: https://www.gearnews.com/darkness-falls-how-to-sound-like-michael-jackson-thriller
     note: filtre ladder, PWM
-  - titre: "The synth sounds of Michael Jackson's Thriller (and how to recreate them in your DAW)"
+  - title: "The synth sounds of Michael Jackson's Thriller (and how to recreate them in your DAW)"
     site: MusicRadar
     date: novembre 2022
     url: https://www.musicradar.com/news/thriller-synth-sounds
     note: recette de la basse
-  - titre: "The Thriller Bass is a Jupiter-8 NOT an ARP 2600"
+  - title: "The Thriller Bass is a Jupiter-8 NOT an ARP 2600"
     site: GearSpace, forum
     url: https://gearspace.com/threads/the-thriller-bass-is-a-jupiter-8-not-an-arp-2600.1439019/

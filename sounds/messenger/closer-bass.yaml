@@ -1,16 +1,16 @@
-synthe: messenger
-titre: Closer Bass
-categorie: basse
+synth: messenger
+title: Closer Bass
+category: basse
 tags: [industrial, "90s", pwm, resonance]
-confiance: 2
+confidence: 2
 reference:
-  artiste: Nine Inch Nails
-  morceau: Closer
-  annee: 1994
-  passage: basse « gorge » qui entre vers 0:21, tout le morceau
-  synthe_court: "Sampler Akai (source inconnue)"
-  synthe_origine: "échantillon joué sur sampler Akai (synthé source inconnu)"
-resume: >-
+  artist: Nine Inch Nails
+  song: Closer
+  year: 1994
+  part: basse « gorge » qui entre vers 0:21, tout le morceau
+  original_synth_short: "Sampler Akai (source inconnue)"
+  original_synth: "échantillon joué sur sampler Akai (synthé source inconnu)"
+summary: >-
   Basse menaçante et « gutturale » : un carré dont la largeur bouge en rythme,
   filtre à mi-course très résonant qui suit le clavier, et une enveloppe de filtre
   qui s'ouvre doucement en 100 ms. La résonance fait parler chaque note.
@@ -37,51 +37,51 @@ params:
   fenv: {a: 9, d: 12, s: 17, r: 9}
   aenv: {a: 7, d: 12, s: 17, r: 8}
 
-etapes:
+steps:
   - "Maintenir *PANEL* 1 s (init). Caler *TEMPO* sur le morceau : le LFO s'y synchronise."
   - "*OCTAVE 1* sur 16', *WAVESHAPE 1* ≈ 1:15 (carré). *OSC 1* seul dans le *MIXER*."
   - "*LFO 1* : TRI vers OSC 1 WAVE, *DEPTH* ≈ 1:45, *SYNC* ON, *RATE* sur la croche (à l'oreille)."
   - "*FILTER* : 4P LOW PASS, *CUTOFF* à midi, *RESONANCE* ≈ 2:00, *KB TRACKING* ON, *RES BASS* ON."
   - "*EG AMOUNT* ≈ 1:15 ; enveloppe filtre : *ATTACK* ≈ 9:00 (≈ 100 ms), *SUSTAIN* à fond."
   - "Enveloppe ampli : orgue (attaque nulle, *SUSTAIN* à fond), *RELEASE* très court ≈ 8:00."
-oreille:
+tweaks:
   - "Pas assez « gorge » : *RESONANCE* vers 2:30 ; si ça siffle, revenir à 1:30."
   - "Trop sage pour de l'indus : *FB / EXT IN* vers 10:00 pour salir le filtre."
   - "Le mouvement de PWM ne tombe pas en rythme : retoucher *RATE* (*SYNC* ON) d'un cran."
   - "L'ouverture est trop lente ou trop sèche : *ATTACK* du filtre entre 8:30 et 9:30."
-jeu:
+playing:
   - "Jouer les notes liées et tenues : avec le sustain plein, chaque note dure toute sa valeur."
   - "Rester dans le grave ; *KB TRACKING* éclaircit seul les notes plus hautes."
-tracabilite:
+traceability:
   - "Documenté [1] : la basse est un échantillon tiré d'un sampler Akai, retravaillé au mixage avec du matériel externe ; le synthé d'origine n'est pas nommé."
   - "Recette d'écoute [2] : carré à 50 %, LFO triangle sur la largeur d'impulsion à la croche (35 %), passe-bas à 50 %, résonance 70 %, key tracking 100 %, enveloppe de filtre 25 % avec attaque 100 ms, delay 1/32 à 35 %."
   - "Contexte [3] : Wikipédia cite un « bass squelch » parmi les éléments de production."
   - "Reconstitué : traduction en positions Messenger, *RES BASS* ON ; le delay de la recette est absent (le Messenger n'a pas d'effets)."
 
-analyse:
-  - titre: "L'oscillateur : un carré qui respire"
-    texte: >-
+analysis:
+  - title: "L'oscillateur : un carré qui respire"
+    text: >-
       Un seul *carré* en 16' : harmoniques impaires seulement, d'où un son creux et
       boisé. Le *LFO 1* fait varier sa largeur d'impulsion^[PWM (Pulse Width
       Modulation) : on fait varier la proportion haut / bas du carré. Plus il
       s'écarte de 50 %, plus le timbre devient nasal.] en rythme, à la croche [2] :
       le timbre ondule sans que la hauteur bouge. C'est ce balancement qui rend la
       basse vivante et légèrement inquiétante.
-  - titre: "Le filtre : la résonance qui gronde"
-    texte: >-
+  - title: "Le filtre : la résonance qui gronde"
+    text: >-
       Passe-bas 4 pôles à mi-course avec une *RESONANCE* forte (70 % dans la recette
       [2]) : le filtre accentue une bande étroite qui donne la voix « gutturale ».
       *KB TRACKING* fait suivre le clavier au filtre : la couleur reste la même sur
       tout le riff. *RES BASS* ON garde le grave que la résonance mangerait.
-  - titre: "Les enveloppes : l'ouverture en douceur"
-    texte: >-
+  - title: "Les enveloppes : l'ouverture en douceur"
+    text: >-
       L'enveloppe de filtre a une petite attaque (≈ 100 ms [2]) et un sustain plein :
       le filtre s'ouvre en glissant au début de chaque note puis reste ouvert. Ce
       léger « wouh » à l'attaque, mêlé à la résonance, fait le « squelch »^[Squelch :
       bruit mouillé et gargouillant, typique d'un filtre résonant qui bouge.] [3].
       L'ampli est un simple interrupteur : plein volume, release très court.
-  - titre: "L'espace et le grain : ce qu'il manque"
-    texte: >-
+  - title: "L'espace et le grain : ce qu'il manque"
+    text: >-
       Sur le disque, la basse est un échantillon joué au sampler Akai et passé dans
       du matériel externe [1] : son grain vient aussi du traitement. La recette [2]
       ajoute un delay très court (1/32, 35 %) qui épaissit chaque note : le Messenger
@@ -89,15 +89,15 @@ analyse:
       dans une pédale de delay ou de distorsion.
 
 sources:
-  - titre: "Classic Tracks : Nine Inch Nails, Closer"
+  - title: "Classic Tracks : Nine Inch Nails, Closer"
     site: Sound on Sound
     url: https://www.soundonsound.com/techniques/classic-tracks-nine-inch-nails-closer
     note: entretien avec l'ingénieur Sean Beavan, basse = échantillon Akai
-  - titre: "Nine Inch Nails, Closer bass"
+  - title: "Nine Inch Nails, Closer bass"
     site: Syntorial, preset recipe
     url: https://syntorial.com/preset-recipe/nine-inch-nails-closer-bass
     note: patch complet reconstitué à l'oreille
-  - titre: "Closer (Nine Inch Nails song)"
+  - title: "Closer (Nine Inch Nails song)"
     site: Wikipédia (en)
     url: https://en.wikipedia.org/wiki/Closer_(Nine_Inch_Nails_song)
     note: production, « bass squelch »

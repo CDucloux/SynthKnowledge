@@ -1,15 +1,15 @@
-synthe: messenger
-titre: Omen Bass
-categorie: basse
+synth: messenger
+title: Omen Bass
+category: basse
 tags: [big-beat, electro, "2000s", distorsion]
-confiance: 1
+confidence: 1
 reference:
-  artiste: The Prodigy
-  morceau: Omen
-  annee: 2009
-  passage: basse épaisse et distordue, surtout dans les refrains
-  synthe_origine: "non documenté (le Virus TI est cité pour les hooks de l'album)"
-resume: >-
+  artist: The Prodigy
+  song: Omen
+  year: 2009
+  part: basse épaisse et distordue, surtout dans les refrains
+  original_synth: "non documenté (le Virus TI est cité pour les hooks de l'album)"
+summary: >-
   Une basse lourde et saturée « comme une guitare électrique » : deux scies graves
   qui battent, un sub pour le poids, le filtre saturé par *FB / EXT IN*. Aucun
   réglage n'est publié : c'est une approximation d'après le caractère du son.
@@ -36,64 +36,64 @@ params:
   fenv: {a: 7, d: 12, s: 13, r: 9}
   aenv: {a: 7, d: 12, s: 17, r: 9}
 
-etapes:
+steps:
   - Maintenir *PANEL* 1 s (init).
   - "*OCTAVE 1* et *2* sur 16', scies (*WAVESHAPE* à midi). *OSC 2 FREQ* à peine à droite de midi."
   - "*SUB WAVE* ≈ 10:45 (carré). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 3:00, *SUB* à midi."
   - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 11:00, *RESONANCE* ≈ 9:00, *RES BASS* ON."
   - "*FB / EXT IN* ≈ 3:00 : c'est la distorsion du son."
   - "*EG AMOUNT* ≈ 1:00 ; enveloppe filtre : *DECAY* à midi, *SUSTAIN* ≈ 1:00. Ampli : orgue."
-oreille:
+tweaks:
   - "Pas assez « guitare » : *FB / EXT IN* à fond et *CUTOFF* vers midi."
   - "Le grave disparaît sous la saturation : *SUB* vers 1:00."
   - "Trop sale, notes brouillées : *OSC 2* plus bas ou *OSC 2 FREQ* à midi."
   - "Pour le côté « mouillé » du refrain : passer dans une pédale de distorsion ou un ampli."
-jeu:
+playing:
   - "Notes tenues et liées en refrain : le sustain du filtre garde le son plein."
   - "Rester dans la première octave du clavier : au-dessus, la saturation devient criarde."
 
-analyse:
-  - titre: "Les oscillateurs : de la matière à saturer"
-    texte: >-
+analysis:
+  - title: "Les oscillateurs : de la matière à saturer"
+    text: >-
       Deux *scies* en 16' légèrement désaccordées : beaucoup d'harmoniques et un
       battement lent qui fait « bouger » la note, comme deux cordes jouées ensemble.
       Le *sub carré* tient le fondamental une octave plus bas : la distorsion peut
       salir le haut sans faire disparaître le poids.
-  - titre: "Le filtre : la distorsion intégrée"
-    texte: >-
+  - title: "Le filtre : la distorsion intégrée"
+    text: >-
       *FB / EXT IN* réinjecte la sortie dans le filtre ladder^[Plus on monte ce
       potard, plus l'entrée du filtre sature : harmoniques en plus, dynamique
       écrasée, comme une pédale de fuzz.] : c'est lui qui donne le grain « guitare
       électrique » décrit dans [1]. *CUTOFF* à mi-course garde un peu de rondeur ;
       *RES BASS* ON évite que le bas maigrisse.
-  - titre: "Les enveloppes : un son qui reste plein"
-    texte: >-
+  - title: "Les enveloppes : un son qui reste plein"
+    text: >-
       L'enveloppe de filtre ouvre à l'attaque puis se pose sur un *SUSTAIN* assez haut :
       le son reste épais pendant toute la note, sans « wah » marqué. L'ampli est en
       orgue : c'est une basse de mur sonore, pas une basse percussive.
-  - titre: "Le contexte : ce qu'on ne sait pas"
-    texte: >-
+  - title: "Le contexte : ce qu'on ne sait pas"
+    text: >-
       Aucune source ne détaille cette basse. Le Virus TI est cité pour les hooks de
       l'album [2] et fait partie du rig de Liam Howlett [3], mais rien ne dit que la
       basse en vient. Une étude de cas la décrit comme épaisse, distordue et très
       « mouillée » au refrain [1] : la fiche part de ce caractère.
 
-tracabilite:
+traceability:
   - "Description [1] : basses synthétiques épaisses et distordues, « comme une guitare électrique », très saturées au refrain (étude de cas d'étudiant)."
   - "Contexte [2][3] : Virus TI Polar cité pour les hooks de l'album (forum) ; Virus TI et SH-101 dans le rig de 2010."
   - "Reconstitué : tout le patch. Confiance 1 : aucun réglage ni synthé documenté pour cette basse."
 
 sources:
-  - titre: "Case study of The Prodigy's single Omen"
+  - title: "Case study of The Prodigy's single Omen"
     site: Ayden Snell (blog WordPress)
     date: mars 2015
     url: https://aydensnell.wordpress.com/2015/03/03/case-study-of-the-prodigys-single-omen/
     note: description du caractère de la basse
-  - titre: "Access Virus TI (recommend me some tracks that have Virus as main instrument)"
+  - title: "Access Virus TI (recommend me some tracks that have Virus as main instrument)"
     site: Gearspace, forum
     url: https://gearspace.com/threads/access-virus-ti-recomend-me-some-tracks-that-have-virus-as-main-instrumnet.648618/
     note: Virus TI Polar pour les hooks d'Invaders Must Die (non vérifié)
-  - titre: "Liam Howlett's Mysterious Invaders Machine"
+  - title: "Liam Howlett's Mysterious Invaders Machine"
     site: Sonicstate
     date: décembre 2024
     url: https://www.sonicstate.com/news/2024/12/15/liam-howlett-invaders-machine

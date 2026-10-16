@@ -155,8 +155,8 @@
           rows.push(text(weight: "extrabold", str(m.at("depth", default: ""))))
         }
         for s in settings {
-          rows.push(text(weight: "extrabold", upper(s.nom)))
-          rows.push(md(s.valeur))
+          rows.push(text(weight: "extrabold", upper(s.name)))
+          rows.push(md(s.value))
           rows.push([])
         }
         table(

@@ -1,15 +1,15 @@
-synthe: minilogue-xd
-titre: Narcotic Lead
-categorie: lead
+synth: minilogue-xd
+title: Narcotic Lead
+category: lead
 tags: [rock, "90s", riff, digital]
-confiance: 2
+confidence: 2
 reference:
-  artiste: Liquido
-  morceau: Narcotic
-  annee: 1998
-  passage: riff de clavier de l'intro, repris sur tout le morceau
-  synthe_origine: "Roland D-70 modifié, sons créés par son ancien propriétaire"
-resume: >-
+  artist: Liquido
+  song: Narcotic
+  year: 1998
+  part: riff de clavier de l'intro, repris sur tout le morceau
+  original_synth: "Roland D-70 modifié, sons créés par son ancien propriétaire"
+summary: >-
   Le riff de clavier qui ouvre le morceau : un son numérique années 90, brillant
   et un peu métallique à l'attaque, avec un corps qui tient, élargi par un chorus.
   Les sons d'origine étaient uniques : la fiche reconstruit le caractère.
@@ -27,9 +27,9 @@ params:
   reverb: {on: true, type: Room, time: 400, depth: 22}
 
 settings:
-  - {nom: "Amp Velocity (bouton 8)", valeur: "≈ 60 : le riff garde du relief"}
+  - {name: "Amp Velocity (bouton 8)", value: "≈ 60 : le riff garde du relief"}
 
-etapes:
+steps:
   - "Programme init (201 à 500), *VOICE MODE* POLY."
   - "*VCO 1* : SAW 8'. *VCO 2* : SQR 8', *PITCH* +7 cents, *SHAPE* 200."
   - "*MULTI ENGINE* : VPM, *TYPE* Decay2, *SHAPE* 350 : le « tic » numérique de l'attaque."
@@ -37,51 +37,51 @@ etapes:
   - "*FILTER* : *CUTOFF* 640, *RESONANCE* 120, *KEYTRACK* 50 %. *EG* sur CUTOFF : *DECAY* 380, *EG INT* +35 %."
   - "*AMP EG* : *ATTACK* 0, *DECAY* 680, *SUSTAIN* 620, *RELEASE* 320."
   - "*EFFECTS* : MOD sur CHORUS Stereo (*DEPTH* 45 %), REVERB Room discrète (22 %)."
-oreille:
+tweaks:
   - "Trop « synthé analogique », pas assez numérique : *MULTI* vers 600 ou *SHAPE* du MULTI vers 500."
   - "Trop sec, pas assez large : *DEPTH* du chorus vers 60 %."
   - "Attaque trop douce : *EG INT* vers +50 % ; trop agressive : *CUTOFF* vers 550."
   - "Notes qui se mélangent : *RELEASE* vers 200."
-jeu:
+playing:
   - "Riff à une note à la fois, main droite, médium-aigu, joué régulier et un peu détaché."
   - "Le *RELEASE* laisse chaque note déborder légèrement sur la suivante, comme au disque."
 
-analyse:
-  - titre: "Les oscillateurs : une attaque numérique sur un corps analogique"
-    texte: >-
+analysis:
+  - title: "Les oscillateurs : une attaque numérique sur un corps analogique"
+    text: >-
       Le D-70 fait de la synthèse « LA »^[Linear Arithmetic : la méthode Roland de la
       famille D-50, qui assemble des échantillons PCM et des formes d'onde de synthèse
       dans un même son.] [2]. On imite cette idée par superposition : *scie* et *carré*
       analogiques pour le corps, et le moteur *VPM* en Decay2 pour un éclat métallique
       qui ne dure que l'attaque, comme un transitoire échantillonné.
-  - titre: "Le filtre : brillant mais tenu"
-    texte: >-
+  - title: "Le filtre : brillant mais tenu"
+    text: >-
       *CUTOFF* au milieu avec un coup d'*EG* (+35 %) : chaque note commence brillante
       puis se pose. *KEYTRACK* à 50 % garde le riff homogène quand il monte. Peu de
       résonance : le son reste « produit », sans le « wah » des synthés analogiques.
-  - titre: "Les enveloppes : un clavier qui chante"
-    texte: >-
+  - title: "Les enveloppes : un clavier qui chante"
+    text: >-
       Pas d'attaque, un *DECAY* moyen et un *SUSTAIN* assez haut : un son entre le
       pincé et le tenu, typique des presets numériques du début des années 90. Le
       *RELEASE* (320) fait déborder un peu chaque note sur la suivante et lie le riff.
-  - titre: "L'espace : le chorus qui fait les 90s"
-    texte: >-
+  - title: "L'espace : le chorus qui fait les 90s"
+    text: >-
       Le *CHORUS* stéréo double le son avec un léger décalage de hauteur et l'élargit :
       un réflexe de l'époque, les effets intégrés du D-70 étant réputés de grande
       qualité [2]. Une petite reverb Room le place dans le mix rock sans le noyer.
       En POLY, les fins de notes peuvent se chevaucher.
 
-tracabilite:
+traceability:
   - "Documenté [1] : le riff vient d'un Roland D-70 modifié acheté d'occasion ; selon Wolfgang Schrödl, ses sons, créés par l'ancien propriétaire, étaient uniques."
   - "Documenté [2] : le D-70 est un synthé « Super LA » (synthèse LA / PCM), avec filtres et effets intégrés."
   - "Reconstitué : tout le patch (aucun réglage d'origine connu, les sons étaient personnels) ; traduction LA → VCO + VPM du XD."
 
 sources:
-  - titre: "Narcotic (Liquido song)"
+  - title: "Narcotic (Liquido song)"
     site: Wikipédia (en)
     url: https://en.wikipedia.org/wiki/Narcotic_(Liquido_song)
     note: D-70 modifié, d'après Hit100 (2023) et NPO Radio 2
-  - titre: "Roland D-70, Super LA Synthesizer"
+  - title: "Roland D-70, Super LA Synthesizer"
     site: Synthmania
     url: https://www.synthmania.com/d-70.htm
     note: architecture LA / PCM, filtres et effets

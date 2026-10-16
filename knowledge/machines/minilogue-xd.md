@@ -101,7 +101,7 @@ YAML en notation anglaise, octaves en notation standard (C4 = Do central = MIDI 
 
 ```yaml
 settings:
-  - {nom: "LFO Key Sync (bouton 7)", valeur: "On"}
+  - {name: "LFO Key Sync (bouton 7)", value: "On"}
 ```
 
 ## Programme init

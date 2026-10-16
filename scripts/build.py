@@ -66,7 +66,7 @@ def readme_sheets():
             data = read_yaml(path)[1]
         except yaml.YAMLError:
             continue
-        if isinstance(data, dict) and data.get("synthe") in MACHINES:
+        if isinstance(data, dict) and data.get("synth") in MACHINES:
             yield Sheet(path, data)
 
 

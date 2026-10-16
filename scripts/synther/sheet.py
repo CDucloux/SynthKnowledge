@@ -42,7 +42,7 @@ class Sheet:
 
     @property
     def machine(self):
-        return self.data["synthe"]
+        return self.data["synth"]
 
     @property
     def machine_name(self):
@@ -55,14 +55,14 @@ class Sheet:
     @property
     def role(self):
         """Rôle = titre moins le nom du morceau (« Closer Bass » → « Bass »)."""
-        morceau, titre = self.reference.get("morceau", ""), self.data["titre"]
-        return titre[len(morceau):].strip() if morceau and titre.startswith(morceau) else ""
+        song, title = self.reference.get("song", ""), self.data["title"]
+        return title[len(song):].strip() if song and title.startswith(song) else ""
 
     @property
     def pdf_path(self):
         """« sheets/<machine>/[Artiste] Morceau (Rôle).pdf »"""
-        artiste, morceau = self.reference.get("artiste", ""), self.reference.get("morceau", "")
-        name = f"[{artiste}] {morceau}" if artiste and morceau else self.data["titre"]
+        artist, song = self.reference.get("artist", ""), self.reference.get("song", "")
+        name = f"[{artist}] {song}" if artist and song else self.data["title"]
         if self.role:
             name += f" ({self.role})"
         return f"sheets/{self.machine}/{name.replace('/', '-')}.pdf"
