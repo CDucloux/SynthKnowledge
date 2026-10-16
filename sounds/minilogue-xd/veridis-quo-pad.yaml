@@ -1,0 +1,84 @@
+synth: minilogue-xd
+title: Veridis Quo Pad
+category: pad
+tags: [french-house, "2000s", phaser, nappe]
+confidence: 1
+reference:
+  artist: Daft Punk
+  song: Veridis Quo
+  year: 2001
+  part: "nappe passée au phaser, qui entre vers le milieu du morceau"
+  original_synth: "non documenté (phaser AMS ou Ensoniq DP4 d'après Reverb Machine)"
+  original_synth_short: non documenté
+summary: >-
+  La nappe qui fait tourner l'air à mi-parcours : deux notes tenues (La et Ré,
+  Si et Ré, La et Do) dont le timbre balaie lentement de haut en bas. Deux
+  scies douces, attaque lente, et tout le caractère vient du phaser.
+
+params:
+  voice: {mode: poly, tempo: 107}
+  vco1: {wave: saw, octave: 8}
+  vco2: {wave: saw, octave: 8, pitch: 8}
+  mixer: {vco1: 1023, vco2: 900}
+  filter: {cutoff: 520, resonance: 180, keytrack: 50}
+  amp_eg: {a: 480, d: 700, s: 950, r: 620}
+  eg: {a: 450, d: 800, int: 15, target: cutoff}
+  mod_fx: {on: true, type: Phaser, subtype: Stereo, time: 260, depth: 75}
+  reverb: {on: true, type: Hall, time: 600, depth: 35}
+
+steps:
+  - "Programme init (201 à 500), *VOICE MODE* POLY, *TEMPO* 107."
+  - "*VCO 1* et *VCO 2* : SAW 8'. *VCO 2* *PITCH* +8 cents. *MIXER* : 1023 et 900."
+  - "*FILTER* : *CUTOFF* 520, *RESONANCE* 180, *KEYTRACK* 50 %."
+  - "*EG* sur CUTOFF : *ATTACK* 450, *DECAY* 800, *EG INT* +15 %."
+  - "*AMP EG* : *ATTACK* 480, *DECAY* 700, *SUSTAIN* 950, *RELEASE* 620."
+  - "*MOD FX* : Phaser Stereo, *TIME* 260 (balayage lent), *DEPTH* 75 %. *REVERB* Hall (35 %)."
+tweaks:
+  - "Le balayage est trop rapide : *TIME* du phaser vers 150."
+  - "Pas assez « tuyau » : sous-type Small Reso ou Orange, plus marqués."
+  - "La nappe masque la flûte : *CUTOFF* vers 420, *DEPTH* de la reverb vers 25 %."
+playing:
+  - "Deux notes tenues [2] : La et Ré (1 mesure), Si et Ré (1 mesure), La et Do (2 mesures). En boucle ; la première fois, ajouter Fa sur La et Ré."
+  - "Entrée vers le milieu du morceau [1] : monter le volume à la main."
+
+analysis:
+  - title: "Les oscillateurs : deux scies qui battent"
+    text: >-
+      Le synthé de cette nappe n'est pas documenté. Deux *scies*
+      désaccordées de quelques cents donnent un son riche en harmoniques et
+      qui bouge déjà de lui-même : c'est la matière dont le phaser a besoin
+      pour creuser des trous dans le spectre.
+  - title: "Le filtre : doux, un peu de pointe"
+    text: >-
+      *CUTOFF* au milieu pour adoucir les scies, une *RESONANCE* légère qui
+      souligne la zone que le phaser va balayer. L'enveloppe du filtre, lente,
+      fait éclore chaque accord après l'attaque.
+  - title: "Les enveloppes : une nappe qui arrive"
+    text: >-
+      Attaque et release longues : les notes entrent en fondu et se fondent
+      l'une dans l'autre à chaque changement. *SUSTAIN* haut, puisque les
+      notes tiennent une à deux mesures.
+  - title: "L'espace : tout est dans le phaser"
+    text: >-
+      Un phaser^[Effet qui mélange le son avec une copie déphasée : des creux
+      apparaissent dans le spectre et se déplacent lentement, d'où l'effet
+      de « tuyau qui tourne ».] fait le son : à l'époque, Daft Punk utilisait
+      des phasers AMS et un Ensoniq DP4 ; Reverb Machine le refait avec un
+      plug-in (Fix Phaser) [1]. Sur le XD, le Phaser du MOD FX joue ce rôle.
+
+traceability:
+  - "Documenté [1] : une nappe passée au phaser entre vers le milieu ; phasers AMS et Ensoniq DP4 utilisés pour Discovery."
+  - "Transcrit [2] : deux notes tenues (La Ré, Si Ré, La Do) dans la piste Moroder Pad du projet Imaginando, qui entre à la mesure 53 du projet. Un seul relevé : Songsterr (piste Phase Chords) note le balayage, pas les notes."
+  - "Reconstitué : synthé, formes d'onde, filtre, enveloppes et réglages du phaser, à l'oreille."
+
+sources:
+  - title: "Daft Punk's Discovery Synth Sounds"
+    site: Reverb Machine
+    date: février 2021
+    url: https://reverbmachine.com/blog/daft-punk-discovery-synth-sounds/
+    note: nappe au phaser, matériel d'effets de Discovery
+  - title: "Daft Punk 'Veridis Quo' - how to make with DRC"
+    site: Imaginando
+    date: décembre 2020
+    url: https://www.imaginando.pt/media/daft-punk-veridis-quo-how-to-make-with-drc
+    note: projet Ableton lu (piste Moroder Pad), chapitre « Moroder Pad » de la vidéo, non visionnée

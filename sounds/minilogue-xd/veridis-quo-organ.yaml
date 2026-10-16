@@ -1,0 +1,97 @@
+synth: minilogue-xd
+title: Veridis Quo Organ
+category: keys
+tags: [french-house, "2000s", orgue, accords]
+confidence: 2
+reference:
+  artist: Daft Punk
+  song: Veridis Quo
+  year: 2001
+  part: "accords d'orgue sous la mélodie (Ré mineur, Sol, La mineur, Fa puis Mi), tout le morceau"
+  original_synth: "Yamaha DX7, preset Pipes 2 (ROM 1B-17), probablement en échantillon (d'après Reverb Machine)"
+  original_synth_short: DX7 Pipes 2 (supposé)
+summary: >-
+  Le tapis harmonique : des accords d'orgue à tuyaux tenus une mesure chacun,
+  Ré mineur, Sol, La mineur, puis Fa et Mi sur deux temps. Un son plein et
+  stable, sans mouvement de filtre, qui laisse la flûte chanter par-dessus.
+
+params:
+  voice: {mode: poly, tempo: 107}
+  vco1: {wave: sqr, octave: 8, shape: 0}
+  vco2: {wave: saw, octave: 4, pitch: 3}
+  mixer: {vco1: 1023, vco2: 420}
+  filter: {cutoff: 560, resonance: 0, keytrack: 50}
+  amp_eg: {a: 40, d: 512, s: 1023, r: 350}
+  mod_fx: {on: true, type: Chorus, subtype: Stereo, time: 420, depth: 35}
+  reverb: {on: true, type: Hall, time: 560, depth: 35}
+
+sequence:
+  tempo: 107
+  resolution: 1/4
+  gate: 95
+  steps: >-
+    A3+D4+F4 _ _ _ G3+B3+D4 _ _ _ A3+C4+E4 _ _ _ A3+C4+F4 _ A3+C4+E4 _
+
+steps:
+  - "Programme init (201 à 500), *VOICE MODE* POLY, *TEMPO* 107."
+  - "*VCO 1* : SQR 8', *SHAPE* 0 (carré pur, le jeu de fond de l'orgue)."
+  - "*VCO 2* : SAW 4', *PITCH* +3 cents (le jeu d'anche, une octave plus haut)."
+  - "*MIXER* : *VCO 1* 1023, *VCO 2* 420."
+  - "*FILTER* : *CUTOFF* 560, *RESONANCE* 0, *KEYTRACK* 50 %. *EG INT* à 0."
+  - "*AMP EG* : *ATTACK* 40, *SUSTAIN* 1023, *RELEASE* 350."
+  - "*EFFECTS* : MOD FX Chorus Stereo (35 %), REVERB Hall (35 %)."
+tweaks:
+  - "Trop brillant, ça couvre la flûte : *CUTOFF* vers 450 ou *VCO 2* vers 250."
+  - "Trop électronique : *VCO 2* en SQR 4', moins de chorus (20 %)."
+  - "Accords hachés : *GATE* vers 100 % (SEQ EDIT) ou *RELEASE* vers 450."
+playing:
+  - "Grille = la boucle de 4 mesures, une noire par pas. Sur le disque, chaque accord arrive une croche avant la mesure [2][3] : à jouer au clavier pour l'avoir."
+
+analysis:
+  - title: "Les oscillateurs : des jeux d'orgue empilés"
+    text: >-
+      Un orgue à tuyaux additionne des jeux à l'octave (8', 4'). Le *carré*
+      8' (harmoniques impaires) donne le fond creux du tuyau ; la *scie* 4',
+      plus faible, ajoute l'éclat d'un jeu d'anche. C'est l'équivalent analogique
+      du preset *Pipes 2* du DX7 identifié par Reverb Machine [1].
+  - title: "Le filtre : fixe, comme un orgue"
+    text: >-
+      Un orgue ne « s'ouvre » pas : pas d'enveloppe sur le filtre, timbre
+      constant du début à la fin de la note. *CUTOFF* assez bas pour que les
+      accords restent derrière la mélodie, *KEYTRACK* à 50 % pour que les notes
+      graves et aiguës gardent la même couleur.
+  - title: "Les enveloppes : un interrupteur adouci"
+    text: >-
+      L'orgue démarre et s'arrête presque net : *SUSTAIN* au maximum, attaque
+      à peine adoucie pour éviter le clic, *RELEASE* court pour que la salle
+      (la reverb) fasse la queue. Les courbes au-dessus sont presque des
+      créneaux.
+  - title: "L'espace : chorus et salle"
+    text: >-
+      Reverb Machine applique un chorus et un élargissement stéréo à l'orgue,
+      ajoutés quand la batterie entre [1]. La reverb Hall évoque l'église
+      que le son d'orgue appelle. Les accords Ré mineur, Sol, La mineur sont
+      relevés par Imaginando [2] et Songsterr [3].
+
+traceability:
+  - "Recette [1] : preset DX7 Pipes 2 sous la flûte, sans doute en échantillon, chorus et élargissement stéréo."
+  - "Transcrit [2] : accords à trois notes (La Ré Fa, Sol Si Ré, La Do Mi), une mesure chacun, anticipés d'une croche (piste Organ Chords). Imaginando laisse la 4e mesure vide."
+  - "Transcrit [3] : mêmes accords sur Songsterr (piste Flute Chords), et Fa puis Mi (accord de Fa sur Mi) en 4e mesure : réduit ici à La Do Fa puis La Do Mi."
+  - "Reconstitué : l'orgue en analogique et toutes les valeurs XD ; l'anticipation d'une croche n'est pas dans la grille."
+
+sources:
+  - title: "Daft Punk's Discovery Synth Sounds"
+    site: Reverb Machine
+    date: février 2021
+    url: https://reverbmachine.com/blog/daft-punk-discovery-synth-sounds/
+    note: presets DX7, chorus et élargissement stéréo
+  - title: "Daft Punk 'Veridis Quo' - how to make with DRC"
+    site: Imaginando
+    date: décembre 2020
+    url: https://www.imaginando.pt/media/daft-punk-veridis-quo-how-to-make-with-drc
+    note: projet Ableton lu (piste Organ Chords), vidéo non visionnée
+  - title: "Daft Punk, Veridis Quo, piste Flute (Chords)"
+    site: Songsterr, tablature de contributeur
+    date: mars 2024
+    url: https://www.songsterr.com/a/wsa/daft-punk-veridis-quo-tab-s32835
+    note: mesures 1 à 9, 107 BPM

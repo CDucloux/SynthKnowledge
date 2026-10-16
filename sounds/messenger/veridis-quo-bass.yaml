@@ -1,0 +1,95 @@
+synth: messenger
+title: Veridis Quo Bass
+category: basse
+tags: [french-house, "2000s", disco, minimoog]
+confidence: 2
+reference:
+  artist: Daft Punk
+  song: Veridis Quo
+  year: 2001
+  part: "basse tenue Ré, Sol, La, Fa, Mi (une mesure, deux temps), anticipée d'une croche"
+  original_synth: "non documenté ; Minimoog sur la liste de matériel de Discovery, refait en Mini V par Reverb Machine"
+  original_synth_short: Minimoog (supposé)
+summary: >-
+  La basse ronde et sombre qui porte les accords : une note tenue par mesure
+  (Ré, Sol, La), puis Fa et Mi sur deux temps, chacune attaquée une croche
+  avant le temps. Un son de Minimoog filtré bas, chaud, sans claquement.
+
+params:
+  osc:
+    oct1: 16
+    wave1: 12
+    sub_wave: 10.75
+  mixer:
+    osc1: 17
+    sub: 13
+  filter:
+    mode: lp4
+    cutoff: 9
+    eg_amount: 13
+    resonance: 9.5
+    kb_tracking: true
+  fenv: {a: 7, d: 12.5, s: 10, r: 10.5}
+  aenv: {a: 7.25, d: 12, s: 17, r: 10.5}
+
+steps:
+  - "Maintenir *PANEL* 1 s (init)."
+  - "*OCTAVE 1* sur 16', *WAVESHAPE 1* à midi (scie). *SUB WAVE* ≈ 10:45 (carré)."
+  - "*MIXER* : *OSC 1* à fond, *SUB* ≈ 1:00, *OSC 2* coupé."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:00, *RESONANCE* ≈ 9:30, *KB TRACKING* ON."
+  - "*EG AMOUNT* ≈ 1:00. Enveloppe filtre : *DECAY* ≈ 12:30, *SUSTAIN* ≈ 10:00, *RELEASE* ≈ 10:30."
+  - "Enveloppe ampli : *ATTACK* ≈ 7:15, *SUSTAIN* à fond, *RELEASE* ≈ 10:30."
+tweaks:
+  - "Trop sombre dans le mix : *CUTOFF* vers 10:00."
+  - "Les quintes de Songsterr [3] : *OSC 2* à 16' (scie), *OSC 2 FREQ* à fond (+7), au mixer vers 12:00."
+  - "Plus « basse scie » (2e partie du projet Imaginando [2]) : *CUTOFF* vers 10:30, *EG AMOUNT* vers 2:00."
+playing:
+  - "Ré (1 mesure), Sol (1), La plus grave (1), Fa (2 temps), Mi (2 temps), en boucle [2][3]."
+  - "Chaque note arrive une croche avant le temps et tient jusqu'à la suivante : jouer legato."
+
+analysis:
+  - title: "Les oscillateurs : scie et sub carré"
+    text: >-
+      Reverb Machine refait la basse avec un Mini V (émulation de Minimoog)
+      sombre et filtré [1] ; un Minimoog figure sur la liste de matériel de
+      Discovery [1]. La *scie* 16' donne le corps, le *sub* carré une octave
+      plus bas assoit le grave sans ajouter d'aigus.
+  - title: "Le filtre : fermé, presque immobile"
+    text: >-
+      *CUTOFF* bas : on n'entend que les premières harmoniques, d'où le son
+      rond et sombre [1]. L'enveloppe ouvre à peine le filtre au début de la
+      note, puis le *SUSTAIN* du filtre le garde entrouvert : les notes
+      tenues ne s'éteignent pas. Résonance faible, juste de la chaleur.
+  - title: "Les enveloppes : tenir toute la mesure"
+    text: >-
+      Le volume tient (*SUSTAIN* à fond) puisque chaque note dure une mesure
+      ou deux temps. Attaque à peine adoucie pour éviter le clic, *RELEASE*
+      moyen pour que la note s'efface quand la suivante arrive, sans trou.
+  - title: "Le jeu : l'anticipation qui fait danser"
+    text: >-
+      Deux relevés concordent : Ré, Sol, La (qui descend), Fa et Mi, chaque
+      note jouée une croche avant le temps [2][3]. Ce petit décalage pousse
+      le morceau vers l'avant. Reverb Machine ajoute chorus et élargissement
+      stéréo [1] : le Messenger n'en a pas ; une pédale de chorus fera l'affaire.
+
+traceability:
+  - "Recette [1] : basse refaite avec un Mini V sombre et filtré, chorus et élargissement stéréo ; Minimoog sur la liste de matériel de Discovery (interview de Keyboard, 2001)."
+  - "Transcrit [2][3] : Ré, Sol, La, Fa, Mi anticipés d'une croche, dans le projet Imaginando (pistes Organ Bass et Saw Bass) et sur Songsterr (piste Bass Chord, en quintes : réduites ici à la fondamentale)."
+  - "Hypothèse : le Minimoog comme synthé d'origine (aucune source ne le relie à ce morceau). Reconstitué : réglages Messenger."
+
+sources:
+  - title: "Daft Punk's Discovery Synth Sounds"
+    site: Reverb Machine
+    date: février 2021
+    url: https://reverbmachine.com/blog/daft-punk-discovery-synth-sounds/
+    note: basse Mini V, chorus, liste de matériel
+  - title: "Daft Punk 'Veridis Quo' - how to make with DRC"
+    site: Imaginando
+    date: décembre 2020
+    url: https://www.imaginando.pt/media/daft-punk-veridis-quo-how-to-make-with-drc
+    note: projet Ableton lu (pistes Organ Bass et Saw Bass), vidéo non visionnée
+  - title: "Daft Punk, Veridis Quo, piste Bass Chord"
+    site: Songsterr, tablature de contributeur
+    date: mars 2024
+    url: https://www.songsterr.com/a/wsa/daft-punk-veridis-quo-tab-s32835
+    note: mesures 16 à 33, 107 BPM

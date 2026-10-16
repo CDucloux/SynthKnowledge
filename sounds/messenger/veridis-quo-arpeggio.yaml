@@ -1,0 +1,103 @@
+synth: messenger
+title: Veridis Quo Arpeggio
+category: arp
+tags: [french-house, "2000s", sequence, acid]
+confidence: 1
+reference:
+  artist: Daft Punk
+  song: Veridis Quo
+  year: 2001
+  part: "arpège en doubles croches (grave, grave, octave) sur Ré, Sol, La, Fa, Mi, seconde moitié du morceau"
+  original_synth: "non documenté (Juno-106, Minimoog, Prophet 600 et VS… sur la liste de matériel de Discovery)"
+  original_synth_short: non documenté
+summary: >-
+  Le moteur de la seconde moitié : des doubles croches qui sautent par groupes
+  de trois (deux graves, une à l'octave) contre la pulsation à quatre temps,
+  sur la ligne de basse Ré, Sol, La, Fa, Mi. Son court et percutant, très
+  résonant, dont le filtre s'ouvre et se referme lentement au fil du morceau.
+
+params:
+  osc:
+    oct1: 16
+    wave1: 12
+  filter:
+    mode: lp4
+    cutoff: 9.5
+    eg_amount: 14
+    resonance: 14.5
+    kb_tracking: true
+  fenv: {a: 7, d: 9.75, s: 7, r: 9}
+  aenv: {a: 7, d: 10.5, s: 7, r: 9}
+  env: {multi_trig: true}
+
+sequence:
+  tempo: 107
+  gate: 50
+  steps: >-
+    D5 D5 D6 D5 D5 D6 D5 D5 D6 D5 D5 D6 D5 D5 D6 G5 |
+    G5 G5 G6 G5 G5 G6 G5 G5 G6 G5 G5 G6 G5 G5 G6 A5 |
+    A5 A5 A6 A5 A5 A6 A5 A5 A6 A5 A5 A6 A5 A5 A6 F5 |
+    F5 F5 F6 F5 F5 F6 E5 E5 E6 E5 E5 E6 D5 D5 D6 D5
+
+steps:
+  - "Maintenir *PANEL* 1 s (init)."
+  - "*OCTAVE 1* sur 16', *WAVESHAPE 1* à midi (scie). *OSC 2* et *SUB* coupés."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:30, *RESONANCE* ≈ 2:30, *RES BASS* OFF, *KB TRACKING* ON."
+  - "*EG AMOUNT* ≈ 2:00. Enveloppe filtre : *DECAY* ≈ 9:45, *SUSTAIN* à 0."
+  - "Enveloppe ampli : *DECAY* ≈ 10:30, *SUSTAIN* à 0, *RELEASE* ≈ 9:00. *MULTI-TRIG* ON."
+tweaks:
+  - "Trop sifflant : *RESONANCE* vers 1:30."
+  - "Pas assez percutant : *DECAY* des deux enveloppes vers 9:30."
+  - "Trop aigu : *OCTAVE 1* sur 32'."
+playing:
+  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, les 64 notes, *RECORD*, *PLAY*. Puis tourner *CUTOFF* lentement de 9:00 à 12:00 et retour, sur plusieurs mesures [1]."
+
+analysis:
+  - title: "L'oscillateur : une scie seule"
+    text: >-
+      Reverb Machine décrit un son simple [1] : une *scie* seule suffit,
+      riche en harmoniques pour que la résonance ait de quoi chanter. Le
+      synthé d'origine n'est pas connu ; Discovery a été fait avec un
+      Juno-106, un Minimoog, des Prophet et un Super Jupiter, entre autres [1].
+  - title: "Le filtre : la résonance acide"
+    text: >-
+      *RESONANCE* haute et *CUTOFF* bas : à chaque note, l'enveloppe fait
+      claquer une pointe de résonance, le côté « acid » relevé par Reverb
+      Machine [1]. *RES BASS* coupé pour garder le ladder fin et nasal ; le
+      *KB TRACKING* garde le même timbre sur les notes à l'octave.
+  - title: "Les enveloppes : presque des percussions"
+    text: >-
+      Decay et release courts, sustain nul : chaque double croche s'éteint
+      d'elle-même, d'où l'effet presque percussif [1]. Le filtre retombe un peu
+      plus vite que le volume : la note commence brillante et finit sourde.
+      *MULTI-TRIG* relance les enveloppes à chaque pas.
+  - title: "Le mouvement : trois contre quatre et filtre à la main"
+    text: >-
+      Le motif grave, grave, octave fait trois doubles croches : il tombe à
+      contretemps de la mesure à quatre temps, et chaque mesure le relance sur
+      la note suivante de la basse [3]. Le filtre s'ouvre et se referme au fil
+      du morceau, sans doute à la main pendant l'enregistrement [1]. Imaginando
+      ajoute un écho modulé (DLYM) [2] : le Messenger n'a pas d'effet.
+
+traceability:
+  - "Documenté [1] : arpège simple, decay et release courts, résonance haute, filtre ouvert et refermé lentement (sans doute à la main)."
+  - "Transcrit [3] : mesures 49 à 52 de la piste Bass Arp de Songsterr (piste de guitare qui transcrit l'arpège, distincte de la basse), 107 BPM ; écrites deux octaves plus haut pour le séquenceur."
+  - "Recoupé [2] : Imaginando fait jouer l'arpégiateur de DRC sur les mêmes notes de basse (Ré, Sol, La, Fa, Mi), avec un écho DLYM."
+  - "Reconstitué : synthé, réglages Messenger, à l'oreille."
+
+sources:
+  - title: "Daft Punk's Discovery Synth Sounds"
+    site: Reverb Machine
+    date: février 2021
+    url: https://reverbmachine.com/blog/daft-punk-discovery-synth-sounds/
+    note: patch d'arpège, liste de matériel (interview de Keyboard, 2001)
+  - title: "Daft Punk 'Veridis Quo' - how to make with DRC"
+    site: Imaginando
+    date: décembre 2020
+    url: https://www.imaginando.pt/media/daft-punk-veridis-quo-how-to-make-with-drc
+    note: projet Ableton lu (piste Arpeggiator), vidéo non visionnée
+  - title: "Daft Punk, Veridis Quo, piste Bass Arp"
+    site: Songsterr, tablature de contributeur
+    date: mars 2024
+    url: https://www.songsterr.com/a/wsa/daft-punk-veridis-quo-tab-s32835
+    note: mesures 48 à 60, 107 BPM

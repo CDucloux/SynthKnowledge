@@ -1,0 +1,97 @@
+synth: minilogue-xd
+title: Veridis Quo Lead
+category: lead
+tags: [french-house, "2000s", flute, baroque]
+confidence: 2
+reference:
+  artist: Daft Punk
+  song: Veridis Quo
+  year: 2001
+  part: "mélodie de flûte en pédale (Fa, Mi, Fa, Ré…), doublée en tierces à la reprise"
+  original_synth: "Yamaha DX7, preset Flute 2 (ROM 2A-02), probablement en échantillon (d'après Reverb Machine)"
+  original_synth_short: DX7 Flute 2 (supposé)
+summary: >-
+  La mélodie « baroque » du morceau : une note pédale (Fa) qui alterne avec
+  une ligne qui descend (Mi, Ré, Do, Si), puis une longue note tenue. Un son de
+  flûte FM doux et rond, sans attaque dure, élargi par un chorus ; à la reprise,
+  une seconde voix joue la même ligne une tierce au-dessus.
+
+params:
+  voice: {mode: poly, tempo: 107}
+  vco1: {wave: tri, octave: 8}
+  vco2: {wave: sqr, octave: 4, pitch: 4}
+  multi: {engine: noise, type: High, shape: 600}
+  mixer: {vco1: 1023, vco2: 260, multi: 90}
+  filter: {cutoff: 640, resonance: 0, keytrack: 50}
+  amp_eg: {a: 110, d: 512, s: 1023, r: 300}
+  eg: {a: 0, d: 380, int: 12, target: cutoff}
+  mod_fx: {on: true, type: Chorus, subtype: Stereo, time: 400, depth: 35}
+  reverb: {on: true, type: Hall, time: 520, depth: 30}
+
+steps:
+  - "Programme init (201 à 500), *VOICE MODE* POLY, *TEMPO* 107."
+  - "*VCO 1* : TRI 8' (le corps de la flûte). *VCO 2* : SQR 4', *PITCH* +4 cents."
+  - "*MULTI ENGINE* : NOISE, type High, *SHAPE* 600 (le souffle)."
+  - "*MIXER* : *VCO 1* 1023, *VCO 2* 260, *MULTI* 90."
+  - "*FILTER* : *CUTOFF* 640, *RESONANCE* 0, *KEYTRACK* 50 %. *EG* sur CUTOFF : *DECAY* 380, *EG INT* +12 % (petit « chiff »)."
+  - "*AMP EG* : *ATTACK* 110, *SUSTAIN* 1023, *RELEASE* 300."
+  - "*EFFECTS* : MOD FX Chorus Stereo (35 %), REVERB Hall (30 %)."
+tweaks:
+  - "Trop orgue, pas assez flûte : *VCO 2* vers 120, *MULTI* vers 150."
+  - "Attaque trop molle sur les doubles croches : *ATTACK* vers 60."
+  - "Trop plat : vibrato au joystick (Y+ sur LFO INT) ou *LFO* TRI sur PITCH, *INT* ≈ 15."
+  - "Pas assez large : *DEPTH* du chorus vers 50 %."
+playing:
+  - "Phrase de 2 mesures [2][3] : Fa Mi Fa Ré (croche pointée) Fa Do Fa, puis Si tenu six temps. Puis Mi Ré Mi Do Mi Si Mi, La tenu. Deux fois. Jouer une octave au-dessus du Do central."
+  - "Reprise : la même ligne une tierce plus haut (La Sol La Fa La Mi La, Ré tenu…), puis les deux voix ensemble, en tierces [2][3]."
+
+analysis:
+  - title: "Les oscillateurs : une flûte faite de triangle"
+    text: >-
+      Le son d'origine serait le preset *Flute 2* du DX7, probablement joué
+      depuis un échantillonneur [1]. Une flûte a très peu d'harmoniques : le
+      *triangle* (harmoniques impaires faibles) en est proche. Le carré 4',
+      discret, ajoute le côté « tuyau d'orgue » qu'Imaginando entend dans
+      ce son [2] ; le bruit filtré imite le souffle.
+  - title: "Le filtre : arrondir, garder un peu d'air"
+    text: >-
+      *CUTOFF* au milieu, sans résonance : on retire le haut du carré pour que
+      la flûte reste douce. La petite impulsion de l'*EG* imite le
+      « chiff »^[Bruit bref au début d'une note de flûte ou de tuyau d'orgue,
+      avant que le son se stabilise.] de l'attaque. Le *KEYTRACK* à 50 % garde
+      les aigus de la reprise en tierces aussi clairs que le reste.
+  - title: "Les enveloppes : du souffle, pas de frappe"
+    text: >-
+      Attaque courte mais pas nulle : la note gonfle en quelques dizaines de
+      millisecondes, comme un souffle. *SUSTAIN* au maximum pour les longues
+      notes tenues (six temps sur Si, puis sur La), *RELEASE* moyen pour
+      lier les doubles croches.
+  - title: "Le jeu : pédale baroque et tierces parallèles"
+    text: >-
+      La ligne alterne une note fixe (la pédale, Fa) et une ligne qui descend :
+      un cliché baroque, selon Reverb Machine, tout comme la seconde voix en
+      tierces parallèles [1]. Deux relevés indépendants donnent les mêmes notes [2][3].
+      Le chorus et l'élargissement stéréo arrivent avec la batterie [1] : monter
+      la *DEPTH* du chorus à ce moment-là.
+
+traceability:
+  - "Recette [1] : preset DX7 Flute 2 (mélodie) et Pipes 2 (accords), sans doute en échantillons, chorus et élargissement stéréo. Le DX7 n'apparaît sur aucune liste de matériel de Daft Punk."
+  - "Transcrit [2][3] : même phrase de 2 mesures dans le projet Ableton d'Imaginando (piste Organ Lead, 105,4 BPM) et sur Songsterr (piste Flute Melody, 107 BPM), puis la reprise en tierces."
+  - "Reconstitué : la flûte en analogique (triangle, carré 4', bruit) et toutes les valeurs XD, à l'oreille. Le XD peut aussi tenter une flûte FM (MULTI ENGINE VPM), non testé ici."
+
+sources:
+  - title: "Daft Punk's Discovery Synth Sounds"
+    site: Reverb Machine
+    date: février 2021
+    url: https://reverbmachine.com/blog/daft-punk-discovery-synth-sounds/
+    note: presets DX7, chorus, analyse de la mélodie (et réponse aux commentaires)
+  - title: "Daft Punk 'Veridis Quo' - how to make with DRC"
+    site: Imaginando
+    date: décembre 2020
+    url: https://www.imaginando.pt/media/daft-punk-veridis-quo-how-to-make-with-drc
+    note: projet Ableton lu (notes, tempo), chapitres de la vidéo lus, vidéo non visionnée
+  - title: "Daft Punk, Veridis Quo, piste Flute (Melody)"
+    site: Songsterr, tablature de contributeur
+    date: mars 2024
+    url: https://www.songsterr.com/a/wsa/daft-punk-veridis-quo-tab-s32835
+    note: mesures 1 à 12, 107 BPM
