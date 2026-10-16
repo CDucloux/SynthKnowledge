@@ -15,11 +15,11 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Dépendances (pyproject.toml, extra dev)
-        run: uv pip install --system -r pyproject.toml --extra dev
+      - name: Dépendances (pyproject.toml, extras dev et typst)
+        run: uv pip install --system -r pyproject.toml --extra dev --extra typst
       - name: Ruff
         run: ruff check scripts tests && ruff format --check scripts tests
       - name: Mypy
         run: python -m mypy
-      - name: Tests (toutes les fiches, messages d'erreur, README)
+      - name: Tests (fiches valides et compilées en 2 pages, erreurs, README)
         run: python -m pytest
