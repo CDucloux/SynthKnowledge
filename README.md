@@ -15,7 +15,7 @@
 
 <p align="center">
 <!-- compteurs:start -->
-📄 <b>19 fiches</b> · 🎤 14 groupes · 🎹 11 pour le Moog Messenger · 8 pour le Korg minilogue XD
+📄 <b>20 fiches</b> · 🎤 14 groupes · 🎹 12 pour le Moog Messenger · 8 pour le Korg minilogue XD
 <!-- compteurs:end -->
 </p>
 
@@ -45,6 +45,7 @@
 | **Cerrone** | Supernature | 1977 | Lead | Moog Messenger | ARP Odyssey | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BCerrone%5D%20Supernature%20%28Lead%29.pdf) |
 | **Cerrone** | Supernature | 1977 | Pad (nappe) | Korg minilogue XD | Polymoog ? | ⚫⚪⚪ approximation | [PDF](sheets/minilogue-xd/%5BCerrone%5D%20Supernature%20%28Nappe%29.pdf) |
 | **Daft Punk** | The Son of Flynn | 2010 | Arpège (arpeggio) | Korg minilogue XD | Non documenté | ⚫⚪⚪ approximation | [PDF](sheets/minilogue-xd/%5BDaft%20Punk%5D%20The%20Son%20of%20Flynn%20%28Arpeggio%29.pdf) |
+| **Depeche Mode** | Enjoy the Silence | 1990 | Basse | Moog Messenger | Minimoog / ARP 2600 ? | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BDepeche%20Mode%5D%20Enjoy%20the%20Silence%20%28Bass%29.pdf) |
 | **Depeche Mode** | Precious | 2005 | Lead | Korg minilogue XD | Non documenté | ⚫⚪⚪ approximation | [PDF](sheets/minilogue-xd/%5BDepeche%20Mode%5D%20Precious%20%28Lead%29.pdf) |
 | **Donna Summer** | I Feel Love | 1977 | Basse | Moog Messenger | Moog modulaire | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BDonna%20Summer%5D%20I%20Feel%20Love%20%28Bass%29.pdf) |
 | **Gorillaz** | Stylo | 2010 | Basse | Moog Messenger | Non documenté | ⚫⚪⚪ approximation | [PDF](sheets/messenger/%5BGorillaz%5D%20Stylo%20%28Bass%29.pdf) |

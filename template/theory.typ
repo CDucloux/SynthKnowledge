@@ -69,7 +69,7 @@
   grid(
     columns: (1fr, auto), gutter: 3mm,
     [*SOURCES* #h(1mm) #items.join([ #h(0.8mm)·#h(0.8mm) ])],
-    [SYNTHKNOWLEDGE · résumé rédigé avec nos mots, schémas recalculés],
+    [SYNTHER · résumé rédigé avec nos mots, schémas recalculés],
   )
 }
 

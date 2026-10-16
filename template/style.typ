@@ -459,10 +459,10 @@
       grid(
         columns: (1fr, auto), gutter: 3mm,
         [*ANATOMIE DU SON* #h(1mm) page 2 : analyse, courbes, sources],
-        [SYNTHKNOWLEDGE · gris = valeur neutre (patch INIT), noir = réglage de la fiche],
+        [SYNTHER · gris = valeur neutre (patch INIT), noir = réglage de la fiche],
       )
     } else {
-      [SYNTHKNOWLEDGE · page 2 : anatomie du son. Les réglages sont en page 1#if fichier != none [ (fichier #fichier)].]
+      [SYNTHER · page 2 : anatomie du son. Les réglages sont en page 1#if fichier != none [ (fichier #fichier)].]
     }
   })
   set text(font: font, size: 7.4pt, lang: "fr", fill: ink)

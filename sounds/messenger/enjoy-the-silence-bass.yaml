@@ -1,0 +1,120 @@
+synthe: messenger
+titre: Enjoy the Silence Bass
+categorie: basse
+tags: [synthpop, "90s", sequence, depeche-mode]
+confiance: 2
+reference:
+  artiste: Depeche Mode
+  morceau: Enjoy the Silence
+  annee: 1990
+  passage: basse en doubles croches, intro et couplets (Do, Mi bémol)
+  synthe_origine: "Minimoog et ARP 2600 de Flood selon Alan Wilder (« de mémoire ») ; Roland System 700 modulaire selon d'autres récits"
+  synthe_court: Minimoog / ARP 2600 ?
+resume: >-
+  Le moteur de Violator : des doubles croches qui sautent d'une octave à l'autre,
+  Do puis Mi bémol, comme un cœur qui tremble sous la ballade. Une scie épaisse,
+  un filtre qui claque à chaque note et retombe vite : court, rond et mordant.
+
+params:
+  osc:
+    oct1: 16
+    oct2: 16
+    wave1: 12
+    wave2: 12
+    sub_wave: 10.5
+    osc2_freq: 12.15
+  mixer:
+    osc1: 17
+    osc2: 14
+    sub: 11
+  filter:
+    mode: lp4
+    cutoff: 10
+    eg_amount: 14
+    resonance: 10.5
+    kb_tracking: true
+  fenv: {a: 7, d: 10.5, s: 8, r: 9}
+  aenv: {a: 7, d: 11.5, s: 12, r: 9}
+  env: {multi_trig: true}
+
+sequence:
+  tempo: 114
+  gate: 62.5
+  steps: >-
+    C5 . C6 C6 C5 C5 C6 . C5 C6 . C6 C5 C5 C6 . |
+    Eb5 Eb6 . Eb5 Eb5 . Eb6 Eb6 Eb5 Eb6 Eb6 . Eb5 Eb5 . Eb6 |
+    C5 . C6 C6 C5 C5 . C6 C5 . C6 C6 C5 C5 C6 . |
+    Eb5 Eb6 . Eb5 Eb5 Eb5 Eb6 . Eb5 Eb6 . Eb6 Eb5 . Eb6 Eb6
+
+etapes:
+  - "*PANEL* 1 s (init). *OCTAVE 1* et *2* sur 16', deux scies (*WAVESHAPE* à midi)."
+  - "*OSC 2 FREQ* à peine à droite de midi. *SUB WAVE* ≈ 10:30 (carré)."
+  - "*MIXER* : *OSC 1* à fond, *OSC 2* ≈ 2:00, *SUB* ≈ 11:00."
+  - "4P LOW PASS, *CUTOFF* ≈ 10:00, *RESONANCE* ≈ 10:30, *EG AMOUNT* ≈ 2:00, *KB TRACKING* ON."
+  - "F ENV : *DECAY* ≈ 10:30, *SUSTAIN* ≈ 8:00. A ENV : *DECAY* ≈ 11:30, *SUSTAIN* midi."
+  - "*MULTI-TRIG* ON. *GATE LENGTH* (*SETTINGS* 3) sur PGM 10."
+oreille:
+  - "Trop sourd : *CUTOFF* vers 10:30 ou *EG AMOUNT* vers 2:30."
+  - "Trop acid : *RESONANCE* vers 9:30, *DECAY* filtre vers 11:00."
+  - "Notes collées : *GATE* PGM 8 ; manque de grave : *SUB* vers midi."
+jeu:
+  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, les 64 pas, *RECORD*, *PLAY*."
+
+analyse:
+  - titre: "Les oscillateurs : deux scies et un sub"
+    texte: >-
+      Alan Wilder pense à un mélange de Minimoog et de l'ARP 2600 de Flood [1] :
+      deux sons de scie, riches en harmoniques. Ici deux *scies* à peine
+      désaccordées^[Le léger écart fait battre les deux ondes : le son
+      épaissit et bouge sans changer de note.], plus un *SUB* carré qui donne
+      l'assise quand la ligne saute à l'octave du dessus.
+  - titre: "Le filtre : un coup de bec à chaque pas"
+    texte: >-
+      *CUTOFF* assez bas et *EG AMOUNT* fort : chaque double croche ouvre le
+      filtre puis il retombe en 150 ms environ. Une *RESONANCE* modérée ajoute
+      la pointe qui fait « tic » sans siffler. *KB TRACKING* garde la même
+      brillance sur la note grave et sur l'octave.
+  - titre: "Les enveloppes : court mais pas sec"
+    texte: >-
+      Pas d'attaque, decay court au filtre, sustain moyen à l'ampli : la note
+      claque puis reste ronde jusqu'à la fin du pas. *MULTI-TRIG* relance les
+      enveloppes à chaque pas, même sur deux Do identiques : c'est ce qui donne
+      la pulsation « tremblante » que décrit Louder [2].
+  - titre: "Le jeu : l'octave qui danse"
+    texte: >-
+      Flood est parti du rythme d'un vieux classique disco [2] : la ligne
+      alterne la fondamentale et son octave en doubles croches, avec des trous
+      qui changent d'une mesure à l'autre [5]. La grille contient les 4 mesures
+      de l'intro (Do, Mi bémol, deux fois). Couplet (La bémol) et refrain (Fa,
+      La bémol, Do, Si bémol) suivent le même dessin : les jouer à la main ou
+      faire une séquence par accord.
+
+tracabilite:
+  - "Documenté [1] : Wilder ne se souvient pas exactement, « probablement » Minimoog et ARP 2600 de Flood. Hypothèse [2][3] : ligne travaillée sur le grand modulaire de Flood, un Roland System 700 selon Alex Ball. Le tutoriel Reverb [4] utilise Minimoog et ARP 2600."
+  - "Transcrit [5] : piste Synth Bass, 114 BPM, mesures 1 à 4 ; notes écrites deux octaves plus haut (Do1 → Do5) pour la saisie, la hauteur réelle vient des 16'."
+  - "Reconstitué : toutes les positions du Messenger (aucun réglage d'origine publié)."
+
+sources:
+  - titre: "Recoil Q+A : Depeche Mode, Violator"
+    site: dmlive.wiki (réponses d'Alan Wilder)
+    url: https://dmlive.wiki/wiki/Recoil_Q%2BA_/_DEPECHE_MODE_/_VIOLATOR
+    note: question sur la basse Minimoog d'Enjoy The Silence
+  - titre: "The story of the Depeche Mode megahit Martin Gore was dead against"
+    site: Louder
+    url: https://www.loudersound.com/features/the-story-of-the-depeche-mode-megahit-martin-gore-was-dead-against
+    note: Flood, Short Circuit Festival 2011 ; basse sur le modulaire de Flood
+  - titre: "Depeche Mode Synth Bass"
+    site: Alex Ball (YouTube), relayé par Matrixsynth
+    date: janvier 2025
+    url: https://www.youtube.com/watch?v=5_k4xupBgU4
+    note: description lue, vidéo non visionnée
+  - titre: "The Synth Sounds of Depeche Mode's Enjoy the Silence"
+    site: Reverb (Will Kurk)
+    date: juillet 2018
+    url: https://www.youtube.com/watch?v=GScjMk8sPtM
+    note: description lue ; article refusé (403), résumé du moteur de recherche
+  - titre: "Enjoy The Silence, piste Synth Bass 1"
+    site: Songsterr
+    date: mars 2026
+    url: https://www.songsterr.com/a/wsa/depeche-mode-enjoy-the-silence-tab-s5782t12
+    note: notes et tempo, transcription non générée par IA

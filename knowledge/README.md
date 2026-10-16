@@ -1,4 +1,4 @@
-# Base de connaissances SynthKnowledge
+# Base de connaissances Synther
 
 À lire (par Claude) avant de créer ou d'ajuster une fiche.
 
