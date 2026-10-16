@@ -94,7 +94,7 @@ Chaque fiche dit franchement ce qu'elle sait.
 
 Pour comprendre la synthèse elle-même, d'après la série *Synth Secrets* (Sound on Sound), avec des schémas recalculés et des encadrés « Essaie sur ton Messenger » :
 
-- 🌊 [Forme d'onde et spectre](sheets/theory/01-forme-onde-spectre.pdf)
+- [Forme d'onde et spectre](sheets/theory/01-forme-onde-spectre.pdf)
 
 > [!NOTE]
 > La fiche 01 est un prototype en une page : la version longue, qui suit l'article pas à pas, est à venir.
@@ -107,7 +107,7 @@ Le projet est piloté avec [Claude Code](https://claude.ai/code). Il suffit de d
 
 Chaque fiche est validée avant compilation contre la description du synthé (`template/schema/`) : un réglage hors plage, une option qui n'existe pas sur la machine ou une source mal citée sont refusés avec un message clair.
 
-🤖 Claude cherche les sources, choisit la machine (polyphonie ou effets : minilogue XD ; basse, lead mono, glide : Messenger), écrit la fiche, la compile et vérifie le rendu. Après un essai, un retour du genre « trop brillant » ou « l'attaque est molle » suffit pour corriger la fiche, et la leçon est gardée pour les suivantes.
+Claude cherche les sources, choisit la machine (polyphonie ou effets : minilogue XD ; basse, lead mono, glide : Messenger), écrit la fiche, la compile et vérifie le rendu. Après un essai, un retour du genre « trop brillant » ou « l'attaque est molle » suffit pour corriger la fiche, et la leçon est gardée pour les suivantes.
 
 ### À la main
 
