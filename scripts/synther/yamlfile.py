@@ -1,12 +1,9 @@
-"""Lecture des fichiers YAML : fiches son et schémas de machine."""
+"""Lecture des fichiers YAML (fiches son, schémas de machine)."""
 
-from functools import cache
 from pathlib import Path
 from typing import Any
 
 import yaml
-
-from . import SCHEMA_DIR
 
 
 def _fix_on_off(node: Any) -> Any:
@@ -48,9 +45,3 @@ def _key_as_text(key: Any) -> Any:
     if key is False:
         return "off"
     return key
-
-
-@cache
-def load_schema(machine: str) -> dict[str, Any]:
-    schema: dict[str, Any] = read_yaml(SCHEMA_DIR / f"{machine}.yaml")[1]
-    return schema

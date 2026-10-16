@@ -4,6 +4,8 @@ Les chemins ci-dessous sont relatifs à la racine du dépôt (ROOT) : le
 point d'entrée scripts/build.py s'y place (os.chdir) avant d'appeler ces
 modules, et Typst compile avec cette racine. Relatifs, ils s'affichent
 tels quels dans les messages et les liens du README.
+
+Les machines connues sont les schémas de SCHEMA_DIR : `schema.machines()`.
 """
 
 from pathlib import Path
@@ -17,5 +19,3 @@ SCHEMA_DIR = Path("template/schema")  # template/schema/<machine>.yaml
 SHEET_TEMPLATE = Path("template/sheet.typ")
 FONTS_DIR = Path("fonts")
 README = Path("README.md")
-
-MACHINES = {"messenger": "Moog Messenger", "minilogue-xd": "Korg minilogue XD"}

@@ -4,6 +4,9 @@
 # Valeurs = valeurs écran du manuel (0-1023, cents, %). Types : voir schema/messenger.yaml ;
 # choices = liste de chaînes autorisées (types d'effets, d'après le manuel p. 53-54).
 
+# Nom affiché (fiche, README) ; l'identifiant est le nom du fichier.
+name: Korg minilogue XD
+
 options:
   voice-mode: [[poly, POLY], [unison, UNISON], [chord, CHORD], [arp, ARP/LATCH]]
   wave: [[sqr, SQR], [tri, TRI], [saw, SAW]]

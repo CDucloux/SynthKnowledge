@@ -4,6 +4,25 @@
 
 #import "style.typ": *
 
+/// Tailles de texte des fiches de théorie, par rôle (A4 portrait, plus
+/// grandes que les fiches son).
+#let theory-size = (
+  body: 8.4pt,            // texte courant
+  number: 30pt,           // numéro de fiche dans le bandeau
+  kicker: 7pt,            // « THÉORIE · SYNTH SECRETS »
+  title: 19pt,
+  subtitle: 8.4pt,
+  articles: 6.6pt,        // SS1 · SS2 en haut à droite
+  key-idea-label: 6.4pt,  // « IDÉE CLÉ »
+  key-idea: 9.6pt,
+  tab-title: 6.6pt,       // onglet noir des encadrés
+  caption: 6.8pt,         // légende de schéma
+  box-body: 7.6pt,        // « Essaie sur ton… », « À retenir »
+  sources: 6pt,           // pied de fiche
+  spectrum-rank: 4.8pt,   // numéros de rang sous un spectre
+  tag: 6pt,               // étiquette de schéma
+)
+
 // ---------------------------------------------------------------------------
 // Mise en page
 // ---------------------------------------------------------------------------
@@ -11,7 +30,7 @@
 /// Réglages de page d'une fiche de théorie (A4 portrait, pas de limite de pages).
 #let theory-setup(body) = {
   set page(paper: "a4", margin: (x: 13mm, top: 11mm, bottom: 11mm))
-  set text(font: font, size: 8.4pt, lang: "fr", fill: ink)
+  set text(font: font, size: theory-size.body, lang: "fr", fill: ink)
   set par(justify: false, leading: 0.62em)
   body
 }
@@ -21,53 +40,53 @@
 #let theory-header(number, title, subtitle, articles) = {
   block(width: 100%, fill: ink, inset: (x: 5mm, y: 3mm), grid(
     columns: (auto, 1fr, auto), column-gutter: 5mm, align: (left + horizon, left + horizon, right + bottom),
-    text(white, size: 30pt, weight: "extrabold", number),
+    text(white, size: theory-size.number, weight: "extrabold", number),
     {
-      text(white, size: 7pt, weight: "bold", tracking: 0.32em, "THÉORIE  ·  SYNTH SECRETS")
+      text(white, size: theory-size.kicker, weight: "bold", tracking: 0.32em, "THÉORIE  ·  SYNTH SECRETS")
       v(1mm)
-      text(white, size: 19pt, weight: "extrabold", upper(title))
+      text(white, size: theory-size.title, weight: "extrabold", upper(title))
       v(0.6mm)
-      text(white, size: 8.4pt, weight: "medium", subtitle)
+      text(white, size: theory-size.subtitle, weight: "medium", subtitle)
     },
-    text(white, size: 6.6pt, weight: "semibold", tracking: 0.1em, articles.map(article => "SS" + str(article)).join("  ·  ")),
+    text(white, size: theory-size.articles, weight: "semibold", tracking: 0.1em, articles.map(article => "SS" + str(article)).join("  ·  ")),
   ))
   v(2.4mm)
 }
 
 /// Idée clé : encadré à barre noire, la phrase à retenir avant tout.
 #let key-idea(body) = block(width: 100%, stroke: (left: 3.2pt + ink), inset: (left: 4mm, y: 1.6mm), {
-  text(size: 6.4pt, weight: "extrabold", tracking: 0.2em, "IDÉE CLÉ")
+  text(size: theory-size.key-idea-label, weight: "extrabold", tracking: 0.2em, "IDÉE CLÉ")
   v(0.6mm)
-  text(size: 9.6pt, weight: "semibold", body)
+  text(size: theory-size.key-idea, weight: "semibold", body)
 })
 
 /// Bloc encadré avec onglet titre noir (hauteur libre), pour schémas et explications.
 #let tab-box(title, body, inset: 3mm) = block(
   width: 100%, stroke: 0.9pt + ink, clip: true, breakable: false,
   stack(
-    box(fill: ink, inset: (x: 2mm, y: 1.1mm), text(white, size: 6.6pt, weight: "extrabold", tracking: 0.08em, upper(title))),
+    box(fill: ink, inset: (x: 2mm, y: 1.1mm), text(white, size: theory-size.tab-title, weight: "extrabold", tracking: 0.08em, upper(title))),
     block(width: 100%, inset: inset, body),
   ),
 )
 
 /// Légende de schéma (petite, en italique discret).
-#let caption(body) = text(size: 6.8pt, fill: luma(80), style: "italic", body)
+#let caption(body) = text(size: theory-size.caption, fill: grey.caption, style: "italic", body)
 
 /// Encadré « Essaie sur ton <machine> » : manipulations numérotées.
 #let try-it(machine, items) = tab-box("Essaie sur ton " + machine, {
-  set text(size: 7.6pt)
+  set text(size: theory-size.box-body)
   numbered(items)
 }, inset: (x: 3mm, top: 2.4mm, bottom: 1.2mm))
 
 /// Encadré « À retenir » : liste à puces.
 #let takeaways(items) = tab-box("À retenir", {
-  set text(size: 7.6pt)
+  set text(size: theory-size.box-body)
   bullets(items)
 }, inset: (x: 3mm, top: 2.4mm, bottom: 1.4mm))
 
 /// Pied de fiche : sources, et rappel que le texte est rédigé avec nos mots.
 #let theory-sources(items) = {
-  set text(size: 6pt, fill: luma(90))
+  set text(size: theory-size.sources, fill: grey.secondary)
   line(length: 100%, stroke: 0.5pt + muted)
   v(-1mm)
   grid(
@@ -111,7 +130,7 @@
       place(dx: bar-center - bar-width / 2, dy: height - bar-height, rect(width: bar-width, height: bar-height, fill: ink))
     }
     if labels and (count <= 12 or calc.rem(rank, 2) == 1) {
-      place(dx: bar-center - 2mm, dy: height + 0.6mm, box(width: 4mm, align(center, text(size: 4.8pt, fill: luma(90), str(rank)))))
+      place(dx: bar-center - 2mm, dy: height + 0.6mm, box(width: 4mm, align(center, text(size: theory-size.spectrum-rank, fill: grey.secondary, str(rank)))))
     }
   }
 })
@@ -141,4 +160,4 @@
 }
 
 /// Étiquette de schéma en petites capitales.
-#let tag(body) = text(size: 6pt, weight: "extrabold", tracking: 0.1em, upper(body))
+#let tag(body) = text(size: theory-size.tag, weight: "extrabold", tracking: 0.1em, upper(body))

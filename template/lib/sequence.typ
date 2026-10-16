@@ -5,7 +5,7 @@
 // « C5 », « F#3 ») ou accord (« G3+Bb3+D4 »), « . » = silence, « _ » =
 // liaison avec le pas précédent, « | » = séparateur ignoré.
 
-#import "theme.typ": ink, muted, soft
+#import "theme.typ": font-size, grey, ink, muted, soft
 #import "markup.typ": md
 #import "icons.typ": icon-steps
 #import "boxes.typ": bullet-mark, bullets, textbox
@@ -19,14 +19,14 @@
 /// Nom de note en solfège français, octave en petit : « Bb4 » → « Si♭ 4 ».
 /// La numérotation des octaves est celle du YAML (voir
 /// knowledge/machines/<machine>.md). Un jeton inconnu est affiché tel quel.
-#let french-note(note, size: 6pt) = {
+#let french-note(note, size: font-size.note) = {
   let parsed = str(note).match(regex("^([A-G])([b#]?)(-?\\d)$"))
   if parsed == none { return text(weight: "extrabold", str(note)) }
   let (letter, accidental, octave) = parsed.captures
   let name = ("C": "Do", "D": "Ré", "E": "Mi", "F": "Fa", "G": "Sol", "A": "La", "B": "Si").at(letter)
   box(text(size: size, weight: "extrabold", name)
     + (if accidental != "" { text(size: size * 0.8, weight: "extrabold", accidental) } else { [] })
-    + text(size: size * 0.72, weight: "semibold", fill: luma(110), octave))
+    + text(size: size * 0.72, weight: "semibold", fill: grey.label, octave))
 }
 
 /// Encadré « Séquence » : réglages de lecture, grille des pas (une rangée
@@ -43,7 +43,7 @@
   // le plus gros accord.
   let chord-notes(token) = token.split("+").rev()
   let max-notes = calc.max(1, ..tokens.map(token => chord-notes(token).len()))
-  let note-size = if max-notes == 1 { 5.4pt } else { 4.8pt }
+  let note-size = if max-notes == 1 { font-size.step-note } else { font-size.step-chord }
   let cell-height = if max-notes == 1 { 4.6mm } else { max-notes * 2.3mm + 1mm }
 
   let cell-content(token) = {
@@ -57,7 +57,7 @@
     let silent = token == "."
     box(width: 100%, height: cell-height,
       fill: if silent { soft } else { white },
-      stroke: if beyond-end { 0.4pt + muted } else if silent { 0.4pt + luma(150) } else { 0.7pt + ink },
+      stroke: if beyond-end { 0.4pt + muted } else if silent { 0.4pt + grey.rule } else { 0.7pt + ink },
       inset: (x: if token == "_" { 0mm } else { 0.2mm }),
       if beyond-end { [] } else { cell-content(token) })
   }
@@ -70,7 +70,7 @@
     }
     grid(
       columns: (5mm,) + ((1fr,) * 4 + (0.8mm,)) * 3 + (1fr,) * 4, column-gutter: 0.35mm,
-      align(left + horizon, text(size: 4.8pt, weight: "extrabold", fill: luma(110),
+      align(left + horizon, text(size: font-size.step-number, weight: "extrabold", fill: grey.label,
         str(first + 1) + "\n" + str(first + _steps-per-row))),
       ..cells,
     )
@@ -87,7 +87,7 @@
 
   textbox("Séquence", icon: icon-steps, {
     set par(leading: 0.45em)
-    text(size: 6.2pt, settings.join(h(1.2mm) + "·" + h(1.2mm)))
+    text(size: font-size.sequence-settings, settings.join(h(1.2mm) + "·" + h(1.2mm)))
     v(0.2mm)
     stack(spacing: 0.7mm, ..range(calc.ceil(count / _steps-per-row)).map(step-row))
     v(1mm)

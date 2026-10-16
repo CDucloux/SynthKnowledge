@@ -6,7 +6,7 @@ template/schema/<machine>.yaml par `sheet_model()`.
 """
 
 import re
-from collections.abc import Callable, Iterable, Iterator
+from collections.abc import Callable, Iterable, Iterator, Mapping
 from functools import cache
 from typing import Annotated, Any, Literal
 
@@ -16,6 +16,7 @@ from pydantic import (
     BeforeValidator,
     ConfigDict,
     Field,
+    TypeAdapter,
     ValidationError,
     ValidatorFunctionWrapHandler,
     create_model,
@@ -24,7 +25,16 @@ from pydantic import (
 )
 from pydantic_core import InitErrorDetails, PydanticCustomError
 
-from .yamlfile import load_schema
+from .errors import describe_message
+from .schema import (
+    MachineSchema,
+    Option,
+    ParamSpec,
+    SchemaError,
+    SequenceExtra,
+    load_schema,
+    schema_path,
+)
 
 SEQ_NOTE = re.compile(r"^[A-G][b#]?-?\d$")
 CITATION = re.compile(r"\[(\d+)\](?!\()")  # [n], pas un lien [texte](url)
@@ -211,7 +221,7 @@ def _strings(node: Any) -> Iterator[str]:
 # Partie propre à la machine, générée depuis template/schema/<machine>.yaml
 # ---------------------------------------------------------------------------
 
-Spec = dict[str, Any]
+OptionLists = dict[str, list[Option]]
 
 
 def _literal(values: Iterable[Any]) -> Any:
@@ -219,38 +229,35 @@ def _literal(values: Iterable[Any]) -> Any:
     return Literal.__getitem__(tuple(values))
 
 
-def _param_type(spec: Spec, options: dict[str, list[list[Any]]]) -> Any:
+def _param_type(spec: ParamSpec, options: OptionLists) -> Any:
     """Type pydantic d'un réglage d'après sa spec (type, plage, options)."""
-    kind = spec.get("type")
-    if "options" in spec:
-        choice = _literal(option[0] for option in options[spec["options"]])
-        if kind == "list":
+    if spec.options is not None:
+        choice = _literal(key for key, _ in options[spec.options])
+        if spec.type == "list":
             items = list[choice]  # type: ignore[valid-type]
             return Annotated[items, BeforeValidator(_as_list)]
         return choice
-    low, high = spec.get("min"), spec.get("max")
-    match kind:
+    match spec.type:
         case "clock":
             hint = "position en heures, 7 = MIN à 17 = MAX"
             return Annotated[float, AfterValidator(_in_range(7, 17, hint))]
         case "bool":
             return bool
         case "int" | "number":
-            base = int if kind == "int" else float
-            if low is None or high is None:
+            base = int if spec.type == "int" else float
+            if spec.min is None or spec.max is None:
                 return base
-            check = _in_range(float(low), float(high))
+            check = _in_range(spec.min, spec.max)
             return Annotated[base, AfterValidator(check)]
-        case "str" if "choices" in spec:
-            choice = _literal(spec["choices"])
+        case "str" if spec.choices is not None:
+            choice = _literal(spec.choices)
             return Annotated[choice, BeforeValidator(_number_to_str)]
-        case "str":
+        case _:  # "str" ; « list » a toujours des options (schema.py)
             return Label
-    raise ValueError(f"type de paramètre inconnu dans le schéma : {kind!r}")
 
 
 def _optional_fields(
-    specs: dict[str, Spec], options: dict[str, list[list[Any]]]
+    specs: dict[str, ParamSpec], options: OptionLists
 ) -> dict[str, Any]:
     return {
         key: (_param_type(spec, options) | None, None)
@@ -258,23 +265,23 @@ def _optional_fields(
     }
 
 
-def _params_model(schema: Spec) -> type[BaseModel]:
+def _params_model(schema: MachineSchema) -> type[BaseModel]:
     sections: dict[str, Any] = {
         section: (
             create_model(
                 f"Params_{section}",
                 __base__=StrictModel,
-                **_optional_fields(specs, schema["options"]),
+                **_optional_fields(specs, schema.options),
             )
             | None,
             None,
         )
-        for section, specs in schema["params"].items()
+        for section, specs in schema.params.items()
     }
     return create_model("MachineParams", __base__=Params, **sections)
 
 
-def _item_model(name: str, item: dict[str, str]) -> type[BaseModel]:
+def _item_model(name: str, item: Mapping[str, str]) -> type[BaseModel]:
     """Objet d'une liste `extra` : toutes ses clés sont des textes requis."""
     fields: dict[str, Any] = {key: (Label, ...) for key in item}
     return create_model(name, __base__=StrictModel, **fields)
@@ -294,42 +301,42 @@ def _step_problems(
     steps: str, max_steps: int, max_notes: int
 ) -> Iterator[str]:
     """Jetons : note (Bb4), accord (G3+Bb3), « . » silence, « _ » liaison."""
-    tokens = [t for t in steps.split() if t != "|"]
+    tokens = [token for token in steps.split() if token != "|"]
     if not tokens:
         yield "ne doit pas être vide"
     if len(tokens) > max_steps:
         yield f"{len(tokens)} pas, maximum {max_steps}"
     chord = ", accord G3+Bb3+D4" if max_notes > 1 else ""
-    for i, token in enumerate(tokens, 1):
+    for step, token in enumerate(tokens, 1):
         if token in (".", "_"):
             continue
         notes = token.split("+")
         if not all(SEQ_NOTE.match(note) for note in notes):
             yield (
-                f"pas {i} « {token} » invalide (note comme Bb4 / C5 / F#3"
+                f"pas {step} « {token} » invalide (note comme Bb4 / C5 / F#3"
                 f"{chord}, « . » silence, « _ » liaison)"
             )
         elif len(notes) > max_notes:
             yield (
-                f"pas {i} « {token} » : {len(notes)} notes, "
+                f"pas {step} « {token} » : {len(notes)} notes, "
                 f"maximum {max_notes} sur cette machine"
             )
     if tokens and tokens[0] == "_":
         yield "le pas 1 ne peut pas être une liaison"
 
 
-def _sequence_model(spec: Spec, options: dict[str, Any]) -> type[BaseModel]:
+def _sequence_model(
+    spec: SequenceExtra, options: OptionLists
+) -> type[BaseModel]:
     fields: dict[str, Any] = {
         "steps": (Label, ...),
-        **_optional_fields(spec["fields"], options),
+        **_optional_fields(spec.fields, options),
     }
-    if "transpose" in spec:
-        transpose = _item_model("Transpose", spec["transpose"])
+    if spec.transpose is not None:
+        transpose = _item_model("Transpose", spec.transpose)
         fields["transpose"] = (list[transpose] | None, None)  # type: ignore[valid-type]
     validators = {
-        "steps_tokens": _steps_validator(
-            spec["max_steps"], spec.get("max_notes", 1)
-        )
+        "steps_tokens": _steps_validator(spec.max_steps, spec.max_notes)
     }
     return create_model(
         "Sequence",
@@ -339,23 +346,42 @@ def _sequence_model(spec: Spec, options: dict[str, Any]) -> type[BaseModel]:
     )
 
 
-def _extra_fields(schema: Spec) -> dict[str, Any]:
+def _extra_fields(schema: MachineSchema) -> dict[str, Any]:
     """Blocs propres à la machine (séquence, settings…), tous optionnels."""
     fields: dict[str, Any] = {}
-    for key, spec in schema.get("extra", {}).items():
-        if spec["type"] == "sequence":
-            model = _sequence_model(spec, schema["options"])
+    for key, spec in schema.extra.items():
+        if isinstance(spec, SequenceExtra):
+            model = _sequence_model(spec, schema.options)
             fields[key] = (model | None, None)
         else:
-            item = _item_model(key.capitalize(), spec["item"])
+            item = _item_model(key.capitalize(), spec.item)
             fields[key] = (list[item] | None, None)  # type: ignore[valid-type]
     return fields
 
 
+def _default_errors(schema: MachineSchema) -> Iterator[str]:
+    """Chaque valeur neutre doit être une valeur valide de son réglage."""
+    for where, spec in schema.all_specs():
+        adapter: TypeAdapter[Any] = TypeAdapter(
+            _param_type(spec, schema.options)
+        )
+        try:
+            adapter.validate_python(spec.default, strict=True)
+        except ValidationError as error:
+            for detail in error.errors():
+                message = describe_message(detail)
+                yield f"{where}.default : {message}"
+
+
 @cache
 def sheet_model(machine: str) -> type[SheetModel]:
-    """Classe de fiche pour une machine, d'après son schéma."""
+    """Classe de fiche pour une machine, d'après son schéma.
+
+    Lève SchemaError si le schéma est invalide (valeurs neutres comprises).
+    """
     schema = load_schema(machine)
+    if errors := list(_default_errors(schema)):
+        raise SchemaError(schema_path(machine), errors)
     return create_model(
         f"Sheet_{machine.replace('-', '_')}",
         __base__=SheetModel,

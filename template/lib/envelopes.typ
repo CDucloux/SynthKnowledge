@@ -2,7 +2,7 @@
 // Temps et niveaux sont normalisés de 0 à 1 (position du potard) : l'allure
 // est juste, les durées ne sont pas calibrées en secondes.
 
-#import "theme.typ": ink, muted, soft
+#import "theme.typ": font-size, grey, ink, muted, soft
 #import "draw.typ": polyline
 
 /// Entrée de courbe préparée par une façade.
@@ -65,8 +65,8 @@
   }
 
   box(width: width, {
-    text(size: 6.4pt, weight: "extrabold", tracking: 0.08em, upper(entry.title))
-    if entry.sub != none { h(1.5mm); text(size: 6pt, fill: luma(80), entry.sub) }
+    text(size: font-size.curve-title, weight: "extrabold", tracking: 0.08em, upper(entry.title))
+    if entry.sub != none { h(1.5mm); text(size: font-size.curve-detail, fill: grey.caption, entry.sub) }
     v(0.6mm)
     box(width: width, height: height + 3mm, {
       place(line(start: (0mm, height), end: (width, height), stroke: 0.5pt + muted))
@@ -74,7 +74,7 @@
       // Repères pointillés gris aux changements de phase (début de D, de S, de R).
       let marks = if has-sustain { (attack-width, decay-end, hold-end) } else { (attack-width,) }
       for mark-x in marks {
-        place(line(start: (mark-x, 0mm), end: (mark-x, height), stroke: (paint: luma(150), thickness: 0.5pt, dash: (1.2pt, 1.4pt))))
+        place(line(start: (mark-x, 0mm), end: (mark-x, height), stroke: (paint: grey.rule, thickness: 0.5pt, dash: (1.2pt, 1.4pt))))
       }
       place(polyline(points, stroke: (paint: if muted-curve { muted } else { ink }, thickness: 1.2pt, join: "round")))
       // Lettres centrées dans leur phase ; décalées si deux phases sont trop étroites.
@@ -89,7 +89,7 @@
         let letter-x = calc.max((start + end) / 2, previous-x + min-letter-gap, 0.9mm)
         previous-x = letter-x
         place(dx: letter-x - 1.5mm, dy: height + 0.6mm,
-          box(width: 3mm, align(center, text(size: 6pt, weight: "bold", fill: luma(70), letter))))
+          box(width: 3mm, align(center, text(size: font-size.curve-letter, weight: "bold", fill: grey.annotation, letter))))
       }
     })
   })

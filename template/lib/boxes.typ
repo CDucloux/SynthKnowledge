@@ -1,7 +1,7 @@
 // Synther : encadrés et listes (étapes numérotées, puces « » »), indice de
 // confiance.
 
-#import "theme.typ": ink
+#import "theme.typ": font-size, ink
 #import "markup.typ": md
 
 /// Indice de confiance : ●●● documenté, ●●○ déduit, ●○○ approximation.
@@ -15,17 +15,17 @@
     h(0.8mm)
   })
   h(1.2mm)
-  text(size: 7pt, weight: "bold", fill: fill, tracking: 0.1em, labels.at(level - 1))
+  text(size: font-size.confidence, weight: "bold", fill: fill, tracking: 0.1em, labels.at(level - 1))
 }
 
 /// Encadré à filet noir, coins droits : titre en capitales (avec icône
 /// facultative), puis le contenu en corps `size`.
-#let textbox(title, body, size: 6.9pt, icon: none) = block(
+#let textbox(title, body, size: font-size.box-body, icon: none) = block(
   width: 100%, stroke: 0.9pt + ink, inset: 0pt, breakable: false,
   stack(
     block(width: 100%, inset: (x: 2.4mm, top: 2mm, bottom: 2.6mm), {
       if icon != none { icon; h(1.4mm) }
-      text(size: 7.2pt, weight: "extrabold", tracking: 0.06em, upper(title))
+      text(size: font-size.box-title, weight: "extrabold", tracking: 0.06em, upper(title))
     }),
     block(width: 100%, inset: (x: 2.4mm, bottom: 2mm), { set text(size: size); body }),
   ),

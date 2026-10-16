@@ -3,10 +3,10 @@
 // (title: …, cols: n, cells: (…)). Les tailles d'une façade dérivent de la
 // taille de son potard, les espacements du dictionnaire `ui`.
 
-#import "theme.typ": ink, ui
+#import "theme.typ": font-size, ink, ui
 
 /// Titre de section de façade : centré, sans onglet, comme sur le panneau.
-#let section-title(title) = align(center + top, text(size: 7.2pt, weight: "extrabold", tracking: 0.16em, upper(title)))
+#let section-title(title) = align(center + top, text(size: font-size.section-title, weight: "extrabold", tracking: 0.16em, upper(title)))
 
 /// Cellules d'une section placées dans la grille de la façade, à partir de
 /// la colonne `first-column` : le titre sur la rangée 0, puis les cellules

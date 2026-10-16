@@ -2,7 +2,7 @@
 // boutons, écrans). Chaque commande prend `active` : true = réglée par la
 // fiche (noir), false = valeur neutre (gris).
 
-#import "theme.typ": ink, muted
+#import "theme.typ": font-size, ink, muted
 #import "draw.typ": clock-arc, hour-angle, polar-point
 
 /// Couleur d'une commande selon qu'elle est réglée par la fiche ou neutre.
@@ -29,16 +29,16 @@
 
 /// Nom d'une commande, en capitales comme sur le panneau.
 #let control-label(name, active) = text(
-  size: 5.6pt, weight: "bold", fill: control-color(active), tracking: 0.02em, upper(name),
+  size: font-size.control-label, weight: "bold", fill: control-color(active), tracking: 0.02em, upper(name),
 )
 
 /// Valeur d'une commande ; `hint` = précision sur une seconde ligne (forme d'onde…).
 #let control-value(value, active, hint: none) = {
   let color = control-color(active)
-  text(size: 6.6pt, weight: if active { "extrabold" } else { "medium" }, fill: color, value)
+  text(size: font-size.control-value, weight: if active { "extrabold" } else { "medium" }, fill: color, value)
   if hint != none {
     linebreak()
-    text(size: 5pt, weight: "semibold", fill: color, hint)
+    text(size: font-size.control-hint, weight: "semibold", fill: color, hint)
   }
 }
 
@@ -141,9 +141,9 @@
       box(width: 100%, height: 100%, radius: 0.8mm, fill: color, align(center + horizon, {
         // Hauteur du texte = hauteur des capitales (pas de jambage) : centrage optique exact.
         set text(fill: white, top-edge: "cap-height", bottom-edge: "baseline")
-        let main = text(size: 5.6pt, weight: "bold", str(value))
+        let main = text(size: font-size.screen, weight: "bold", str(value))
         if sub == none { main } else {
-          stack(spacing: 0.9mm, main, text(size: 4.6pt, weight: "medium", str(sub)))
+          stack(spacing: 0.9mm, main, text(size: font-size.screen-sub, weight: "medium", str(sub)))
         }
       }))),
     if name != "" { control-label(name, active) },
@@ -152,7 +152,7 @@
 
 /// Colonne de LED avec leur libellé, celle de `value` allumée.
 /// `options` : liste de couples (clé, libellé), comme dans le schéma.
-#let led-list(options, value, color, row-gap: 0.75mm, label-height: 1.8mm, text-size: 4.4pt) = grid(
+#let led-list(options, value, color, row-gap: 0.75mm, label-height: 1.8mm, text-size: font-size.option-label) = grid(
   columns: (1.6mm, auto), column-gutter: 0.6mm, row-gutter: row-gap, align: left + horizon,
   ..options.map(((key, label)) => {
     let lit = key == value
@@ -224,12 +224,12 @@
     lever-slot(index, calc.max(count - 1, 1), color)
   }
   let labels = if with-leds {
-    led-list(options, value, color, row-gap: 0.6mm, label-height: 1.7mm, text-size: 4.3pt)
+    led-list(options, value, color, row-gap: 0.6mm, label-height: 1.7mm, text-size: font-size.option-label-compact)
   } else {
     box(height: 9mm, grid(
       rows: (1fr,) * count, align: left + horizon,
       ..options.map(((key, label)) => text(
-        size: 4.4pt, weight: if key == value { "extrabold" } else { "medium" }, fill: color, label,
+        size: font-size.option-label, weight: if key == value { "extrabold" } else { "medium" }, fill: color, label,
       )),
     ))
   }
@@ -252,12 +252,12 @@
   let color = control-color(active)
   box(width: width, align(center, stack(
     spacing: 1mm,
-    box(height: 2mm, align(bottom, if note != none { text(size: 4.2pt, weight: "semibold", fill: color, note) })),
+    box(height: 2mm, align(bottom, if note != none { text(size: font-size.switch-note, weight: "semibold", fill: color, note) })),
     box(
       width: 9.6mm, height: 4.8mm, radius: 1.1mm,
       stroke: 0.9pt + color, fill: if on { color } else { white },
       align(center + horizon, text(
-        size: 4.4pt, weight: "bold", fill: if on { white } else { color }, if on { "ON" } else { "OFF" },
+        size: font-size.switch-state, weight: "bold", fill: if on { white } else { color }, if on { "ON" } else { "OFF" },
       )),
     ),
     control-label(name, active),
@@ -270,7 +270,7 @@
   box(
     width: 12mm, height: 3.8mm, radius: 1.1mm,
     stroke: 0.9pt + color, fill: if on { color } else { white },
-    align(center + horizon, text(size: 4.8pt, weight: "bold", fill: if on { white } else { color }, label)),
+    align(center + horizon, text(size: font-size.pill, weight: "bold", fill: if on { white } else { color }, label)),
   )
 }
 

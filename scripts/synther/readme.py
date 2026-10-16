@@ -10,8 +10,9 @@ from collections.abc import Iterable
 from pathlib import Path
 from typing import NamedTuple, Self
 
-from . import MACHINES, README
+from . import README
 from .models import Reference
+from .schema import machines
 from .sheet import Sheet
 
 TYPES = {
@@ -134,7 +135,7 @@ def update_readme(sheets: Iterable[Sheet], readme: Path = README) -> None:
     # les **), donc <b>.
     per_machine = " · ".join(
         f"{sum(row.synth == machine for row in rows)} pour le {machine}"
-        for machine in MACHINES.values()
+        for machine in machines().values()
     )
     n_artists = len({row.artist for row in rows})
     counts = (

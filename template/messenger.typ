@@ -53,9 +53,9 @@
   }
   // Grand chiffre de l'oscillateur (1, 2), comme sérigraphié sur le panneau.
   let osc-number(number) = box(height: zone, inset: (x: 0.6mm),
-    align(center + horizon, text(size: 13pt, weight: "extrabold", number)))
+    align(center + horizon, text(size: font-size.osc-number, weight: "extrabold", number)))
   let row-label(label) = box(height: zone,
-    align(left + horizon, text(size: 5.4pt, weight: "extrabold", tracking: 0.04em, label)))
+    align(left + horizon, text(size: font-size.row-label, weight: "extrabold", tracking: 0.04em, label)))
   // CUTOFF : grand potard sur deux rangées.
   let cutoff = {
     let (value, active) = read("filter", "cutoff")
@@ -149,7 +149,7 @@
       )
     }),
     aside-section("Modulations & Settings", {
-      set text(size: 6.4pt)
+      set text(size: font-size.settings)
       if modulations.len() == 0 and settings.len() == 0 {
         align(center + horizon, box(height: 18mm, align(horizon,
           text(fill: muted, weight: "semibold", "AUCUNE MODULATION ASSIGNÉE"))))
@@ -186,7 +186,7 @@
     filter-envelope.sub = "sans effet ici : EG AMOUNT à midi"
     filter-envelope.inactive = true
   }
-  sheet("Moog Messenger", data,
+  sheet(schema.name, data,
     panel: panel(params),
     aside: performance(params, data),
     envs: (filter-envelope, envelope("aenv", "Amp env")),

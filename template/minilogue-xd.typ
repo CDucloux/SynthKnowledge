@@ -42,7 +42,7 @@
     toggle-xd(name, choices, value, active: active, zone: zone)
   }
   let row-label(label) = box(height: zone,
-    align(left + horizon, text(size: 5.2pt, weight: "extrabold", tracking: 0.04em, label)))
+    align(left + horizon, text(size: font-size.row-label-compact, weight: "extrabold", tracking: 0.04em, label)))
 
   // VOICE (pas de titre sur le panneau).
   let (mode, _) = read("voice", "mode")
@@ -82,9 +82,9 @@
     let header = box(width: effect-width, {
       box(baseline: 0.15mm, circle(radius: 0.8mm, fill: if on { color } else { white }, stroke: 0.6pt + color))
       h(1mm)
-      text(size: 5.4pt, weight: "extrabold", tracking: 0.06em, fill: color, title)
+      text(size: font-size.effect-title, weight: "extrabold", tracking: 0.06em, fill: color, title)
       h(1fr)
-      text(size: 4.8pt, weight: "bold", fill: color, if on { "ON" } else { "OFF" })
+      text(size: font-size.effect-state, weight: "bold", fill: color, if on { "ON" } else { "OFF" })
     })
     let display = screen("", effect-type, active: active, width: effect-width,
       height: if with-subtype { 7.4mm } else { 6.4mm }, sub: subtype)
@@ -147,7 +147,7 @@
 #let program-edit(data) = {
   let settings = field(data, "settings", ())
   aside-section("Program Edit", {
-    set text(size: 6.4pt)
+    set text(size: font-size.settings)
     if settings.len() == 0 {
       align(center, box(height: 12mm, align(horizon,
         text(fill: muted, weight: "semibold", "AUCUN RÉGLAGE PROGRAM EDIT"))))
@@ -170,7 +170,7 @@
   let amp = phases("amp_eg", ("a", "d", "s", "r"))
   let (eg-attack, eg-decay) = phases("eg", ("a", "d"))
   let eg-int = value("eg", "int")
-  sheet("Korg minilogue XD", data,
+  sheet(schema.name, data,
     panel: panel(params),
     aside: program-edit(data),
     envs: (

@@ -3,8 +3,9 @@
 from dataclasses import dataclass
 from pathlib import Path
 
-from . import MACHINES, SHEETS_DIR
+from . import SHEETS_DIR
 from .models import Reference, SheetModel
+from .schema import machines
 
 
 @dataclass(frozen=True)
@@ -20,7 +21,7 @@ class Sheet:
 
     @property
     def machine_name(self) -> str:
-        return MACHINES[self.machine]
+        return machines()[self.machine]
 
     @property
     def reference(self) -> Reference:

@@ -5,6 +5,9 @@
 #         options: <liste> = une des clés de la liste · list + options = sous-ensemble de la liste.
 # Les valeurs neutres sont l'« INIT Synther », pas forcément le patch init usine.
 
+# Nom affiché (fiche, README) ; l'identifiant est le nom du fichier.
+name: Moog Messenger
+
 options:
   lfo1-wave: [[tri, TRI], [saw, SAW], [ramp, RAMP], [sqr, SQUARE]]
   lfo1-dest: [[cutoff, CUTOFF], [osc2_freq, OSC 2 FREQ], [osc1_wave, OSC 1 WAVE], [sub_wave, SUB WAVE]]

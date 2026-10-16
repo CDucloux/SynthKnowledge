@@ -27,6 +27,7 @@ from synther.compiler import (
     page_count,
 )
 from synther.readme import update_previews, update_readme
+from synther.schema import SchemaError
 from synther.sheet import Sheet
 from synther.validate import InvalidSheetError, check_dashes, load_sheet
 
@@ -143,12 +144,16 @@ def main(argv: list[str]) -> bool:
 
     files = [from_root(path) for path in args.files]
     os.chdir(ROOT)  # voir synther/__init__.py : chemins relatifs à ROOT
-    if args.command == "previews":
-        update_previews()
-        return True
-    if args.command == "theory":
-        return cmd_theory(files)
-    return cmd_sheets(files, compile_=args.command == "sheets")
+    try:
+        if args.command == "previews":
+            update_previews()
+            return True
+        if args.command == "theory":
+            return cmd_theory(files)
+        return cmd_sheets(files, compile_=args.command == "sheets")
+    except SchemaError as error:
+        fail(error.path, error.errors)
+        return False
 
 
 if __name__ == "__main__":

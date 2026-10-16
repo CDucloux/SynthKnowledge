@@ -5,7 +5,8 @@ from typing import Any
 
 import pytest
 
-from synther.validate import InvalidSheetError, _location, load_sheet
+from synther.errors import location
+from synther.validate import InvalidSheetError, load_sheet
 
 from .conftest import WriteSheet
 
@@ -106,4 +107,4 @@ def test_sequence_steps(
     ],
 )
 def test_location(loc: tuple[int | str, ...], expected: str) -> None:
-    assert _location(loc) == expected
+    assert location(loc) == expected
