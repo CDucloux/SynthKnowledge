@@ -16,7 +16,7 @@ theory/             fiches de théorie imprimables (.typ, d'après Synth Secrets
 sheets/<machine>/   PDF générés (versionnés), nommés « [Artiste] Morceau (Rôle).pdf » ; sheets/theory/ pour la théorie
 fonts/              Montserrat (OFL), ne pas modifier
 scripts/build.py    point d'entrée : valide les YAML, compile en PDF (CLI typst, sinon paquet Python `typst`), vérifie les 2 pages, met à jour le README ; sous-commandes check · theory · previews
-scripts/synther/    le code : sheet.py (lecture, nommage) · validate.py · compiler.py (Typst, partagé avec la théorie) · readme.py
+scripts/synther/    le code : sheet.py (lecture, nommage) · models.py (modèles pydantic, générés depuis template/schema/) · validate.py (erreurs en français) · compiler.py (Typst, partagé avec la théorie) · readme.py
 .claude/skills/     sound-sheet · adjust-sheet · add-synth
 ```
 
@@ -53,6 +53,7 @@ scripts/synther/    le code : sheet.py (lecture, nommage) · validate.py · comp
 - Après toute modification du template ou d'un YAML : recompiler et **vérifier visuellement** le PNG du rendu (`pdftoppm -r 100 -png`).
 - Les leçons tirées des essais vont dans `knowledge/retours.md` et, si elles sont générales, dans le fichier de connaissance concerné.
 - Committer les YAML **et** les PDF générés.
+- **Python** : PEP 8 (ruff, 79 colonnes, `ruff format`), entièrement typé (`mypy --strict`), validation des fiches avec **pydantic** (`scripts/synther/models.py` : structure commune statique, paramètres et blocs `extra` générés depuis le schéma de la machine). Config dans `pyproject.toml`.
 - **Code** : les paramètres d'une machine ne se décrivent qu'à un seul endroit, `template/schema/<machine>.yaml` (jamais de `defaults` en dur dans un template). Ce qui est commun aux façades vit dans `style.typ` (`param-reader`, `check-params`, `sheet`, `env-entry`, `ov-title`…). **Mise en page sans cotes en dur** : une façade = un appel à `panel-band((sections…))` (une seule grille : colonnes à la largeur du contenu, rangées à la hauteur du plus grand contenu, espace restant réparti entre sections) ; les espacements viennent du dictionnaire `ui` de `style.typ`, les tailles d'une façade dérivent de la taille du potard (`ks` → `zone`, `kw`). Pas de hauteur de rangée ni de largeur de colonne fixée à la main. Si la façade ne tient pas en largeur, la compilation échoue en donnant la largeur de chaque section : réduire la section en cause plutôt que de forcer.
 - **Test de non-régression visuelle (comparaison des pages au pixel avec une référence) : uniquement sur demande explicite de l'utilisateur** (coûteux en tokens). Par défaut, après un changement de template, vérifier à l'œil un ou deux rendus PNG.
 - **README** : vitrine du projet. Le tableau des fiches (Groupe, Morceau, Année, Type de son, Synthé, Son d'origine, Confiance, lien PDF) et les compteurs sont **générés** par `scripts/build.py` à chaque compilation entre les marqueurs `<!-- fiches -->` / `<!-- compteurs -->` : ne pas les éditer à la main. Option `reference.original_synth_short` dans un YAML pour raccourcir la colonne « Son d'origine ». Aperçus PNG dans `docs/` : `scripts/build.py previews`. Committer README.md avec chaque nouvelle fiche.
@@ -98,7 +99,11 @@ scripts/build.py previews                         # aperçus PNG du README (docs
 typst compile --root . --font-path fonts --input son=/sounds/messenger/<slug>.yaml template/sheet.typ "sheets/messenger/[Artiste] Morceau (Rôle).pdf"
 ```
 
-Dépendances : `typst` (CLI ≥ 0.13, ou `pip install typst`), `poppler-utils` pour la vérification visuelle.
+Dépendances (`pyproject.toml`) : `pydantic`, `PyYAML`, `typst` (CLI ≥ 0.13, ou `pip install typst`), `poppler-utils` pour la vérification visuelle ; en développement `ruff`, `mypy`, `types-PyYAML`.
+
+```bash
+ruff check scripts && ruff format --check scripts && python3 -m mypy   # après toute modification du code Python
+```
 
 ## État / à faire
 

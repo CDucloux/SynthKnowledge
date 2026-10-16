@@ -121,7 +121,7 @@ scripts/build.py previews                          # régénérer les aperçus d
 ```
 
 > [!NOTE]
-> Dépendances : [Typst](https://typst.app) (ou `pip install typst`), `poppler-utils` pour les aperçus.
+> Dépendances : Python ≥ 3.11 avec `pydantic` et `PyYAML` (`pip install .`), [Typst](https://typst.app) (ou `pip install typst`), `poppler-utils` pour les aperçus.
 
 ## Organisation
 

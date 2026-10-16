@@ -1,252 +1,135 @@
-"""Validation d'une fiche contre template/schema/<machine>.yaml.
+"""Validation d'une fiche : contrôles du fichier, puis modèle pydantic.
 
-Chaque vérification est un générateur de messages d'erreur ; validate() les enchaîne
-pour tout signaler d'un coup.
+Les erreurs pydantic sont reformulées en français, une ligne par problème,
+avec le chemin de la clé (`params.osc.wave1`, `sources[2].url`).
 """
+
 import os
-import re
+import types
+import typing
+from collections.abc import Iterator
+from typing import Any
+
+from pydantic import BaseModel, ValidationError
+from pydantic_core import ErrorDetails
 
 from . import MACHINES
-from .sheet import load_schema
+from .models import SheetModel, sheet_model
 
-FORBIDDEN_DASHES = ("\u2014", "\u2013")  # cadratin, demi-cadratin
+FORBIDDEN_DASHES = ("—", "–")  # cadratin, demi-cadratin
 
-# Clés de premier niveau communes à toutes les fiches : clé → obligatoire
-TOP_KEYS = {
-    "synth": True, "title": True, "category": False, "tags": False, "confidence": True,
-    "reference": True, "summary": True, "params": True, "steps": True, "tweaks": True,
-    "playing": True, "analysis": True, "traceability": True, "sources": True,
+MESSAGES = {
+    "missing": "manquant",
+    "string_type": "doit être un texte",
+    "int_type": "doit être un nombre entier",
+    "float_type": "doit être un nombre",
+    "bool_type": "doit être true ou false",
+    "list_type": "doit être une liste",
+    "dict_type": "doit être un objet",
+    "model_type": "doit être un objet",
+    "model_attributes_type": "doit être un objet",
+    "too_short": "ne doit pas être vide",
 }
-TEXT_LISTS = ("steps", "tweaks", "playing", "traceability")
-REFERENCE_KEYS = ("artist", "song", "year", "part", "original_synth", "original_synth_short")
-SOURCE_KEYS = ("title", "site", "date", "url", "note")
-SEQ_NOTE = re.compile(r"^[A-G][b#]?-?\d$")
-CITATION = re.compile(r"\[(\d+)\](?!\()")  # [n], pas un lien [texte](url)
 
 
-def validate(path, raw, data):
+def validate(path: str, raw: str, data: Any) -> list[str]:
     """Renvoie la liste des erreurs de la fiche (vide si elle est valide)."""
     errors = list(check_dashes(raw))
     if not isinstance(data, dict):
-        return errors + ["le fichier ne contient pas un objet YAML"]
+        return [*errors, "le fichier ne contient pas un objet YAML"]
     machine = data.get("synth")
     if machine not in MACHINES:
-        return errors + [f"synth : « {machine} » inconnu ({', '.join(MACHINES)})"]
-    schema = load_schema(machine)
-    checks = (
-        _check_folder(path, machine),
-        _check_top_keys(data, schema.get("extra", {})),
-        _check_reference(data),
-        _check_texts(data),
-        _check_sources(data.get("sources") or []),
-        _check_extras(data, schema),
-        _check_params(data.get("params") or {}, schema),
-        _check_citations(data),
-    )
-    return errors + [e for check in checks for e in check]
-
-
-def check_dashes(text):
-    for n, line in enumerate(text.splitlines(), 1):
-        for ch in FORBIDDEN_DASHES:
-            if ch in line:
-                yield f"ligne {n} : tiret interdit (U+{ord(ch):04X}), utiliser « : », « , » ou des parenthèses"
-
-
-# ---------------------------------------------------------------------------
-# Structure de la fiche
-# ---------------------------------------------------------------------------
-
-def _check_folder(path, machine):
+        known = ", ".join(MACHINES)
+        return [*errors, f"synth : « {machine} » inconnu ({known})"]
     folder = os.path.basename(os.path.dirname(path))
     if folder != machine:
-        yield f"synth : « {machine} » mais le fichier est dans sounds/{folder}/"
+        errors.append(
+            f"synth : « {machine} » mais le fichier est dans sounds/{folder}/"
+        )
+    model = sheet_model(machine)
+    try:
+        model.model_validate(data)
+    except ValidationError as error:
+        for detail in error.errors():
+            errors.extend(_describe(detail, model))
+    return errors
 
 
-def _check_top_keys(data, extra):
-    for key in data:
-        if key not in TOP_KEYS and key not in extra:
-            yield f"clé inconnue « {key} » (attendu : {', '.join([*TOP_KEYS, *extra])})"
-    for key, required in TOP_KEYS.items():
-        if required and data.get(key) in (None, "", [], {}):
-            yield f"« {key} » manquant ou vide"
-    if "confidence" in data and data["confidence"] not in (1, 2, 3):
-        yield f"confidence : {data['confidence']!r} doit valoir 1, 2 ou 3"
-
-
-def _check_reference(data):
-    ref = data.get("reference") or {}
-    if not isinstance(ref, dict):
-        yield "reference : doit être un objet"
-        ref = {}
-    for key in ref:
-        if key not in REFERENCE_KEYS:
-            yield f"reference : clé inconnue « {key} » (attendu : {', '.join(REFERENCE_KEYS)})"
-    for key in ("artist", "song"):
-        if not ref.get(key):
-            yield f"reference.{key} manquant"
-
-
-def _check_texts(data):
-    for key in TEXT_LISTS:
-        if key in data:
-            yield from check_list(key, data[key], "str")
-    if "analysis" in data:
-        yield from check_list("analysis", data["analysis"], ("title", "text"), required=("title", "text"))
-
-
-def _check_sources(sources):
-    if not isinstance(sources, list):
-        yield "sources : doit être une liste"
-        return
-    for i, src in enumerate(sources, 1):
-        if isinstance(src, str):
-            continue
-        if not isinstance(src, dict):
-            yield f"sources[{i}] : doit être un texte ou un objet {{{', '.join(SOURCE_KEYS)}}}"
-            continue
-        for key in src:
-            if key not in SOURCE_KEYS:
-                yield f"sources[{i}] : clé inconnue « {key} » (attendu : {', '.join(SOURCE_KEYS)})"
-        if not src.get("title"):
-            yield f"sources[{i}] : « title » manquant"
-        if src.get("url") and not str(src["url"]).startswith(("http://", "https://")):
-            yield f"sources[{i}].url : doit commencer par https://"
-
-
-def _check_extras(data, schema):
-    """Blocs propres à la machine (séquence, etc.), décrits dans `extra` du schéma."""
-    for key, spec in schema.get("extra", {}).items():
-        if data.get(key) is None:
-            continue
-        if spec["type"] == "sequence":
-            yield from check_sequence(key, data[key], spec, schema["options"])
-        else:
-            yield from check_list(key, data[key], tuple(spec["item"]))
-
-
-def _check_params(params, schema):
-    """Réglages de la façade : sections, paramètres, types, plages, options."""
-    sections = schema["params"]
-    for section, values in params.items():
-        if section not in sections:
-            yield f"params.{section} : section inconnue (attendu : {', '.join(sections)})"
-        elif not isinstance(values, dict):
-            yield f"params.{section} : doit être un objet"
-        else:
-            for key, value in values.items():
-                spec = sections[section].get(key)
-                if spec is None:
-                    yield f"params.{section}.{key} : paramètre inconnu (attendu : {', '.join(sections[section])})"
-                else:
-                    yield from check_value(f"params.{section}.{key}", value, spec, schema["options"])
-
-
-def _check_citations(data):
-    """Chaque renvoi [n] des textes pointe vers une source qui existe."""
-    sources = data.get("sources")
-    n_sources = len(sources) if isinstance(sources, list) else 0
-    for text in _strings({k: v for k, v in data.items() if k != "sources"}):
-        for m in CITATION.finditer(text):
-            if not 1 <= int(m.group(1)) <= n_sources:
-                yield f"renvoi [{m.group(1)}] sans source correspondante ({n_sources} source(s))"
-
-
-def _strings(node):
-    if isinstance(node, str):
-        yield node
-    elif isinstance(node, (dict, list)):
-        for child in node.values() if isinstance(node, dict) else node:
-            yield from _strings(child)
+def check_dashes(text: str) -> Iterator[str]:
+    for n, line in enumerate(text.splitlines(), 1):
+        for dash in FORBIDDEN_DASHES:
+            if dash in line:
+                yield (
+                    f"ligne {n} : tiret interdit (U+{ord(dash):04X}), "
+                    "utiliser « : », « , » ou des parenthèses"
+                )
 
 
 # ---------------------------------------------------------------------------
-# Vérifications élémentaires (valeur, liste, séquence)
+# Erreurs pydantic → messages
 # ---------------------------------------------------------------------------
 
-def _is_number(v):
-    return isinstance(v, (int, float)) and not isinstance(v, bool)
+
+def _describe(detail: ErrorDetails, model: type[SheetModel]) -> Iterator[str]:
+    """Une ligne par problème (un validateur peut en signaler plusieurs)."""
+    where = _location(detail["loc"])
+    prefix = f"{where} : " if where else ""
+    for line in _message(detail, model).splitlines():
+        yield prefix + line
 
 
-def check_value(where, value, spec, options):
-    """Une valeur de paramètre contre sa spec du schéma (type, plage, options)."""
-    allowed = [o[0] for o in options.get(spec["options"], [])] if "options" in spec else None
-    kind = spec.get("type")
-    if allowed is not None:
-        for v in (value if kind == "list" and isinstance(value, list) else [value]):
-            if v not in allowed:
-                yield f"{where} : « {v} » n'est pas une option ({', '.join(map(str, allowed))})"
-    elif kind == "clock":
-        if not _is_number(value) or not 7 <= value <= 17:
-            yield f"{where} : {value!r} hors plage (position en heures, 7 = MIN à 17 = MAX)"
-    elif kind == "bool":
-        if not isinstance(value, bool):
-            yield f"{where} : {value!r} doit être true ou false"
-    elif kind in ("int", "number"):
-        if not _is_number(value) or (kind == "int" and not isinstance(value, int)):
-            yield f"{where} : {value!r} doit être un nombre{' entier' if kind == 'int' else ''}"
-        elif not spec.get("min", value) <= value <= spec.get("max", value):
-            yield f"{where} : {value} hors plage ({spec['min']} à {spec['max']})"
-    elif kind == "str":
-        if not isinstance(value, (str, int, float)) or isinstance(value, bool):
-            yield f"{where} : {value!r} doit être un texte"
-        elif "choices" in spec and str(value) not in spec["choices"]:
-            yield f"{where} : « {value} » inconnu ({', '.join(spec['choices'])})"
-
-
-def check_list(where, value, item, required=()):
-    """Liste de textes non vides (item = "str") ou d'objets aux clés `item`."""
-    if not isinstance(value, list):
-        yield f"{where} : doit être une liste"
-        return
-    for i, x in enumerate(value, 1):
-        if item == "str":
-            if not isinstance(x, str) or not x.strip():
-                yield f"{where}[{i}] : doit être un texte non vide"
-        elif not isinstance(x, dict):
-            yield f"{where}[{i}] : doit être un objet {{{', '.join(item)}}}"
+def _location(loc: tuple[int | str, ...]) -> str:
+    """('sources', 0, 'url') → « sources[1].url » (rangs à partir de 1)."""
+    out = ""
+    for part in loc:
+        if isinstance(part, int):
+            out += f"[{part + 1}]"
+        elif str(part).startswith(("function-", "list[")):
+            continue  # étapes internes de pydantic (validateurs, unions)
         else:
-            for key in x:
-                if key not in item:
-                    yield f"{where}[{i}] : clé inconnue « {key} » (attendu : {', '.join(item)})"
-            for key in required:
-                if not x.get(key):
-                    yield f"{where}[{i}] : « {key} » manquant"
+            out += f".{part}" if out else str(part)
+    return out
 
 
-def check_sequence(where, value, spec, options):
-    """Séquence de pas : note / accord (« G3+Bb3 ») / « . » / « _ », réglages de lecture, transpositions."""
-    allowed = ("steps", *spec["fields"], *(("transpose",) if "transpose" in spec else ()))
-    if not isinstance(value, dict):
-        yield f"{where} : doit être un objet {{{', '.join(allowed)}}}"
-        return
-    for key in value:
-        if key not in allowed:
-            yield f"{where} : clé inconnue « {key} » (attendu : {', '.join(allowed)})"
-    yield from _check_steps(f"{where}.steps", value.get("steps", ""), spec)
-    for key, field in spec["fields"].items():
-        if key in value:
-            yield from check_value(f"{where}.{key}", value[key], field, options)
-    if "transpose" in value and "transpose" in spec:  # sinon déjà signalé : clé inconnue
-        keys = tuple(spec["transpose"])
-        yield from check_list(f"{where}.transpose", value["transpose"], keys, required=keys)
+def _message(detail: ErrorDetails, model: type[SheetModel]) -> str:
+    kind, value = detail["type"], detail["input"]
+    if kind in MESSAGES:
+        return MESSAGES[kind]
+    if kind == "extra_forbidden":
+        allowed = ", ".join(_fields_at(model, detail["loc"][:-1]))
+        return f"clé inconnue (attendu : {allowed})"
+    if kind == "literal_error":
+        expected = detail.get("ctx", {}).get("expected", "")
+        expected = expected.replace("'", "").replace(" or ", ", ")
+        return f"« {value} » n'est pas une option ({expected})"
+    if kind == "value_error":
+        return detail["msg"].removeprefix("Value error, ")
+    return detail["msg"]
 
 
-def _check_steps(where, steps, spec):
-    tokens = [t for t in str(steps).split() if t != "|"]
-    max_notes = spec.get("max_notes", 1)
-    if not tokens:
-        yield f"{where} : manquant ou vide"
-    if len(tokens) > spec["max_steps"]:
-        yield f"{where} : {len(tokens)} pas, maximum {spec['max_steps']}"
-    for i, token in enumerate(tokens, 1):
-        if token in (".", "_"):
+def _fields_at(
+    model: type[BaseModel], loc: tuple[int | str, ...]
+) -> list[str]:
+    """Clés attendues à l'emplacement `loc` (pour « clé inconnue »)."""
+    current: type[BaseModel] | None = model
+    for part in loc:
+        if isinstance(part, int) or current is None:
             continue
-        notes = token.split("+")
-        if not all(SEQ_NOTE.match(n) for n in notes):
-            yield (f"{where} : pas {i} « {token} » invalide (note comme Bb4 / C5 / F#3"
-                   f"{', accord G3+Bb3+D4' if max_notes > 1 else ''}, « . » silence, « _ » liaison)")
-        elif len(notes) > max_notes:
-            yield f"{where} : pas {i} « {token} » : {len(notes)} notes, maximum {max_notes} sur cette machine"
-    if tokens and tokens[0] == "_":
-        yield f"{where} : le pas 1 ne peut pas être une liaison"
+        current = _model_in(current.model_fields[part].annotation)
+    return list(current.model_fields) if current else []
+
+
+def _model_in(annotation: Any) -> type[BaseModel] | None:
+    """Premier modèle pydantic dans un type (list[X], X | None…)."""
+    if isinstance(annotation, type) and issubclass(annotation, BaseModel):
+        return annotation
+    origin = typing.get_origin(annotation)
+    if isinstance(annotation, types.UnionType) or origin in (
+        list,
+        typing.Union,
+        typing.Annotated,
+    ):
+        for arg in typing.get_args(annotation):
+            if found := _model_in(arg):
+                return found
+    return None
