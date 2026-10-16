@@ -15,7 +15,7 @@
 
 <p align="center">
 <!-- compteurs:start -->
-📄 <b>20 fiches</b> · 🎤 14 groupes · 🎹 12 pour le Moog Messenger · 8 pour le Korg minilogue XD
+📄 <b>21 fiches</b> · 🎤 14 groupes · 🎹 13 pour le Moog Messenger · 8 pour le Korg minilogue XD
 <!-- compteurs:end -->
 </p>
 
@@ -44,6 +44,7 @@
 | **Cerrone** | Supernature | 1977 | Basse (séquence) | Moog Messenger | ARP Odyssey | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BCerrone%5D%20Supernature%20%28S%C3%A9quence%29.pdf) |
 | **Cerrone** | Supernature | 1977 | Lead | Moog Messenger | ARP Odyssey | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BCerrone%5D%20Supernature%20%28Lead%29.pdf) |
 | **Cerrone** | Supernature | 1977 | Pad (nappe) | Korg minilogue XD | Polymoog ? | ⚫⚪⚪ approximation | [PDF](sheets/minilogue-xd/%5BCerrone%5D%20Supernature%20%28Nappe%29.pdf) |
+| **Daft Punk** | Giorgio by Moroder | 2013 | Arpège (séquence) | Moog Messenger | Synthés superposés | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BDaft%20Punk%5D%20Giorgio%20by%20Moroder%20%28S%C3%A9quence%29.pdf) |
 | **Daft Punk** | The Son of Flynn | 2010 | Arpège (arpeggio) | Korg minilogue XD | Non documenté | ⚫⚪⚪ approximation | [PDF](sheets/minilogue-xd/%5BDaft%20Punk%5D%20The%20Son%20of%20Flynn%20%28Arpeggio%29.pdf) |
 | **Depeche Mode** | Enjoy the Silence | 1990 | Basse | Moog Messenger | Minimoog / ARP 2600 ? | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BDepeche%20Mode%5D%20Enjoy%20the%20Silence%20%28Bass%29.pdf) |
 | **Depeche Mode** | Precious | 2005 | Lead | Korg minilogue XD | Non documenté | ⚫⚪⚪ approximation | [PDF](sheets/minilogue-xd/%5BDepeche%20Mode%5D%20Precious%20%28Lead%29.pdf) |

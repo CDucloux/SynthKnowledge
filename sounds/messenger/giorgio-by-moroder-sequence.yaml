@@ -1,0 +1,119 @@
+synth: messenger
+title: Giorgio by Moroder Séquence
+category: arp
+tags: [disco, "2010s", sequence, arpeggio]
+confidence: 2
+reference:
+  artist: Daft Punk
+  song: Giorgio by Moroder
+  year: 2013
+  part: "arpège en doubles croches qui démarre après le monologue (« click »), en La mineur"
+  original_synth: "plusieurs synthés superposés, joués en MIDI (modèles non précisés)"
+  original_synth_short: synthés superposés
+summary: >-
+  L'arpège qui démarre quand Moroder parle du « click » : des doubles croches
+  qui sautent entre la fondamentale grave et l'accord de La mineur, puis de Mi
+  mineur. Un son clair et pincé, filtre qui s'ouvre à chaque note, deux scies
+  à peine désaccordées pour imiter les couches de synthés.
+
+params:
+  lfo1:
+    rate: 9
+    depth: 12.5
+    wave: tri
+    dest: cutoff
+  osc:
+    oct1: 8
+    oct2: 8
+    wave1: 12
+    wave2: 12
+    osc2_freq: 12.25
+  mixer:
+    osc1: 17
+    osc2: 15
+  filter:
+    mode: lp4
+    cutoff: 10.5
+    eg_amount: 14
+    resonance: 10
+    kb_tracking: true
+  fenv: {a: 7, d: 10.5, s: 8, r: 10}
+  aenv: {a: 7, d: 12, s: 9, r: 10.5}
+  env: {multi_trig: true}
+
+sequence:
+  tempo: 113
+  gate: 50
+  steps: >-
+    A4 A3 C5 A3 B4 A3 C5 E5 A3 A4 C5 A3 B4 A3 C5 A4 |
+    A3 A4 C5 A3 B4 A3 C5 E5 A3 A4 C5 A3 B4 A3 C5 A4
+  transpose:
+    - {key: C5, text: "2 mesures : La mineur"}
+    - {key: G4, text: "2 mesures : Mi mineur, puis on reprend"}
+
+steps:
+  - "Maintenir *PANEL* 1 s (init)."
+  - "*OCTAVE 1* et *OCTAVE 2* sur 8', *WAVESHAPE 1* et *2* à midi (deux scies)."
+  - "*OSC 2 FREQ* ≈ 12:15 (léger battement). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 3:00."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:30, *RESONANCE* ≈ 10:00, *KB TRACKING* ON."
+  - "*EG AMOUNT* ≈ 2:00. Enveloppe filtre : *DECAY* ≈ 10:30, *SUSTAIN* ≈ 8:00."
+  - "Enveloppe ampli : *DECAY* midi, *SUSTAIN* ≈ 9:00, *RELEASE* ≈ 10:30. *MULTI-TRIG* ON."
+  - "*LFO 1* : TRI vers CUTOFF, *RATE* ≈ 9:00, *DEPTH* ≈ 12:30 (le filtre respire)."
+tweaks:
+  - "Trop sourd, les notes aiguës se perdent : *CUTOFF* vers 11:30."
+  - "Pas assez pincé : *DECAY* du filtre vers 10:00, *EG AMOUNT* vers 2:30."
+  - "Trop grave ou trop aigu : *OCTAVE 1* et *2* d'un cran (16' ou 4')."
+playing:
+  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, les 32 notes, *RECORD*, *PLAY*. Tenir Do5 puis Sol4 (grille) pour passer de La mineur à Mi mineur."
+
+analysis:
+  - title: "Les oscillateurs : deux scies pour des couches de synthés"
+    text: >-
+      L'arpège a été joué en MIDI à travers plusieurs synthés superposés [1]
+      (Prophet 5, Jupiter 6, Juno 106, CS80 étaient dans la pièce, sans savoir
+      lesquels ont servi). Le Messenger n'a qu'une voix : deux *scies* à la même
+      octave, légèrement désaccordées^[Les deux ondes « battent » : le son
+      s'épaissit comme deux instruments qui jouent ensemble.], donnent cette
+      impression de couches.
+  - title: "Le filtre : clair, mais il claque"
+    text: >-
+      Un *CUTOFF* moyen laisse passer le corps de la scie ; l'*EG AMOUNT* ouvre
+      encore le filtre à chaque double croche, puis il redescend vite : c'est le
+      petit « pic » qui détache les notes. *KB TRACKING* garde la même brillance
+      entre le La grave et le Mi aigu, une octave et demie plus haut.
+  - title: "Les enveloppes : pincé, avec un peu de corps"
+    text: >-
+      Pas d'attaque : la note part net. Le filtre retombe vite mais garde un
+      petit *SUSTAIN*, le volume tient un peu plus : à 113 BPM, une double croche
+      dure 133 ms, juste le temps du pincement. *MULTI-TRIG* relance les
+      enveloppes même quand deux notes se suivent.
+  - title: "Le mouvement : le saut d'octave qui fait tout"
+    text: >-
+      Le motif alterne la fondamentale grave et les notes de l'accord (La, Do,
+      Si, Mi) [3] : l'oreille entend deux voix, une basse qui pulse et une
+      mélodie au-dessus. Sur Mi mineur, c'est le même dessin cinq demi-tons plus
+      bas, d'où la transposition au clavier. L'original passe par un phaser et
+      des couches que le Messenger n'a pas : le *LFO 1* sur le filtre donne un
+      peu de ce mouvement.
+
+traceability:
+  - "Documenté [1] : arpège enregistré dès les premières séances, en couches jouées en MIDI à travers plusieurs synthés ; synthés présents cités, sans dire lesquels jouent l'arpège."
+  - "Transcrit [3] : notes et rythme (mesures 55 à 62, 113 BPM, La mineur 2 mesures, Mi mineur 2 mesures), deux pistes « Modular Synth » identiques et différentes de la basse ; tempo et tonalité concordent avec [2]."
+  - "Réduit : la séquence va de La2 à Mi4 ; saisie une octave plus haut (La3 à Mi5, dans l’étendue du clavier), et le Mi mineur obtenu par transposition (même dessin)."
+  - "Reconstitué : formes d'onde, filtre, enveloppes et positions Messenger, à l'oreille ; phaser et couches absents."
+
+sources:
+  - title: "Recording Random Access Memories: Daft Punk"
+    site: Sound On Sound (Paul Tingen)
+    date: juillet 2013
+    url: https://www.soundonsound.com/people/recording-random-access-memories-daft-punk
+    note: récit de Peter Franco sur l'arpège et les synthés des premières séances
+  - title: "Giorgio by Moroder"
+    site: Wikipédia (anglais)
+    url: https://en.wikipedia.org/wiki/Giorgio_by_Moroder
+    note: 113 BPM, La mineur, crédits (synthé modulaire Daft Punk)
+  - title: "Giorgio by Moroder, pistes Modular Synth et Phaser Modular Synth"
+    site: Songsterr, tablature de contributeur
+    date: septembre 2026
+    url: https://www.songsterr.com/a/wsa/daft-punk-giorgio-by-moroder-tab-s405392
+    note: mesures 55 à 62, comparées à la piste basse (Nathan East)
