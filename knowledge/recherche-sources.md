@@ -37,3 +37,5 @@ Dans la réponse à l'utilisateur, dire ce que les sources de rang 1 et 2 ont do
 - Anthony Marinelli : *Thriller* (basse ARP 2600 « Tonus », vidéo jkJVim4X9C4 ; 7 parties de basse avec Greg Phillinganes, 4UqxOg3M-OM), *PYT* (ARP 2600), *Billie Jean* (4 couches de basse) ; fiches de patch : Thriller Bass (ARP 2600), Chameleon Bass (ARP Odyssey).
 - Imaginando : *The Son of Flynn* (arpège, basse, nappe ; projet Ableton) ; *I Feel Love* (basse et nappe ; projet Ableton : piste « Bass arp », 130 BPM).
 - Songsterr : *I Feel Love* (s1867855, piste Synth Bass, 128 BPM, écho noté en doubles croches).
+- *Take On Me* (a-ha) : SOS Classic Tracks (mars 2011, Juno-60 de Tarney, DX7, PPG Wave) ; mu:zines « Sound Diving #2 » (analyse des pistes séparées : basse DX7 E.Bass 1, riff en couches Juno + PPG) ; Imaginando (projet Ableton : Bass, Keys, Organ, Lead) ; Songsterr s460755 (pistes Synth Bass et Keyboard, 169 BPM).
+- mu:zines, série « Sound Diving » (muzines.co.uk/blog) : analyses de pistes séparées de tubes des années 80, source de rang 1-2.

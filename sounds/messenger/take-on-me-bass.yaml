@@ -1,0 +1,121 @@
+synth: messenger
+title: Take On Me Bass
+category: basse
+tags: [synthpop, "80s", sequence, fm]
+confidence: 2
+reference:
+  artist: a-ha
+  song: Take On Me
+  year: 1985
+  part: basse séquencée en croches, couplets et refrains (version Alan Tarney)
+  original_synth: "Yamaha DX7, preset d'usine E.Bass 1 (d'après les pistes séparées)"
+  original_synth_short: Yamaha DX7 (E.Bass 1)
+summary: >-
+  La basse qui fait avancer le morceau : des croches dures, toutes à la même
+  vélocité, sur Si, Mi, La, Ré et Do dièse. À l'origine un preset FM du DX7 :
+  une attaque claquante et brillante qui retombe tout de suite sur un grave
+  rond. Le Messenger l'imite avec sa FM entre oscillateurs et un filtre percussif.
+
+params:
+  osc:
+    oct1: 16
+    oct2: 16
+    wave1: 11
+    wave2: 11
+    mod_amount: 13.5
+    mod_dest: fm
+  mixer:
+    osc1: 11
+    osc2: 17
+    sub: 11
+  filter:
+    mode: lp4
+    cutoff: 10.5
+    eg_amount: 14.5
+    resonance: 9
+    kb_tracking: true
+  fenv: {a: 7, d: 10, s: 7, r: 9}
+  aenv: {a: 7, d: 11.5, s: 10, r: 9}
+  env: {multi_trig: true}
+
+sequence:
+  tempo: 169
+  gate: 50
+  steps: >-
+    B3 B3 . B3 . . . E4 . E4 E4 . E4 E4 . . |
+    A3 A3 . A3 . . . D4 . D4 D4 . C#4 C#4 . .
+
+settings:
+  - {name: "Clock Div (SETTINGS 9)", value: "PGM 7 *1/8* : un pas = une croche"}
+
+steps:
+  - "Maintenir *PANEL* 1 s (init)."
+  - "*OCTAVE 1* et *2* sur 16', *WAVESHAPE 1* et *2* sur 11:00 (triangles)."
+  - "*MOD DESTINATION* sur 1+2 FM, *MOD AMOUNT* ≈ 1:30 : le timbre « électrique » de la FM."
+  - "*MIXER* : *OSC 2* à fond, *OSC 1* ≈ 11:00, *SUB OSC* ≈ 11:00 pour le poids."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:30, *RESONANCE* ≈ 9:00, *KB TRACKING* ON, *EG AMOUNT* ≈ 2:30."
+  - "Enveloppe filtre : *DECAY* ≈ 10:00, *SUSTAIN* à 0. Enveloppe ampli : *DECAY* ≈ 11:30, *SUSTAIN* ≈ 10:00, *RELEASE* court."
+  - "*MULTI-TRIG* ON. *SETTINGS* 9 (CLOCK DIV) sur 1/8 : le séquenceur avance en croches à 169 BPM."
+tweaks:
+  - "Pas assez de « clac » à l'attaque : *MOD AMOUNT* vers 2:00 ou *EG AMOUNT* vers 3:00."
+  - "Trop métallique, ça sonne cloche : *MOD AMOUNT* vers 1:00, *CUTOFF* vers 10:00."
+  - "Trop grave ou trop aigu : *OCTAVE 1* et *2* d'un cran (8' ou 32')."
+playing:
+  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, les 32 pas (*ADV* = silence), *RECORD*, *PLAY*."
+
+analysis:
+  - title: "Les oscillateurs : de la FM dans un synthé analogique"
+    text: >-
+      Sur le disque, c'est le preset E.Bass 1 du DX7 [2], une basse en synthèse
+      FM^[Modulation de fréquence : un oscillateur en module un autre très vite ; le
+      résultat n'est plus une onde simple mais un spectre riche, métallique ou
+      boisé selon le rapport et l'intensité.]. Le Messenger sait faire de la FM
+      entre ses oscillateurs : deux *triangles* (peu d'harmoniques au départ) dont
+      l'un module l'autre ; le *MOD AMOUNT* règle la quantité de « métal ».
+  - title: "Le filtre : l'éclat qui ne dure pas"
+    text: >-
+      Sur un DX7, la brillance de l'attaque vient de l'enveloppe du modulateur,
+      qui retombe vite. Ici, c'est le filtre qui fait ce travail : *CUTOFF* bas,
+      *EG AMOUNT* fort et *DECAY* court. La note claque puis devient ronde, ce
+      que mu:zines entend aussi sur les pistes : un son un peu adouci, sans
+      aigus agressifs [2].
+  - title: "Les enveloppes : une attaque nette, un corps court"
+    text: >-
+      Filtre : tout dans le *DECAY*, aucun sustain. Ampli : attaque nulle, un
+      *SUSTAIN* moyen pour que la croche garde du corps, *RELEASE* court pour
+      que les notes répétées restent détachées. Toutes les notes étaient à
+      vélocité maximale [2] : pas de *F ENV VEL*, chaque croche frappe pareil.
+  - title: "Le jeu : une machine, pas un bassiste"
+    text: >-
+      La basse est séquencée et quantifiée en croches [2] : le séquenceur du
+      Messenger refait exactement ce geste. Le motif suit les accords du
+      couplet (Si mineur, Mi, La, Ré, avec le Do dièse qui ramène au Si) [3][4],
+      avec les silences qui donnent le rebond. Au mix, une basse sèche, sans
+      effet.
+
+traceability:
+  - "Documenté [1] : synthés de la séance Tarney (Juno-60, DX7, PPG Wave), basse construite en séquence. Documenté [2] : preset DX7 E.Bass 1, croches quantifiées, vélocité maximale, d'après les pistes séparées."
+  - "Transcrit [3][4] : notes et rythme à 169 BPM (Si, Mi, La, Ré, Do dièse) ; la tablature [4] place un Mi de plus en 2e mesure que le projet [3], on a suivi [4], symétrique de la mesure de Ré."
+  - "Reconstitué : FM du DX7 imitée par la FM analogique du Messenger, filtre et enveloppes à l'oreille ; notes saisies deux octaves plus haut (étendue du clavier)."
+
+sources:
+  - title: "Classic Tracks: A-ha, Take On Me"
+    site: Sound On Sound (Richard Buskin)
+    date: mars 2011
+    url: https://www.soundonsound.com/techniques/classic-tracks-ha-take-me
+    note: récits d'Alan Tarney et de Gerry Kitchingham
+  - title: "Sound Diving #2: Take On Me"
+    site: mu:zines
+    date: septembre 2021, mis à jour mars 2023
+    url: https://www.muzines.co.uk/blog/sound-diving-2-take-on-me/40
+    note: analyse des pistes séparées (basse DX7 E.Bass 1)
+  - title: "How to make A-Ha's Take On Me with DRC"
+    site: Imaginando
+    date: août 2021
+    url: https://www.imaginando.pt/media/how-to-make-a-has-take-on-me-with-drc
+    note: projet Ableton lu (piste Bass), vidéo non visionnée
+  - title: "Take On Me, piste Synth Bass"
+    site: Songsterr, tablature de contributeur
+    date: septembre 2026
+    url: https://www.songsterr.com/a/wsa/aha-take-on-me-tab-s460755
+    note: mesures 13 à 16, 169 BPM

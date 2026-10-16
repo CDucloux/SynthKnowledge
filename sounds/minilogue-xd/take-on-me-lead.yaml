@@ -1,0 +1,108 @@
+synth: minilogue-xd
+title: Take On Me Lead
+category: lead
+tags: [synthpop, "80s", riff, chorus]
+confidence: 2
+reference:
+  artist: a-ha
+  song: Take On Me
+  year: 1985
+  part: le riff principal, intro et entre les refrains (version Alan Tarney)
+  original_synth: "Roland Juno-60 (son pincé, chorus) superposé à un PPG Wave (cloche)"
+  original_synth_short: Juno-60 + PPG Wave
+summary: >-
+  Le riff le plus reconnaissable des années 80 : des croches rebondissantes, un
+  son pincé et brillant élargi par le chorus du Juno-60, doublé d'une couche
+  « cloche » de PPG qui laisse traîner la dernière note. Le minilogue XD fait les
+  deux couches à la fois, chorus compris.
+
+params:
+  voice: {mode: poly, tempo: 169}
+  vco1: {wave: sqr, octave: 8, shape: 150}
+  vco2: {wave: saw, octave: 4, pitch: 6}
+  multi: {engine: vpm, type: Decay1, shape: 300}
+  mixer: {vco1: 1023, vco2: 600, multi: 380}
+  filter: {cutoff: 620, resonance: 150, keytrack: 50}
+  amp_eg: {a: 0, d: 650, s: 650, r: 380}
+  eg: {a: 0, d: 300, int: 40, target: cutoff}
+  mod_fx: {on: true, type: Chorus, subtype: Stereo, time: 500, depth: 65}
+  reverb: {on: true, type: Hall, time: 450, depth: 18}
+
+sequence:
+  tempo: 169
+  resolution: 1/8
+  gate: 60
+  steps: >-
+    F#5 F#5 D5 B4 . B4 . E5 . E5 . E5 G#5 G#5 A5 B5
+
+steps:
+  - "Programme init (201 à 500), *VOICE MODE* POLY, *TEMPO* 169."
+  - "*VCO 1* : SQR 8', *SHAPE* 150. *VCO 2* : SAW 4', *PITCH* +6 cents : l'octave au-dessus, comme au disque."
+  - "*MULTI ENGINE* : VPM, *TYPE* Decay1, *SHAPE* 300 : la couche « cloche »."
+  - "*MIXER* : *VCO 1* 1023, *VCO 2* 600, *MULTI* 380."
+  - "*FILTER* : *CUTOFF* 620, *RESONANCE* 150, *KEYTRACK* 50 %. *EG* sur CUTOFF : *DECAY* 300, *EG INT* +40 %."
+  - "*AMP EG* : *ATTACK* 0, *DECAY* 650, *SUSTAIN* 650, *RELEASE* 380."
+  - "*EFFECTS* : MOD FX Chorus Stereo (*DEPTH* 65 %), REVERB Hall discrète (18 %)."
+tweaks:
+  - "Pas assez pincé : *EG INT* vers +55 %, *DECAY* de l'*EG* vers 220."
+  - "Trop sec, pas assez « Juno » : *DEPTH* du chorus vers 80 %."
+  - "Pas assez de cloche : *MULTI* vers 550 ; trop : vers 250."
+playing:
+  - "Grille = 2 premières mesures. Suite : La La La Mi . Ré . Fa dièse . Fa dièse . Fa dièse Mi Mi Fa dièse Mi."
+
+analysis:
+  - title: "Les oscillateurs : deux synthés en un"
+    text: >-
+      Le thème vient du Juno-60 de Tarney [1], mais l'analyse des pistes y
+      entend deux couches : un son pincé très Juno, doublé à l'octave, et une
+      cloche de PPG Wave [2]. *Carré* 8' et *scie* 4' pour le Juno (Syntorial
+      part aussi de deux ondes à l'octave [3]), *VPM* Decay1 pour la cloche.
+  - title: "Le filtre : un coup de pince à chaque croche"
+    text: >-
+      *CUTOFF* au milieu, avec un *EG* rapide sur le filtre : la note part
+      brillante puis se pose aussitôt, c'est le côté « rebondissant » du riff [2].
+      Un peu de *RESONANCE* souligne ce coup de filtre ; le *KEYTRACK* garde
+      l'éclat quand le riff monte vers le Si aigu.
+  - title: "Les enveloppes : court, mais ça traîne un peu"
+    text: >-
+      Attaque nulle et filtre bref pour le pincement. L'ampli garde un *SUSTAIN*
+      moyen et un *RELEASE* sensible : en POLY, chaque note déborde légèrement
+      sur la suivante, comme la couche PPG dont la dernière note traîne près d'une
+      mesure [2].
+  - title: "L'espace : le chorus du Juno"
+    text: >-
+      La couche Juno est enregistrée sur deux pistes, une octave d'écart, avec son
+      chorus intégré, d'où sa largeur [2]. Le *Chorus Stereo* du XD joue ce rôle ;
+      une *Hall* discrète remplace l'ambiance du mix. À 169 BPM, la croche dure
+      178 ms : le riff reste net.
+
+traceability:
+  - "Documenté [1] : Juno-60 de Tarney pour le thème principal, DX7 et deux PPG Wave à la séance. Documenté [2] : riff en couches (Juno pincé avec chorus, une octave d'écart gauche/droite, cloche PPG à longue release), d'après les pistes séparées."
+  - "Recette [3] : deux ondes à l'octave, filtre assez ouvert, chorus. Transcrit [4][5] : notes et rythme du riff à 169 BPM, identiques dans les deux relevés."
+  - "Reconstitué : réglages XD à l'oreille ; la cloche PPG (onde de table) imitée par le VPM ; grille limitée aux 2 premières mesures (16 pas)."
+
+sources:
+  - title: "Classic Tracks: A-ha, Take On Me"
+    site: Sound On Sound (Richard Buskin)
+    date: mars 2011
+    url: https://www.soundonsound.com/techniques/classic-tracks-ha-take-me
+    note: récits d'Alan Tarney et de Gerry Kitchingham
+  - title: "Sound Diving #2: Take On Me"
+    site: mu:zines
+    date: septembre 2021, mis à jour mars 2023
+    url: https://www.muzines.co.uk/blog/sound-diving-2-take-on-me/40
+    note: analyse des pistes séparées (couches du riff)
+  - title: "A-ha, Take On Me: Lead Synth Patch Remake"
+    site: Syntorial
+    url: https://syntorial.com/preset-recipe/a-ha-take-on-me-lead
+    note: recette chiffrée
+  - title: "How to make A-Ha's Take On Me with DRC"
+    site: Imaginando
+    date: août 2021
+    url: https://www.imaginando.pt/media/how-to-make-a-has-take-on-me-with-drc
+    note: projet Ableton lu (piste Lead), vidéo non visionnée
+  - title: "Take On Me, piste Keyboard"
+    site: Songsterr, tablature de contributeur
+    date: septembre 2026
+    url: https://www.songsterr.com/a/wsa/aha-take-on-me-tab-s460755
+    note: mesures 13 à 16, 169 BPM
