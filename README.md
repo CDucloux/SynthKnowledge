@@ -15,7 +15,7 @@
 
 <p align="center">
 <!-- compteurs:start -->
-📄 <b>33 fiches</b> · 🎤 17 groupes · 🎹 19 pour le Moog Messenger · 14 pour le Korg minilogue XD
+📄 <b>34 fiches</b> · 🎤 17 groupes · 🎹 20 pour le Moog Messenger · 14 pour le Korg minilogue XD
 <!-- compteurs:end -->
 </p>
 
@@ -68,6 +68,7 @@
 | **New Order** | The Perfect Kiss | 1985 | Basse (séquence 2) | Moog Messenger | Prophet-5 (séquences) | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BNew%20Order%5D%20The%20Perfect%20Kiss%20%28S%C3%A9quence%202%29.pdf) |
 | **New Order** | The Perfect Kiss | 1985 | Pad (strings) | Korg minilogue XD | Non documenté | ⚫⚪⚪ approximation | [PDF](sheets/minilogue-xd/%5BNew%20Order%5D%20The%20Perfect%20Kiss%20%28Strings%29.pdf) |
 | **Nine Inch Nails** | Closer | 1994 | Basse | Moog Messenger | Sampler Akai (source inconnue) | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BNine%20Inch%20Nails%5D%20Closer%20%28Bass%29.pdf) |
+| **Nine Inch Nails** | Into the Void | 1999 | Basse | Moog Messenger | Inconnu (Nord Lead, Minimoog ?) | ⚫⚪⚪ approximation | [PDF](sheets/messenger/%5BNine%20Inch%20Nails%5D%20Into%20the%20Void%20%28Bass%29.pdf) |
 | **The Prodigy** | Omen | 2009 | Basse | Moog Messenger | Non documenté | ⚫⚪⚪ approximation | [PDF](sheets/messenger/%5BThe%20Prodigy%5D%20Omen%20%28Bass%29.pdf) |
 | **The Prodigy** | Omen | 2009 | Lead | Moog Messenger | Access Virus TI Polar | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BThe%20Prodigy%5D%20Omen%20%28Lead%29.pdf) |
 | **Van Halen** | Jump | 1984 | Cuivres | Korg minilogue XD | Oberheim OB-Xa | ⚫⚫⚪ déduit | [PDF](sheets/minilogue-xd/%5BVan%20Halen%5D%20Jump%20%28Brass%29.pdf) |

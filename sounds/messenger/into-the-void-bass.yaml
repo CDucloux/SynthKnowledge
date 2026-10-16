@@ -1,0 +1,114 @@
+synth: messenger
+title: Into the Void Bass
+category: basse
+tags: [industrial, "90s", sequence, funk]
+confidence: 1
+reference:
+  artist: Nine Inch Nails
+  song: Into the Void
+  year: 1999
+  part: riff de basse synthé, tout le morceau (Si bémol, Si, Do, Mi bémol)
+  original_synth_short: "Inconnu (Nord Lead, Minimoog ?)"
+  original_synth: "synthé non documenté ; sur The Fragile, basses au Nord Lead, au Minimoog ou au Bass Station selon les morceaux"
+summary: >-
+  Le riff qui fait danser The Fragile : une montée chromatique Si bémol, Si,
+  Do, puis un saut au Do grave et un Mi bémol à contretemps. Une basse ronde
+  et élastique : le filtre claque à chaque croche puis retombe, avec juste ce
+  qu'il faut de saleté pour rester industriel.
+
+params:
+  osc:
+    oct1: 16
+    wave1: 12
+    sub_wave: 10.5
+  mixer:
+    osc1: 17
+    sub: 12
+  filter:
+    mode: lp4
+    fb_ext: 9.5
+    cutoff: 10
+    eg_amount: 14.5
+    resonance: 11
+    kb_tracking: true
+  fenv: {a: 7, d: 10.5, s: 8, r: 9}
+  aenv: {a: 7, d: 12, s: 14, r: 8.5}
+  env: {multi_trig: true}
+
+sequence:
+  tempo: 95
+  gate: 50
+  steps: >-
+    Bb4 B4 C5 C4 . Eb4 . . |
+    . . . Eb4 Bb4 B4 C5 .
+
+settings:
+  - {name: "Clock Div (SETTINGS 9)", value: "PGM 7 *1/8* : un pas = une croche"}
+
+steps:
+  - "Maintenir *PANEL* 1 s (init). *OCTAVE 1* sur 16', *WAVESHAPE 1* à midi (scie)."
+  - "*SUB WAVE* ≈ 10:30 (carré). *MIXER* : *OSC 1* à fond, *SUB* à midi."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:00, *RESONANCE* ≈ 11:00, *KB TRACKING* ON."
+  - "*EG AMOUNT* ≈ 2:30. F ENV : *DECAY* ≈ 10:30, *SUSTAIN* ≈ 8:00."
+  - "A ENV : *DECAY* midi, *SUSTAIN* ≈ 2:00, *RELEASE* court. *MULTI-TRIG* ON."
+  - "*FB / EXT IN* ≈ 9:30 : un peu de grain dans le filtre."
+  - "*SETTINGS* 9 (CLOCK DIV) sur 1/8, *TEMPO* 95 : un pas = une croche."
+tweaks:
+  - "Trop sage, pas assez indus : *FB / EXT IN* vers 10:30."
+  - "Pas assez élastique : *DECAY* du filtre vers 10:00, *EG AMOUNT* vers 3:00."
+  - "Le Do grave manque de poids : *SUB* vers 1:00 ; ça siffle : *RESONANCE* vers 10:00."
+playing:
+  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, les 16 pas (*ADV* = silence), *RECORD*, *PLAY*."
+
+analysis:
+  - title: "Les oscillateurs : une scie et son ombre"
+    text: >-
+      Le synthé d'origine n'est pas connu : sur The Fragile, les basses
+      passent par le Nord Lead, le Minimoog ou le Bass Station [1]. On part
+      d'une *scie* en 16', riche en harmoniques, que le filtre va sculpter,
+      et d'un *SUB* carré une octave plus bas qui tient le grave quand le
+      riff remonte vers le Do.
+  - title: "Le filtre : le coup de bec élastique"
+    text: >-
+      *CUTOFF* bas et *EG AMOUNT* fort : à chaque croche le passe-bas
+      s'ouvre puis se referme vite, d'où la note qui « rebondit ». La
+      *RESONANCE* modérée souligne ce mouvement sans siffler. *FB / EXT IN*
+      réinjecte la sortie dans le filtre^[Feedback : une boucle qui sature
+      légèrement le filtre ; le son s'épaissit et prend du grain.] : la touche
+      industrielle.
+  - title: "Les enveloppes : court au filtre, tenu à l'ampli"
+    text: >-
+      Pas d'attaque, decay court et sustain bas au filtre : la brillance ne
+      dure qu'un instant. L'ampli garde un sustain haut, la note reste pleine
+      jusqu'à la fin du pas et le *GATE* à 50 % la coupe net. *MULTI-TRIG*
+      relance tout à chaque pas : chaque note du chromatisme claque.
+  - title: "Le jeu : un riff né d'un remix"
+    text: >-
+      Le morceau vient d'un autre, « La Mer » : en le remixant, Reznor et
+      Moulder ont rejoué la ligne de basse sur un autre instrument, changé la
+      batterie et gardé accords et tempo [2]. Le riff tient en deux mesures
+      de croches [3] : la montée Si bémol, Si, Do appelle le Do grave, et le
+      Mi bémol tombe à contretemps. Ce décalage fait tout le groove.
+
+traceability:
+  - "Documenté [2] : Into the Void est un remix de « La Mer » dont la ligne de basse a été rejouée « sur un autre instrument » (non nommé)."
+  - "Contexte [1] : selon Keith Hillebrandt, pas de synthé basse attitré sur l'album (Minimoog, Nord Lead, Bass Station sur The Wretched) ; un Nord Lead sur presque chaque morceau."
+  - "Transcrit [3] : piste Synth Bass 2, 95 BPM, mesures 33 et 34 (motif répété jusqu'à la mesure 86) ; notes écrites deux octaves plus haut (Do3 → Do5) pour la saisie, la hauteur réelle vient du 16'."
+  - "Reconstitué : tout le patch (recette « Moog funk » + grain du feedback), aucun réglage d'origine publié."
+
+sources:
+  - title: "Nine Inch Nails : the album, the tour... behind the scenes"
+    site: Keyboard Magazine, archivé par The NIN Hotline
+    date: février 2000
+    url: https://www.theninhotline.com/archives/articles/display/1059
+    note: Charlie Clouser et Keith Hillebrandt sur les synthés de The Fragile
+  - title: "Alan Moulder : Recording Nine Inch Nails & Smashing Pumpkins"
+    site: Sound on Sound
+    date: mai 2000
+    url: https://www.soundonsound.com/people/alan-moulder-recording-nine-inch-nails-smashing-pumpkins
+    note: de « La Mer » à Into the Void
+  - title: "Into The Void, piste Synth Bass 2"
+    site: Songsterr
+    date: octobre 2023
+    url: https://www.songsterr.com/a/wsa/nine-inch-nails-into-the-void-tab-s14551t3
+    note: notes et tempo, transcription non générée par IA
