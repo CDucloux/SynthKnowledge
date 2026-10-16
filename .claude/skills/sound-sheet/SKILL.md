@@ -66,10 +66,10 @@ Règles :
 ## 6. Compiler et vérifier
 
 ```bash
-scripts/build.sh --check sounds/<machine>/<slug>.yaml   # valider d'abord (rapide)
-scripts/build.sh sounds/<machine>/<slug>.yaml           # compiler + mettre à jour le README
+scripts/build.py check sounds/<machine>/<slug>.yaml     # valider d'abord (rapide)
+scripts/build.py sounds/<machine>/<slug>.yaml           # compiler + mettre à jour le README
 ```
-- La validation (`scripts/build.py`, schéma `template/schema/<machine>.yaml`) liste toutes les erreurs d'un coup : clé inconnue ou manquante, valeur hors plage, option invalide, type d'effet inconnu, source mal formée, renvoi [n] sans source, tiret interdit. Corriger d'après les messages.
+- La validation (`scripts/synther/validate.py`, schéma `template/schema/<machine>.yaml`) liste toutes les erreurs d'un coup : clé inconnue ou manquante, valeur hors plage, option invalide, type d'effet inconnu, source mal formée, renvoi [n] sans source, tiret interdit. Corriger d'après les messages.
 - Le script exige **2 pages** (fiche + anatomie du son) : s'il en trouve 3, la page 1 déborde → raccourcir les textes.
 - **Vérifier le rendu visuellement** : `pdftoppm -r 100 -png sheets/<machine>/<slug>.pdf <scratchpad>/x` puis lire l'image. Contrôler : pas de chevauchement, valeurs lisibles, index des potards cohérents avec le texte.
 

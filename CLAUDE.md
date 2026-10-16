@@ -15,8 +15,8 @@ template/schema/    <machine>.yaml : paramètres de chaque synthé (valeurs neut
 theory/             fiches de théorie imprimables (.typ, d'après Synth Secrets), gabarit template/theory.typ
 sheets/<machine>/   PDF générés (versionnés), nommés « [Artiste] Morceau (Rôle).pdf » ; sheets/theory/ pour la théorie
 fonts/              Montserrat (OFL), ne pas modifier
-scripts/build.py    valide les YAML, compile en PDF (CLI typst, sinon paquet Python `typst`), vérifie les 2 pages, met à jour le README ; scripts/build.sh = raccourci
-scripts/build-theory.sh  compile theory/*.typ (A4, pas de limite de pages)
+scripts/build.py    point d'entrée : valide les YAML, compile en PDF (CLI typst, sinon paquet Python `typst`), vérifie les 2 pages, met à jour le README ; sous-commandes check · theory · previews
+scripts/synther/    le code : sheet.py (lecture, nommage) · validate.py · compiler.py (Typst, partagé avec la théorie) · readme.py
 .claude/skills/     sound-sheet · adjust-sheet · add-synth
 ```
 
@@ -54,7 +54,7 @@ scripts/build-theory.sh  compile theory/*.typ (A4, pas de limite de pages)
 - Committer les YAML **et** les PDF générés.
 - **Code** : les paramètres d'une machine ne se décrivent qu'à un seul endroit, `template/schema/<machine>.yaml` (jamais de `defaults` en dur dans un template). Ce qui est commun aux façades vit dans `style.typ` (`param-reader`, `check-params`, `sheet`, `env-entry`, `ov-title`…). **Mise en page sans cotes en dur** : une façade = un appel à `panel-band((sections…))` (une seule grille : colonnes à la largeur du contenu, rangées à la hauteur du plus grand contenu, espace restant réparti entre sections) ; les espacements viennent du dictionnaire `ui` de `style.typ`, les tailles d'une façade dérivent de la taille du potard (`ks` → `zone`, `kw`). Pas de hauteur de rangée ni de largeur de colonne fixée à la main. Si la façade ne tient pas en largeur, la compilation échoue en donnant la largeur de chaque section : réduire la section en cause plutôt que de forcer.
 - **Test de non-régression visuelle (comparaison des pages au pixel avec une référence) : uniquement sur demande explicite de l'utilisateur** (coûteux en tokens). Par défaut, après un changement de template, vérifier à l'œil un ou deux rendus PNG.
-- **README** : vitrine du projet. Le tableau des fiches (Groupe, Morceau, Année, Type de son, Synthé, Son d'origine, Confiance, lien PDF) et les compteurs sont **générés** par `scripts/build.py` à chaque compilation entre les marqueurs `<!-- fiches -->` / `<!-- compteurs -->` : ne pas les éditer à la main. Option `reference.synthe_court` dans un YAML pour raccourcir la colonne « Son d'origine ». Aperçus PNG dans `docs/` : `scripts/build.sh --previews`. Committer README.md avec chaque nouvelle fiche.
+- **README** : vitrine du projet. Le tableau des fiches (Groupe, Morceau, Année, Type de son, Synthé, Son d'origine, Confiance, lien PDF) et les compteurs sont **générés** par `scripts/build.py` à chaque compilation entre les marqueurs `<!-- fiches -->` / `<!-- compteurs -->` : ne pas les éditer à la main. Option `reference.synthe_court` dans un YAML pour raccourcir la colonne « Son d'origine ». Aperçus PNG dans `docs/` : `scripts/build.py previews`. Committer README.md avec chaque nouvelle fiche.
 
 ## Fiches de théorie (theory/)
 
@@ -88,10 +88,11 @@ scripts/build-theory.sh  compile theory/*.typ (A4, pas de limite de pages)
 ## Commandes
 
 ```bash
-scripts/build.sh                                  # toutes les fiches
-scripts/build.sh sounds/messenger/<slug>.yaml       # une fiche
-scripts/build.sh --check [yaml…]                  # valider seulement (schéma template/schema/<machine>.yaml)
-scripts/build.sh --previews                       # + aperçus PNG du README (docs/)
+scripts/build.py                                  # toutes les fiches
+scripts/build.py sounds/messenger/<slug>.yaml     # une fiche
+scripts/build.py check [yaml…]                    # valider seulement (schéma template/schema/<machine>.yaml)
+scripts/build.py theory [typ…]                    # fiches de théorie (theory/*.typ, pas de limite de pages)
+scripts/build.py previews                         # aperçus PNG du README (docs/), d'après les PDF existants
 # équivalent CLI :
 typst compile --root . --font-path fonts --input son=/sounds/messenger/<slug>.yaml template/sheet.typ "sheets/messenger/[Artiste] Morceau (Rôle).pdf"
 ```

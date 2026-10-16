@@ -1,6 +1,6 @@
 # Schéma YAML : fiche Moog Messenger
 
-Référence exhaustive des paramètres (clés, valeurs neutres, plages, options) : **`template/schema/messenger.yaml`**, source unique lue par le template et par la validation. `scripts/build.py --check <yaml>` signale toute clé inconnue, valeur hors plage, option invalide, renvoi [n] sans source ou tiret interdit.
+Référence exhaustive des paramètres (clés, valeurs neutres, plages, options) : **`template/schema/messenger.yaml`**, source unique lue par le template et par la validation. `scripts/build.py check <yaml>` signale toute clé inconnue, valeur hors plage, option invalide, renvoi [n] sans source ou tiret interdit.
 
 ```yaml
 synthe: messenger                 # obligatoire

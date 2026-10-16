@@ -1,6 +1,6 @@
 # Schéma YAML : fiche Korg minilogue XD
 
-Référence exhaustive des paramètres (clés, valeurs neutres, plages, options, types d'effets autorisés) : **`template/schema/minilogue-xd.yaml`**, source unique lue par le template et par la validation. `scripts/build.py --check <yaml>` signale toute clé inconnue, valeur hors plage, option invalide, renvoi [n] sans source ou tiret interdit.
+Référence exhaustive des paramètres (clés, valeurs neutres, plages, options, types d'effets autorisés) : **`template/schema/minilogue-xd.yaml`**, source unique lue par le template et par la validation. `scripts/build.py check <yaml>` signale toute clé inconnue, valeur hors plage, option invalide, renvoi [n] sans source ou tiret interdit.
 Valeurs = **valeurs écran** du manuel (détails : `knowledge/machines/minilogue-xd.md`).
 
 ```yaml

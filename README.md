@@ -112,10 +112,11 @@ Claude cherche les sources, choisit la machine (polyphonie ou effets : minilogue
 ### À la main
 
 ```bash
-scripts/build.sh                                   # toutes les fiches (et ce README)
-scripts/build.sh sounds/messenger/<son>.yaml       # une seule fiche
-scripts/build.sh --check                           # valider les fiches sans compiler
-scripts/build.sh --previews                        # régénérer aussi les aperçus de docs/
+scripts/build.py                                   # toutes les fiches (et ce README)
+scripts/build.py sounds/messenger/<son>.yaml       # une seule fiche
+scripts/build.py check                             # valider les fiches sans compiler
+scripts/build.py theory                            # les fiches de théorie
+scripts/build.py previews                          # régénérer les aperçus de docs/
 ```
 
 > [!NOTE]
@@ -128,7 +129,7 @@ sounds/<synthé>/    une fiche = un fichier YAML (les réglages et les textes)
 sheets/<synthé>/    les PDF générés, nommés « [Groupe] Morceau (Rôle).pdf »
 template/           le dessin des façades et la mise en page (Typst)
 template/schema/    la description de chaque synthé : contrôles, plages, options
-scripts/build.py    validation, compilation, mise à jour de ce README
+scripts/build.py    validation, compilation, mise à jour de ce README (code dans scripts/synther/)
 knowledge/          la base de connaissances : synthèse, synthés historiques, retours d'essai
 theory/             les fiches de théorie
 manuals/            les manuels officiels, source de vérité sur les contrôles
