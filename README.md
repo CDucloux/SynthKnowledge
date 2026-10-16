@@ -30,7 +30,7 @@
   </tr>
 </table>
 
-## 🎵 Les fiches
+## Les fiches
 
 > [!TIP]
 > Cliquer sur **PDF** pour ouvrir la fiche : lisible sur téléphone, à imprimer en A4 paysage.
@@ -61,15 +61,15 @@
 
 <sub>Tableau généré automatiquement depuis les fichiers `sounds/` par `scripts/build.py`.</sub>
 
-## 🧩 Ce qu'il y a dans une fiche
+## Ce qu'il y a dans une fiche
 
-**🎚️ Page 1 : régler la machine**
+**Page 1 : régler la machine**
 - La **façade complète** dessinée comme sur l'appareil : chaque potard avec sa position (heures d'horloge sur le Messenger, valeurs écran sur le minilogue XD), chaque sélecteur, levier et bouton.
 - **Pour l'obtenir** : les étapes depuis un patch vierge, dans l'ordre du panneau.
 - **Ajuster à l'oreille** : « si c'est trop sourd, tourne ceci ».
 - **Jeu** : comment jouer la ligne pour qu'elle sonne juste.
 
-**🔬 Page 2 : comprendre le son**
+**Page 2 : comprendre le son**
 - Les **courbes d'enveloppe** dessinées d'après les réglages.
 - Quatre encadrés d'**analyse** : oscillateurs, filtre, enveloppes, mouvement ou espace.
 - **D'où ça vient** : le synthé d'origine, l'indice de confiance, ce qui est documenté et ce qui est reconstitué, les sources avec liens cliquables et notes de bas de page.
@@ -77,7 +77,7 @@
 <p align="center"><img src="docs/apercu-minilogue-xd-p1.png" width="80%" alt="Page 1 d'une fiche minilogue XD"><br>
 <sub>La même chose pour le minilogue XD : leviers, écrans, effets et PROGRAM EDIT.</sub></p>
 
-## 🎯 L'indice de confiance
+## L'indice de confiance
 
 Chaque fiche dit franchement ce qu'elle sait.
 
@@ -90,7 +90,7 @@ Chaque fiche dit franchement ce qu'elle sait.
 > [!IMPORTANT]
 > Aucune source, aucun réglage « d'origine » n'est inventé. Quand le son dépend d'un effet ou d'une polyphonie que la machine n'a pas, la fiche le dit.
 
-## 📚 Fiches de théorie
+## Fiches de théorie
 
 Pour comprendre la synthèse elle-même, d'après la série *Synth Secrets* (Sound on Sound), avec des schémas recalculés et des encadrés « Essaie sur ton Messenger » :
 
@@ -99,7 +99,7 @@ Pour comprendre la synthèse elle-même, d'après la série *Synth Secrets* (Sou
 > [!NOTE]
 > La fiche 01 est un prototype en une page : la version longue, qui suit l'article pas à pas, est à venir.
 
-## 💬 Demander une fiche
+## Demander une fiche
 
 Le projet est piloté avec [Claude Code](https://claude.ai/code). Il suffit de demander :
 
@@ -109,7 +109,7 @@ Chaque fiche est validée avant compilation contre la description du synthé (`t
 
 🤖 Claude cherche les sources, choisit la machine (polyphonie ou effets : minilogue XD ; basse, lead mono, glide : Messenger), écrit la fiche, la compile et vérifie le rendu. Après un essai, un retour du genre « trop brillant » ou « l'attaque est molle » suffit pour corriger la fiche, et la leçon est gardée pour les suivantes.
 
-### 🛠️ À la main
+### À la main
 
 ```bash
 scripts/build.sh                                   # toutes les fiches (et ce README)
@@ -121,7 +121,7 @@ scripts/build.sh --previews                        # régénérer aussi les aper
 > [!NOTE]
 > Dépendances : [Typst](https://typst.app) (ou `pip install typst`), `poppler-utils` pour les aperçus.
 
-## 🗂️ Organisation
+## Organisation
 
 ```
 sounds/<synthé>/    une fiche = un fichier YAML (les réglages et les textes)
