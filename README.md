@@ -15,7 +15,7 @@
 
 <p align="center">
 <!-- compteurs:start -->
-📄 <b>25 fiches</b> · 🎤 16 groupes · 🎹 15 pour le Moog Messenger · 10 pour le Korg minilogue XD
+📄 <b>28 fiches</b> · 🎤 17 groupes · 🎹 17 pour le Moog Messenger · 11 pour le Korg minilogue XD
 <!-- compteurs:end -->
 </p>
 
@@ -59,6 +59,9 @@
 | **MGMT** | Little Dark Age | 2017 | Basse | Moog Messenger | Korg Polysix (probable) | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BMGMT%5D%20Little%20Dark%20Age%20%28Bass%29.pdf) |
 | **MGMT** | Little Dark Age | 2017 | Lead (intro) | Korg minilogue XD | Non documenté | ⚫⚫⚪ déduit | [PDF](sheets/minilogue-xd/%5BMGMT%5D%20Little%20Dark%20Age%20%28Intro%29.pdf) |
 | **Michael Jackson** | Thriller | 1982 | Basse | Moog Messenger | ARP 2600 | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BMichael%20Jackson%5D%20Thriller%20%28Bass%29.pdf) |
+| **New Order** | The Perfect Kiss | 1985 | Arpège (séquence 1) | Moog Messenger | Prophet-5 (séquences) | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BNew%20Order%5D%20The%20Perfect%20Kiss%20%28S%C3%A9quence%201%29.pdf) |
+| **New Order** | The Perfect Kiss | 1985 | Basse (séquence 2) | Moog Messenger | Prophet-5 (séquences) | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BNew%20Order%5D%20The%20Perfect%20Kiss%20%28S%C3%A9quence%202%29.pdf) |
+| **New Order** | The Perfect Kiss | 1985 | Pad (strings) | Korg minilogue XD | Non documenté | ⚫⚪⚪ approximation | [PDF](sheets/minilogue-xd/%5BNew%20Order%5D%20The%20Perfect%20Kiss%20%28Strings%29.pdf) |
 | **Nine Inch Nails** | Closer | 1994 | Basse | Moog Messenger | Sampler Akai (source inconnue) | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BNine%20Inch%20Nails%5D%20Closer%20%28Bass%29.pdf) |
 | **The Prodigy** | Omen | 2009 | Basse | Moog Messenger | Non documenté | ⚫⚪⚪ approximation | [PDF](sheets/messenger/%5BThe%20Prodigy%5D%20Omen%20%28Bass%29.pdf) |
 | **The Prodigy** | Omen | 2009 | Lead | Moog Messenger | Access Virus TI Polar | ⚫⚫⚪ déduit | [PDF](sheets/messenger/%5BThe%20Prodigy%5D%20Omen%20%28Lead%29.pdf) |

@@ -1,0 +1,105 @@
+synth: messenger
+title: The Perfect Kiss Séquence 2
+category: basse
+tags: [new-wave, "80s", sequence, octaves]
+confidence: 2
+reference:
+  artist: New Order
+  song: The Perfect Kiss
+  year: 1985
+  part: basse séquencée en octaves (doubles croches), sous la séquence 1
+  original_synth: "Prophet-5 et Polysequencer (séquences de Low-Life, selon Peter Hook)"
+  original_synth_short: Prophet-5 (séquences)
+summary: >-
+  La deuxième séquence, dans le grave : des doubles croches qui sautent d'une
+  octave à l'autre, deux notes en bas, deux en haut, sur Fa, Mi, Ré puis Sol.
+  Un son de basse synthé rond et pincé qui sert de moteur sous la séquence
+  métallique et la basse de Peter Hook.
+
+params:
+  osc:
+    oct1: 16
+    oct2: 16
+    wave1: 12
+    wave2: 13.25
+    osc2_freq: 12.15
+  mixer:
+    osc1: 17
+    osc2: 14
+  filter:
+    mode: lp4
+    cutoff: 10
+    eg_amount: 14
+    resonance: 10
+    kb_tracking: true
+  fenv: {a: 7, d: 10, s: 7, r: 9}
+  aenv: {a: 7, d: 10.75, s: 7, r: 9.5}
+  env: {multi_trig: true}
+
+sequence:
+  tempo: 130
+  gate: 50
+  steps: >-
+    F3 F3 F4 F4 F3 F3 F4 F4 F3 F3 F4 F4 F3 F3 F4 F4 |
+    E3 E3 E4 E4 E3 E3 E4 E4 E3 E3 E4 E4 E3 E3 E4 E4 |
+    D3 D3 D4 D4 D3 D3 D4 D4 D3 D3 D4 D4 D3 D3 D4 D4 |
+    G4 G4 G5 G5 G4 G4 G5 G5 G3 G3 G4 G4 G3 G3 G4 G4
+
+steps:
+  - "Maintenir *PANEL* 1 s (init)."
+  - "*OCTAVE 1* et *2* sur 16'. *WAVESHAPE 1* à midi (scie), *WAVESHAPE 2* ≈ 1:15 (carré)."
+  - "*OSC 2 FREQ* à peine à droite de midi (léger battement). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 2:00."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:00, *RESONANCE* ≈ 10:00, *KB TRACKING* ON, *EG AMOUNT* 2:00."
+  - "Enveloppes sans sustain : filtre *DECAY* ≈ 10:00, ampli *DECAY* ≈ 10:45. *MULTI-TRIG* ON."
+tweaks:
+  - "Les octaves aiguës percent trop : *KB TRACKING* OFF ou *CUTOFF* vers 9:30."
+  - "Pas assez de rebond : *DECAY* du filtre vers 9:30, *EG AMOUNT* vers 2:30."
+  - "Trop grave ou trop aigu : *OCTAVE 1* et *2* d'un cran."
+playing:
+  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, les 64 pas, *RECORD*, *PLAY*. Ré3 et Mi3 sont sous le clavier : *KB OCTAVE* −1 pour les saisir."
+
+analysis:
+  - title: "Les oscillateurs : scie et carré pour une basse ronde"
+    text: >-
+      Les séquences de Low-Life sortaient du système Prophet-5 [1], un synthé à
+      deux oscillateurs. Une *scie* et un *carré* à peine désaccordés donnent un
+      grave plein et un peu épais ; la scie apporte les harmoniques que le filtre
+      va découper à chaque note.
+  - title: "Le filtre : fermé, il rebondit"
+    text: >-
+      *CUTOFF* bas, *EG AMOUNT* fort et *DECAY* court : chaque double croche
+      claque puis s'arrondit. Le *KB TRACKING* garde la même brillance entre la
+      note basse et son octave, sinon la note du haut paraîtrait plus sourde.
+  - title: "Les enveloppes : des impulsions"
+    text: >-
+      Ni attaque ni sustain : chaque pas est un coup bref. *MULTI-TRIG* relance
+      les enveloppes même sur deux notes identiques, ce qui fait entendre les
+      paires « bas, bas, haut, haut ».
+  - title: "Le mouvement : le saut d'octave"
+    text: >-
+      Deux notes en bas, deux en haut, sur Fa, Mi, Ré, puis Sol joué deux octaves
+      d'écart [2][3] : le saut d'octave donne l'élan disco du morceau, sans changer
+      d'accord. Elle joue sous la séquence 1 et la basse de Peter Hook, qui chante
+      dans l'aigu.
+
+traceability:
+  - "Documenté [1] : séquences de Low-Life sur le système Prophet-5 et Polysequencer (Peter Hook, 1985) ; patch de cette partie non documenté."
+  - "Transcrit [2][3] : notes et rythme (130 BPM, Fa, Mi, Ré, Sol en octaves), identiques sur les deux relevés de contributeurs."
+  - "Reconstitué : formes d'onde, filtre, enveloppes et positions Messenger à l'oreille ; notes saisies deux octaves plus haut que le relevé."
+
+sources:
+  - title: "In and Out of Order"
+    site: International Musician & Recording World (archive mu:zines)
+    date: octobre 1985
+    url: https://www.muzines.co.uk/articles/in-and-out-of-order/12679
+    note: interview de Peter Hook (Prophet, Polysequencer, Voyetra)
+  - title: "Perfect Kiss (Substance Edit), piste Synth bass"
+    site: Songsterr, tablature de contributeur
+    date: juillet 2016
+    url: https://www.songsterr.com/a/wsa/new-order-perfect-kiss-substance-edit-tab-s408121
+    note: mesures 28 à 31, 130 BPM
+  - title: "The Perfect Kiss (Live Version), piste Bass Sequencer 2"
+    site: Songsterr, tablature de contributeur
+    date: avril 2026
+    url: https://www.songsterr.com/a/wsa/new-order-the-perfect-kiss-live-version-tab-s3051779
+    note: recoupement des notes

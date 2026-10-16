@@ -1,0 +1,112 @@
+synth: messenger
+title: The Perfect Kiss Séquence 1
+category: arp
+tags: [new-wave, "80s", sequence, metallique]
+confidence: 2
+reference:
+  artist: New Order
+  song: The Perfect Kiss
+  year: 1985
+  part: "séquence « métallique » en doubles croches, tout le morceau"
+  original_synth: "Prophet-5 et Polysequencer (séquences de Low-Life, selon Peter Hook)"
+  original_synth_short: Prophet-5 (séquences)
+summary: >-
+  Des doubles croches qui alternent la fondamentale (La, Sol, Fa, Sol) et deux
+  notes fixes, Mi et Do : un son court, brillant et un peu métallique.
+
+params:
+  osc:
+    oct1: 8
+    oct2: 8
+    wave1: 12
+    wave2: 11
+    osc2_freq: 12
+    mod_amount: 13.75
+    mod_dest: fm
+  mixer:
+    osc1: 13
+    osc2: 17
+  filter:
+    mode: lp2
+    cutoff: 11.5
+    eg_amount: 14
+    resonance: 10.5
+    kb_tracking: true
+  fenv: {a: 7, d: 9.75, s: 7, r: 9}
+  aenv: {a: 7, d: 10.5, s: 7, r: 9.5}
+  env: {multi_trig: true}
+
+sequence:
+  tempo: 130
+  gate: 50
+  steps: >-
+    A4 A4 . E5 E5 C5 C5 A4 A4 A4 . E5 E5 C5 C5 . |
+    G4 G4 . E5 E5 C5 C5 G4 G4 G4 . E5 E5 C5 C5 . |
+    F4 F4 . E5 E5 C5 C5 F4 F4 F4 . E5 E5 C5 C5 . |
+    G4 G4 . E5 E5 C5 C5 G4 G4 G4 . E5 E5 C5 C5 .
+
+steps:
+  - "Maintenir *PANEL* 1 s (init)."
+  - "*OCTAVE 1* et *2* sur 8'. *WAVESHAPE 1* à midi (scie), *WAVESHAPE 2* sur 11:00 (triangle)."
+  - "*MOD DESTINATION* sur 1+2 FM, *MOD AMOUNT* ≈ 1:45 : le reflet métallique."
+  - "*MIXER* : *OSC 2* à fond, *OSC 1* ≈ 1:00."
+  - "*FILTER* : 2P LOW PASS, *CUTOFF* ≈ 11:30, *RESONANCE* ≈ 10:30, *KB TRACKING* ON, *EG AMOUNT* ≈ 2:00."
+  - "Enveloppes sans sustain : filtre *DECAY* ≈ 9:45, ampli *DECAY* ≈ 10:30. *MULTI-TRIG* ON."
+tweaks:
+  - "Pas assez métallique : *MOD AMOUNT* vers 2:30 ; trop « cloche » : 1:00."
+  - "Notes collées : *DECAY* ampli vers 10:00. Trop fin : *OCTAVE 1* sur 16'."
+playing:
+  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, 64 pas (*ADV* = silence), *RECORD*, *PLAY*."
+
+analysis:
+  - title: "Les oscillateurs : un peu de FM pour le métal"
+    text: >-
+      Pour Low-Life, les séquences tournaient sur le système Prophet-5 et
+      Polysequencer [1]. Le côté « métallique » que relève un musicien qui a
+      refait le morceau [4] s'obtient ici avec la FM 1+2 du Messenger : la scie
+      module le triangle, ce qui ajoute des harmoniques dures, sans changer la
+      hauteur.
+  - title: "Le filtre : clair, en 2 pôles"
+    text: >-
+      Le passe-bas 2 pôles coupe moins fort que le 4 pôles : il garde le reflet de
+      la FM. *CUTOFF* assez ouvert, *EG AMOUNT* pour un petit claquement à chaque
+      note, *KB TRACKING* pour que la fondamentale grave et le Mi aigu aient la
+      même couleur.
+  - title: "Les enveloppes : rien que des impulsions"
+    text: >-
+      Aucune attaque, aucun sustain : chaque double croche est une impulsion qui
+      retombe avant la suivante (115 ms à 130 BPM). Le filtre se referme un peu
+      plus vite que le volume : la note démarre brillante et finit douce.
+  - title: "Le mouvement : une basse qui bouge sous deux notes fixes"
+    text: >-
+      Le dessin ne change jamais : fondamentale, silence, Mi, Mi, Do, Do. Seule la
+      fondamentale descend (La, Sol, Fa, Sol) [2][3] : les notes du haut restent
+      et changent de rôle à chaque mesure. C'est ce qui donne cette impression
+      de machine qui tourne sur place.
+
+traceability:
+  - "Documenté [1] : pour Low-Life, séquences jouées par le système Prophet-5 et Polysequencer (Peter Hook, 1985) ; sans détail sur le patch de ce morceau."
+  - "Transcrit [2][3] : notes et rythme (mesures 28 à 31, 130 BPM), deux relevés de contributeurs qui concordent ; le 3e pas est un silence sur [2] (version studio), un Do sur [3] (version live) : on suit le studio."
+  - "Hypothèse [4] : son « métallique » (un musicien l'a refait au DX7). Reconstitué : FM, filtre, enveloppes et positions Messenger à l'oreille ; notes une octave plus haut (étendue du clavier)."
+
+sources:
+  - title: "In and Out of Order"
+    site: International Musician & Recording World (archive mu:zines)
+    date: octobre 1985
+    url: https://www.muzines.co.uk/articles/in-and-out-of-order/12679
+    note: interview de Peter Hook (Prophet, Polysequencer, Voyetra)
+  - title: "Perfect Kiss (Substance Edit), piste Sequence 1"
+    site: Songsterr, tablature de contributeur
+    date: juillet 2016
+    url: https://www.songsterr.com/a/wsa/new-order-perfect-kiss-substance-edit-tab-s408121
+    note: mesures 28 à 43, 130 BPM
+  - title: "The Perfect Kiss (Live Version), piste Sequencer 1"
+    site: Songsterr, tablature de contributeur
+    date: avril 2026
+    url: https://www.songsterr.com/a/wsa/new-order-the-perfect-kiss-live-version-tab-s3051779
+    note: recoupement des notes
+  - title: "DX5 playing New Order, The Perfect Kiss (cover)"
+    site: MATRIXSYNTH
+    date: mai 2021
+    url: https://www.matrixsynth.com/2021/05/dx5-playing-new-order-perfect-kiss.html
+    note: reprise ; DX7 pour la séquence « métallique »

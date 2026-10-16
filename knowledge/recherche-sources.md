@@ -39,3 +39,4 @@ Dans la réponse à l'utilisateur, dire ce que les sources de rang 1 et 2 ont do
 - Songsterr : *I Feel Love* (s1867855, piste Synth Bass, 128 BPM, écho noté en doubles croches).
 - *Take On Me* (a-ha) : SOS Classic Tracks (mars 2011, Juno-60 de Tarney, DX7, PPG Wave) ; mu:zines « Sound Diving #2 » (analyse des pistes séparées : basse DX7 E.Bass 1, riff en couches Juno + PPG) ; Imaginando (projet Ableton : Bass, Keys, Organ, Lead) ; Songsterr s460755 (pistes Synth Bass et Keyboard, 169 BPM).
 - mu:zines, série « Sound Diving » (muzines.co.uk/blog) : analyses de pistes séparées de tubes des années 80, source de rang 1-2.
+- *The Perfect Kiss* (New Order) : mu:zines « In and Out of Order » (IM&RW, oct. 1985 : Peter Hook, séquences de Low-Life sur Prophet-5 + Polysequencer) ; Songsterr s408121 (Substance Edit : pistes Sequence 1, Synth bass, Synth strings, Bell) et s3051779 (version live : Sequencer 1, Bass Sequencer 2, Strings), 130 BPM.

@@ -1,0 +1,95 @@
+synth: minilogue-xd
+title: The Perfect Kiss Strings
+category: pad
+tags: [new-wave, "80s", strings, accords]
+confidence: 1
+reference:
+  artist: New Order
+  song: The Perfect Kiss
+  year: 1985
+  part: accords de cordes synthétiques (La mineur, Fa, Sol), par phrases de 4 mesures
+  original_synth: "non documenté (Prophet-5, Voyetra-8 et Emulator dans le studio de l'époque)"
+  original_synth_short: non documenté
+summary: >-
+  Les nappes de cordes qui arrivent par vagues : trois notes tenues qui glissent
+  d'un accord à l'autre (La mineur, Fa, Sol, Mi mineur), avec des rythmes
+  syncopés. Un son de cordes synthétiques des années 80 : deux scies
+  désaccordées, attaque douce, chorus.
+
+params:
+  voice: {mode: poly, tempo: 130}
+  vco1: {wave: saw, octave: 8}
+  vco2: {wave: saw, octave: 8, pitch: 9}
+  mixer: {vco1: 1023, vco2: 900}
+  filter: {cutoff: 600, resonance: 0, keytrack: 50}
+  amp_eg: {a: 280, d: 600, s: 900, r: 520}
+  eg: {a: 250, d: 600, int: 15, target: cutoff}
+  mod_fx: {on: true, type: Ensemble, subtype: Stereo, time: 450, depth: 60}
+  reverb: {on: true, type: Hall, time: 550, depth: 30}
+
+sequence:
+  tempo: 130
+  resolution: 1/8
+  gate: 90
+  steps: >-
+    A4+C5+E5 _ _ A4+C5+F5 _ _ _ _ G4+B4+D5 _ _ G4+B4+E5 _ _ _ _
+
+steps:
+  - "Programme init (201 à 500), *VOICE MODE* POLY, *TEMPO* 130."
+  - "*VCO 1* et *VCO 2* : SAW 8'. *VCO 2* *PITCH* +9 cents (le désaccord des cordes)."
+  - "*MIXER* : *VCO 1* 1023, *VCO 2* 900."
+  - "*FILTER* : *CUTOFF* 600, *RESONANCE* 0, *KEY TRACK* 50 %. *EG* sur CUTOFF : *ATTACK* 250, *DECAY* 600, *EG INT* +15 %."
+  - "*AMP EG* : *ATTACK* 280, *DECAY* 600, *SUSTAIN* 900, *RELEASE* 520."
+  - "*EFFECTS* : MOD FX Ensemble Stereo (60 %), REVERB Hall (30 %)."
+tweaks:
+  - "Trop lent, les accords syncopés traînent : *ATTACK* de l'*AMP EG* vers 180."
+  - "Trop brillant, ça sonne cuivre : *CUTOFF* vers 480."
+  - "Pas assez large : *DEPTH* de l'Ensemble vers 80 %."
+playing:
+  - "Grille = mesures 1 et 2. Puis : Fa (Fa La Do) croche, noire, noire, noire, croche ; Fa, La mineur, Sol (noire, noire, blanche). Le tout deux fois, la 2e une octave plus haut."
+
+analysis:
+  - title: "Les oscillateurs : deux scies qui battent"
+    text: >-
+      Le son des cordes synthétiques vient de *scies* désaccordées : le battement
+      entre les deux imite un pupitre qui ne joue jamais parfaitement à l'unisson.
+      Le synthé exact n'est pas documenté ; à l'époque, le groupe avait des
+      Prophet-5, un Voyetra-8 et un Emulator [1].
+  - title: "Le filtre : un velours sur la scie"
+    text: >-
+      *CUTOFF* au milieu, sans résonance : on garde le corps de la scie mais on
+      enlève le grésillement de l'aigu. L'*EG* ne fait qu'une petite ouverture
+      lente, comme l'archet qui prend la corde.
+  - title: "Les enveloppes : ni piano, ni nappe lente"
+    text: >-
+      *ATTACK* douce mais pas trop : les accords sont syncopés (le deuxième tombe
+      sur la croche avant le temps) [2][3], il faut qu'ils parlent à temps.
+      *SUSTAIN* haut pour les tenues, *RELEASE* pour lier les accords.
+  - title: "L'espace : l'ensemble qui élargit"
+    text: >-
+      L'effet *Ensemble* (un chorus à plusieurs voix) donne l'ampleur des string
+      machines des années 80, la *Hall* les place derrière les séquences. Les
+      accords bougent par une seule note à la fois (Mi vers Fa, Ré vers Mi) [2][3] :
+      c'est cette petite voix qui monte qui fait la mélodie des cordes.
+
+traceability:
+  - "Documenté [1] : matériel du groupe en 1985 (Prophet-5, Voyetra, Emulator) ; aucune source ne dit lequel joue les cordes."
+  - "Transcrit [2][3] : accords et rythme (130 BPM, mesures 44 à 47 et 43 à 46), deux relevés de contributeurs ; le 1er relevé note le 2e accord de façon incohérente, on suit le 2e (La, Do, Fa)."
+  - "Reconstitué : tout le son (scies, filtre, enveloppes, Ensemble) à l'oreille ; grille limitée aux 2 premières mesures (16 pas)."
+
+sources:
+  - title: "In and Out of Order"
+    site: International Musician & Recording World (archive mu:zines)
+    date: octobre 1985
+    url: https://www.muzines.co.uk/articles/in-and-out-of-order/12679
+    note: interview de Peter Hook (matériel du groupe)
+  - title: "Perfect Kiss (Substance Edit), piste Synth strings"
+    site: Songsterr, tablature de contributeur
+    date: juillet 2016
+    url: https://www.songsterr.com/a/wsa/new-order-perfect-kiss-substance-edit-tab-s408121
+    note: mesures 44 à 51
+  - title: "The Perfect Kiss (Live Version), piste Strings"
+    site: Songsterr, tablature de contributeur
+    date: avril 2026
+    url: https://www.songsterr.com/a/wsa/new-order-the-perfect-kiss-live-version-tab-s3051779
+    note: mesures 43 à 50
