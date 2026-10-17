@@ -24,8 +24,8 @@ params:
     sub: 13
   filter:
     mode: lp4
-    cutoff: 10.5
-    eg_amount: 14
+    cutoff: 13.5
+    eg_amount: 12.5
     resonance: 10
     res_bass: true
   fenv: {a: 7, d: 10, s: 8, r: 9}
@@ -41,13 +41,13 @@ steps:
   - Maintenir *PANEL* 1 s (init), puis *ARP* + *PANEL* pour initialiser l'arpégiateur.
   - "*OCTAVE 1* sur 16', *WAVESHAPE 1* à midi (scie). *SUB WAVE* ≈ 10:45 (carré)."
   - "*MIXER* : *OSC 1* à fond, *SUB* ≈ 1:00."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:30, *RESONANCE* ≈ 10:00, *RES BASS* ON, *EG AMOUNT* ≈ 2:00 (+40 %)."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 1:30, *RESONANCE* ≈ 10:00, *RES BASS* ON, *EG AMOUNT* ≈ 12:30 (+10 %)."
   - "Enveloppe filtre : *DECAY* ≈ 10:00, *SUSTAIN* presque nul. Ampli : orgue, *RELEASE* court."
   - "*SETTINGS* : régler l'arpégiateur comme dans le cadre ci-contre."
   - "*DIRECTION* sur PAT, *PLAY*, *HOLD* ; caler *TEMPO* sur le disque."
 tweaks:
-  - "Pas assez de « toc » sur chaque note : *EG AMOUNT* vers 2:30, *DECAY* filtre plus court."
-  - "Trop sombre (le mix d'origine est très brillant) : *CUTOFF* vers 11:30."
+  - "Pas assez de « toc » sur chaque note : *EG AMOUNT* vers 1:00 (+20 %), *DECAY* filtre plus court."
+  - "Trop sombre (le mix d'origine est très brillant) : *CUTOFF* vers 2:30."
   - "Grave qui bave : *SUB* vers 11:00, ou *GATE LENGTH* plus court (PGM 6)."
   - "Rythme deux fois trop lent ou rapide : changer *CLOCK DIV* (PGM 4 ou 7)."
 playing:
@@ -64,7 +64,7 @@ analysis:
       une basse de séquenceur doit rester nette et parfaitement juste.
   - title: "Le filtre : sombre mais vivant"
     text: >-
-      Le 4 pôles (24 dB/oct) coupe franchement : avec *CUTOFF* vers 10:30 il reste
+      Le 4 pôles (24 dB/oct) coupe franchement : avec *CUTOFF* vers 1:30 il reste
       le corps de la note et un peu de grain. C'est l'*EG AMOUNT* qui fait le travail : à chaque note
       il ouvre le filtre puis le referme, d'où le petit « toc » qui donne la pulsation.
       Un peu de *RESONANCE* (10:00) creuse ce coup d'ouverture sans siffler.

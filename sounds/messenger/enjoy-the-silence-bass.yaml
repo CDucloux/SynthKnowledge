@@ -29,8 +29,8 @@ params:
     sub: 11
   filter:
     mode: lp4
-    cutoff: 10
-    eg_amount: 14
+    cutoff: 13
+    eg_amount: 12.5
     resonance: 10.5
     res_bass: true
     kb_tracking: true
@@ -51,11 +51,11 @@ steps:
   - "*PANEL* 1 s (init). *OCTAVE 1* et *2* sur 16', deux scies (*WAVESHAPE* à midi)."
   - "*OSC 2 FREQ* à peine à droite de midi. *SUB WAVE* ≈ 10:30 (carré)."
   - "*MIXER* : *OSC 1* à fond, *OSC 2* ≈ 2:00, *SUB* ≈ 11:00."
-  - "4P LOW PASS, *CUTOFF* ≈ 10:00, *RESONANCE* ≈ 10:30, *RES BASS* ON, *EG AMOUNT* ≈ 2:00 (+40 %), *KB TRACKING* ON."
+  - "4P LOW PASS, *CUTOFF* ≈ 1:00, *RESONANCE* ≈ 10:30, *RES BASS* ON, *EG AMOUNT* ≈ 12:30 (+10 %), *KB TRACKING* ON."
   - "F ENV : *DECAY* ≈ 10:30, *SUSTAIN* ≈ 8:00. A ENV : *DECAY* ≈ 11:30, *SUSTAIN* midi."
   - "*MULTI-TRIG* ON. *GATE LENGTH* (*SETTINGS* 3) sur PGM 10."
 tweaks:
-  - "Trop sourd : *CUTOFF* vers 10:30 ou *EG AMOUNT* vers 2:30."
+  - "Trop sourd : *CUTOFF* vers 1:30 ou *EG AMOUNT* vers 1:00 (+20 %)."
   - "Trop acid : *RESONANCE* vers 9:30, *DECAY* filtre vers 11:00."
   - "Notes collées : *GATE* PGM 8 ; manque de grave : *SUB* vers midi."
 playing:
@@ -71,7 +71,7 @@ analysis:
       l'assise quand la ligne saute à l'octave du dessus.
   - title: "Le filtre : un coup de bec à chaque pas"
     text: >-
-      *CUTOFF* assez bas et *EG AMOUNT* fort : chaque double croche ouvre le
+      *CUTOFF* modéré et *EG AMOUNT* franc : chaque double croche ouvre le
       filtre puis il retombe en 150 ms environ. Une *RESONANCE* modérée ajoute
       la pointe qui fait « tic » sans siffler. *KB TRACKING* garde la même
       brillance sur la note grave et sur l'octave.

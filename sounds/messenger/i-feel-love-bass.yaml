@@ -33,8 +33,8 @@ params:
     osc2: 14
   filter:
     mode: lp4
-    cutoff: 9.5
-    eg_amount: 14.5
+    cutoff: 12.5
+    eg_amount: 13
     resonance: 11
     res_bass: true
     kb_tracking: true
@@ -55,12 +55,12 @@ steps:
   - "Maintenir *PANEL* 1 s (init)."
   - "*OCTAVE 1* sur 16', *OCTAVE 2* sur 32', *WAVESHAPE 1* et *2* à midi (deux scies)."
   - "*OSC 2 FREQ* à peine à droite de midi (léger battement). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 2:00."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:30, *RESONANCE* ≈ 11:00, *RES BASS* ON, *KB TRACKING* ON."
-  - "*EG AMOUNT* ≈ 2:30 (+50 %). Enveloppe filtre : *DECAY* ≈ 10:15, *SUSTAIN* à 0. Enveloppe ampli : *DECAY* ≈ 11:30, *SUSTAIN* à 0."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 12:30, *RESONANCE* ≈ 11:00, *RES BASS* ON, *KB TRACKING* ON."
+  - "*EG AMOUNT* ≈ 1:00 (+20 %). Enveloppe filtre : *DECAY* ≈ 10:15, *SUSTAIN* à 0. Enveloppe ampli : *DECAY* ≈ 11:30, *SUSTAIN* à 0."
   - "*MULTI-TRIG* ON. *LFO 1* : TRI vers CUTOFF, *RATE* ≈ 8:00, *DEPTH* ≈ 12:30 (le filtre respire)."
 tweaks:
-  - "Pas assez de « marteau » : *DECAY* du filtre vers 10:00, *EG AMOUNT* vers 3:00."
-  - "Trop brillant, ça sonne acid : *CUTOFF* vers 9:00, *RESONANCE* vers 10:00."
+  - "Pas assez de « marteau » : *DECAY* du filtre vers 10:00, *EG AMOUNT* vers 1:30 (+30 %)."
+  - "Trop brillant, ça sonne acid : *CUTOFF* vers midi, *RESONANCE* vers 10:00."
   - "Les doubles croches se collent : *GATE* plus court (*SETTINGS* 3, PGM 6)."
 playing:
   - "Saisie : *DIRECTION* sur SEQ, *RECORD*, les 64 notes, *RECORD*, *PLAY*. Pour l'intro (Do seul), une séquence des 16 premiers pas."
@@ -76,7 +76,7 @@ analysis:
       plein.
   - title: "Le filtre : fermé, frappé à chaque note"
     text: >-
-      *CUTOFF* bas et *EG AMOUNT* fort : chaque note ouvre le filtre d'un coup,
+      *CUTOFF* modéré et *EG AMOUNT* franc : chaque note ouvre le filtre d'un coup,
       puis il se referme en 200 ms environ [4][5]. C'est le « marteau de géant sur
       un mur » décrit par Pete Bellotte [1]. *RESONANCE* modérée pour une
       pointe de voyelle, sans siffler ; *KB TRACKING* garde la même couleur quand

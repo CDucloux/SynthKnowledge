@@ -27,8 +27,8 @@ params:
   filter:
     mode: lp4
     fb_ext: 9.5
-    cutoff: 11
-    eg_amount: 14.5
+    cutoff: 14
+    eg_amount: 13
     resonance: 11
     res_bass: true
     kb_tracking: true
@@ -49,14 +49,14 @@ settings:
 steps:
   - "Maintenir *PANEL* 1 s (init). *OCTAVE 1* sur 16', *WAVESHAPE 1* à midi (scie)."
   - "*SUB WAVE* ≈ 10:30 (carré). *MIXER* : *OSC 1* à fond, *SUB* à midi."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 11:00, *RESONANCE* ≈ 11:00, *RES BASS* ON, *KB TRACKING* ON."
-  - "*EG AMOUNT* ≈ 2:30. F ENV : *DECAY* ≈ 10:30, *SUSTAIN* ≈ 8:00."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 2:00, *RESONANCE* ≈ 11:00, *RES BASS* ON, *KB TRACKING* ON."
+  - "*EG AMOUNT* ≈ 1:00 (+20 %). F ENV : *DECAY* ≈ 10:30, *SUSTAIN* ≈ 8:00."
   - "A ENV : *DECAY* midi, *SUSTAIN* ≈ 2:00, *RELEASE* court. *MULTI-TRIG* ON."
   - "*FB / EXT IN* ≈ 9:30 : un peu de grain dans le filtre."
   - "*SETTINGS* 9 (CLOCK DIV) sur 1/8, *TEMPO* 95 : un pas = une croche."
 tweaks:
   - "Trop sage, pas assez indus : *FB / EXT IN* vers 10:30."
-  - "Pas assez élastique : *DECAY* du filtre vers 10:00, *EG AMOUNT* vers 3:00."
+  - "Pas assez élastique : *DECAY* du filtre vers 10:00, *EG AMOUNT* vers 1:30 (+30 %)."
   - "Le Do grave manque de poids : *SUB* vers 1:00 ; ça siffle : *RESONANCE* vers 10:00."
 playing:
   - "Saisie : *DIRECTION* sur SEQ, *RECORD*, les 16 pas (*ADV* = silence), *RECORD*, *PLAY*."
@@ -71,7 +71,7 @@ analysis:
       riff remonte vers le Do.
   - title: "Le filtre : le coup de bec élastique"
     text: >-
-      *CUTOFF* bas et *EG AMOUNT* fort : à chaque croche le passe-bas
+      *CUTOFF* modéré et *EG AMOUNT* franc : à chaque croche le passe-bas
       s'ouvre puis se referme vite, d'où la note qui « rebondit ». La
       *RESONANCE* modérée souligne ce mouvement sans siffler ; *RES BASS* ON
       lui garde son grave. *FB / EXT IN*

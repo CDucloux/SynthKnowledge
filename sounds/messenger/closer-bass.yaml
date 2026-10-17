@@ -29,8 +29,8 @@ params:
     osc1: 17
   filter:
     mode: lp4
-    cutoff: 12
-    eg_amount: 13.25
+    cutoff: 15
+    eg_amount: 12.5
     resonance: 14
     res_bass: true
     kb_tracking: true
@@ -41,8 +41,8 @@ steps:
   - "Maintenir *PANEL* 1 s (init). Caler *TEMPO* sur le morceau : le LFO s'y synchronise."
   - "*OCTAVE 1* sur 16', *WAVESHAPE 1* ≈ 1:15 (carré). *OSC 1* seul dans le *MIXER*."
   - "*LFO 1* : TRI vers OSC 1 WAVE, *DEPTH* ≈ 1:45, *SYNC* ON, *RATE* sur la croche (à l'oreille)."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* à midi, *RESONANCE* ≈ 2:00, *KB TRACKING* ON, *RES BASS* ON."
-  - "*EG AMOUNT* ≈ 1:15 ; enveloppe filtre : *ATTACK* ≈ 9:00 (≈ 100 ms), *SUSTAIN* à fond."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* à 3:00, *RESONANCE* ≈ 2:00, *KB TRACKING* ON, *RES BASS* ON."
+  - "*EG AMOUNT* ≈ 12:30 (+10 %) ; enveloppe filtre : *ATTACK* ≈ 9:00 (≈ 100 ms), *SUSTAIN* à fond."
   - "Enveloppe ampli : orgue (attaque nulle, *SUSTAIN* à fond), *RELEASE* très court ≈ 8:00."
 tweaks:
   - "Pas assez « gorge » : *RESONANCE* vers 2:30 ; si ça siffle, revenir à 1:30."

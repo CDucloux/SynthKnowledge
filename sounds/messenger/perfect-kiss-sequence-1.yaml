@@ -28,8 +28,8 @@ params:
     osc2: 17
   filter:
     mode: lp2
-    cutoff: 11.5
-    eg_amount: 14
+    cutoff: 14.5
+    eg_amount: 12.5
     resonance: 10.5
     kb_tracking: true
   fenv: {a: 7, d: 9.75, s: 7, r: 9}
@@ -50,7 +50,7 @@ steps:
   - "*OCTAVE 1* et *2* sur 8'. *WAVESHAPE 1* à midi (scie), *WAVESHAPE 2* sur 11:00 (triangle)."
   - "*MOD DESTINATION* sur 1+2 FM, *MOD AMOUNT* ≈ 1:45 : le reflet métallique."
   - "*MIXER* : *OSC 2* à fond, *OSC 1* ≈ 1:00."
-  - "*FILTER* : 2P LOW PASS, *CUTOFF* ≈ 11:30, *RESONANCE* ≈ 10:30, *KB TRACKING* ON, *EG AMOUNT* ≈ 2:00."
+  - "*FILTER* : 2P LOW PASS, *CUTOFF* ≈ 2:30, *RESONANCE* ≈ 10:30, *KB TRACKING* ON, *EG AMOUNT* ≈ 12:30 (+10 %)."
   - "Enveloppes sans sustain : filtre *DECAY* ≈ 9:45, ampli *DECAY* ≈ 10:30. *MULTI-TRIG* ON."
 tweaks:
   - "Pas assez métallique : *MOD AMOUNT* vers 2:30 ; trop « cloche » : 1:00."

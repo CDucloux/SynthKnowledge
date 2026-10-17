@@ -26,8 +26,8 @@ params:
     osc2: 13
   filter:
     mode: lp4
-    cutoff: 9.5
-    eg_amount: 14.5
+    cutoff: 12.5
+    eg_amount: 13
     resonance: 12
     res_bass: true
     kb_tracking: true
@@ -52,12 +52,12 @@ steps:
   - "Maintenir *PANEL* 1 s (init)."
   - "*OCTAVE 1* sur 16', *WAVESHAPE 1* à midi (scie). *OCTAVE 2* sur 32', *WAVESHAPE 2* ≈ 1:15 (carré)."
   - "*MIXER* : *OSC 1* à fond, *OSC 2* ≈ 1:00 pour asseoir le grave."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:30, *RESONANCE* midi, *RES BASS* ON, *KB TRACKING* ON."
-  - "*EG AMOUNT* ≈ 2:30 (+50 %). Enveloppe filtre : *DECAY* ≈ 10:00, *SUSTAIN* à 0, *RELEASE* court."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 12:30, *RESONANCE* midi, *RES BASS* ON, *KB TRACKING* ON."
+  - "*EG AMOUNT* ≈ 1:00 (+20 %). Enveloppe filtre : *DECAY* ≈ 10:00, *SUSTAIN* à 0, *RELEASE* court."
   - "Enveloppe ampli : *DECAY* ≈ 11:00, *SUSTAIN* à 0 : chaque note s'éteint seule."
   - "*MULTI-TRIG* ON (chaque note relance les enveloppes) et *F ENV VEL* ON."
 tweaks:
-  - "Trop mou, pas assez de claquement : *DECAY* du filtre vers 9:30, *EG AMOUNT* vers 3:00."
+  - "Trop mou, pas assez de claquement : *DECAY* du filtre vers 9:30, *EG AMOUNT* vers 1:30 (+30 %)."
   - "Trop « acid », ça siffle : *RESONANCE* vers 10:30."
   - "Manque de poids : *OSC 2* à fond ; trop grave ou trop aigu : *OCTAVE 1* et *2* d'un cran."
 playing:
@@ -72,7 +72,7 @@ analysis:
       remplit le grave sans brouiller l'attaque.
   - title: "Le filtre : fermé, il s'ouvre à chaque note"
     text: >-
-      *CUTOFF* bas : au repos, le son est sourd. L'*EG AMOUNT* fort ouvre le filtre
+      *CUTOFF* modéré : au repos, le son est rond. L'*EG AMOUNT* ouvre le filtre
       d'un coup puis il se referme en 100 à 200 ms : c'est le « dut » de Cerrone [1].
       Une *RESONANCE* moyenne accentue la fréquence de coupure au passage^[La
       résonance renforce les harmoniques proches de la coupure : quand celle-ci

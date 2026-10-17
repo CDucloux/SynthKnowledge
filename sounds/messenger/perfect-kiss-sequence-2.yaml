@@ -28,8 +28,8 @@ params:
     osc2: 14
   filter:
     mode: lp4
-    cutoff: 10
-    eg_amount: 14
+    cutoff: 13
+    eg_amount: 12.5
     resonance: 10
     res_bass: true
     kb_tracking: true
@@ -50,11 +50,11 @@ steps:
   - "Maintenir *PANEL* 1 s (init)."
   - "*OCTAVE 1* et *2* sur 16'. *WAVESHAPE 1* à midi (scie), *WAVESHAPE 2* ≈ 1:15 (carré)."
   - "*OSC 2 FREQ* à peine à droite de midi (léger battement). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 2:00."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:00, *RESONANCE* ≈ 10:00, *RES BASS* ON, *KB TRACKING* ON, *EG AMOUNT* 2:00 (+40 %)."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 1:00, *RESONANCE* ≈ 10:00, *RES BASS* ON, *KB TRACKING* ON, *EG AMOUNT* 12:30 (+10 %)."
   - "Enveloppes sans sustain : filtre *DECAY* ≈ 10:00, ampli *DECAY* ≈ 10:45. *MULTI-TRIG* ON."
 tweaks:
-  - "Les octaves aiguës percent trop : *KB TRACKING* OFF ou *CUTOFF* vers 9:30."
-  - "Pas assez de rebond : *DECAY* du filtre vers 9:30, *EG AMOUNT* vers 2:30."
+  - "Les octaves aiguës percent trop : *KB TRACKING* OFF ou *CUTOFF* vers 12:30."
+  - "Pas assez de rebond : *DECAY* du filtre vers 9:30, *EG AMOUNT* vers 1:00 (+20 %)."
   - "Trop grave ou trop aigu : *OCTAVE 1* et *2* d'un cran."
 playing:
   - "Saisie : *DIRECTION* sur SEQ, *RECORD*, les 64 pas, *RECORD*, *PLAY*. Ré3 et Mi3 sont sous le clavier : *KB OCTAVE* −1 pour les saisir."
@@ -68,7 +68,7 @@ analysis:
       va découper à chaque note.
   - title: "Le filtre : fermé, il rebondit"
     text: >-
-      *CUTOFF* bas, *EG AMOUNT* fort et *DECAY* court : chaque double croche
+      *CUTOFF* modéré, *EG AMOUNT* franc et *DECAY* court : chaque double croche
       claque puis s'arrondit. Le *KB TRACKING* garde la même brillance entre la
       note basse et son octave, sinon la note du haut paraîtrait plus sourde.
   - title: "Les enveloppes : des impulsions"

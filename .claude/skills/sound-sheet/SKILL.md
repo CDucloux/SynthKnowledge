@@ -55,7 +55,7 @@ Fichier `sounds/<machine>/<slug>.yaml` (slug en kebab-case ASCII, ex. `closer-ba
 Règles :
 - Ne mettre dans `params` **que les contrôles qui diffèrent de la valeur neutre** (ils s'affichent en noir, le reste en gris). Mais si un contrôle est important pour le son même à sa valeur neutre (ex. `res_bass: false` voulu), l'écrire quand même pour qu'il ressorte.
 - Messenger : positions en heures (7-17, décimales 0.25 / 0.5). minilogue XD : valeurs écran du manuel (0-1023, cents, %).
-- **Basse sur le Messenger** : suivre `knowledge/machines/messenger.md`, « Régler le filtre d'une basse » : CUTOFF pour le corps (≈ 10:30-12:30, pas 9:00 par défaut), EG AMOUNT pour l'attaque (+20 à +50 %, écrire le % dans `steps`), RES BASS selon le critère (basse + RESONANCE ≥ 9:30 + passe-bas ; OFF pour acid, lead, arpège).
+- **Basse sur le Messenger** : suivre `knowledge/machines/messenger.md`, « Régler le filtre d'une basse » : CUTOFF pour le corps (≈ 1:00-2:00, calé à l'essai ; jamais 9:00-11:00 par défaut), EG AMOUNT pour l'attaque (+10 à +30 %, écrire le % dans `steps`), RES BASS selon le critère (basse + RESONANCE ≥ 9:30 + passe-bas ; OFF pour acid, lead, arpège).
 - Textes en français, noms de contrôles en ANGLAIS et en gras via `*CONTROL*` (markup Typst).
 - Dans les textes : pas de `#`, `$`, `@`, `<`, `_` nus (markup Typst) ; mettre entre guillemets YAML toute chaîne contenant `:`.
 - `steps` : 5-7 étapes, du patch init au son final, dans l'ordre du panneau. `tweaks` : 3-4 ajustements « symptôme → geste ». `playing` : 2-3 conseils.

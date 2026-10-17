@@ -26,8 +26,8 @@ params:
     osc2: 14
   filter:
     mode: lp4
-    cutoff: 11.5
-    eg_amount: 13.5
+    cutoff: 14.5
+    eg_amount: 12.5
     resonance: 10.5
     kb_tracking: true
   fenv: {a: 7.5, d: 12, s: 12, r: 10}
@@ -46,12 +46,12 @@ steps:
   - "Maintenir *PANEL* 1 s (init)."
   - "*OCTAVE 1* et *2* sur 8'. *WAVESHAPE 1* à midi (scie), *WAVESHAPE 2* ≈ 1:15 (carré)."
   - "*OSC 2 FREQ* à peine à droite de midi (quelques cents) ; *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 2:00."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 11:30, *RESONANCE* ≈ 10:30, *KB TRACKING* ON, *EG AMOUNT* ≈ 1:30."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 2:30, *RESONANCE* ≈ 10:30, *KB TRACKING* ON, *EG AMOUNT* ≈ 12:30 (+10 %)."
   - "Enveloppe filtre : *ATTACK* ≈ 7:30, *DECAY* midi, *SUSTAIN* midi. Ampli : *SUSTAIN* à fond, *RELEASE* ≈ 10:30."
   - "*GLIDE* ≈ 9:00, *MULTI-TRIG* ON."
   - "*LFO 2 RATE* ≈ 1:00 sur PITCH, molette à 15 % pour un vibrato léger."
 tweaks:
-  - "Trop sombre, la mélodie ne perce pas : *CUTOFF* vers 12:30."
+  - "Trop sombre, la mélodie ne perce pas : *CUTOFF* vers 3:30."
   - "Pas assez étrange, trop sage : *RESONANCE* vers midi, *OSC 2 FREQ* un peu plus loin."
   - "Le glide se voit trop : *GLIDE* vers 8:00 ; on n'en veut qu'une trace."
   - "Vibrato trop marqué : molette à 0, le remettre seulement sur les notes longues."

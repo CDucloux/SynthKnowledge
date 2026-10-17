@@ -30,8 +30,8 @@ params:
     sub: 11
   filter:
     mode: lp4
-    cutoff: 10.5
-    eg_amount: 14.5
+    cutoff: 13.5
+    eg_amount: 13
     resonance: 9
     kb_tracking: true
   fenv: {a: 7, d: 10, s: 7, r: 9}
@@ -53,12 +53,12 @@ steps:
   - "*OCTAVE 1* et *2* sur 16', *WAVESHAPE 1* et *2* sur 11:00 (triangles)."
   - "*MOD DESTINATION* sur 1+2 FM, *MOD AMOUNT* ≈ 1:30 : le timbre « électrique » de la FM."
   - "*MIXER* : *OSC 2* à fond, *OSC 1* ≈ 11:00, *SUB OSC* ≈ 11:00 pour le poids."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:30, *RESONANCE* ≈ 9:00, *KB TRACKING* ON, *EG AMOUNT* ≈ 2:30."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 1:30, *RESONANCE* ≈ 9:00, *KB TRACKING* ON, *EG AMOUNT* ≈ 1:00 (+20 %)."
   - "Enveloppe filtre : *DECAY* ≈ 10:00, *SUSTAIN* à 0. Enveloppe ampli : *DECAY* ≈ 11:30, *SUSTAIN* ≈ 10:00, *RELEASE* court."
   - "*MULTI-TRIG* ON. *SETTINGS* 9 (CLOCK DIV) sur 1/8 : le séquenceur avance en croches à 169 BPM."
 tweaks:
-  - "Pas assez de « clac » à l'attaque : *MOD AMOUNT* vers 2:00 ou *EG AMOUNT* vers 3:00."
-  - "Trop métallique, ça sonne cloche : *MOD AMOUNT* vers 1:00, *CUTOFF* vers 10:00."
+  - "Pas assez de « clac » à l'attaque : *MOD AMOUNT* vers 2:00 ou *EG AMOUNT* vers 1:30 (+30 %)."
+  - "Trop métallique, ça sonne cloche : *MOD AMOUNT* vers 1:00, *CUTOFF* vers 1:00."
   - "Trop grave ou trop aigu : *OCTAVE 1* et *2* d'un cran (8' ou 32')."
 playing:
   - "Saisie : *DIRECTION* sur SEQ, *RECORD*, les 32 pas (*ADV* = silence), *RECORD*, *PLAY*."
@@ -75,7 +75,7 @@ analysis:
   - title: "Le filtre : l'éclat qui ne dure pas"
     text: >-
       Sur un DX7, la brillance de l'attaque vient de l'enveloppe du modulateur,
-      qui retombe vite. Ici, c'est le filtre qui fait ce travail : *CUTOFF* bas,
+      qui retombe vite. Ici, c'est le filtre qui fait ce travail : *CUTOFF* modéré,
       *EG AMOUNT* fort et *DECAY* court. La note claque puis devient ronde, ce
       que mu:zines entend aussi sur les pistes : un son un peu adouci, sans
       aigus agressifs [2].

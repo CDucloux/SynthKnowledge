@@ -29,8 +29,8 @@ params:
   filter:
     mode: lp4
     fb_ext: 15
-    cutoff: 11
-    eg_amount: 13
+    cutoff: 14
+    eg_amount: 12.5
     resonance: 9
     res_bass: true
   fenv: {a: 7, d: 12, s: 13, r: 9}
@@ -40,11 +40,11 @@ steps:
   - Maintenir *PANEL* 1 s (init).
   - "*OCTAVE 1* et *2* sur 16', scies (*WAVESHAPE* à midi). *OSC 2 FREQ* à peine à droite de midi."
   - "*SUB WAVE* ≈ 10:45 (carré). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 3:00, *SUB* à midi."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 11:00, *RESONANCE* ≈ 9:00, *RES BASS* ON."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 2:00, *RESONANCE* ≈ 9:00, *RES BASS* ON."
   - "*FB / EXT IN* ≈ 3:00 : c'est la distorsion du son."
-  - "*EG AMOUNT* ≈ 1:00 ; enveloppe filtre : *DECAY* à midi, *SUSTAIN* ≈ 1:00. Ampli : orgue."
+  - "*EG AMOUNT* ≈ 12:30 (+10 %) ; enveloppe filtre : *DECAY* à midi, *SUSTAIN* ≈ 1:00. Ampli : orgue."
 tweaks:
-  - "Pas assez « guitare » : *FB / EXT IN* à fond et *CUTOFF* vers midi."
+  - "Pas assez « guitare » : *FB / EXT IN* à fond et *CUTOFF* vers 3:00."
   - "Le grave disparaît sous la saturation : *SUB* vers 1:00."
   - "Trop sale, notes brouillées : *OSC 2* plus bas ou *OSC 2 FREQ* à midi."
   - "Pour le côté « mouillé » du refrain : passer dans une pédale de distorsion ou un ampli."

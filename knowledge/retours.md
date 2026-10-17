@@ -33,3 +33,8 @@ Format :
 - Retour : « repasse les 9 fiches avec la méthode » (suite au retour sur A Real Hero et Into the Void)
 - Correction : CUTOFF remonté (Thriller 9:00 → 10:30 et EG +40 → +30 %, Veridis Quo basse 9:00 → 10:30, Little Dark Age 8:30 → 10:00, Smalltown Boy 9:30 → 10:30, Stylo 9:30 → 10:30) ; RES BASS ON selon le critère (Veridis Quo basse, Smalltown Boy, I Feel Love, Supernature séquence, Enjoy the Silence, Perfect Kiss 2) ; CUTOFF bas gardé pour I Feel Love et Supernature (le « marteau » et le « dut » sont voulus)
 - Leçon : appliquée d'office aux nouvelles fiches via `knowledge/machines/messenger.md` ; ces réglages restent à valider à l'essai.
+
+## 2026-10-17 : toutes les fiches Messenger, calibration du CUTOFF
+- Retour : « franchement le cutoff est vraiment en général trop bas pour le 4P LOW PASS, ou alors il faut compenser par l'EG très haut » ; le corps sonne juste vers 1:00-2:00
+- Correction : sur les 20 fiches Messenger, CUTOFF +3 h (plafonné à MAX) et EG AMOUNT −1 h 30 (au moins +10 %) pour garder à peu près le même pic ; textes recalés
+- Leçon : premier point de calibration réel du Messenger. Le corps d'une basse en 4P LOW PASS se règle vers 1:00-2:00, pas 9:00-11:00 ; l'EG AMOUNT reste modéré (+10 à +30 %). Mis à jour dans `machines/messenger.md`, `archetypes.md` et la skill sound-sheet.

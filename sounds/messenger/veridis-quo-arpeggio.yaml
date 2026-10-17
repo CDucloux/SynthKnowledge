@@ -22,8 +22,8 @@ params:
     wave1: 12
   filter:
     mode: lp4
-    cutoff: 9.5
-    eg_amount: 14
+    cutoff: 12.5
+    eg_amount: 12.5
     resonance: 14.5
     kb_tracking: true
   fenv: {a: 7, d: 9.75, s: 7, r: 9}
@@ -42,15 +42,15 @@ sequence:
 steps:
   - "Maintenir *PANEL* 1 s (init)."
   - "*OCTAVE 1* sur 16', *WAVESHAPE 1* à midi (scie). *OSC 2* et *SUB* coupés."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:30, *RESONANCE* ≈ 2:30, *RES BASS* OFF, *KB TRACKING* ON."
-  - "*EG AMOUNT* ≈ 2:00. Enveloppe filtre : *DECAY* ≈ 9:45, *SUSTAIN* à 0."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 12:30, *RESONANCE* ≈ 2:30, *RES BASS* OFF, *KB TRACKING* ON."
+  - "*EG AMOUNT* ≈ 12:30 (+10 %). Enveloppe filtre : *DECAY* ≈ 9:45, *SUSTAIN* à 0."
   - "Enveloppe ampli : *DECAY* ≈ 10:30, *SUSTAIN* à 0, *RELEASE* ≈ 9:00. *MULTI-TRIG* ON."
 tweaks:
   - "Trop sifflant : *RESONANCE* vers 1:30."
   - "Pas assez percutant : *DECAY* des deux enveloppes vers 9:30."
   - "Trop aigu : *OCTAVE 1* sur 32'."
 playing:
-  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, les 64 notes, *RECORD*, *PLAY*. Puis tourner *CUTOFF* lentement de 9:00 à 12:00 et retour, sur plusieurs mesures [1]."
+  - "Saisie : *DIRECTION* sur SEQ, *RECORD*, les 64 notes, *RECORD*, *PLAY*. Puis tourner *CUTOFF* lentement de midi à 3:00 et retour, sur plusieurs mesures [1]."
 
 analysis:
   - title: "L'oscillateur : une scie seule"
@@ -61,7 +61,7 @@ analysis:
       Juno-106, un Minimoog, des Prophet et un Super Jupiter, entre autres [1].
   - title: "Le filtre : la résonance acide"
     text: >-
-      *RESONANCE* haute et *CUTOFF* bas : à chaque note, l'enveloppe fait
+      *RESONANCE* haute et *CUTOFF* modéré : à chaque note, l'enveloppe fait
       claquer une pointe de résonance, le côté « acid » relevé par Reverb
       Machine [1]. *RES BASS* coupé pour garder le ladder fin et nasal ; le
       *KB TRACKING* garde le même timbre sur les notes à l'octave.

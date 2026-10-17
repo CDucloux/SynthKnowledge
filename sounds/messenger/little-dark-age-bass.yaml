@@ -12,7 +12,7 @@ reference:
   original_synth: "probablement le preset « Fat Line Bass » du Korg Polysix (selon Reverb Machine)"
 summary: >-
   Basse ronde et pincée : une scie doublée d'un carré une octave plus bas, filtre
-  4 pôles très fermé que l'enveloppe ouvre puis laisse à mi-hauteur. Jouée legato :
+  4 pôles assez fermé que l'enveloppe ouvre puis laisse à mi-hauteur. Jouée legato :
   les notes liées s'enchaînent sans relancer l'enveloppe.
 
 params:
@@ -29,8 +29,8 @@ params:
     sub: 14
   filter:
     mode: lp4
-    cutoff: 10
-    eg_amount: 14.5
+    cutoff: 13
+    eg_amount: 13
     resonance: 9.5
     res_bass: true
   fenv: {a: 7, d: 13, s: 12, r: 9}
@@ -42,12 +42,12 @@ steps:
   - Maintenir *PANEL* 1 s (init).
   - "*OCTAVE 1* et *2* sur 16', scies (*WAVESHAPE* à midi). *OSC 2 FREQ* à peine à droite de midi."
   - "*SUB WAVE* ≈ 10:45 (carré, une octave sous *OSC 1*). *MIXER* : *OSC 1* à fond, *OSC 2* et *SUB* ≈ 2:00."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:00, *RESONANCE* ≈ 9:30, *RES BASS* ON."
-  - "*EG AMOUNT* ≈ 2:30 (+50 %) ; enveloppe filtre : *DECAY* ≈ 1:00, *SUSTAIN* à midi (50 %)."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 1:00, *RESONANCE* ≈ 9:30, *RES BASS* ON."
+  - "*EG AMOUNT* ≈ 1:00 (+20 %) ; enveloppe filtre : *DECAY* ≈ 1:00, *SUSTAIN* à midi (50 %)."
   - "Enveloppe ampli : orgue, *RELEASE* court ≈ 9:00. *MULTI-TRIG* OFF (legato)."
 tweaks:
-  - "Pas assez pincé : *DECAY* filtre vers 12:00 et *EG AMOUNT* vers 3:00."
-  - "Trop brillant ou nasillard : *CUTOFF* vers 9:30, *SUSTAIN* filtre vers 11:00."
+  - "Pas assez pincé : *DECAY* filtre vers 12:00 et *EG AMOUNT* vers 1:30 (+30 %)."
+  - "Trop brillant ou nasillard : *CUTOFF* vers 12:30, *SUSTAIN* filtre vers 11:00."
   - "Pas assez large (l'original est en unisson stéréo) : *OSC 2 FREQ* un peu plus loin de midi."
   - "Chaque note doit claquer, même liée : *MULTI-TRIG* ON."
 playing:
@@ -61,11 +61,11 @@ analysis:
       chacun en unisson désaccordé. Sur le Messenger, le *SUB OSC* carré joue ce rôle
       d'octave inférieure et *OSC 2* légèrement désaccordé recrée l'épaisseur de
       l'unisson : la scie donne le mordant, le carré grave le poids.
-  - title: "Le filtre : façon Moog, très fermé"
+  - title: "Le filtre : façon Moog, assez fermé"
     text: >-
       La recréation [1] utilise un passe-bas de type Moog 24 dB, cutoff très bas (≈ 50 Hz),
       résonance 26 % : le ladder 4 pôles du Messenger est exactement de cette
-      famille. Sur le Messenger on le règle un peu plus haut (10:00) pour garder du corps ; c'est l'enveloppe qui
+      famille. Sur le Messenger on le règle plus haut (1:00) pour garder du corps ; c'est l'enveloppe qui
       fait passer les harmoniques. *RES BASS* garde le bas malgré la résonance.
   - title: "Les enveloppes : le pincé qui reste à mi-hauteur"
     text: >-

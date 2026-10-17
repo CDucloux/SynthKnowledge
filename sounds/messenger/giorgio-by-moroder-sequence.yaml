@@ -33,8 +33,8 @@ params:
     osc2: 15
   filter:
     mode: lp4
-    cutoff: 10.5
-    eg_amount: 14
+    cutoff: 13.5
+    eg_amount: 12.5
     resonance: 10
     kb_tracking: true
   fenv: {a: 7, d: 10.5, s: 8, r: 10}
@@ -55,13 +55,13 @@ steps:
   - "Maintenir *PANEL* 1 s (init)."
   - "*OCTAVE 1* et *OCTAVE 2* sur 8', *WAVESHAPE 1* et *2* à midi (deux scies)."
   - "*OSC 2 FREQ* ≈ 12:15 (léger battement). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 3:00."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:30, *RESONANCE* ≈ 10:00, *KB TRACKING* ON."
-  - "*EG AMOUNT* ≈ 2:00. Enveloppe filtre : *DECAY* ≈ 10:30, *SUSTAIN* ≈ 8:00."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 1:30, *RESONANCE* ≈ 10:00, *KB TRACKING* ON."
+  - "*EG AMOUNT* ≈ 12:30 (+10 %). Enveloppe filtre : *DECAY* ≈ 10:30, *SUSTAIN* ≈ 8:00."
   - "Enveloppe ampli : *DECAY* midi, *SUSTAIN* ≈ 9:00, *RELEASE* ≈ 10:30. *MULTI-TRIG* ON."
   - "*LFO 1* : TRI vers CUTOFF, *RATE* ≈ 9:00, *DEPTH* ≈ 12:30 (le filtre respire)."
 tweaks:
-  - "Trop sourd, les notes aiguës se perdent : *CUTOFF* vers 11:30."
-  - "Pas assez pincé : *DECAY* du filtre vers 10:00, *EG AMOUNT* vers 2:30."
+  - "Trop sourd, les notes aiguës se perdent : *CUTOFF* vers 2:30."
+  - "Pas assez pincé : *DECAY* du filtre vers 10:00, *EG AMOUNT* vers 1:00 (+20 %)."
   - "Trop grave ou trop aigu : *OCTAVE 1* et *2* d'un cran (16' ou 4')."
 playing:
   - "Saisie : *DIRECTION* sur SEQ, *RECORD*, les 32 notes, *RECORD*, *PLAY*. Tenir Do5 puis Sol4 (grille) pour passer de La mineur à Mi mineur."

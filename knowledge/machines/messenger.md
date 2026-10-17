@@ -48,12 +48,12 @@ Le modèle à garder en tête :
 - **4P = 24 dB/oct** : une octave au-dessus de la coupure, un harmonique est réduit d'environ 16 fois en amplitude. **2P = 12 dB/oct**, « un peu plus brillant » (manuel) : plus de corps à réglage égal.
 
 Méthode (départs, à ajuster à l'oreille) :
-1. EG AMOUNT à midi. Tenir une note grave et régler le CUTOFF pour le **corps** : ≈ 10:30 (basse ronde) à 12:00-12:30 (basse qui grogne). Pas en dessous de 10:00 sauf son volontairement sourd.
-2. EG AMOUNT **+20 à +50 %** (1:00 à 2:30) pour le claquement. Plus le CUTOFF est bas, plus il en faut ; au-delà de +60 % on entre dans le « plop » acid.
+1. EG AMOUNT à midi. Tenir une note grave et régler le CUTOFF pour le **corps** : **≈ 1:00 à 2:00** (calé à l'essai par l'utilisateur, 2026-10-17 : les positions 9:00-11:00 sonnaient éteintes). Pas en dessous de midi sauf son volontairement sourd ou « plop ».
+2. EG AMOUNT **+10 à +30 %** (12:30 à 1:30) pour le claquement : avec un CUTOFF déjà ouvert, il en faut peu. Au-delà de +50 % on entre dans le « plop » acid.
 3. DECAY du filtre : 9:30-10:30 pour pincé, 11:00-12:00 pour une note qui « parle ».
 4. SUSTAIN du filtre 7:00-9:00 : un peu d'ouverture tenue si le corps manque encore.
 5. RES BASS selon le critère ci-dessous.
-Exception : basse « plop » ou acid voulue (303, Moog funk très pincé) : CUTOFF 9:00-10:00 et EG +60 à +100 % restent valables.
+Exception : basse « plop » ou acid voulue (303, Moog funk très pincé) : CUTOFF vers midi et EG +40 à +80 %. Le tutoriel du manuel (CUTOFF 9:00, EG 3:00) est un réglage de démonstration, trop fermé pour une basse de morceau.
 
 ### Critère RES BASS
 

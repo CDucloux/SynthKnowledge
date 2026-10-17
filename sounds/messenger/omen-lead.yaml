@@ -28,7 +28,7 @@ params:
   filter:
     mode: lp4
     fb_ext: 15.5
-    cutoff: 15.5
+    cutoff: 17
     resonance: 8
     kb_tracking: true
   aenv: {a: 7, d: 10.5, s: 9, r: 8}
@@ -43,7 +43,7 @@ steps:
   - "Maintenir *PANEL* 1 s (init). *KB OCTAVE* +1 : le hook vit dans l'aigu."
   - "*OCTAVE 1* et *2* sur 8', *WAVESHAPE 1* et *2* à midi (scies). *OSC 2 FREQ* à peine à droite de midi."
   - "*MIXER* : *OSC 1* à fond, *OSC 2* ≈ 4:00, *NOISE* ≈ 10:00."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 3:30, *KB TRACKING* ON. *FB / EXT IN* ≈ 3:30 : la saturation."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* à fond, *KB TRACKING* ON. *FB / EXT IN* ≈ 3:30 : la saturation."
   - "Enveloppe ampli : *ATTACK* nulle, *DECAY* ≈ 10:30, *SUSTAIN* ≈ 9:00, *RELEASE* très court."
   - "*GLIDE* ≈ 9:30 (≈ 70 ms), puis *SETTINGS* → *CONFIG* page 1, PGM 3 → PGM 1 (*Legato Glide*)."
 tweaks:

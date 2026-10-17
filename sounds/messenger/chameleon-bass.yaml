@@ -27,8 +27,8 @@ params:
   filter:
     fb_ext: 10.5
     mode: lp2
-    cutoff: 9.5
-    eg_amount: 14.5
+    cutoff: 12.5
+    eg_amount: 13
     resonance: 13.5
     res_bass: false
   fenv: {a: 7.25, d: 10.5, s: 7, r: 8.5}
@@ -41,8 +41,8 @@ steps:
   - Maintenir *PANEL* 1 s (init).
   - "*OCTAVE 1* et *OCTAVE 2* sur 16', *WAVESHAPE 1* et *2* à midi (scies). *OSC 2 FREQ* à peine à droite de midi (léger battement)."
   - "*MIXER* : *OSC 1* à fond, *OSC 2* ≈ 3:00. *FB / EXT IN* ≈ 10:30 pour le grain."
-  - "*FILTER* : 2P LOW PASS, *CUTOFF* ≈ 9:30, *RESONANCE* ≈ 1:30, *RES BASS* OFF."
-  - "*EG AMOUNT* ≈ 2:30 ; enveloppe filtre : *ATTACK* presque à zéro, *DECAY* ≈ 10:30, *SUSTAIN* à zéro."
+  - "*FILTER* : 2P LOW PASS, *CUTOFF* ≈ 12:30, *RESONANCE* ≈ 1:30, *RES BASS* OFF."
+  - "*EG AMOUNT* ≈ 1:00 (+20 %) ; enveloppe filtre : *ATTACK* presque à zéro, *DECAY* ≈ 10:30, *SUSTAIN* à zéro."
   - "Enveloppe ampli : orgue (*SUSTAIN* à fond), *RELEASE* court ≈ 8:30."
   - "*MULTI-TRIG* ON (chaque note relance les enveloppes, comme l'Odyssey) et *F ENV VEL* ON."
 tweaks:
