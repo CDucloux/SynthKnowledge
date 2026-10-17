@@ -43,7 +43,7 @@ tests/              pytest : toutes les fiches valides, compilées par Typst en 
 
 - **Tirets quadratins (U+2014) INTERDITS**, partout : fiches, YAML, Markdown, code, commits, réponses. Utiliser « : », « , », des parenthèses ou une nouvelle phrase. Pas de demi-cadratin (U+2013) non plus. `scripts/build.py` refuse un YAML qui en contient.
 - **Langue** : textes en français ; noms de contrôles en ANGLAIS, tels qu'écrits sur le panneau, en gras (`*CUTOFF*`).
-- **Notation Messenger** : positions en heures d'horloge, 7 = MIN, 12 = midi, 17 = MAX (décimales : 10.5 = 10:30).
+- **Notation Messenger** : positions en heures d'horloge, 7 = MIN, 12 = midi, 17 = MAX (décimales : 10.5 = 10:30). EG AMOUNT affiché aussi en % de course bipolaire (midi = 0 %, MAX = +100 %, 1 h = 20 %). Basses : méthode CUTOFF + EG AMOUNT et critère RES BASS dans `knowledge/machines/messenger.md`.
 - **Notation minilogue XD** : valeurs écran du manuel (0-1023 pour la plupart des potards, cents pour PITCH, % pour EG INT et DEPTH des effets).
 - **Choix de la machine** : polyphonie ou effets → minilogue XD ; mono, basse, lead, acid, glide → Messenger.
 - **Le schéma est l'élément central** de la fiche : tous les contrôles du panneau sont dessinés ; noir = réglé par la fiche, gris = valeur neutre.

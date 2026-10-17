@@ -33,11 +33,41 @@ Bipolaires (0 à midi) : TUNE, OSC 2 FREQ, MOD AMOUNT, EG AMOUNT, LFO 1 DEPTH.
 ### Filter (`filter`)
 - FB / EXT IN (`fb_ext`) : sans câble, réinjecte la sortie du mixer → saturation / grain.
 - CUTOFF (`cutoff`), EG AMOUNT (`eg_amount`, bipolaire), OSC 2 → CUTOFF (`osc2_cutoff`, FM de filtre), RESONANCE (`resonance`, auto-oscillation au max).
-- RES BASS (`res_bass`) : garde le grave quand la résonance monte. OFF = ladder classique.
-  **Retour d'essai (2026-10-16)** : avec de la résonance et RES BASS OFF, les basses sonnent creuses (« dull, sans profondeur »). Par défaut sur une basse : RES BASS ON dès que RESONANCE > ≈ 9:00 ; OFF seulement pour un son acid volontairement maigre.
-- CUTOFF bas : le 4 pôles retire très vite le caractère. Pour une basse, partir de 10:00-11:00 et laisser l'EG AMOUNT faire le claquement, plutôt que 9:00.
+- RES BASS (`res_bass`) : garde le grave quand la résonance monte. OFF = ladder classique (le grave se creuse à mesure que la RESONANCE monte, manuel p. 12 et 17). Critère ci-dessous.
+- EG AMOUNT en % : la fiche affiche sous la position un pourcentage de course bipolaire (midi = 0 %, MAX = +100 %, MIN = −100 % ; 1 h = 20 %). Ex. 2:30 = +50 %.
 - KB TRACKING (`kb_tracking`) : suivi 1 V/oct (ON/OFF ; autres valeurs via [KB ASSIGN]).
 - MODE (`mode`) : `lp4` (24 dB) · `lp2` (12 dB) · `bp` (4 pôles) · `hp` (2 pôles).
+
+### Régler le filtre d'une basse : CUTOFF + EG AMOUNT
+
+Retour d'essai du 2026-10-16 (A Real Hero, Into the Void : « dull, sans profondeur »). Le tutoriel du manuel (p. 10-12) part d'un CUTOFF à 9:00, « si bas qu'on n'entend presque plus rien », et fait tout avec l'EG AMOUNT : bon pour un « plop » ou de l'acid, mais le corps de la note reste vide.
+
+Le modèle à garder en tête :
+- **CUTOFF = la position de repos** du filtre. Avec un SUSTAIN de filtre à MIN, c'est ce qu'on entend pendant presque toute la note : il fait le **corps**.
+- **EG AMOUNT = de combien l'enveloppe pousse le filtre au-dessus du repos** au début de la note : il fait l'**attaque** (le « clac »). Pic ≈ CUTOFF + EG % × 10 h (hypothèse : à +100 %, l'enveloppe parcourt toute la course du CUTOFF ; à vérifier à la calibration).
+- **4P = 24 dB/oct** : une octave au-dessus de la coupure, un harmonique est réduit d'environ 16 fois en amplitude. **2P = 12 dB/oct**, « un peu plus brillant » (manuel) : plus de corps à réglage égal.
+
+Méthode (départs, à ajuster à l'oreille) :
+1. EG AMOUNT à midi. Tenir une note grave et régler le CUTOFF pour le **corps** : ≈ 10:30 (basse ronde) à 12:00-12:30 (basse qui grogne). Pas en dessous de 10:00 sauf son volontairement sourd.
+2. EG AMOUNT **+20 à +50 %** (1:00 à 2:30) pour le claquement. Plus le CUTOFF est bas, plus il en faut ; au-delà de +60 % on entre dans le « plop » acid.
+3. DECAY du filtre : 9:30-10:30 pour pincé, 11:00-12:00 pour une note qui « parle ».
+4. SUSTAIN du filtre 7:00-9:00 : un peu d'ouverture tenue si le corps manque encore.
+5. RES BASS selon le critère ci-dessous.
+Exception : basse « plop » ou acid voulue (303, Moog funk très pincé) : CUTOFF 9:00-10:00 et EG +60 à +100 % restent valables.
+
+### Critère RES BASS
+
+**ON** si les trois conditions sont réunies :
+1. la partie porte le grave du morceau (basse, sub, séquence grave) ;
+2. RESONANCE ≥ 9:30 (en dessous, la perte de grave est négligeable : laisser OFF) ;
+3. MODE en 4P ou 2P LOW PASS (en BP et HP, le grave est déjà coupé : sans objet).
+
+**OFF** :
+- acid / 303, « squelch » : la maigreur fait partie du caractère ;
+- lead, arpège, séquence aiguë, nappe : perdre du grave dégage la place de la basse dans le mix ;
+- reproduction d'un son de ladder classique dont la maigreur est entendue sur le disque.
+
+Test à l'oreille en cas de doute : jouer la note la plus grave de la partie avec RES BASS OFF puis ON. Si elle paraît plus faible que les autres ou disparaît sous le kick : ON.
 
 ### Envelopes (`fenv`, `aenv`, `env`)
 - `fenv` / `aenv` : `a`, `d`, `s`, `r`.

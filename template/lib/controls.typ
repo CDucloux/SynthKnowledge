@@ -27,6 +27,14 @@
   str(dial-hour) + ":" + (if minutes < 10 { "0" } else { "" }) + str(minutes)
 }
 
+/// Position d'un potard bipolaire en pourcentage de sa course : midi = 0 %,
+/// MAX (17) = +100 %, MIN (7) = −100 %, arrondi à 5 %. Sert à lire
+/// l'EG AMOUNT comme une quantité d'enveloppe (« +50 % »).
+#let bipolar-percent(hour) = {
+  let percent = calc.round((hour - 12) / 5 * 20) * 5
+  if percent > 0 { "+" + str(percent) + " %" } else if percent < 0 { "−" + str(-percent) + " %" } else { "0 %" }
+}
+
 /// Nom d'une commande, en capitales comme sur le panneau.
 #let control-label(name, active) = text(
   size: font-size.control-label, weight: "bold", fill: control-color(active), tracking: 0.02em, upper(name),

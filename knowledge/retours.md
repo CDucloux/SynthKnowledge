@@ -27,4 +27,4 @@ Format :
 ## 2026-10-16 : College & Electric Youth, A Real Hero (Bass) ; Nine Inch Nails, Into the Void (Bass)
 - Retour : « les basses sonnent un peu dull, sans profondeur ; le cutoff retire vite beaucoup de caractère sur le Messenger »
 - Correction : A Real Hero CUTOFF 9:00 → 10:00, RES BASS OFF → ON ; Into the Void CUTOFF 10:00 → 11:00, RES BASS OFF → ON
-- Leçon : sur le Messenger, le ladder 4 pôles éteint vite le son quand le CUTOFF est bas, et la RESONANCE creuse le grave si RES BASS est OFF (manuel p. 17 et tutoriel p. 10-12). Pour une basse : CUTOFF de départ 10:00-11:00 plutôt que 9:00, et RES BASS ON dès que la RESONANCE dépasse ≈ 9:00, sauf son acid voulu maigre.
+- Leçon : sur le Messenger, le ladder 4 pôles éteint vite le son quand le CUTOFF est bas, et la RESONANCE creuse le grave si RES BASS est OFF (manuel p. 17 et tutoriel p. 10-12). Méthode CUTOFF (corps) + EG AMOUNT (attaque, en %) et critère RES BASS (basse + RESONANCE ≥ 9:30 + passe-bas ; jamais pour acid, lead, arpège) : `knowledge/machines/messenger.md`.

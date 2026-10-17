@@ -5,6 +5,8 @@ Les valeurs sont des **départs raisonnables**, pas des vérités : toujours aju
 
 ## Basses
 
+Messenger : régler le corps au CUTOFF et l'attaque à l'EG AMOUNT, critère RES BASS : voir `machines/messenger.md` (« Régler le filtre d'une basse »). Les cutoff 9-10 ci-dessous sont des sons « plop » ; pour une basse ronde, partir de 10:30-12:00.
+
 | Archétype | Oscillateurs | Filtre | Env. filtre | Env. ampli | Divers |
 |---|---|---|---|---|---|
 | **Moog funk / pluck** | scie 16', sub carré | 4P, cutoff 9-10, EG 14-15, réso 9-10 | A 7, D 10-11, S 8, R 10 | A 7, D 12, S 17, R 9 | - |

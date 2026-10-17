@@ -88,7 +88,8 @@
     )),
     (title: "Filter", cols: 3, cells: (
       knob-at("FB / Ext In", "filter", "fb_ext"), grid.cell(rowspan: 2, align: center + horizon, cutoff),
-      knob-at("EG Amount", "filter", "eg_amount", bipolar: true),
+      knob-at("EG Amount", "filter", "eg_amount", bipolar: true,
+        hint: hour => if hour != 12 { bipolar-percent(hour) }),
       knob-at("Osc 2 → Cutoff", "filter", "osc2_cutoff"), knob-at("Resonance", "filter", "resonance"),
       switch-at("KB Tracking", "filter", "kb_tracking", note: "[KB ASSIGN]"),
       selector-at("Mode", "filter", "mode", options.filter-mode, centered: false),
