@@ -28,7 +28,7 @@ params:
     sub: 13
   filter:
     mode: lp4
-    cutoff: 9.5
+    cutoff: 10.5
     eg_amount: 13.5
     resonance: 9
     res_bass: true
@@ -43,11 +43,11 @@ steps:
   - Maintenir *PANEL* 1 s (init).
   - "*OCTAVE 1* et *2* sur 16', scies (*WAVESHAPE* à midi). *OSC 2 FREQ* à peine à droite de midi (≈ 12:05)."
   - "*SUB WAVE* ≈ 10:45 (carré). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 2:00, *SUB* ≈ 1:00."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:30, *RESONANCE* ≈ 9:00, *RES BASS* ON."
-  - "*EG AMOUNT* ≈ 1:30 ; enveloppe filtre : *DECAY* ≈ 11:30, *SUSTAIN* ≈ 10:00."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:30, *RESONANCE* ≈ 9:00, *RES BASS* ON."
+  - "*EG AMOUNT* ≈ 1:30 (+30 %) ; enveloppe filtre : *DECAY* ≈ 11:30, *SUSTAIN* ≈ 10:00."
   - "Enveloppe ampli : orgue, *RELEASE* très court ≈ 8:30. *MULTI-TRIG* OFF, *GLIDE* ≈ 8:00 (à peine)."
 tweaks:
-  - "Trop clair, pas assez « nuit » : *CUTOFF* vers 9:00, *EG AMOUNT* vers 1:00."
+  - "Trop clair, pas assez « nuit » : *CUTOFF* vers 10:00, *EG AMOUNT* vers 1:00."
   - "Les notes manquent d'attaque : *DECAY* filtre vers 12:00, *MULTI-TRIG* ON."
   - "Pas assez de poids dans le bas : *SUB* vers 2:00, *OSC 2* un peu moins fort."
   - "Trop statique : *OSC 2 FREQ* un peu plus loin de midi pour un léger battement."
@@ -66,7 +66,7 @@ analysis:
   - title: "Le filtre : sombre mais vivant"
     text: >-
       Le passe-bas 4 pôles (24 dB par octave) coupe net au-dessus du
-      *CUTOFF* : à 9:30 il ne reste que le bas du spectre, d'où la couleur
+      *CUTOFF* : à 10:30 il reste le bas du spectre et un peu de grain, d'où la couleur
       sourde et nocturne du morceau, que Wikipédia classe en électro-funk [1].
       Une résonance faible sans plus : on veut de la rondeur, pas un « wah ».
       *RES BASS* garde le grave intact.

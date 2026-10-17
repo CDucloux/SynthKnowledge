@@ -31,6 +31,7 @@ params:
     cutoff: 10
     eg_amount: 14
     resonance: 10
+    res_bass: true
     kb_tracking: true
   fenv: {a: 7, d: 10, s: 7, r: 9}
   aenv: {a: 7, d: 10.75, s: 7, r: 9.5}
@@ -49,7 +50,7 @@ steps:
   - "Maintenir *PANEL* 1 s (init)."
   - "*OCTAVE 1* et *2* sur 16'. *WAVESHAPE 1* à midi (scie), *WAVESHAPE 2* ≈ 1:15 (carré)."
   - "*OSC 2 FREQ* à peine à droite de midi (léger battement). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 2:00."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:00, *RESONANCE* ≈ 10:00, *KB TRACKING* ON, *EG AMOUNT* 2:00."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:00, *RESONANCE* ≈ 10:00, *RES BASS* ON, *KB TRACKING* ON, *EG AMOUNT* 2:00 (+40 %)."
   - "Enveloppes sans sustain : filtre *DECAY* ≈ 10:00, ampli *DECAY* ≈ 10:45. *MULTI-TRIG* ON."
 tweaks:
   - "Les octaves aiguës percent trop : *KB TRACKING* OFF ou *CUTOFF* vers 9:30."

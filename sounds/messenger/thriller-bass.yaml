@@ -32,8 +32,8 @@ params:
     osc2: 15
   filter:
     mode: lp4
-    cutoff: 9
-    eg_amount: 14
+    cutoff: 10.5
+    eg_amount: 13.5
     resonance: 12
     res_bass: true
   fenv: {a: 7, d: 10, s: 9, r: 9}
@@ -46,12 +46,12 @@ steps:
   - "*OCTAVE 1* et *OCTAVE 2* sur 16'. *WAVESHAPE 1* ≈ 1:30 (carré), *WAVESHAPE 2* à midi (scie)."
   - "*OSC 2 FREQ* à peine à droite de midi (battement lent). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 3:00."
   - "*LFO 1* : TRI vers OSC 1 WAVE, *RATE* ≈ 9:30 (lent), *DEPTH* ≈ 12:45 (PWM léger)."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:00, *RESONANCE* à midi, *RES BASS* ON."
-  - "*EG AMOUNT* ≈ 2:00 ; enveloppe filtre : *DECAY* ≈ 10:00 (court), *SUSTAIN* ≈ 9:00. *F ENV VEL* ON."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:30 (le corps), *RESONANCE* à midi, *RES BASS* ON."
+  - "*EG AMOUNT* ≈ 1:30 (+30 %) ; enveloppe filtre : *DECAY* ≈ 10:00 (court), *SUSTAIN* ≈ 9:00. *F ENV VEL* ON."
   - "Enveloppe ampli : orgue (*SUSTAIN* à fond), *RELEASE* court ≈ 8:30."
 tweaks:
   - "Pas assez de « pop » sur les notes : *EG AMOUNT* vers 2:30, *DECAY* filtre plus court."
-  - "Trop sourd : *CUTOFF* vers 9:45 ; trop brillant, ça ne sonne plus « ronde » : vers 8:30."
+  - "Trop sourd : *CUTOFF* vers 11:00 ; trop brillant, ça ne sonne plus « ronde » : vers 10:00."
   - "Ça siffle, trop « acid » : *RESONANCE* vers 11:00."
   - "Le carré bouge trop, effet « chorus » gênant : *DEPTH* du *LFO 1* vers 12:20."
 playing:
@@ -69,7 +69,7 @@ analysis:
   - title: "Le filtre : un ladder bien fermé qui mord"
     text: >-
       Le Tonus de Marinelli [2] a un filtre de type Moog [3], comme le 4 pôles du
-      Messenger. *CUTOFF* bas (150 Hz selon [4]) : sans enveloppe, un grave sourd.
+      Messenger. *CUTOFF* bas (150 Hz selon [4]) ; sur le Messenger, 10:30 garde le corps de la note.
       La *RESONANCE* à mi-course donne le mordant [4], *RES BASS* garde le bas.
   - title: "Les enveloppes : ouvrir puis refermer"
     text: >-

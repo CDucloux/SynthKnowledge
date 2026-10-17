@@ -36,6 +36,7 @@ params:
     cutoff: 9.5
     eg_amount: 14.5
     resonance: 11
+    res_bass: true
     kb_tracking: true
   fenv: {a: 7, d: 10.25, s: 7, r: 9.5}
   aenv: {a: 7, d: 11.5, s: 7, r: 9.5}
@@ -54,8 +55,8 @@ steps:
   - "Maintenir *PANEL* 1 s (init)."
   - "*OCTAVE 1* sur 16', *OCTAVE 2* sur 32', *WAVESHAPE 1* et *2* à midi (deux scies)."
   - "*OSC 2 FREQ* à peine à droite de midi (léger battement). *MIXER* : *OSC 1* à fond, *OSC 2* ≈ 2:00."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:30, *RESONANCE* ≈ 11:00, *KB TRACKING* ON."
-  - "*EG AMOUNT* ≈ 2:30. Enveloppe filtre : *DECAY* ≈ 10:15, *SUSTAIN* à 0. Enveloppe ampli : *DECAY* ≈ 11:30, *SUSTAIN* à 0."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:30, *RESONANCE* ≈ 11:00, *RES BASS* ON, *KB TRACKING* ON."
+  - "*EG AMOUNT* ≈ 2:30 (+50 %). Enveloppe filtre : *DECAY* ≈ 10:15, *SUSTAIN* à 0. Enveloppe ampli : *DECAY* ≈ 11:30, *SUSTAIN* à 0."
   - "*MULTI-TRIG* ON. *LFO 1* : TRI vers CUTOFF, *RATE* ≈ 8:00, *DEPTH* ≈ 12:30 (le filtre respire)."
 tweaks:
   - "Pas assez de « marteau » : *DECAY* du filtre vers 10:00, *EG AMOUNT* vers 3:00."

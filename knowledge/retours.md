@@ -28,3 +28,8 @@ Format :
 - Retour : « les basses sonnent un peu dull, sans profondeur ; le cutoff retire vite beaucoup de caractère sur le Messenger »
 - Correction : A Real Hero CUTOFF 9:00 → 10:00, RES BASS OFF → ON ; Into the Void CUTOFF 10:00 → 11:00, RES BASS OFF → ON
 - Leçon : sur le Messenger, le ladder 4 pôles éteint vite le son quand le CUTOFF est bas, et la RESONANCE creuse le grave si RES BASS est OFF (manuel p. 17 et tutoriel p. 10-12). Méthode CUTOFF (corps) + EG AMOUNT (attaque, en %) et critère RES BASS (basse + RESONANCE ≥ 9:30 + passe-bas ; jamais pour acid, lead, arpège) : `knowledge/machines/messenger.md`.
+
+## 2026-10-17 : basses Messenger repassées avec la méthode CUTOFF + EG AMOUNT
+- Retour : « repasse les 9 fiches avec la méthode » (suite au retour sur A Real Hero et Into the Void)
+- Correction : CUTOFF remonté (Thriller 9:00 → 10:30 et EG +40 → +30 %, Veridis Quo basse 9:00 → 10:30, Little Dark Age 8:30 → 10:00, Smalltown Boy 9:30 → 10:30, Stylo 9:30 → 10:30) ; RES BASS ON selon le critère (Veridis Quo basse, Smalltown Boy, I Feel Love, Supernature séquence, Enjoy the Silence, Perfect Kiss 2) ; CUTOFF bas gardé pour I Feel Love et Supernature (le « marteau » et le « dut » sont voulus)
+- Leçon : appliquée d'office aux nouvelles fiches via `knowledge/machines/messenger.md` ; ces réglages restent à valider à l'essai.

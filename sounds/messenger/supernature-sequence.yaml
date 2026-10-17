@@ -29,7 +29,7 @@ params:
     cutoff: 9.5
     eg_amount: 14.5
     resonance: 12
-    res_bass: false
+    res_bass: true
     kb_tracking: true
   fenv: {a: 7, d: 10, s: 7, r: 9}
   aenv: {a: 7, d: 11, s: 7, r: 9.5}
@@ -52,8 +52,8 @@ steps:
   - "Maintenir *PANEL* 1 s (init)."
   - "*OCTAVE 1* sur 16', *WAVESHAPE 1* à midi (scie). *OCTAVE 2* sur 32', *WAVESHAPE 2* ≈ 1:15 (carré)."
   - "*MIXER* : *OSC 1* à fond, *OSC 2* ≈ 1:00 pour asseoir le grave."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:30, *RESONANCE* midi, *RES BASS* OFF, *KB TRACKING* ON."
-  - "*EG AMOUNT* ≈ 2:30. Enveloppe filtre : *DECAY* ≈ 10:00, *SUSTAIN* à 0, *RELEASE* court."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:30, *RESONANCE* midi, *RES BASS* ON, *KB TRACKING* ON."
+  - "*EG AMOUNT* ≈ 2:30 (+50 %). Enveloppe filtre : *DECAY* ≈ 10:00, *SUSTAIN* à 0, *RELEASE* court."
   - "Enveloppe ampli : *DECAY* ≈ 11:00, *SUSTAIN* à 0 : chaque note s'éteint seule."
   - "*MULTI-TRIG* ON (chaque note relance les enveloppes) et *F ENV VEL* ON."
 tweaks:

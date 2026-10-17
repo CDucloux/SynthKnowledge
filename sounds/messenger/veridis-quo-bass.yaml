@@ -25,9 +25,10 @@ params:
     sub: 13
   filter:
     mode: lp4
-    cutoff: 9
+    cutoff: 10.5
     eg_amount: 13
     resonance: 9.5
+    res_bass: true
     kb_tracking: true
   fenv: {a: 7, d: 12.5, s: 10, r: 10.5}
   aenv: {a: 7.25, d: 12, s: 17, r: 10.5}
@@ -36,13 +37,13 @@ steps:
   - "Maintenir *PANEL* 1 s (init)."
   - "*OCTAVE 1* sur 16', *WAVESHAPE 1* à midi (scie). *SUB WAVE* ≈ 10:45 (carré)."
   - "*MIXER* : *OSC 1* à fond, *SUB* ≈ 1:00, *OSC 2* coupé."
-  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 9:00, *RESONANCE* ≈ 9:30, *KB TRACKING* ON."
-  - "*EG AMOUNT* ≈ 1:00. Enveloppe filtre : *DECAY* ≈ 12:30, *SUSTAIN* ≈ 10:00, *RELEASE* ≈ 10:30."
+  - "*FILTER* : 4P LOW PASS, *CUTOFF* ≈ 10:30, *RESONANCE* ≈ 9:30, *RES BASS* ON, *KB TRACKING* ON."
+  - "*EG AMOUNT* ≈ 1:00 (+20 %). Enveloppe filtre : *DECAY* ≈ 12:30, *SUSTAIN* ≈ 10:00, *RELEASE* ≈ 10:30."
   - "Enveloppe ampli : *ATTACK* ≈ 7:15, *SUSTAIN* à fond, *RELEASE* ≈ 10:30."
 tweaks:
-  - "Trop sombre dans le mix : *CUTOFF* vers 10:00."
+  - "Trop sombre dans le mix : *CUTOFF* vers 11:30."
   - "Les quintes de Songsterr [3] : *OSC 2* à 16' (scie), *OSC 2 FREQ* à fond (+7), au mixer vers 12:00."
-  - "Plus « basse scie » (2e partie du projet Imaginando [2]) : *CUTOFF* vers 10:30, *EG AMOUNT* vers 2:00."
+  - "Plus « basse scie » (2e partie du projet Imaginando [2]) : *CUTOFF* vers 11:30, *EG AMOUNT* vers 2:00 (+40 %)."
 playing:
   - "Ré (1 mesure), Sol (1), La plus grave (1), Fa (2 temps), Mi (2 temps), en boucle [2][3]."
   - "Chaque note arrive une croche avant le temps et tient jusqu'à la suivante : jouer legato."
@@ -56,7 +57,7 @@ analysis:
       plus bas assoit le grave sans ajouter d'aigus.
   - title: "Le filtre : fermé, presque immobile"
     text: >-
-      *CUTOFF* bas : on n'entend que les premières harmoniques, d'où le son
+      *CUTOFF* assez bas : on entend surtout les premières harmoniques, d'où le son
       rond et sombre [1]. L'enveloppe ouvre à peine le filtre au début de la
       note, puis le *SUSTAIN* du filtre le garde entrouvert : les notes
       tenues ne s'éteignent pas. Résonance faible, juste de la chaleur.

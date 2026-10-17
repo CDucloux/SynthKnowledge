@@ -32,6 +32,7 @@ params:
     cutoff: 10
     eg_amount: 14
     resonance: 10.5
+    res_bass: true
     kb_tracking: true
   fenv: {a: 7, d: 10.5, s: 8, r: 9}
   aenv: {a: 7, d: 11.5, s: 12, r: 9}
@@ -50,7 +51,7 @@ steps:
   - "*PANEL* 1 s (init). *OCTAVE 1* et *2* sur 16', deux scies (*WAVESHAPE* à midi)."
   - "*OSC 2 FREQ* à peine à droite de midi. *SUB WAVE* ≈ 10:30 (carré)."
   - "*MIXER* : *OSC 1* à fond, *OSC 2* ≈ 2:00, *SUB* ≈ 11:00."
-  - "4P LOW PASS, *CUTOFF* ≈ 10:00, *RESONANCE* ≈ 10:30, *EG AMOUNT* ≈ 2:00, *KB TRACKING* ON."
+  - "4P LOW PASS, *CUTOFF* ≈ 10:00, *RESONANCE* ≈ 10:30, *RES BASS* ON, *EG AMOUNT* ≈ 2:00 (+40 %), *KB TRACKING* ON."
   - "F ENV : *DECAY* ≈ 10:30, *SUSTAIN* ≈ 8:00. A ENV : *DECAY* ≈ 11:30, *SUSTAIN* midi."
   - "*MULTI-TRIG* ON. *GATE LENGTH* (*SETTINGS* 3) sur PGM 10."
 tweaks:
